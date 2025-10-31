@@ -4,31 +4,115 @@
 
 module CheatUtils
   def self.heal_player
-    self.player_heal
-    self.player_feed
-    self.player_rest
+    self.player_heal(999, true)
+    self.player_feed(999, true)
+    self.player_rest(999, true)
   end
 
-  def self.player_heal
+  def self.player_heal(value, mode)
     return if !self.ingame?
-    $game_player.actor.health += 999
+    $game_player.actor.health += value if mode
+    return if mode
+    @health_max = $game_player.actor.actStat.get_stat("health", 2)
+    @health_limit = @health_max * $cheat_infinite_health_limit
+    @health_rate = @health_max * $cheat_infinite_health_rate
+    case $cheat_infinite_health_mode
+    when "OnlyBelow"
+      if $game_player.actor.health < @health_limit
+        $game_player.actor.health += @health_rate
+      end
+    when "DropsBelow"
+      if $game_player.actor.health < @health_limit
+        $cheat_infinite_health_loop = true
+      end
+      if $game_player.actor.health < @health_max && $cheat_infinite_health_loop
+        $game_player.actor.health += @health_rate
+      end
+      if $game_player.actor.health >= @health_max && $cheat_infinite_health_loop
+        $cheat_infinite_health_loop = false
+      end
+    end
   end
 
-  def self.player_feed
+  def self.player_feed(value, mode)
     return if !self.ingame?
-    $game_player.actor.sat += 999
+    $game_player.actor.sat += value if mode
+    return if mode
+    @food_max = $game_player.actor.actStat.get_stat("sat", 2)
+    @food_limit = @food_max * $cheat_infinite_food_limit
+    @food_rate = @food_max * $cheat_infinite_food_rate
+    case $cheat_infinite_food_mode
+    when "OnlyBelow"
+      if $game_player.actor.sat < @food_limit
+        $game_player.actor.sat += @food_rate
+      end
+    when "DropsBelow"
+      if $game_player.actor.sat < @food_limit
+        $cheat_infinite_food_loop = true
+      end
+      if $game_player.actor.sat < @food_max && $cheat_infinite_food_loop
+        $game_player.actor.sat += @food_rate
+      end
+      if $game_player.actor.sat >= @food_max && $cheat_infinite_food_loop
+        $cheat_infinite_food_loop = false
+      end
+    end
   end
 
-  def self.player_rest
+  def self.player_rest(value, mode)
     return if !self.ingame?
     return if $game_player.cannot_trigger
-    $game_player.actor.sta += 999
+    $game_player.actor.sta += value if mode
+    return if mode
+    @stamina_max = $game_player.actor.actStat.get_stat("sta", 2)
+    @stamina_limit = @stamina_max * $cheat_infinite_stamina_limit
+    @stamina_rate = @stamina_max * $cheat_infinite_stamina_rate
+    case $cheat_infinite_stamina_mode
+    when "OnlyBelow"
+      if $game_player.actor.sta < @stamina_limit
+        $game_player.actor.sta += @stamina_rate
+      end
+    when "DropsBelow"
+      if $game_player.actor.sta < @stamina_limit
+        $cheat_infinite_stamina_loop = true
+      end
+      if $game_player.actor.sta < @stamina_max && $cheat_infinite_stamina_loop
+        $game_player.actor.sta += @stamina_rate
+      end
+      if $game_player.actor.sta >= @stamina_max && $cheat_infinite_stamina_loop
+        $cheat_infinite_stamina_loop = false
+      end
+    end
   end
 
   def self.toggle_infinite_stats
     self.toggle_infinite_health
     self.toggle_infinite_food
     self.toggle_infinite_stamina
+  end
+
+  def self.load_infinite_stats_config
+    $cheat_infinite_health_limit = $mod_cheats.config.read("Cheats Mod - Infinite Main Stats: Config", "HealthRegenLimit", 0.20)
+    $cheat_infinite_health_rate = $mod_cheats.config.read("Cheats Mod - Infinite Main Stats: Config", "HealthRegenRate", 0.01)
+    $cheat_infinite_food_limit = $mod_cheats.config.read("Cheats Mod - Infinite Main Stats: Config", "FoodRegenLimit", 0.10)
+    $cheat_infinite_food_rate = $mod_cheats.config.read("Cheats Mod - Infinite Main Stats: Config", "FoodRegenRate", 0.005)
+    $cheat_infinite_stamina_limit = $mod_cheats.config.read("Cheats Mod - Infinite Main Stats: Config", "StaminaRegenLimit", 0.40)
+    $cheat_infinite_stamina_rate = $mod_cheats.config.read("Cheats Mod - Infinite Main Stats: Config", "StaminaRegenRate", 0.002)
+    $cheat_infinite_health_mode = $mod_cheats.config.read("Cheats Mod - Infinite Main Stats: Config", "HealthRegenMode", "OnlyBelow")
+    $cheat_infinite_food_mode = $mod_cheats.config.read("Cheats Mod - Infinite Main Stats: Config", "FoodRegenMode", "OnlyBelow")
+    $cheat_infinite_stamina_mode = $mod_cheats.config.read("Cheats Mod - Infinite Main Stats: Config", "StaminaRegenMode", "OnlyBelow")
+  end
+
+  def self.save_infinite_stats_config
+    $mod_cheats.config.write("Cheats Mod - Infinite Main Stats: Config", "HealthRegenLimit", $cheat_infinite_health_limit)
+    $mod_cheats.config.write("Cheats Mod - Infinite Main Stats: Config", "HealthRegenRate", $cheat_infinite_health_rate)
+    $mod_cheats.config.write("Cheats Mod - Infinite Main Stats: Config", "FoodRegenLimit", $cheat_infinite_food_limit)
+    $mod_cheats.config.write("Cheats Mod - Infinite Main Stats: Config", "FoodRegenRate", $cheat_infinite_food_rate)
+    $mod_cheats.config.write("Cheats Mod - Infinite Main Stats: Config", "StaminaRegenLimit", $cheat_infinite_stamina_limit)
+    $mod_cheats.config.write("Cheats Mod - Infinite Main Stats: Config", "StaminaRegenRate", $cheat_infinite_stamina_rate)
+    $mod_cheats.config.write("Cheats Mod - Infinite Main Stats: Config", "HealthRegenMode", $cheat_infinite_health_mode)
+    $mod_cheats.config.write("Cheats Mod - Infinite Main Stats: Config", "FoodRegenMode", $cheat_infinite_food_mode)
+    $mod_cheats.config.write("Cheats Mod - Infinite Main Stats: Config", "StaminaRegenMode", $cheat_infinite_stamina_mode)
   end
 
   def self.toggle_infinite_health
@@ -64,13 +148,13 @@ class CheatsMod
       SndLib.sys_ok
     end
     if $cheat_infinite_health
-      CheatUtils.player_heal
+      CheatUtils.player_heal(nil, false)
     end
     if $cheat_infinite_food
-      CheatUtils.player_feed
+      CheatUtils.player_feed(nil, false)
     end
     if $cheat_infinite_stamina
-      CheatUtils.player_rest
+      CheatUtils.player_rest(nil, false)
     end
   end
 end
@@ -131,6 +215,12 @@ if !$mod_cheats.modules["Infinite Main Stats"]
   $cheat_infinite_health = $mod_cheats.config.read("Cheats Mod - Modules", "Infinite Health", false)
   $cheat_infinite_food = $mod_cheats.config.read("Cheats Mod - Modules", "Infinite Food", false)
   $cheat_infinite_stamina = $mod_cheats.config.read("Cheats Mod - Modules", "Infinite Stamina", false)
+
+  CheatUtils.load_infinite_stats_config
+
+  $cheat_infinite_health_loop = false
+  $cheat_infinite_food_loop = false
+  $cheat_infinite_stamina_loop = false
 
   $mod_cheats.modules["Infinite Main Stats"] = true
 end
