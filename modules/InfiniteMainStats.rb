@@ -13,6 +13,7 @@ module CheatUtils
     return if !self.ingame?
     $game_player.actor.health += value if mode
     return if mode
+=begin
     @health_max = $game_player.actor.actStat.get_stat("health", 2)
     @health_limit = @health_max * $cheat_infinite_health_limit
     @health_rate = @health_max * $cheat_infinite_health_rate
@@ -32,12 +33,14 @@ module CheatUtils
         $cheat_infinite_health_loop = false
       end
     end
+=end
   end
 
   def self.player_feed(value, mode)
     return if !self.ingame?
     $game_player.actor.sat += value if mode
     return if mode
+=begin
     @food_max = $game_player.actor.actStat.get_stat("sat", 2)
     @food_limit = @food_max * $cheat_infinite_food_limit
     @food_rate = @food_max * $cheat_infinite_food_rate
@@ -57,6 +60,7 @@ module CheatUtils
         $cheat_infinite_food_loop = false
       end
     end
+=end
   end
 
   def self.player_rest(value, mode)
@@ -64,6 +68,7 @@ module CheatUtils
     return if $game_player.cannot_trigger
     $game_player.actor.sta += value if mode
     return if mode
+=begin
     @stamina_max = $game_player.actor.actStat.get_stat("sta", 2)
     @stamina_limit = @stamina_max * $cheat_infinite_stamina_limit
     @stamina_rate = @stamina_max * $cheat_infinite_stamina_rate
@@ -83,6 +88,7 @@ module CheatUtils
         $cheat_infinite_stamina_loop = false
       end
     end
+=end
   end
 
   def self.toggle_infinite_stats

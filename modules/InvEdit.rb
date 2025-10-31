@@ -75,7 +75,7 @@ class Window_CheatMenuItem < Window_Command
     rect.x += 24
     rect.width -= 24
     draw_text(rect, $game_text[name])
-    text = sprintf("×%s", $game_party.item_number(item))
+    text = sprintf("x%s", $game_party.item_number(item))
     draw_text(rect, text, 2)
   end
 

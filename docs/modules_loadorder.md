@@ -43,4 +43,4 @@ However, while the new load order can be whatever the user wants, please try to 
 
 Adding to the load order is as simple as adding the basename of the CheatModule (term interchangable with addon, plugin, etc) to the list. e.g: If the Legacy Cheatmodule had been taken out so that it gets ordered by filename, bringing it back in is as simple as adding `"Legacy"` into the array.
 
-To completely reset the load order to the defaults, ensure the game is not running and simply delete the `loadorder.json` file from the mod folder and launch the game to generate the default file.
+To completely reset the load order to the defaults, ensure the game is not running and simply delete the `load_order.json` file from the mod folder and launch the game to generate the default file.
