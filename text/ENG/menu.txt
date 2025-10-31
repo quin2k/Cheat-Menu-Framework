@@ -1,0 +1,30 @@
+info/alert
+ATTENTION!
+
+cheat_toggle/on
+ON
+
+cheat_toggle/off
+OFF
+
+modules/installed_count
+Installed Modules：
+
+modules/prefix
+CheatModule：
+
+commands/modules
+CheatModules
+
+commands/back
+Back
+
+commands/cheats
+Toggle Cheats
+
+command_help/cheats_0
+Enable/disable Cheats.
+
+command_help/cheats_1
+Press Z to toggle.
+

@@ -1,0 +1,47 @@
+commands_preg/human
+Humano
+
+commands_preg/moot
+Mestizos
+
+commands_preg/deepone
+Profundo Uno
+
+commands_preg/fishkind
+Fishkind
+
+commands_preg/orkind
+Orkind
+
+commands_preg/goblin
+Goblin
+
+commands_preg/abom
+Abominación
+
+commands/preg
+Impregnar
+
+command_help/preg_0
+Selecciona la raza con la que deseas quedar impregnado.
+
+command_help/preg_1
+Pulsa Z para seleccionar.
+
+command_help/preg_2
+Seleccione varias veces para obtener la raza de bebé deseada
+
+command_help/preg_3
+Si está embarazada, desplácese hacia abajo para ver las opciones para avanzar en el embarazo
+
+window/babyRace
+carrera de bebes
+
+window/daysTillBirth
+Días hasta el nacimiento
+
+window/pregplus
+Adelantar el embarazo un día
+
+window/birthInOneDay
+Adelantar el embarazo hasta el último día

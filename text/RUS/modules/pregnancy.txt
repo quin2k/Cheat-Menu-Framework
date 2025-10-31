@@ -1,0 +1,47 @@
+commands_preg/human
+Человек
+
+commands_preg/moot
+Смешанная
+
+commands_preg/deepone
+Глубинная
+
+commands_preg/fishkind
+Рыбочеловек
+
+commands_preg/orkind
+Оркойд
+
+commands_preg/goblin
+Гоблин
+
+commands_preg/abom
+Мерзость
+
+commands/preg
+Забеременеть
+
+command_help/preg_0
+Выберите расу, от которой будет осуществляться оплодотворение.
+
+command_help/preg_1
+Нажмите Z для выбора.
+
+command_help/preg_2
+Выберите несколько раз, чтобы получить желаемую детскую гонку.
+
+command_help/preg_3
+Если вы беременны, прокрутите вниз, чтобы узнать, как можно ускорить беременность.
+
+window/babyRace
+Детские гонки
+
+window/daysTillBirth
+Дней до рождения
+
+window/pregplus
+Ускорить беременность на один день
+
+window/birthInOneDay
+Отодвинуть беременность до последнего дня
