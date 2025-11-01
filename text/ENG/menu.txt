@@ -13,18 +13,42 @@ Installed Modules：
 modules/prefix
 CheatModule：
 
-commands/modules
-CheatModules
-
 commands/back
 Back
 
-commands/cheats
+commands/config
+Config Menu
+
+commands/toggle
 Toggle Cheats
 
-command_help/cheats_0
-Enable/disable Cheats.
+commands/actions
+Execute Cheats
 
-command_help/cheats_1
+commands/modules
+Cheat Modules
+
+commands/hotkeys
+Hotkey Settings
+
+commands/viewconfig
+View Configuration
+
+command_help/execute
+Press Z to run command.
+
+command_help/scene
+Press Z to enter a submenu.
+
+command_help/toggle
 Press Z to toggle.
 
+command_help/edit
+Press Z to edit.
+
+
+command_help/num_edit1
+Press Left to decrease, Right to increase.
+
+command_help/num_edit2
+Hold SHIFT for x10, CTRL for x100.
