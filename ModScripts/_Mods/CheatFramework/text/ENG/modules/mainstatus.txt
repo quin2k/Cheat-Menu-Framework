@@ -1,0 +1,27 @@
+toggle/health
+Infinite Health
+
+toggle/food
+Infinite Food
+
+toggle/stamina
+Infinite Stamina
+
+toggle/money
+Infinite Money
+
+misc/heal
+Heal
+
+misc/heal_wound
+Heal a Wound
+
+command_help/heal_wound
+Heals a single random wound.
+
+misc/faint
+Exhausted
+
+misc/money
+Max Money
+

@@ -1,0 +1,46 @@
+command/gallery
+Розблокувати галерею
+
+command/world
+Складність світу
+
+
+commands/friendlyfire
+Виправлення дружнього вогню
+
+command_help/friendlyfire1
+Спроба запобігти дружньому вогню.
+
+commands/stealth
+Виправлення «З тіні»
+
+command_help/stealth1
+Клавіша дії не скасує крадіжку, якщо у вас є відповідна навичка.
+
+commands/abomskillfix
+Виправлення поїдання потвор
+
+command_help/abomskillfix1
+Навичка «Осквернення» також наповнює їжею та лікує рани.
+
+commands/achievementfix
+Виправлення досягнення складності
+
+command_help/achievementfix1
+Спрощує математику для розрахунку днів.
+
+command_help/fixcommand2
+Цей перемикач ВИМАГАЄ ПЕРЕЗАПУСКУ після налаштування.
+
+
+commands/discard
+Запобігання скиданню
+
+command_help/discard1
+Знятий одяг потрапляє у ваш інвентар, а не на землю.
+
+commands/forceunequip
+Примусове зняття спорядження
+
+command_help/forceunequip1
+Використовується для примусового зняття ланцюгів або нашийників.

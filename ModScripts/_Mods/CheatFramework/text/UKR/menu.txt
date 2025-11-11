@@ -1,0 +1,44 @@
+commands/misc
+Різні чіти
+
+commands/toggles
+Перемикачі
+
+commands/character
+Персонаж
+
+window_help/character1
+Змінити різні властивості головного персонажа.
+
+
+commands/config
+Меню конфігурації
+
+
+cheat_toggle/on
+ВКЛ
+
+cheat_toggle/off
+ВИКЛ
+
+command_help/execute
+Натисніть Z, щоб виконати команду.
+
+command_help/scene
+Натисніть Z, щоб увійти в підменю.
+
+command_help/toggle
+Натисніть Z, щоб перемикати.
+
+command_help/edit
+Натисніть Z, щоб редагувати.
+
+
+command_help/num_edit1
+Натисніть вліво, щоб зменшити, вправо, щоб збільшити.
+
+command_help/num_edit2
+Утримуйте SHIFT для x10, CTRL для x100.
+
+commands_status/locked
+Чит активний

@@ -1,0 +1,30 @@
+commands/items
+Items
+
+commands/weapons
+Weapons
+
+commands/armors
+Armors
+
+command_help/items_0
+Adjust items.
+
+command_help/items_1
+Press Left/Right to lose/gain.
+
+command_help/items_2
+Hold SHIFT for increments of 10.
+
+command_help/items_3
+Hold CTRL for increments of 100.
+
+commands/status
+Status
+
+command_help/stats_0
+Adjust Lona's status variables.
+
+command_help/stats_1
+Press Left/Right to lose/gain.
+

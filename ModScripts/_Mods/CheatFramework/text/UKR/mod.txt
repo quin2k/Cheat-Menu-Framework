@@ -1,0 +1,5 @@
+name
+Переробка фреймворку чітів
+
+description
+Чіти Mod перероблені (знову). Детальний список змін дивіться на https://github.com/quin2k/Cheat-Menu-Framework.

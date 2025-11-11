@@ -1,0 +1,188 @@
+commands/primary
+Primary
+
+commands/primary/health
+Health
+
+commands/primary/stamina
+Stamina
+
+commands/primary/food
+Food
+
+commands/primary/mood
+Mood
+
+commands/primary/arousal
+Arousal
+
+commands/primary/morality
+Morality
+
+command_help/moral
+Morality <30 will cause humans to attack.
+
+
+commands/levels
+Levels
+
+commands/levels/level
+Level
+
+command_help/lvl
+Recalculates Trait Points when set.
+
+commands/levels/max_level
+Max Level
+
+commands/levels/traits_per_level
+Traits per Level
+
+command_help/tpl1
+Number of Traits earned at level up.
+
+
+commands/traits
+Traits
+
+commands/traits/trait_points
+Trait Points
+
+command_help/tp1
+Points you should have
+
+command_help/tp2
+Base
+
+command_help/tp3
+Skills
+
+command_help/tp4
+Traits
+
+commands/traits/max_traits
+Max Traits
+
+commands/traits/combat
+Combat Trait
+
+commands/traits/scoutcraft
+Scoutcraft Trait
+
+commands/traits/wisdom
+Wisdom Trait
+
+commands/traits/survival
+Survival Trait
+
+commands/traits/constitution
+Constitution Trait
+
+commands/traits/reset
+Reset Traits
+
+command_help/reset1
+Resets all traits (including skills)
+
+command_help/reset2
+Sets Trait Points based on Level * Traits per Level.
+
+
+commands/appearance
+Appearance
+
+commands/appearance/dirt
+Dirty
+
+toggle/dirt
+Disable Dirt
+
+command_help/dirt
+Sets dirt max to 0. NOT GLOBAL.
+
+commands/appearance/pubes
+Nuke Pubic Hair
+
+commands/appearance/hair_color
+Hair Color
+
+commands/appearance/hair_color/0
+Gray
+
+commands/appearance/hair_color/1
+Black
+
+commands/appearance/hair_color/2
+Bleached
+
+commands/appearance/hair_color/3
+Aqua
+
+commands/appearance/hair_color/4
+Red
+
+commands/appearance/hair_color/5
+Blonde
+
+toggle/autobandage
+Auto-Bandage
+
+command_help/autobandage
+Auto removes wounds, blood, and orifice damage.
+
+toggle/autocure
+Auto-Cure
+
+command_help/autocure
+Auto removes STDs and parasites.
+
+toggle/autocleanout
+Auto-Clean (External)
+
+command_help/autocleanout
+Auto removes blood and all surface cum.
+
+toggle/autocleanin
+Auto-Clean (Internal)
+
+command_help/autocleanin
+Auto removes cum from orifices.
+
+
+
+
+commands/race
+Race
+
+window_help/race1
+Select a race.
+
+commands/race/human
+Human
+
+commands/race/moot
+Moot
+
+commands/race/deepone
+Pre Deepone
+
+commands/race/truedeepone
+True Deepone
+
+commands/race/abom_human
+Abomination (Human)
+
+commands/race/abom_moot
+Abomination (Moot)
+
+commands/race/skills
+Racial Skills
+
+commands/race/skills/deepone
+Awaken (Sea Witch)
+
+commands/race/skills/abomeat
+Desecrate (Abomination)
+
+commands/race/skills/abomgrab
+Tendril Whip (Abomination)

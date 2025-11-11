@@ -1,0 +1,26 @@
+toggle/health
+Бесконечное здоровье
+
+toggle/food
+Бесконечное количество еды
+
+toggle/stamina
+Бесконечная выносливость
+
+toggle/money
+Бесконечное количество денег
+
+misc/heal
+Исцеление
+
+misc/heal_wound
+Исцеление раны
+
+command_help/heal_wound
+Исцеляет одну случайную рану.
+
+misc/faint
+Изнеможение
+
+misc/money
+Максимальное количество денег

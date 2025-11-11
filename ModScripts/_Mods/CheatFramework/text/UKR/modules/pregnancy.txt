@@ -1,0 +1,86 @@
+commands/preg
+Вагітність
+
+commands/difficulty
+Перевизначити складність вагітності
+
+commands/diff_off
+ВИМКНУТИ
+
+commands/diff_hard
+СКЛАДНО
+
+commands/diff_hell
+ПЕКЛО
+
+commands/diff_doom
+ЗАГИБЕЛЬ
+
+commands/seedbed
+Рівень розплідника
+
+commands/protect
+Захистити вагітність
+
+commands/impreg
+Запліднити Лону
+
+info/babyRace
+Раса дитини：
+
+commands/days
+Дні до народження
+
+commands/health
+Здоров'я дитини
+
+commands/impreg/human
+Людина
+
+commands/impreg/moot
+Мут
+
+commands/impreg/deepone
+Глибоководний
+
+commands/impreg/fishkind
+Рибоподібний
+
+commands/impreg/orkind
+Орк
+
+commands/impreg/goblin
+Гоблін
+
+commands/impreg/abomination
+Потвора
+
+commands/clear
+Очистити вагітність
+
+menu_help/impreg_menu1
+Виберіть расу, від якої буде зачата дитина.
+
+menu_help/impreg_menu4
+Натисніть Z, щоб зачати дитину від Лони!
+
+command_help/difficulty
+Це вплине тільки на тривалість вагітності.
+
+command_help/seedbed
+Безпосередньо регулює стан Лони.
+
+command_help/protect
+Підтримує здоров'я дитини на максимальному рівні, вимикає функцію «Очистити».
+
+command_help/length1
+Виберіть, щоб редагувати тривалість вагітності.
+
+command_help/length2
+Нуль активує вагітність, як тільки ви почнете рухатися.
+
+command_help/clear1
+Тихо видаляє вагітність з Лони.
+
+command_help/clear2
+Якщо вимкнено, захист вагітності увімкнено.

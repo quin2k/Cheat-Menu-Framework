@@ -1,4 +1,18 @@
-Framework/preview.pdn
-Framework/todo.md
+# Ignore everything
+/*
 
-Framework/scripts/plugins_setup*.rb
+# Allow entering these folders
+!/ModScripts/
+/ModScripts/*
+
+# Unignore _Mods so we can go deeper
+!/ModScripts/_Mods/
+/ModScripts/_Mods/*
+
+# Unignore only CheatFramework and its contents
+!/ModScripts/_Mods/CheatFramework/
+!/ModScripts/_Mods/CheatFramework/**
+
+# Ignore work/reference folders
+/ModScripts/_Mods/CheatFramework/New Folder/**
+/ModScripts/_Mods/CheatFramework/othermods/**

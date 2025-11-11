@@ -1,0 +1,86 @@
+commands/preg
+Беременность
+
+commands/difficulty
+Отменить сложность беременности
+
+commands/diff_off
+ВЫКЛ
+
+commands/diff_hard
+СЛОЖНО
+
+commands/diff_hell
+АД
+
+commands/diff_doom
+DOOM
+
+commands/seedbed
+Уровень семенного ложа
+
+commands/protect
+Защитить беременность
+
+commands/impreg
+Оплодотворить Лону
+
+info/babyRace
+Раса ребенка：
+
+commands/days
+Дни до родов
+
+commands/health
+Здоровье ребенка
+
+commands/impreg/human
+Человек
+
+commands/impreg/moot
+Мутант
+
+commands/impreg/deepone
+Глубоководный
+
+commands/impreg/fishkind
+Рыбоподобный
+
+commands/impreg/orkind
+Оркоподобный
+
+commands/impreg/goblin
+Гоблин
+
+commands/impreg/abomination
+Чудовище
+
+commands/clear
+Очистить беременность
+
+menu_help/impreg_menu1
+Выберите расу, которой вы хотите забеременеть.
+
+menu_help/impreg_menu4
+Нажмите Z, чтобы забеременеть Лоной!
+
+command_help/difficulty
+Это повлияет только на продолжительность беременности.
+
+command_help/seedbed
+Непосредственно регулирует статус Лоны.
+
+command_help/protect
+Сохраняет здоровье ребенка на максимальном уровне, отключает «Clear».
+
+command_help/length1
+Выберите, чтобы изменить продолжительность беременности.
+
+command_help/length2
+Ноль запустит беременность, как только вы начнете двигаться.
+
+command_help/clear1
+Бесшумно удаляет беременность из Лоны.
+
+command_help/clear2
+Если отключено, то «Защита беременности» включена.

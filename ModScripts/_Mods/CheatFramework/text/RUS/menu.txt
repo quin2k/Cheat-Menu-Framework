@@ -1,0 +1,44 @@
+commands/misc
+Разное
+
+commands/toggles
+Переключатели
+
+commands/character
+Персонаж
+
+window_help/character1
+Изменение различных свойств главного персонажа.
+
+
+commands/config
+Меню настроек
+
+
+cheat_toggle/on
+ВКЛ
+
+cheat_toggle/off
+ВЫКЛ
+
+command_help/execute
+Нажмите Z, чтобы выполнить команду.
+
+command_help/scene
+Нажмите Z, чтобы войти в подменю.
+
+command_help/toggle
+Нажмите Z, чтобы переключить.
+
+command_help/edit
+Нажмите Z для редактирования.
+
+
+command_help/num_edit1
+Нажмите влево для уменьшения, вправо для увеличения.
+
+command_help/num_edit2
+Удерживайте SHIFT для умножения на 10, CTRL для умножения на 100.
+
+commands_status/locked
+Чит активен

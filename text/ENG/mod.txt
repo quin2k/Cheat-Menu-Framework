@@ -1,6 +1,0 @@
-name
-Cheat Menu Framework
-
-description
-The old Cheats Mod, reworked to use modules to add new cheats.
-
