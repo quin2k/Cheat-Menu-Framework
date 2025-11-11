@@ -6,13 +6,20 @@
 
 ## Requirements
 
+<<<<<<< HEAD
 Lowest game version tested: `0.10.0.2`<br>
+=======
+Lowest game version tested: `0.10.0.2`
+>>>>>>> 6a2e0d42fbea17e4f9cb86d24f27a1a0288fbb8c
 Highest game version tested: `0.10.3.1`
 
 ## Default Hotkeys
 These should populate in the config when you load the mod for the first time.  If you want to disable any of these, set it to NONE instead of an F-key.  
 
+<<<<<<< HEAD
 <details><summary>Default Hotkeys</summary>
+=======
+>>>>>>> 6a2e0d42fbea17e4f9cb86d24f27a1a0288fbb8c
 - MENU.Main Menu = F9
 - MISC.Heal = F8
 - MISC.Heal Wound = F7
@@ -26,7 +33,10 @@ These should populate in the config when you load the mod for the first time.  I
 - TOGGLES.Auto Cure = F4
 - NONE.Remove Clothes = F3
 - MISC.Force Remove Clothes = Shift+F3
+<<<<<<< HEAD
 </details>
+=======
+>>>>>>> 6a2e0d42fbea17e4f9cb86d24f27a1a0288fbb8c
 
 ## Known Issues
 
@@ -43,7 +53,13 @@ These should populate in the config when you load the mod for the first time.  I
 
 ## Changelog
 
+<<<<<<< HEAD
 <details><summary>Ver 0.9.0q Changelog</summary>
+=======
+<details>
+<summary>Ver 0.9.1q Changelog</summary>
+
+>>>>>>> 6a2e0d42fbea17e4f9cb86d24f27a1a0288fbb8c
 This started out as "I'd like to be able to edit variables" and when I realized the last editor for the Cheat Mod didn't seem active anymore, I decided to try my hand at it.  Since then, I've done the following:
 - Completely refactored Init, Config, Menu. Added library resources to Utils file to simplify loading. 
 - Created a 'default' UI that can handle commands, toggles, editing numbers and lists, and even nested menus.
