@@ -1,0 +1,46 @@
+command/gallery
+Unlock Gallery
+
+command/world
+World Difficulty
+
+
+commands/friendlyfire
+Friendly Fire Fix
+
+command_help/friendlyfire1
+Attempts to prevent friendly fire.
+
+commands/stealth
+From The Shadows Fix
+
+command_help/stealth1
+Action key won't cancel sneak if you have the skill.
+
+commands/abomskillfix
+Abomination Eat Fix
+
+command_help/abomskillfix1
+Desecrate skill will also fill food and heal wounds.
+
+commands/achievementfix
+Difficulty Achievement Fix
+
+command_help/achievementfix1
+Streamlines math for day calculations.
+
+command_help/fixcommand2
+This toggle REQUIRES A RESTART after being set.
+
+
+commands/discard
+Prevent Discard
+
+command_help/discard1
+Removed clothes go to your inventory instead of the ground.
+
+commands/forceunequip
+Force Unequip
+
+command_help/forceunequip1
+Used to force-remove chains or collars.

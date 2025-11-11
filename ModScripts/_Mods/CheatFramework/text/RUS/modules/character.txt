@@ -1,0 +1,186 @@
+commands/primary
+Первичные
+
+commands/primary/health
+Здоровье
+
+commands/primary/stamina
+Выносливость
+
+commands/primary/food
+Еда
+
+commands/primary/mood
+Настроение
+
+commands/primary/arousal
+Возбуждение
+
+commands/primary/morality
+Мораль
+
+command_help/moral
+Мораль <30 вызовет нападение людей.
+
+
+commands/levels
+Уровни
+
+commands/levels/level
+Уровень
+
+command_help/lvl
+Пересчитывает очки характеристик при установке.
+
+commands/levels/max_level
+Максимальный уровень
+
+commands/levels/traits_per_level
+Характеристики на уровень
+
+command_help/tpl1
+Количество характеристик, полученных при повышении уровня.
+
+
+commands/traits
+Характеристики
+
+commands/traits/trait_points
+Очки характеристик
+
+command_help/tp1
+Очки, которые вы должны иметь
+
+command_help/tp2
+Базовые
+
+command_help/tp3
+Навыки
+
+command_help/tp4
+Характеристики
+
+commands/traits/max_traits
+Максимальные характеристики
+
+commands/traits/combat
+Боевая характеристика
+
+commands/traits/scoutcraft
+Характеристика разведчика
+
+commands/traits/wisdom
+Характеристика мудрости
+
+commands/traits/survival
+Характеристика выживания
+
+commands/traits/constitution
+Характеристика конституции
+
+commands/traits/reset
+Сброс характеристик
+
+command_help/reset1
+Сбрасывает все характеристики (включая навыки)
+
+command_help/reset2
+Устанавливает очки характеристик на основе уровня * характеристики на уровень.
+
+
+commands/appearance
+Внешний вид
+
+commands/appearance/dirt
+Грязный
+
+toggle/dirt
+Отключить грязь
+
+command_help/dirt
+Устанавливает максимальное значение грязи на 0. НЕ ГЛОБАЛЬНО.
+
+commands/appearance/pubes
+Удалить лобковые волосы
+
+commands/appearance/hair_color
+Цвет волос
+
+commands/appearance/hair_color/0
+Седой
+
+commands/appearance/hair_color/1
+Черный
+
+commands/appearance/hair_color/2
+Обесцвеченный
+
+commands/appearance/hair_color/3
+Аква
+
+commands/appearance/hair_color/4
+Рыжий
+
+commands/appearance/hair_color/5
+Блондин
+
+toggle/autobandage
+Автоматическая перевязка
+
+command_help/autobandage
+Автоматически удаляет раны, кровь и повреждения отверстий.
+
+toggle/autocure
+Автоматическое исцеление
+
+command_help/autocure
+Автоматически удаляет ЗППП и паразитов.
+
+toggle/autocleanout
+Автоматическая очистка (внешняя)
+
+command_help/autocleanout
+Автоматически удаляет кровь и сперму с поверхности.
+
+toggle/autocleanin
+Автоматическая очистка (внутренняя)
+
+command_help/autocleanin
+Автоматически удаляет сперму из отверстий.
+
+
+commands/race
+Раса
+
+window_help/race1
+Выберите расу.
+
+commands/race/human
+Человек
+
+commands/race/moot
+Мутант
+
+commands/race/deepone
+Предшественник глубоководных
+
+commands/race/truedeepone
+Настоящий глубоководный
+
+commands/race/abom_human
+Урод (человек)
+
+commands/race/abom_moot
+Уродство (Муты)
+
+commands/race/skills
+Навыки рас
+
+commands/race/skills/deepone
+Пробуждение (Морская ведьма)
+
+commands/race/skills/abomeat
+Осквернение (Уродство)
+
+commands/race/skills/abomgrab
+Плеть из щупалец (Уродство)

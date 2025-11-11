@@ -1,0 +1,30 @@
+commands/items
+Предметы
+
+commands/weapons
+Оружие
+
+commands/armors
+Броня
+
+command_help/items_0
+Настройка предметов.
+
+command_help/items_1
+Нажмите «Влево»/«Вправо», чтобы потерять/получить.
+
+command_help/items_2
+Удерживайте SHIFT для увеличения на 10.
+
+command_help/items_3
+Удерживайте CTRL для увеличения на 100.
+
+commands/status
+Статус
+
+command_help/stats_0
+Настройка переменных статуса Лоны.
+
+command_help/stats_1
+Нажмите влево/вправо, чтобы потерять/получить.
+

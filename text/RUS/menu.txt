@@ -1,30 +1,901 @@
-info/alert
-ВНИМАНИЕ!
+##################################	TITLE	#############################
+##################################	TITLE	#############################
+##################################	TITLE	#############################
 
-cheat_toggle/on
-ВКЛ
+title/NEW_GAME
+Новая игра
 
-cheat_toggle/off
-ВЫКЛ
+title/CONTINUE
+Продолжить
 
-modules/installed_count
-Установленные модули：
+title/CREDITS
+Авторы
 
-modules/prefix
-ЧитМодуль：
+title/EXIT_GAME
+Выйти
 
-commands/modules
-ЧитМодули
+title/OPTIONS
+Настройки
 
-commands/back
-Назад
+title/ACH
+Достижения
 
-commands/cheats
-Выбрать читы
+title/GamepadMode
+Режим геймпада
 
-command_help/cheats_0
-Включить/выключить читы.
+title/SupportMe
+Поддержка
 
-command_help/cheats_1
-Нажмите Z для переключения.
+##################################	Input	#############################
 
+Input/Space
+Пробел
+
+##################################	SHOP	#############################
+
+Shop/ConfirmWarning
+Завершить эту сделку?
+
+Shop/Return
+Пересмотреть
+
+Shop/Buy
+Купить
+
+Shop/Sell
+Продать
+
+Shop/Cancel
+Отмена
+
+Shop/WtLimit
+Предел веса
+
+Shop/TPleft
+Очки Обмена
+
+Shop/Item
+Предмет
+
+Shop/ArmEquip
+Снаряжение осн. руки
+
+Shop/Equip
+Другое снаряжение
+
+Box/Body
+Лона
+
+Box/Target
+Цель
+
+##################################	`	#############################
+
+GameOver/Press
+Нажмите 
+
+GameOver/Continue_bad
+чтобы принять поражение
+
+GameOver/Continue_good
+Лона благодарит вас за наставление.
+
+##################################	CORE	#############################
+##################################	CORE	#############################
+##################################	CORE	#############################
+
+core/main_stats
+Основное
+
+core/body_stats
+Состояние
+
+core/sex_stats
+Интим
+
+core/equips
+Снаряжение
+
+core/items
+Предметы
+
+core/skills
+Навыки
+
+core/traits
+Черты
+
+core/letter
+Заметки
+
+core/system
+Система
+
+##################################	CORE STATS	#############################
+##################################	CORE STATS	#############################
+##################################	CORE STATS	#############################
+##################################	CORE STATS	#############################
+
+core_stats/hp
+ОЗ
+
+core_stats/ca
+ВЕС
+
+core_stats/sta
+СИЛА
+
+core_stats/sat
+СЫТОСТЬ
+
+core_stats/next_lv
+ОПЫТ
+
+core_stats/TimeLeft
+ВРЕМ
+
+##################################	main	#############################
+##################################	main	#############################
+##################################	main	#############################
+##################################	main	#############################
+
+main_stats/name
+Лона
+
+main_stats/race
+Раса
+
+main_stats/race_Human
+Человек
+
+main_stats/race_Deepone
+Глубинная
+
+main_stats/race_Moot
+Смешанная
+
+main_stats/race_SeaWitch
+Морская Ведьма
+
+#######################################################
+
+main_stats/persona
+Личность
+
+main_stats/persona_typical
+Обычная
+
+main_stats/persona_gloomy
+Кроткая
+
+main_stats/persona_tsundere
+Крепкая
+
+main_stats/persona_slut
+Развратная
+
+#######################################################
+
+main_stats/title
+Название
+
+main_stats/level
+Уровень
+
+main_stats/exp_need
+Опыт
+
+main_stats/atk
+Атака
+
+main_stats/def
+Защита
+
+main_stats/mor
+Мораль
+
+main_stats/move_speed
+Скорость
+
+main_stats/mood
+Настроение
+
+main_stats/dirt
+Загрязнённость
+
+main_stats/arousal
+Возбуждение
+
+main_stats/micturition_need
+Малая нужда
+
+main_stats/breast_swelling
+Грудное молоко
+
+main_stats/stomach_upset
+Расстройство желудка
+
+main_stats/defecation_need
+Нужда по-большому
+
+main_stats/date
+Дата
+
+main_stats/date_day
+День
+
+main_stats/date_night
+Ночь
+
+main_stats/carrying_capacity
+Носит
+
+main_stats/trade_point
+Очки Обмена
+
+main_stats/morality
+Репутация
+
+main_stats/sexy
+Сексуальность
+
+main_stats/weak
+Слабость
+
+main_stats/baby_health
+Здоровье плода
+
+##################################	BODY STATS	#############################
+##################################	BODY STATS	#############################
+##################################	BODY STATS	#############################
+##################################	BODY STATS	#############################
+
+body_stats/common_healthy
+Здорова
+
+body_stats/common_wound
+Ранена
+
+body_stats/common_semen
+Капает сперма
+
+body_stats/common_piercing
+Пирсинг тела
+
+body_stats/common_VaginalDamaged
+Травма вагины
+
+body_stats/common_UrethralDamaged
+Травма уретры
+
+body_stats/common_SphincterDamaged
+Травма ануса
+
+body_stats/common_distention
+Вздутый живот
+
+body_stats/part_total_amount
+Общая сумма
+
+##################################	SEX STATS	#############################
+##################################	SEX STATS	#############################
+##################################	SEX STATS	#############################
+##################################	SEX STATS	#############################
+#############################左部
+
+sex_stats/main_belly
+Живот
+
+sex_stats/main_belly_normal
+Норм
+
+sex_stats/main_belly_preg1
+Полн
+
+sex_stats/main_belly_preg2
+Пузо
+
+sex_stats/main_belly_preg3
+Берем
+
+sex_stats/main_vag
+Вагина
+
+sex_stats/main_anal
+Анус
+
+sex_stats/main_hole_tight
+Туго
+
+sex_stats/main_hole_narrow
+Узко
+
+sex_stats/main_hole_used
+Раст
+
+sex_stats/main_hole_gaping
+Расш
+
+sex_stats/main_hole_ruined
+Дыра
+
+############################################## battle sex skill 右下部
+#hole skill 0~100  lv0 = 0~30,30~50,50~70,>70
+
+sex_stats/battle_stats_vag
+Вагина
+
+sex_stats/battle_stats_anal
+Анал
+
+sex_stats/battle_stats_mouth
+Орал
+
+sex_stats/battle_stats_fapping
+Руки
+
+sex_stats/battle_stats_inexperienced
+Неопытная
+
+sex_stats/battle_stats_exped
+Опытная
+
+sex_stats/battle_stats_skilled
+Умелая
+
+sex_stats/battle_stats_master
+Мастер
+
+################################################## RECORD 右上部
+
+sex_stats/record_giveup_hardcore
+Сдавалась Выживать
+
+sex_stats/record_giveup_PeePoo
+Боязней Туалетов
+
+sex_stats/record_Rebirth
+Перерождение
+
+sex_stats/record_first_mouth
+Первый Поцелуй
+
+sex_stats/record_first_vag
+Первый Вагинал
+
+sex_stats/record_first_anal
+Первый Анал
+
+sex_stats/record_last_mouth
+Последний Орал
+
+sex_stats/record_last_vag
+Последний Вагин
+
+sex_stats/record_last_anal
+Последний Анал
+
+sex_stats/record_current_married_partner
+Замужем за
+
+sex_stats/record_urinary_damage
+Травм Уретры
+
+sex_stats/record_anal_damage
+Травм Ануса
+
+sex_stats/record_whore_job
+Проституция
+
+sex_stats/record_kissed
+Поцелуев
+
+sex_stats/record_privates_seen
+Мылась публично
+
+sex_stats/record_groped
+Облапана
+
+sex_stats/record_sexual_partners
+Секс Партнёры
+
+sex_stats/record_semen_swallowed
+Проглочено Спермы
+
+sex_stats/record_frottage
+Мастурбировала на
+
+sex_stats/record_biggest_gangbang
+Макс. партнёров
+
+sex_stats/record_seen_peeing
+Мочилась публично
+
+sex_stats/record_peed
+Мочилась
+
+sex_stats/record_shat
+Дефекация
+
+sex_stats/record_cumshotted
+Буккаке
+
+sex_stats/record_seen_shat
+Публичная Дефекация
+
+sex_stats/record_torture
+Пыток
+
+sex_stats/record_eating_fecal
+Копрофагия
+
+sex_stats/record_cunnilingus_taken
+Делали Кунилингус
+
+sex_stats/record_coma_sex
+Бессознательный Секс
+
+sex_stats/record_mindbreak
+Перевозбуждений
+
+sex_stats/record_defecate_incontinent
+Недержание мочи
+
+sex_stats/record_urinary_incontinence
+Недержание кала
+
+sex_stats/record_anal_dilatation
+Расширений Ануса
+
+sex_stats/record_vag_dilatation
+Расширений Вагины
+
+sex_stats/record_urinary_dilatation
+Расширений Уретры
+
+sex_stats/record_BreastFeeding
+Грудное кормление
+
+sex_stats/record_MilkSplash
+Лактации
+
+sex_stats/record_MilkSplash_incontinence
+Чрезмерных Лактаций
+
+sex_stats/record_pregnancy
+Родов
+
+sex_stats/record_orgasm
+Оргазмы
+
+sex_stats/record_orgasm_Mouth
+Оральные Оргазмы
+
+sex_stats/record_orgasm_Torture
+Оргазмы от Пыток
+
+sex_stats/record_orgasm_Vag
+Вагинальные Оргазмы
+
+sex_stats/record_orgasm_Milking
+Оргазмы от доения
+
+sex_stats/record_orgasm_Pee
+Оргазмы Уретры
+
+sex_stats/record_orgasm_Poo
+Оргазмы от Дефекаций
+
+sex_stats/record_orgasm_Birth
+Оргазмы от Родов
+
+sex_stats/record_orgasm_Anal
+Анальные Оргазмы
+
+sex_stats/record_orgasm_Semen
+Оргазмы от Спермы
+
+sex_stats/record_orgasm_Breast
+Оргазмы от Сосков
+
+sex_stats/record_orgasm_Shame
+Оргазмы от Стыда
+
+sex_stats/record_enemaed
+Клизмы
+
+sex_stats/record_analbeads
+Анальные шарики
+
+sex_stats/record_pussy_wash
+Мочились в Вагину
+
+sex_stats/record_anal_wash
+Мочились в Анус
+
+sex_stats/record_golden_shower
+Мочились на Тело
+
+sex_stats/record_piss_drink
+Пила Мочу
+
+sex_stats/record_married
+Замужем
+
+sex_stats/record_groin_harassment
+Лапали Вагину
+
+sex_stats/record_butt_harassment
+Лапали Зад
+
+sex_stats/record_boob_harassment
+Лапали Грудь
+
+sex_stats/record_cunnilingus_given_count
+Вылизано Вагин
+
+sex_stats/record_handjob_count
+Отдрочено Членов
+
+sex_stats/record_fellatio_count
+Вылизано Яиц
+
+sex_stats/record_anal_count
+Анальный Секс
+
+sex_stats/record_vaginal_count
+Вагинальный Секс
+
+sex_stats/record_mouth_count
+Минетов
+
+sex_stats/record_cumin_vaginal
+Кримпаев
+
+sex_stats/record_cumin_anal
+Кончили в Анус
+
+sex_stats/record_cumin_mouth
+Кончили в Рот
+
+sex_stats/record_footjob_count
+Мастурбаций Ногами
+
+sex_stats/record_masturbation_count
+Мастурбаций
+
+sex_stats/record_FloorClearnPee
+Очищено мочи
+
+sex_stats/record_FloorClearnScat
+Очищено кала
+
+sex_stats/record_FloorClearnCums
+Очищено спермы
+
+sex_stats/record_miscarriage
+Выкидыши
+
+sex_stats/record_baby_birth
+Всего рождений
+
+sex_stats/record_birth_Abomination
+Роды - Мерзость
+
+sex_stats/record_birth_Goblin
+Роды - Гоблин
+
+sex_stats/record_birth_Human
+Роды - Человек 
+
+sex_stats/record_birth_Moot
+Роды - Помесь
+
+sex_stats/record_birth_Orkind
+Роды - Оркоид
+
+sex_stats/record_birth_Deepone
+Роды - Глубинный 
+
+sex_stats/record_birth_Fishkind
+Роды - Рыбочеловек 
+
+sex_stats/record_birth_PotWorm
+Роды - Горшечные
+
+sex_stats/record_birth_MoonWorm
+Роды - Лунные
+
+sex_stats/record_birth_PolypWorm
+Роды - Полипы
+
+sex_stats/record_birth_HookWorm
+Роды - Анкилостомы
+
+sex_stats/record_birth_BabyLost
+Брошено детей
+
+sex_stats/record_CoconaVag
+Простиутация Коконы
+
+sex_stats/record_CoconaOgrasm
+Оргазмы Коконы
+
+sex_stats/record_CoconaPeeWith
+Мочилась с Коконой						  
+
+sex_stats/record_MeatToilet_saved
+Спасено Секс-рабынь
+
+sex_stats/sensitivity_vag
+Чувств. Вагины
+
+sex_stats/sensitivity_anal
+Чувств. Ануса
+
+sex_stats/sensitivity_mouth
+Чувств. Глотки
+
+sex_stats/sensitivity_breast
+Чувств. Груди
+
+##################################	equip	#############################
+##################################	equip	#############################
+##################################	equip	#############################
+##################################	equip	#############################
+
+equip/atk
+АТК
+
+equip/def
+ЗАЩ
+
+equip/com
+БОЙ
+
+equip/scu
+РАЗВ
+
+equip/wis
+МУД
+
+equip/con
+ТЕЛ
+
+equip/sur
+ВЫЖ
+
+equip/sexy
+СЕКС
+
+equip/weak
+СЛАБ
+
+equip/mori
+РЕП
+
+equip/mood
+НАСТ
+
+equip/spd
+СКОР
+
+##################################	item	#############################
+##################################	item	#############################
+##################################	item	#############################
+##################################	item	#############################
+
+items/foods
+Еда
+
+items/medicine
+Лекарства
+
+items/equips
+Экипировка
+
+items/other
+Прочее
+
+items/confirm_accept
+Принять
+
+items/confirm_cancel
+Отмена
+
+items/confirm_drop
+Бросить
+
+
+##################################	SKILLS	#############################
+
+skills/hint_Setup
+Назначить
+
+skills/hint_Clear
+Сброс
+
+skills/Key
+Клавиша
+
+##################################	TRAITS	#############################
+##################################	TRAITS	#############################
+##################################	TRAITS	#############################
+##################################	TRAITS	#############################
+
+traits/point_left
+Очки
+
+traits/accept
+Принять
+
+##################################	LETTER	#############################
+##################################	LETTER	#############################
+##################################	LETTER	#############################
+##################################	LETTER	#############################
+
+letter/all
+Все письма
+
+letter/unread
+Непрочитанные
+
+letter/read
+Прочитанные
+
+letter/deleted
+Удалённые
+
+letter/to_delete
+Клавиша удаления
+
+letter/sp_to_delete
+SP Клавиша удаления
+
+letter/l1_to_delete
+L1 Клавиша удаления
+
+letter/accept_recover
+Восстановить?
+
+letter/accept_deltete
+Удалить?
+
+letter/cancel
+Отмена
+
+##################################	SYSTEM	#############################
+##################################	SYSTEM	#############################
+##################################	SYSTEM	#############################
+##################################	SYSTEM	#############################
+
+system/save_game
+Сохранить
+
+system/load_game
+Загрузить
+
+system/return_to_title
+Главное Меню
+
+system/hardcore
+Сложность
+
+system/scat_fetish
+Копрофетиш
+
+system/urine_fetish
+Уринофетиш
+
+system/full_screen
+Полный экран
+
+system/MapBgMode
+Цвет фона
+
+system/GamePadUImode
+Интерфейс геймпада
+
+system/screen_size
+Размер экрана
+
+system/screen_scale
+Масштаб экрана
+
+system/SNDvol
+Громкость звука
+
+system/BGMvol
+Громкость музыки
+
+system/HotkeyRosterLength
+Горячие клавиши
+
+system/KEYbind
+Настройка клавиш
+
+system/Mouse
+Управление мышью
+
+system/language
+Язык
+
+system/language_change
+Требуется перезапуск игры.
+
+system/language_press_z
+Подтвердить
+
+system/autosave
+Автосохранение
+
+system/DiffHard
+HARD
+
+system/DiffHell
+HELL
+
+system/DiffDoom
+DOOM
+
+system/HellCoreMode0
+Сложность HELL
+
+system/HellCoreMode1
+Сырая Еда может исчезнуть из инвентаря во время сна/потери сознания.
+
+system/HellCoreMode2
+Нельзя покидать карту во время боя
+
+system/HellCoreMode3
+Все зависимости и нужды будут включены
+
+system/HellCoreMode4
+Отдых НЕ будет восстанавливать ОЗ
+
+system/DoomCoreMode0
+Сложность DOOM
+
+system/DoomCoreMode1
+Наследуются настройки сложности HELL
+
+system/DoomCoreMode2_OLD
+Автосохранение при возврате в Главное Меню
+
+system/DoomCoreMode2
+Автосохранение после сна
+
+system/DoomCoreMode3
+Сохранение удаляется после загрузки, сохраняться вручную нельзя
+
+system/DoomCoreMode4
+Сохранение удаляется после смерти
+
+system/DoomCoreMode5
+Удалён навык "Отдохнуть"					  
+
+system/DoomCoreMode_Load0
+Режим DOOM
+
+system/DoomCoreMode_Load1
+ВНИМАНИЕ
+
+system/reset
+Сброс
+
+system/remember_sex_rec
+Секс опыт
+
+system/remember_bank
+Сохранить банк
+
+system/remember_exp
+Сохранить уровень
+
+mod/ModDismatch1
+Ошибка модов
+
+mod/ModDismatch2
+Возможны неизвестные ошибки или сбои в игре
+
+nil/nil

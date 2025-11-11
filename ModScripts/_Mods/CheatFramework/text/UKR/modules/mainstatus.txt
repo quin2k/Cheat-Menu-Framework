@@ -1,0 +1,26 @@
+toggle/health
+Нескінченне здоров'я
+
+toggle/food
+Нескінченна їжа
+
+toggle/stamina
+Нескінченна витривалість
+
+toggle/money
+Нескінченні гроші
+
+misc/heal
+Зцілення
+
+misc/heal_wound
+Зцілення рани
+
+command_help/heal_wound
+Зцілює одну випадкову рану.
+
+misc/faint
+Виснаження
+
+misc/money
+Максимальна кількість грошей

@@ -1,0 +1,45 @@
+commands/misc
+Misc Cheats
+
+commands/toggles
+Toggles
+
+commands/character
+Character
+
+window_help/character1
+Change various properties for the main character.
+
+
+commands/config
+Config Menu
+
+
+cheat_toggle/on
+ON
+
+cheat_toggle/off
+OFF
+
+command_help/execute
+Press Z to run command.
+
+command_help/scene
+Press Z to enter a submenu.
+
+command_help/toggle
+Press Z to toggle.
+
+command_help/edit
+Press Z to edit.
+
+
+command_help/num_edit1
+Press Left to decrease, Right to increase.
+
+command_help/num_edit2
+Hold SHIFT for x10, CTRL for x100.
+
+commands_status/locked
+Cheat Active
+

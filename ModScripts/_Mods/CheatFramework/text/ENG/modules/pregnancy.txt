@@ -1,0 +1,86 @@
+commands/preg
+Pregnancy
+
+commands/difficulty
+Override Pregnancy Difficulty
+
+commands/diff_off
+OFF
+
+commands/diff_hard
+HARD
+
+commands/diff_hell
+HELL
+
+commands/diff_doom
+DOOM
+
+commands/seedbed
+Seedbed Level
+
+commands/protect
+Protect Pregnancy
+
+commands/impreg
+Impregnate Lona
+
+info/babyRace
+Baby Race：
+
+commands/days
+Days to Birth
+
+commands/health
+Baby Health
+
+commands/impreg/human
+Human
+
+commands/impreg/moot
+Moot
+
+commands/impreg/deepone
+Deep One
+
+commands/impreg/fishkind
+Fishkind
+
+commands/impreg/orkind
+Orkind
+
+commands/impreg/goblin
+Goblin
+
+commands/impreg/abomination
+Abomination
+
+commands/clear
+Clear Pregnancy
+
+menu_help/impreg_menu1
+Select race to be impregnated by.
+
+menu_help/impreg_menu4
+Press Z to impregnate Lona!
+
+command_help/difficulty
+This will only influence pregnancy length.
+
+command_help/seedbed
+Directly adjusts Lona's status.
+
+command_help/protect
+Keeps Baby Health at max, disables 'Clear'
+
+command_help/length1
+Select to edit duration of pregnancy.
+
+command_help/length2
+Zero will trigger pregnancy once you move.
+
+command_help/clear1
+Silently remove pregnancy from Lona.
+
+command_help/clear2
+If disabled, Protect Pregnancy is on.

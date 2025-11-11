@@ -1,0 +1,186 @@
+commands/primary
+Основні
+
+commands/primary/health
+Здоров'я
+
+commands/primary/stamina
+Витривалість
+
+commands/primary/food
+Їжа
+
+commands/primary/mood
+Настрій
+
+commands/primary/arousal
+Збудження
+
+commands/primary/morality
+Моральність
+
+command_help/moral
+Моральність <30 змусить людей атакувати.
+
+
+commands/levels
+Рівні
+
+commands/levels/level
+Рівень
+
+command_help/lvl
+Перераховує очки рис, коли встановлено.
+
+commands/levels/max_level
+Максимальний рівень
+
+commands/levels/traits_per_level
+Риси за рівнем
+
+command_help/tpl1
+Кількість рис, отриманих при підвищенні рівня.
+
+
+commands/traits
+Риси
+
+commands/traits/trait_points
+Очки рис
+
+command_help/tp1
+Очки, які ви повинні мати
+
+command_help/tp2
+Базові
+
+command_help/tp3
+Навички
+
+command_help/tp4
+Характеристики
+
+commands/traits/max_traits
+Максимальні характеристики
+
+commands/traits/combat
+Бойові характеристики
+
+commands/traits/scoutcraft
+Характеристики розвідника
+
+commands/traits/wisdom
+Характеристика мудрості
+
+commands/traits/survival
+Характеристика виживання
+
+commands/traits/constitution
+Характеристика конституції
+
+commands/traits/reset
+Скинути характеристики
+
+command_help/reset1
+Скидає всі характеристики (включно з навичками)
+
+command_help/reset2
+Встановлює очки характеристик на основі рівня * характеристики за рівень.
+
+
+commands/appearance
+Зовнішній вигляд
+
+commands/appearance/dirt
+Брудний
+
+toggle/dirt
+Вимкнути бруд
+
+command_help/dirt
+Встановлює максимальний рівень бруду на 0. НЕ ГЛОБАЛЬНИЙ.
+
+commands/appearance/pubes
+Видалити лобкові волосся
+
+commands/appearance/hair_color
+Колір волосся
+
+commands/appearance/hair_color/0
+Сірий
+
+commands/appearance/hair_color/1
+Чорний
+
+commands/appearance/hair_color/2
+Вибілений
+
+commands/appearance/hair_color/3
+Аква
+
+commands/appearance/hair_color/4
+Рудий
+
+commands/appearance/hair_color/5
+Блондин
+
+toggle/autobandage
+Автоматичне перев'язування
+
+command_help/autobandage
+Автоматично видаляє рани, кров і пошкодження отворів.
+
+toggle/autocure
+Автоматичне лікування
+
+command_help/autocure
+Автоматично видаляє венеричні захворювання та паразитів.
+
+toggle/autocleanout
+Автоматичне очищення (зовнішнє)
+
+command_help/autocleanout
+Автоматично видаляє кров і сперму з поверхні.
+
+toggle/autocleanin
+Автоматичне очищення (внутрішнє)
+
+command_help/autocleanin
+Автоматично видаляє сперму з отворів.
+
+
+commands/race
+Раса
+
+window_help/race1
+Виберіть расу.
+
+commands/race/human
+Людина
+
+commands/race/moot
+Мут
+
+commands/race/deepone
+Пре-деепоне
+
+commands/race/truedeepone
+Справжній деепоне
+
+commands/race/abom_human
+Потвора (людина)
+
+commands/race/abom_moot
+Потвора (Мут)
+
+commands/race/skills
+Расові навички
+
+commands/race/skills/deepone
+Пробудження (Морська відьма)
+
+commands/race/skills/abomeat
+Осквернення (Потвора)
+
+commands/race/skills/abomgrab
+Батоги з вусиків (Потвора)
