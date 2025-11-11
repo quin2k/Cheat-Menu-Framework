@@ -6,7 +6,7 @@
 
 ## Requirements
 
-Lowest game version tested: `0.10.0.2`
+Lowest game version tested: `0.10.0.2`<br>
 Highest game version tested: `0.10.3.1`
 
 ## Default Hotkeys
@@ -43,9 +43,7 @@ These should populate in the config when you load the mod for the first time.  I
 
 ## Changelog
 
-<details>
-<summary>Ver 0.9.1q Changelog</summary>
-
+<details><summary>Ver 0.9.0q Changelog</summary>
 This started out as "I'd like to be able to edit variables" and when I realized the last editor for the Cheat Mod didn't seem active anymore, I decided to try my hand at it.  Since then, I've done the following:
 - Completely refactored Init, Config, Menu. Added library resources to Utils file to simplify loading. 
 - Created a 'default' UI that can handle commands, toggles, editing numbers and lists, and even nested menus.
@@ -77,7 +75,9 @@ This started out as "I'd like to be able to edit variables" and when I realized 
   - Imported Abomination Desicrate skill fix which makes eating corpses heal wounds and sate hunger.
   - Included toggleable fixes for difficulty-based achievements and a fix to "Into the Darkness" stealth.
   - Improved on the Friendly Fire code to completely prevent damage/aggro between player and followers.
-
+</details>
+<details><summary>Ver 0.9.1q Changelog</summary>
+- Minor change to config file structure before initial release (split global/hotkeys/modules to separate ini files fixed quotes being added to hotkeys.) 
 </details>
 
 ---
