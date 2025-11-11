@@ -7,23 +7,26 @@
 ## Requirements
 
 Lowest game version tested: `0.10.0.2`
+Highest game version tested: `0.10.3.1`
 
 ## Default Hotkeys
 These should populate in the config when you load the mod for the first time.  If you want to disable any of these, set it to NONE instead of an F-key.  
 
-"MENU.Main Menu" = F9
-"MISC.Heal" = F8
-"MISC.Heal Wound" = F7
-"MISC.Money Now" = F6
-"TOGGLES.Infinite Health" = F5
-"TOGGLES.Infinite Stamina" = F5
-"TOGGLES.Infinite Food" = F5
-"TOGGLES.Auto Bandage" = F4
-"TOGGLES.Auto Clean Outside" = F4
-"TOGGLES.Auto Clean Inside" = F4
-"TOGGLES.Auto Cure" = F4
-"NONE.Remove Clothes" = F3
-"MISC.Force Remove Clothes" = Shift+F3
+<details><summary>Default Hotkeys</summary>
+- MENU.Main Menu = F9
+- MISC.Heal = F8
+- MISC.Heal Wound = F7
+- MISC.Money Now = F6
+- TOGGLES.Infinite Health = F5
+- TOGGLES.Infinite Stamina = F5
+- TOGGLES.Infinite Food = F5
+- TOGGLES.Auto Bandage = F4
+- TOGGLES.Auto Clean Outside = F4
+- TOGGLES.Auto Clean Inside = F4
+- TOGGLES.Auto Cure = F4
+- NONE.Remove Clothes = F3
+- MISC.Force Remove Clothes = Shift+F3
+</details>
 
 ## Known Issues
 
@@ -34,13 +37,14 @@ These should populate in the config when you load the mod for the first time.  I
 - Add options to edit hotkeys in-game.
 - Add options to edit menu order (for select menus).
 - Create detailed documentation for registration system.
+- Add a menu for editing unique character death status.
 
 ---
 
 ## Changelog
 
 <details>
-<summary>Ver 0.9.0q Changelog</summary>
+<summary>Ver 0.9.1q Changelog</summary>
 
 This started out as "I'd like to be able to edit variables" and when I realized the last editor for the Cheat Mod didn't seem active anymore, I decided to try my hand at it.  Since then, I've done the following:
 - Completely refactored Init, Config, Menu. Added library resources to Utils file to simplify loading. 
