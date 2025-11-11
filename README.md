@@ -6,20 +6,15 @@
 
 ## Requirements
 
-<<<<<<< HEAD
 Lowest game version tested: `0.10.0.2`<br>
-=======
-Lowest game version tested: `0.10.0.2`
->>>>>>> 6a2e0d42fbea17e4f9cb86d24f27a1a0288fbb8c
 Highest game version tested: `0.10.3.1`
 
-## Default Hotkeys
+## Hotkeys
 These should populate in the config when you load the mod for the first time.  If you want to disable any of these, set it to NONE instead of an F-key.  
 
-<<<<<<< HEAD
-<details><summary>Default Hotkeys</summary>
-=======
->>>>>>> 6a2e0d42fbea17e4f9cb86d24f27a1a0288fbb8c
+<details>
+<summary>Default Hotkeys</summary>
+
 - MENU.Main Menu = F9
 - MISC.Heal = F8
 - MISC.Heal Wound = F7
@@ -33,16 +28,16 @@ These should populate in the config when you load the mod for the first time.  I
 - TOGGLES.Auto Cure = F4
 - NONE.Remove Clothes = F3
 - MISC.Force Remove Clothes = Shift+F3
-<<<<<<< HEAD
+
 </details>
-=======
->>>>>>> 6a2e0d42fbea17e4f9cb86d24f27a1a0288fbb8c
 
 ## Known Issues
 
-- Currently in need of proper translation for various languages.  Any native speakers should contact me ASAP with fixes!
+- Currently in need of proper translation for default languages. I didn't want to publish something I couldn't test, so I did not include custom languages from the original.
+  - Any native speakers should contact me ASAP with fixes!
 
-## Planned changes
+## Planned Improvements
+
 - Fix & include summon options.
 - Add options to edit hotkeys in-game.
 - Add options to edit menu order (for select menus).
@@ -53,14 +48,11 @@ These should populate in the config when you load the mod for the first time.  I
 
 ## Changelog
 
-<<<<<<< HEAD
-<details><summary>Ver 0.9.0q Changelog</summary>
-=======
 <details>
-<summary>Ver 0.9.1q Changelog</summary>
+<summary>Ver 0.9.0q Changelog</summary>
 
->>>>>>> 6a2e0d42fbea17e4f9cb86d24f27a1a0288fbb8c
 This started out as "I'd like to be able to edit variables" and when I realized the last editor for the Cheat Mod didn't seem active anymore, I decided to try my hand at it.  Since then, I've done the following:
+
 - Completely refactored Init, Config, Menu. Added library resources to Utils file to simplify loading. 
 - Created a 'default' UI that can handle commands, toggles, editing numbers and lists, and even nested menus.
 - Added the ability to dynamically created menus and structures for the menu without preventing the old format.
@@ -91,9 +83,13 @@ This started out as "I'd like to be able to edit variables" and when I realized 
   - Imported Abomination Desicrate skill fix which makes eating corpses heal wounds and sate hunger.
   - Included toggleable fixes for difficulty-based achievements and a fix to "Into the Darkness" stealth.
   - Improved on the Friendly Fire code to completely prevent damage/aggro between player and followers.
+
 </details>
-<details><summary>Ver 0.9.1q Changelog</summary>
+<details>
+<summary>Ver 0.9.1q Changelog</summary>
+
 - Minor change to config file structure before initial release (split global/hotkeys/modules to separate ini files fixed quotes being added to hotkeys.) 
+
 </details>
 
 ---
