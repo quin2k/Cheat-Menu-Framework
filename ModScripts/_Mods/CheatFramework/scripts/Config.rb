@@ -15,9 +15,9 @@ class FrameworkConfig
   # ------------------------
   def initialize(config_dir)
     Dir.mkdir(config_dir) unless Dir.exist?(config_dir)
-    path = File.join(config_dir, "framework.ini")
-    write_default_ini(path) unless File.exist?(path)
-    @ini = load_or_create(path)
+    @key_ini = load_or_create(File.join(config_dir, "hotkeys.ini"))
+    @var_ini = load_or_create(File.join(config_dir, "globals.ini"))
+    @mod_ini = load_or_create(File.join(config_dir, "modules.ini"))
   end
 
   def load_or_create(path)
@@ -26,39 +26,39 @@ class FrameworkConfig
       ini = IniFile.new(filename: path)
       ini.write
     end
-    @ini = ini
+    return ini
   end
 
   # ------------------------
   # Read / write helpers
   # ------------------------
-  def read(section, key, default = "")
-    @ini.read if @ini.respond_to?(:read)
-    if @ini.has_section?(section) && @ini[section].has_key?(key)
-      @ini[section][key]
+  def read(section, key, default = "", ini)
+    ini.read if ini.respond_to?(:read)
+    if ini.has_section?(section) && ini[section].key?(key)
+      ini[section][key]
     else
       default
     end
   end
 
-  def write(section, key, value)
-    @ini[section] ||= {}
-    @ini[section][key] = value
-    @ini.write
+  def write(section, key, value, ini)
+    ini[section] ||= {}
+    ini[section][key] = value
+    ini.write
   end
 
   # ------------------------
   # Mod override handlers
   # ------------------------
   def get_enabled(key, default = true)
-    val = read("Module Load Overrides", key, default).to_s.downcase
+    val = read("Module Load Overrides", key, default, @mod_ini).to_s.downcase
     return true  if ["true", "1", "yes"].include?(val)
     return false if ["false", "0", "no"].include?(val)
     default
   end
 
   def get_load_order(key, default = 999)
-    val = read("Load Order Overrides", key, default)
+    val = read("Load Order Overrides", key, default, @mod_ini)
     val.to_i.nonzero? || default
   end
 
@@ -66,13 +66,13 @@ class FrameworkConfig
   # Global variables handlers
   # ------------------------
   def read_global(key, default)
-    value = read("Global Variables", key, default)
+    value = read("Global Variables", key, default, @var_ini)
     Object.instance_eval("$#{sanitize_key(key)} = #{format_value(value)}")
     value
   end
 
   def write_global(key, value)
-    write("Global Variables", key, value)
+    write("Global Variables", key, value, @var_ini)
   end
 
   # ------------------------
@@ -86,14 +86,14 @@ class FrameworkConfig
 
   def compare_hotkeys_to_ini
     section = "Cheat Hotkeys"
-    return unless @ini.has_section?(section)
+    return unless @key_ini.has_section?(section)
 
-    @ini[section].each do |full_key, value|
+    @key_ini[section].each do |full_key, value|
       next if value.nil? || value.strip.empty?
 
       # Normalize
       value = value.strip
-      full_key = full_key.gsub(/["']/, '') # strip quotes
+      full_key = full_key
 
       # Handle NONE → disable
       if value.upcase == "NONE"
@@ -116,15 +116,15 @@ class FrameworkConfig
 
   def save_hotkeys_to_ini
     section = "Cheat Hotkeys"
-    @ini[section] ||= {}
+    @key_ini[section] ||= {}
 
     $framework.hotkey_defs.each do |full_key, data|
-      key_name = "\"#{full_key}\""
+      key_name = "#{full_key}"
       value = data[:key] || "NONE"
-      @ini[section][key_name] = value
+      @key_ini[section][key_name] = value
     end
 
-    @ini.write
+    @key_ini.write
   end
 
   def build_hotkey_map
@@ -134,7 +134,7 @@ class FrameworkConfig
       next if data[:key].nil? || data[:key].upcase == "NONE"
 
       mods, base = parse_hotkey(data[:key])
-      key_const  = Input.const_get(base) rescue nil
+      key_const  = Input.const_get(base) rescue base
       next unless key_const
 
       group, key = full_key.split('.', 2)
@@ -166,23 +166,6 @@ class FrameworkConfig
   end
 
   # ------------------------
-  # Ensure config structure exists
-  # ------------------------
-  def write_default_ini(path)
-    initial_text = [
-      "[Cheat Hotkeys]","# To disable a default hotkey, enter NONE instead of the key.","",
-      "[Global Variables]","# Edit with caution, malformed entries could cause load issues.","",
-      "[Load Order Overrides]","# Should be unnecessary, as there are auto-resolve functions.","",
-      "[Module Load Overrides]","# Disables modules they are causing issues - also let me know!!","",
-      "[Main Menu Command Order]","# Override display order of main menu","",
-      "[Character Command Order]","# Override display order of misc menu","",
-      "[Toggles Command Order]","# Override display order of toggles menu","",
-      "[Misc Command Order]","# Override display order of misc menu",""
-    ]
-
-    File.open(path, "w") { |f| initial_text.each { |line| f.puts(line) } }
-  end
-  # ------------------------
   # Special handlers
   # ------------------------
   private
@@ -196,7 +179,3 @@ class FrameworkConfig
     value
   end
 end
-
-
-
-
