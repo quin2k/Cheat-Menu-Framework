@@ -73,7 +73,7 @@ module MenuFramework
       min:    1,
       max:    20,
       action: ->(v) { $cheat_variables_traits_per_level = v
-                      $framework.ini.write_global("Traits per Level", v) 
+                      $framework.ini.write_global("Traits Per Level", v) 
                       $game_player.actor.trait_point = FrameworkUtils.calc_trait_points(false)
                     },
       order:  40

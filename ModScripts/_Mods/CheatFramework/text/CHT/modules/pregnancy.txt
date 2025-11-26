@@ -1,11 +1,11 @@
 commands/preg
-懷孕狀態
+怀孕
 
 commands/difficulty
-覆寫懷孕難度
+妊娠困难
 
 commands/diff_off
-關閉
+离开
 
 commands/diff_hard
 困難
@@ -14,73 +14,73 @@ commands/diff_hell
 地獄
 
 commands/diff_doom
-毀滅
+末日
 
 commands/seedbed
-孕育床等級
+子宮苗床
 
 commands/protect
-保護懷孕狀態
+保护怀孕
 
 commands/impreg
-使蘿娜受孕
+浸渍
 
 info/babyRace
-嬰兒種族：
+宝贝比赛
 
 commands/days
-分娩天數
+距离出生还有几天
 
 commands/health
-嬰兒健康值
+胎兒生命
 
 commands/impreg/human
-人類
+人类
 
 commands/impreg/moot
-穆特
+混血儿
 
 commands/impreg/deepone
-深海族
+深一度
 
 commands/impreg/fishkind
-魚族
+菲什金德
 
 commands/impreg/orkind
-獸族
+兽人种
 
 commands/impreg/goblin
-哥布林
+小妖精
 
 commands/impreg/abomination
-異形
+憎恶
 
 commands/clear
-清除懷孕狀態
+清晰怀孕
 
 menu_help/impreg_menu1
-選擇受孕種族。
+选择受孕的种族。
 
 menu_help/impreg_menu4
-按Z鍵使蘿娜受孕！
+按 Z 键让 Lona 怀孕！
 
 command_help/difficulty
-此指令僅影響懷孕時長。
+这只会影响妊娠时长。
 
 command_help/seedbed
-直接調整蘿娜狀態。
+直接调整洛娜的状态。
 
 command_help/protect
-維持嬰兒健康值滿格，禁用「清除」功能
+保持婴儿健康值最高，禁用“清除”功能
 
 command_help/length1
-選擇此項可編輯懷孕時長。
+点击即可编辑怀孕时长。
 
 command_help/length2
-設定為零將使移動時立即觸發懷孕。
+搬家后，零号会引发怀孕。
 
 command_help/clear1
-無聲移除蘿娜的懷孕狀態。
+悄无声息地从洛娜体内取出妊娠物。
 
 command_help/clear2
-若禁用此項，則「保護懷孕」功能啟用。
+如果禁用此功能，则“保护怀孕”功能将开启。

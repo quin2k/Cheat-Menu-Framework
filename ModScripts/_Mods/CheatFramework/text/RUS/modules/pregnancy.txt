@@ -2,85 +2,85 @@ commands/preg
 Беременность
 
 commands/difficulty
-Отменить сложность беременности
+Трудности беременности
 
 commands/diff_off
-ВЫКЛ
+ВЫКЛЮЧЕННЫЙ
 
 commands/diff_hard
-СЛОЖНО
+HARD
 
 commands/diff_hell
-АД
+HELL
 
 commands/diff_doom
 DOOM
 
 commands/seedbed
-Уровень семенного ложа
+SB (Матка)
 
 commands/protect
 Защитить беременность
 
 commands/impreg
-Оплодотворить Лону
+Забеременеть
 
 info/babyRace
-Раса ребенка：
+Детские гонки
 
 commands/days
-Дни до родов
+Дней до рождения
 
 commands/health
-Здоровье ребенка
+Здоровье плода
 
 commands/impreg/human
 Человек
 
 commands/impreg/moot
-Мутант
+Смешанная
 
 commands/impreg/deepone
-Глубоководный
+Глубинная
 
 commands/impreg/fishkind
-Рыбоподобный
+Рыбочеловек
 
 commands/impreg/orkind
-Оркоподобный
+Оркойд
 
 commands/impreg/goblin
 Гоблин
 
 commands/impreg/abomination
-Чудовище
+Мерзость
 
 commands/clear
-Очистить беременность
+Чистая беременность
 
 menu_help/impreg_menu1
-Выберите расу, которой вы хотите забеременеть.
+Выберите расу, от которой хотите забеременеть.
 
 menu_help/impreg_menu4
-Нажмите Z, чтобы забеременеть Лоной!
+Нажмите Z, чтобы оплодотворить Лону!
 
 command_help/difficulty
 Это повлияет только на продолжительность беременности.
 
 command_help/seedbed
-Непосредственно регулирует статус Лоны.
+Напрямую изменяет статус Лоны.
 
 command_help/protect
-Сохраняет здоровье ребенка на максимальном уровне, отключает «Clear».
+Поддерживает «Здоровье ребенка» на максимальном уровне, отключает «Очистить»
 
 command_help/length1
 Выберите, чтобы изменить продолжительность беременности.
 
 command_help/length2
-Ноль запустит беременность, как только вы начнете двигаться.
+Ноль спровоцирует беременность, как только вы переедете.
 
 command_help/clear1
-Бесшумно удаляет беременность из Лоны.
+Тихо удалите беременность у Лоны.
 
 command_help/clear2
-Если отключено, то «Защита беременности» включена.
+Если отключено, функция «Защита беременности» включена.

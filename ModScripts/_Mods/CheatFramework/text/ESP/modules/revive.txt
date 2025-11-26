@@ -1,0 +1,92 @@
+commands/revive
+Revivir PNJ únicos
+
+command/revive/menu3
+Sólo se mostrarán los NPC muertos.
+
+command/revive/menu4
+Presiona Z para revivir al NPC seleccionado.
+
+NPC/UniqueCharUniqueCecily
+Cecilia
+
+NPC/UniqueCharUniqueGrayRat
+Rata gris
+
+NPC/UniqueCharUniqueCocona
+Cocona
+
+NPC/UniqueCharUniqueLisa
+Lisa
+
+NPC/UniqueCharUniqueElise
+Elise
+
+NPC/UniqueCharUniqueMaani
+Maani
+
+NPC/UniqueCharUniqueDavidBorn
+Davidborn
+
+NPC/UniqueCharUniquePigBobo
+Bobo
+
+NPC/UniqueCharUniqueAdam
+Adán
+
+NPC/UniqueCharUniqueMilo
+Milo
+
+NPC/UniqueCharUniqueSeaWitch
+Bruja del mar
+
+NPC/UniqueCharUniqueTeller
+Adivino
+
+NPC/UniqueCharUniqueHappyMerchant
+Tendero alegre
+
+NPC/UniqueCharUniqueTavernWaifu
+Mamá jefa
+
+NPC/UniqueCharUniqueFerrum
+Ferrum
+
+NPC/UniqueCharUniqueCaptainEdward
+Capitán Edward
+
+NPC/UniqueCharUniqueFatdalf
+Mago de túnica gris
+
+NPC/UniqueCharNoerSnowflake
+Copo de nieve
+
+NPC/UniqueChar_NorthFL_SGT
+NorthFL_SGT
+
+NPC/UniqueChar_NFL_MerCamp_Leader
+NFL_MerCamp_Leader
+
+NPC/UniqueCharNoerRelayOut_PoorBoy
+PoorBoy
+
+NPC/UniqueChar_FishTownT_Shaman
+FishTownT_Shaman
+
+NPC/UniqueCharUniqueKillerRabbit
+KillerRabbit
+
+NPC/UniqueCharUniqueOgreWarBoss
+OgreWarBoss
+
+NPC/UniqueCharUniqueGangBoss
+GangBoss
+
+NPC/UniqueCharSMCloudVillage_Boss
+CloudVillage_Boss
+
+NPC/UniqueCharSMCloudVillage_BossAtk
+CloudVillage_BossAtk
+
+NPC/UniqueChar_OrcSlaveMaster
+OrcSlaveMaster

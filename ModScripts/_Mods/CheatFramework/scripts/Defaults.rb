@@ -164,6 +164,8 @@ module Action_Window_Defaults
       value = record[:state].call rescue 0
       item = list.find { |i| i[:key] == value }
       right = item ? item[:label] : value.to_s
+    when :scene
+      right = ">>>"
     end
 
 

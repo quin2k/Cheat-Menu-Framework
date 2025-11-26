@@ -1,5 +1,5 @@
 name
-Переробка фреймворку чітів
+Шахрайство
 
 description
-Чіти Mod перероблені (знову). Детальний список змін дивіться на https://github.com/quin2k/Cheat-Menu-Framework.
+Переосмислення моду з чітами (знову). Детальні зміни дивіться за посиланням https://github.com/quin2k/Cheat-Menu-Framework.

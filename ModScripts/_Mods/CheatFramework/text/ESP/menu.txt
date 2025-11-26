@@ -1,0 +1,41 @@
+commands/misc
+Varios
+
+commands/toggles
+Toggle
+
+commands/character
+Personaje
+
+window_help/character1
+Cambiar propiedades del personaje principal.
+
+commands/config
+Menú de configuración
+
+cheat_toggle/on
+ACTIVADO
+
+cheat_toggle/off
+DESACTIVADO
+
+command_help/execute
+Presione Z para ejecutar el comando.
+
+command_help/scene
+Presione Z para ingresar a un submenú.
+
+command_help/toggle
+Pulsa Z para alternar.
+
+command_help/edit
+Presione Z para editar.
+
+command_help/num_edit1
+Pulsa Izquierda/Derecha para perder/ganar.
+
+command_help/num_edit2
+MAYÚS = x10, CTRL = x100.
+
+commands_status/locked
+Truco activo

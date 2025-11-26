@@ -1,0 +1,71 @@
+commands/gallery
+갤러리 잠금 해제
+
+commands/world
+세계 난이도
+
+commands/fix
+게임 트윅
+
+commands/friendlyfire
+아군 사격 수정
+
+command_help/friendlyfire1
+아군의 아군 사격을 예방하기 위한 시도.
+
+commands/stealth
+The Shadows Fix에서
+
+command_help/stealth1
+해당 기술이 있다면 액션 키로 몰래 움직이기를 취소할 수 없습니다.
+
+commands/abomskillfix
+혐오스러운 먹고 고치다
+
+command_help/abomskillfix1
+모독 스킬은 음식을 채워주고 상처를 치료해줍니다.
+
+commands/achievementfix
+난이도 달성 수정
+
+command_help/achievementfix1
+일 계산을 위한 수학을 간소화합니다.
+
+command_help/fixcommand2
+설정 후에는 재시작이 필요합니다.
+
+commands/discard
+폐기 방지
+
+command_help/discard1
+벗겨진 옷은 인벤토리로 들어갑니다.
+
+commands/forceunequip
+강제로 장비 해제
+
+command_help/forceunequip1
+체인이나 칼라를 강제로 제거하는 데 사용됩니다.
+
+commands/despawnfix
+아이템 부패 제어
+
+command_item/off
+장애를 입히다
+
+command_item/infinite
+통합 정보국
+
+commands/drops
+드롭 증가
+
+command_help/dropsfix1
+적의 드롭을 조정합니다.
+
+commands/equip
+무엇이든 장비하다
+
+command_help/equip1
+기술 요구 사항을 제거합니다.
+
+command_help/despawnfix1
+떨어진 아이템의 지속시간을 설정합니다.

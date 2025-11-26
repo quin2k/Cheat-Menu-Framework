@@ -45,8 +45,8 @@ module FrameworkUtils
     actor = $game_player.actor
     state_id = state
     change = new_value - (actor.stat[state_id] || 0)
-    if new_value == 0
-      erase_state(state_id)
+    if change == 0
+      return
     elsif change < 0
       change.abs.times { actor.remove_state_stack(state_id) }
     elsif change > 0

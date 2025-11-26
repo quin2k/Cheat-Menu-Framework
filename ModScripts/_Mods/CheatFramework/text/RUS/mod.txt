@@ -1,5 +1,5 @@
 name
-Переработка Cheat Framework
+Чит-фреймворк
 
 description
-Cheats Mod переработан (снова). Подробный список изменений см. на https://github.com/quin2k/Cheat-Menu-Framework.
+Мод Cheats снова переработан. Подробности изменений смотрите на странице https://github.com/quin2k/Cheat-Menu-Framework.

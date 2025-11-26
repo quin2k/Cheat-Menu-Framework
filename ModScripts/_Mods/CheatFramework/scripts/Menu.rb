@@ -11,17 +11,18 @@ module FrameworkUtils
       next unless Input.trigger?(key_const)
 
       actions.each do |data|
-        #Check if in a menu scene, disable other hotkeys besides main menu if so.
-        if FrameworkUtils.in_menu?
-          if (data[:group] == :MENU)
-            SceneManager.return
+        cmd = $framework.commands.dig(data[:group], data[:key], :action)
+        next unless cmd
+        # Menu Toggle
+        if data[:group] == :MENU
+          if FrameworkUtils.in_menu?
+            SceneManager.return # already in menu → close it
+          else
+            cmd.call # not in menu → open it
           end
           next
         end
         next unless modifiers_match?(data[:mods])
-        cmd = $framework.commands.dig(data[:group], data[:key], :action)
-        next unless cmd
-
         cmd.call
         SndLib.send(data[:sound]) if defined?(SndLib) && data[:sound]
       end

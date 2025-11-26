@@ -1,0 +1,92 @@
+commands/revive
+Revive Unique NPCs
+
+command/revive/menu3
+Only dead NPCs will be displayed.
+
+command/revive/menu4
+Press Z to revive the selected NPC.
+
+NPC/UniqueCharUniqueCecily
+Cecily
+
+NPC/UniqueCharUniqueGrayRat
+Gray Rat
+
+NPC/UniqueCharUniqueCocona
+Cocona
+
+NPC/UniqueCharUniqueLisa
+Lisa
+
+NPC/UniqueCharUniqueElise
+Elise
+
+NPC/UniqueCharUniqueMaani
+Maani
+
+NPC/UniqueCharUniqueDavidBorn
+Davidborn
+
+NPC/UniqueCharUniquePigBobo
+Bobo
+
+NPC/UniqueCharUniqueAdam
+Adam
+
+NPC/UniqueCharUniqueMilo
+Milo
+
+NPC/UniqueCharUniqueSeaWitch
+Sea Witch
+
+NPC/UniqueCharUniqueTeller
+Fortune Teller
+
+NPC/UniqueCharUniqueHappyMerchant
+Cheerful Shopkeeper
+
+NPC/UniqueCharUniqueTavernWaifu
+Boss Mama
+
+NPC/UniqueCharUniqueFerrum
+Ferrum
+
+NPC/UniqueCharUniqueCaptainEdward
+Captain Edward
+
+NPC/UniqueCharUniqueFatdalf
+Gray-robed Mage
+
+NPC/UniqueCharNoerSnowflake
+Snowflake
+
+NPC/UniqueChar_NorthFL_SGT
+North FL SGT (quest npc)
+
+NPC/UniqueChar_NFL_MerCamp_Leader
+Mercenary Captain (quest npc)
+
+NPC/UniqueCharNoerRelayOut_PoorBoy
+Griot (quest npc)
+
+NPC/UniqueChar_FishTownT_Shaman
+Fish Town Shaman (quest npc)
+
+NPC/UniqueCharUniqueKillerRabbit
+Killer Rabbit (quest npc)
+
+NPC/UniqueCharUniqueOgreWarBoss
+Ogre War Boss (quest npc)
+
+NPC/UniqueCharUniqueGangBoss
+Noer Gang Boss (quest npc)
+
+NPC/UniqueCharSMCloudVillage_Boss
+Cloudy Village Chief (quest npc)
+
+NPC/UniqueCharSMCloudVillage_BossAtk
+Cloudy Village Chief A (quest npc)
+
+NPC/UniqueChar_OrcSlaveMaster
+Leather Face (quest npc)

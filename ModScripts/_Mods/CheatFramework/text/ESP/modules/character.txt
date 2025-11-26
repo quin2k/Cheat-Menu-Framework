@@ -1,0 +1,203 @@
+commands/primary
+Primario
+
+commands/primary/health
+Salud
+
+commands/primary/stamina
+Aguante
+
+commands/primary/food
+Alimento
+
+commands/primary/mood
+Ánimo
+
+commands/primary/arousal
+Excitación
+
+commands/primary/morality
+Moralidad
+
+command_help/moral
+Una moralidad <30 provocará que los humanos ataquen.
+
+commands/levels
+Niveles
+
+commands/levels/level
+Nivel
+
+command_help/lvl
+Recalcula los puntos de rasgo cuando se establecen.
+
+commands/levels/max_level
+Nivel máximo
+
+commands/levels/traits_per_level
+Rasgos por nivel
+
+command_help/tpl1
+Número de rasgos obtenidos al subir de nivel.
+
+commands/traits
+Rasgos
+
+commands/traits/trait_points
+Puntos de rasgo
+
+command_help/tp1
+Puntos que debes tener
+
+command_help/tp2
+Base
+
+command_help/tp3
+Habilidades
+
+command_help/tp4
+Rasgos
+
+commands/traits/max_traits
+Rasgos máximos
+
+commands/traits/combat
+Rasgo de combate
+
+commands/traits/scoutcraft
+Rasgo de Scoutcraft
+
+commands/traits/wisdom
+Rasgo de sabiduría
+
+commands/traits/survival
+Rasgo de supervivencia
+
+commands/traits/constitution
+Rasgo de Constitución
+
+commands/traits/reset
+Restablecer rasgos
+
+command_help/reset1
+Restablece todos los rasgos (incluidas las habilidades)
+
+command_help/reset2
+Establece puntos de rasgo según el nivel * Rasgos por nivel.
+
+commands/appearance
+Apariencia
+
+commands/appearance/dirt
+Sucia
+
+toggle/dirt
+Desactivar la suciedad
+
+command_help/dirt
+Establece el máximo de suciedad en 0. NO GLOBAL.
+
+commands/appearance/freckles
+Pecas
+
+commands/appearance/vpubes
+Vello púbico
+
+commands/appearance/apubes
+Vello anal
+
+commands/appearance/vpubegrowth
+Crecimiento del vello púbico
+
+commands/appearance/apubegrowth
+Crecimiento del vello anal
+
+command_help/pubes1
+Establecerlo en 0 evitará el crecimiento, 1+ lo habilita.
+
+command_help/pubegrowth1
+Tiempo entre crecimientos. A mayor crecimiento, menor.
+
+command_help/pubegrowth2
+Normalmente entre 3-12 días.
+
+commands/appearance/hair_color
+Color de pelo
+
+commands/appearance/hair_color/0
+Gris
+
+commands/appearance/hair_color/1
+Negro
+
+commands/appearance/hair_color/2
+Blanco
+
+commands/appearance/hair_color/3
+Aqua
+
+commands/appearance/hair_color/4
+Rojo
+
+commands/appearance/hair_color/5
+Rubio
+
+toggle/autobandage
+Autovenda
+
+command_help/autobandage
+Elimina automáticamente heridas, sangre y daños en orificios.
+
+toggle/autocleanout
+Limpieza automática (fuera)
+
+command_help/autocleanout
+Elimina automáticamente la sangre y toda la suciedad de la superficie.
+
+toggle/autocleanin
+Limpieza automática (pulgadas)
+
+command_help/autocleanin
+Elimina automáticamente el semen de los orificios.
+
+toggle/autocure
+Autocurado
+
+command_help/autocure
+Elimina automáticamente ETS y parásitos.
+
+commands/race
+Cambiar de raza
+
+commands/race/human
+Humano
+
+commands/race/moot
+Mestizos
+
+commands/race/deepone
+Pre Profundo Uno
+
+commands/race/truedeepone
+Profundo Uno
+
+commands/race/abom_human
+Abominación (Humana)
+
+commands/race/abom_moot
+Abominación (mestizo)
+
+commands/race/skills
+Habilidades raciales
+
+commands/race/skills/deepone
+Despertar (Bruja del Mar)
+
+commands/race/skills/abomeat
+Profanar (Abominación)
+
+commands/race/skills/abomgrab
+Látigo de Zarcillo (Abominación)
+
+window_help/race1
+Selecciona raza.

@@ -1,14 +1,55 @@
 FrameworkModule = {
   name:       "Game Fixes", 
   key:        :game_fixes, 
-  menu:       :TOGGLES #Group key.
+  menu:       :FIXES #Group key.
 }
 
 module MenuFramework
+  module MENU
+    register_command(
+      type: :scene,
+      label: "modules/others:commands/fix",
+      name: "CheatMenuGameFixes",
+      order: 4
+    )
+  end
+
   module SUBMENU
     #------------------------------------------
     # Toggles 
     #------------------------------------------
+    register_command(
+      type:   :edit_list,
+      key:    "Despawn Fix", #should be unique to this dictionary
+      label:  "modules/others:commands/despawnfix",
+      help1:  "modules/others:command_help/despawnfix1",
+      help2:  "modules/others:command_help/despawnfix2",
+      state:  "$cheat_item_despawn",
+      list:   [
+                { key:  0,  label: "[#{$framework.txt("modules/others:command_item/off")}]" },
+                { key:  1,  label: "[x1]" },
+                { key:  2,  label: "[x2]" },
+                { key:  4,  label: "[x4]" },
+                { key:  5,  label: "[x8]" },
+                { key: -1,  label: "[#{$framework.txt("modules/others:command_item/infinite")}]" },
+              ],
+      global: 1 #default value = Normal
+    )
+    register_command(
+      type:   :edit_list,
+      key:    "Increase Drop Rate", #should be unique to this dictionary
+      label:  "modules/others:commands/drops",
+      help1:  "modules/others:command_help/dropsfix1",
+      help2:  "modules/others:command_help/despawnfix2",
+      state:  "$cheat_item_drops",
+      list:   [
+                { key:  0,  label: "[#{$framework.txt("modules/others:command_item/off")}]" },
+                { key:  1,  label: "[x1]" },
+                { key:  2,  label: "[x2]" },
+                { key:  4,  label: "[x4]" },
+              ],
+      global: 1 #default value = Normal
+    )
     register_command(
       type:   :toggle,
       key:    "Friendly Fire", #should be unique to this dictionary
@@ -16,6 +57,15 @@ module MenuFramework
       help1:  "modules/others:command_help/friendlyfire1",
       help2:  "modules/others:command_help/fixcommand2",
       state:  "$cheat_friendly_fire_fix",
+      global: false
+    )
+    register_command(
+      type:   :toggle,
+      key:    "Equip Anything", #should be unique to this dictionary
+      label:  "modules/others:commands/equip",
+      help1:  "modules/others:command_help/equip1",
+      help2:  "modules/others:command_help/fixcommand2",
+      state:  "$cheat_classless_society",
       global: false
     )
     register_command(
@@ -64,23 +114,33 @@ if $cheat_friendly_fire_fix
 
       #Indirect attacks such as magic, arrows
       if (user.class == Game_PorjectileCharacter || user.class == Game_DestroyableObject)
-        if user.event  && user.event.summon_data[:user] == $game_player
-          attacker = "Lona"
-        elsif user.event  && user.event.summon_data[:user].npc.master == $game_player
-          attacker = "Ally"
+        if user.event  && user.event.summon_data[:user]
+          source = user.event.summon_data[:user]
+          if source && source == $game_player
+            attacker = "Lona"
+          elsif source && source.npc.master == $game_player
+            attacker = "Ally"
+          elsif source && source.npc.master && source.npc.master.npc.master == $game_player
+            attacker = "AllySummon"
+          end
         end
+
       else
         #Direct attacks such as melee
         if user == $game_player.actor
           attacker = "Lona"
         elsif user.master == $game_player
           attacker = "Ally"
+        elsif user.master && user.master.npc && user.master.npc.master == $game_player
+          attacker = "AllySummon"
         end
       end
       if target == $game_player
         targeted = "Lona"
       elsif target.actor.master == $game_player
         targeted = "Ally"
+      elsif target.actor.master && target.actor.master.npc && target.actor.master.npc.master == $game_player
+        targeted = "AllySummon"
       end
 
       #Support magic/skill or target/attacker isn't an ally
@@ -253,3 +313,69 @@ if $cheat_difficulty_achievement_fix
     end
   end
 end
+
+if $cheat_item_despawn != 0
+  class Game_Map
+    alias rq_orig_reserve_summon_event reserve_summon_event
+    def reserve_summon_event(event_name, x=$game_player.x, y=$game_player.y, id=-1, data=nil)
+      if event_name && event_name.start_with?("Item")
+        event_template = event_lib[event_name][1]
+        if event_template.pages
+          event_template.pages.each do |page|
+            next unless page.move_route && page.move_route.list.is_a?(Array)
+            page.move_route.list.each do |cmd|
+              next unless cmd.is_a?(RPG::MoveCommand) && [45, 42].include?(cmd.code)
+              if $cheat_item_despawn >= 1 && cmd.parameters[0] =~ /@wait_count.*scoutcraft_trait/
+                new_wait = [600 + 60 * $game_player.actor.scoutcraft_trait, 1800].min * $cheat_item_despawn
+                cmd.parameters[0] = "@wait_count = #{new_wait}"
+              elsif $cheat_item_despawn == -1
+                if cmd.parameters[0] == 100
+                  cmd.parameters[0] = 255
+                elsif cmd.parameters[0] =~ /\bdelete\b/
+                  cmd.code = 0
+                  cmd.parameters = []
+                end
+              end
+            end
+          end
+        end
+      end
+      @summoned_evs << [event_name, x, y, id, data]
+    end
+  end
+end
+
+
+if $cheat_item_drops != 0
+  class Game_NonPlayerCharacter
+    alias orig_min_drop_amt min_drop_amt
+    alias orig_max_drop_amt max_drop_amt
+
+    def min_drop_amt
+      (orig_min_drop_amt * $cheat_item_drops).to_i
+    end
+
+    def max_drop_amt
+      (orig_max_drop_amt * $cheat_item_drops).to_i
+    end
+  end
+end
+
+if $cheat_classless_society
+  class Game_BattlerBase
+    def equip_wtype_ok?(wtype_id)
+      # Allow equipping weapons no matter the type.
+      true
+    end
+    def equip_atype_ok?(atype_id)
+      # Allow equipping armor no matter the type.
+      true
+    end
+    def usable_item_conditions_met?(item)
+      # Allow weapon skills regardless of prerequisites
+      return true if item.is_a?(RPG::Skill) && added_skills.include?(item.id)
+      movable?
+    end
+  end
+end
+

@@ -1,5 +1,5 @@
 commands/primary
-Первичные
+Начальный
 
 commands/primary/health
 Здоровье
@@ -8,7 +8,7 @@ commands/primary/stamina
 Выносливость
 
 commands/primary/food
-Еда
+Сытость
 
 commands/primary/mood
 Настроение
@@ -17,97 +17,115 @@ commands/primary/arousal
 Возбуждение
 
 commands/primary/morality
-Мораль
+Репутация
 
 command_help/moral
-Мораль <30 вызовет нападение людей.
-
+Мораль <30 заставит людей атаковать.
 
 commands/levels
-Уровни
+Уровень
 
 commands/levels/level
 Уровень
 
 command_help/lvl
-Пересчитывает очки характеристик при установке.
+При установке пересчитывает баллы черт.
 
 commands/levels/max_level
 Максимальный уровень
 
 commands/levels/traits_per_level
-Характеристики на уровень
+Черты на уровень
 
 command_help/tpl1
-Количество характеристик, полученных при повышении уровня.
-
+Количество черт, получаемых при повышении уровня.
 
 commands/traits
-Характеристики
+Черты
 
 commands/traits/trait_points
-Очки характеристик
+Очки тал.
 
 command_help/tp1
-Очки, которые вы должны иметь
+Баллы, которые вам следует иметь
 
 command_help/tp2
-Базовые
+База
 
 command_help/tp3
 Навыки
 
 command_help/tp4
-Характеристики
+Черты
 
 commands/traits/max_traits
-Максимальные характеристики
+Макс. черты
 
 commands/traits/combat
-Боевая характеристика
+Боевые Навыки
 
 commands/traits/scoutcraft
-Характеристика разведчика
+Разведка
 
 commands/traits/wisdom
-Характеристика мудрости
+Мудрость
 
 commands/traits/survival
-Характеристика выживания
+Выживание
 
 commands/traits/constitution
-Характеристика конституции
+Телосложение
 
 commands/traits/reset
-Сброс характеристик
+Сбросить черты
 
 command_help/reset1
 Сбрасывает все характеристики (включая навыки)
 
 command_help/reset2
-Устанавливает очки характеристик на основе уровня * характеристики на уровень.
-
+Устанавливает очки черт на основе уровня * количество черт на уровне.
 
 commands/appearance
-Внешний вид
+Появление
 
 commands/appearance/dirt
-Грязный
+Грязь
 
 toggle/dirt
 Отключить грязь
 
 command_help/dirt
-Устанавливает максимальное значение грязи на 0. НЕ ГЛОБАЛЬНО.
+Устанавливает максимальное значение dirt на 0. НЕ ГЛОБАЛЬНО.
 
-commands/appearance/pubes
-Удалить лобковые волосы
+commands/appearance/freckles
+Веснушки
+
+commands/appearance/vpubes
+Рост Волосы (В)
+
+commands/appearance/apubes
+Рост Волосы (А)
+
+commands/appearance/vpubegrowth
+Рост лобковых волос
+
+commands/appearance/apubegrowth
+Рост анальных волос
+
+command_help/pubes1
+Установка значения 0 предотвратит рост, 1+ позволит рост.
+
+command_help/pubegrowth1
+Время между ростом. Выше = медленнее.
+
+command_help/pubegrowth2
+Обычно от 3 до 12 дней.
 
 commands/appearance/hair_color
 Цвет волос
 
 commands/appearance/hair_color/0
-Седой
+Серый
 
 commands/appearance/hair_color/1
 Черный
@@ -116,71 +134,70 @@ commands/appearance/hair_color/2
 Обесцвеченный
 
 commands/appearance/hair_color/3
-Аква
+Светло голубой
 
 commands/appearance/hair_color/4
-Рыжий
+Красный
 
 commands/appearance/hair_color/5
-Блондин
+Блондинка
 
 toggle/autobandage
-Автоматическая перевязка
+Автоматическое лечение ран
 
 command_help/autobandage
 Автоматически удаляет раны, кровь и повреждения отверстий.
 
-toggle/autocure
-Автоматическое исцеление
-
-command_help/autocure
-Автоматически удаляет ЗППП и паразитов.
-
 toggle/autocleanout
-Автоматическая очистка (внешняя)
+Авто-Чистить (выход)
 
 command_help/autocleanout
-Автоматически удаляет кровь и сперму с поверхности.
+Автоматически удаляет кровь и всю поверхностную сперму.
 
 toggle/autocleanin
-Автоматическая очистка (внутренняя)
+Авто-Чистить (вход)
 
 command_help/autocleanin
 Автоматически удаляет сперму из отверстий.
 
+toggle/autocure
+Авто-отверждение
+
+command_help/autocure
+Автоматически удаляет ЗППП и паразитов.
 
 commands/race
-Раса
-
-window_help/race1
-Выберите расу.
+Расу
 
 commands/race/human
 Человек
 
 commands/race/moot
-Мутант
+Смешанная
 
 commands/race/deepone
-Предшественник глубоководных
+Глубинная
 
 commands/race/truedeepone
-Настоящий глубоководный
+Морская ведьма
 
 commands/race/abom_human
-Урод (человек)
+Мерзость (человек)
 
 commands/race/abom_moot
-Уродство (Муты)
+Мерзость (смешанная)
 
 commands/race/skills
-Навыки рас
+Расовые навыки
 
 commands/race/skills/deepone
-Пробуждение (Морская ведьма)
+Пробуждение (Морская Ведьма)
 
 commands/race/skills/abomeat
-Осквернение (Уродство)
+Осквернение (Мерзость)
 
 commands/race/skills/abomgrab
-Плеть из щупалец (Уродство)
+Усик-кнут (Мерзость)
+
+window_help/race1
+Выберите расу, от которой хотите забеременеть.

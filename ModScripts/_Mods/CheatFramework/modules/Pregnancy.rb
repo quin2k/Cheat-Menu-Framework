@@ -7,10 +7,6 @@ FrameworkModule = {
 }
 
 module MenuFramework
-  module MENU
-    #Register Menu Command
-  end
-
   module SUBMENU
     #Register Pregnancy Menu Commands
     #List-style Edit
@@ -217,7 +213,8 @@ module MenuFramework
       end
 
       actor.preg_date = preg.date
-      actor.update_pregnancy
+      actor.update_reproduction
+      actor.belly_size_control
     end
   end
 end

@@ -1,30 +1,29 @@
 commands/items
-物品
+项目
 
 commands/weapons
 武器
 
 commands/armors
-護甲
+盔甲
 
 command_help/items_0
-調整物品。
+调整项目。
 
 command_help/items_1
-按左右鍵減少/增加。
+按左/右键来减/增。
 
 command_help/items_2
-按住SHIFT鍵以10為單位增減。
+按住SHIFT键，增量为10。
 
 command_help/items_3
-按住CTRL鍵可增加100單位。
+按住CTRL键，增量为100。
 
 commands/status
-狀態
+狀況
 
 command_help/stats_0
-調整蘿娜的狀態變數。
+條件調整。
 
 command_help/stats_1
-按左右鍵減少/增加數值。
-
+按左/右键来减/增。
