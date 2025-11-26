@@ -1,46 +1,44 @@
 commands/primary
-Основні
+Первинний
 
 commands/primary/health
-Здоров'я
+Здоров’я
 
 commands/primary/stamina
-Витривалість
+Сили
 
 commands/primary/food
-Їжа
+Ситість
 
 commands/primary/mood
 Настрій
 
 commands/primary/arousal
-Збудження
+Збудженість
 
 commands/primary/morality
-Моральність
+Слава
 
 command_help/moral
-Моральність <30 змусить людей атакувати.
-
+Мораль <30 призведе до нападу людей.
 
 commands/levels
-Рівні
+Рівень
 
 commands/levels/level
 Рівень
 
 command_help/lvl
-Перераховує очки рис, коли встановлено.
+Перераховує очки рис після встановлення.
 
 commands/levels/max_level
 Максимальний рівень
 
 commands/levels/traits_per_level
-Риси за рівнем
+Риси на рівень
 
 command_help/tpl1
 Кількість рис, отриманих при підвищенні рівня.
-
 
 commands/traits
 Риси
@@ -52,56 +50,76 @@ command_help/tp1
 Очки, які ви повинні мати
 
 command_help/tp2
-Базові
+База
 
 command_help/tp3
 Навички
 
 command_help/tp4
-Характеристики
+Риси
 
 commands/traits/max_traits
-Максимальні характеристики
+Максимальні риси
 
 commands/traits/combat
-Бойові характеристики
+Бойові Навички
 
 commands/traits/scoutcraft
-Характеристики розвідника
+Розвідка
 
 commands/traits/wisdom
-Характеристика мудрості
+Мудрість
 
 commands/traits/survival
-Характеристика виживання
+Виживання
 
 commands/traits/constitution
-Характеристика конституції
+Статура
 
 commands/traits/reset
-Скинути характеристики
+Скинути риси
 
 command_help/reset1
-Скидає всі характеристики (включно з навичками)
+Скидає всі риси (включно з навичками)
 
 command_help/reset2
-Встановлює очки характеристик на основі рівня * характеристики за рівень.
-
+Встановлює очки рис на основі рівня * Риси за рівень.
 
 commands/appearance
 Зовнішній вигляд
 
 commands/appearance/dirt
-Брудний
+Забрудненість
 
 toggle/dirt
 Вимкнути бруд
 
 command_help/dirt
-Встановлює максимальний рівень бруду на 0. НЕ ГЛОБАЛЬНИЙ.
+Встановлює максимальне значення бруду на 0. НЕ ГЛОБАЛЬНЕ.
 
-commands/appearance/pubes
-Видалити лобкові волосся
+commands/appearance/freckles
+Ластовиння
+
+commands/appearance/vpubes
+Ріст Волосся (В)
+
+commands/appearance/apubes
+Ріст Волосся (А)
+
+commands/appearance/vpubegrowth
+Ріст лобкового волосся
+
+commands/appearance/apubegrowth
+Ріст анального волосся
+
+command_help/pubes1
+Встановлення на 0 запобігатиме зростанню, 1+ – увімкне зростання.
+
+command_help/pubegrowth1
+Час між зростанням. Вище = повільніше.
+
+command_help/pubegrowth2
+Зазвичай від 3 до 12 днів.
 
 commands/appearance/hair_color
 Колір волосся
@@ -113,34 +131,28 @@ commands/appearance/hair_color/1
 Чорний
 
 commands/appearance/hair_color/2
-Вибілений
+Відбілений
 
 commands/appearance/hair_color/3
 Аква
 
 commands/appearance/hair_color/4
-Рудий
+Червоний
 
 commands/appearance/hair_color/5
-Блондин
+Блондинка
 
 toggle/autobandage
-Автоматичне перев'язування
+Автобандаж
 
 command_help/autobandage
-Автоматично видаляє рани, кров і пошкодження отворів.
-
-toggle/autocure
-Автоматичне лікування
-
-command_help/autocure
-Автоматично видаляє венеричні захворювання та паразитів.
+Автоматично видаляє рани, кров та пошкодження отвору.
 
 toggle/autocleanout
 Автоматичне очищення (зовнішнє)
 
 command_help/autocleanout
-Автоматично видаляє кров і сперму з поверхні.
+Автоматично видаляє кров та сперму з усієї поверхні.
 
 toggle/autocleanin
 Автоматичне очищення (внутрішнє)
@@ -148,30 +160,32 @@ toggle/autocleanin
 command_help/autocleanin
 Автоматично видаляє сперму з отворів.
 
+toggle/autocure
+Автоматичне затвердіння
+
+command_help/autocure
+Автоматично видаляє ЗПСШ та паразитів.
 
 commands/race
 Раса
-
-window_help/race1
-Виберіть расу.
 
 commands/race/human
 Людина
 
 commands/race/moot
-Мут
+Змішана раса
 
 commands/race/deepone
-Пре-деепоне
+Перед глибоким початком
 
 commands/race/truedeepone
-Справжній деепоне
+Справжній Діпоун
 
 commands/race/abom_human
-Потвора (людина)
+Гидота (людина)
 
 commands/race/abom_moot
-Потвора (Мут)
+Гидота (Спірна)
 
 commands/race/skills
 Расові навички
@@ -180,7 +194,10 @@ commands/race/skills/deepone
 Пробудження (Морська відьма)
 
 commands/race/skills/abomeat
-Осквернення (Потвора)
+Осквернити (гидоту)
 
 commands/race/skills/abomgrab
-Батоги з вусиків (Потвора)
+Батіг-вусик (гидота)
+
+window_help/race1
+Виберіть расу.

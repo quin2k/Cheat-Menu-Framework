@@ -1,0 +1,26 @@
+toggle/health
+무한 체력
+
+toggle/food
+인피니트 푸드
+
+toggle/stamina
+무한 스태미나
+
+toggle/money
+무한 머니
+
+misc/heal
+치유
+
+misc/heal_wound
+상처 치료
+
+command_help/heal_wound
+무작위로 생긴 상처 하나를 치료합니다.
+
+misc/faint
+소진됨
+
+misc/money
+기부하기

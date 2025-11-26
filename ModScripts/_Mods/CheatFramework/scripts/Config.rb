@@ -134,14 +134,13 @@ class FrameworkConfig
       next if data[:key].nil? || data[:key].upcase == "NONE"
 
       mods, base = parse_hotkey(data[:key])
-      key_const  = Input.const_get(base) rescue base
-      next unless key_const
+      key_const = base
 
       group, key = full_key.split('.', 2)
       $framework.hotkeys[key_const] << {
         group: group.to_sym,
-        key: key, # e.g. :F9 or :F3
-        mods: mods, # e.g. [:SHIFT, :CTRL]
+        key: key,
+        mods: mods,
         sound: data[:sound]
       }
     end

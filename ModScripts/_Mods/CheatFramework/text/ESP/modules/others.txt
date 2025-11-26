@@ -1,0 +1,71 @@
+commands/gallery
+Desbloquear galería
+
+commands/world
+Dificultad mundial
+
+commands/fix
+Ajustes del juego
+
+commands/friendlyfire
+Solución para el fuego amigo
+
+command_help/friendlyfire1
+Intentos de evitar el fuego amigo.
+
+commands/stealth
+Desde las sombras Fix
+
+command_help/stealth1
+La tecla de acción no cancelará el sigilo si tienes la habilidad.
+
+commands/abomskillfix
+Abominación Comer Arreglar
+
+command_help/abomskillfix1
+La habilidad Profanar también llenará de comida y curará heridas.
+
+commands/achievementfix
+Solución de logro de dificultad
+
+command_help/achievementfix1
+Agiliza las matemáticas para los cálculos diarios.
+
+command_help/fixcommand2
+REQUIERE REINICIO después de ser configurado.
+
+commands/discard
+Prevenir el descarte
+
+command_help/discard1
+La ropa despojada va a tu inventario.
+
+commands/forceunequip
+Fuerza de desequipar
+
+command_help/forceunequip1
+Se utiliza para retirar a la fuerza cadenas o collares.
+
+commands/despawnfix
+Control de deterioro de objetos
+
+command_item/off
+DESACTIVAR
+
+command_item/infinite
+INF
+
+commands/drops
+Aumentar gotas
+
+command_help/dropsfix1
+Ajusta las gotas que caen de los enemigos.
+
+commands/equip
+Equipa cualquier cosa
+
+command_help/equip1
+Elimina los requisitos de habilidades.
+
+command_help/despawnfix1
+Establecer la duración de los elementos caídos.

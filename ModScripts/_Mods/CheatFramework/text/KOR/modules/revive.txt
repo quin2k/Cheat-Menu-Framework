@@ -1,0 +1,92 @@
+commands/revive
+고유 NPC 부활
+
+command/revive/menu3
+죽은 NPC만 표시됩니다.
+
+command/revive/menu4
+Z를 눌러 선택한 NPC를 부활시킵니다.
+
+NPC/UniqueCharUniqueCecily
+세실리
+
+NPC/UniqueCharUniqueGrayRat
+회색 쥐
+
+NPC/UniqueCharUniqueCocona
+코코나
+
+NPC/UniqueCharUniqueLisa
+리사
+
+NPC/UniqueCharUniqueElise
+엘리스
+
+NPC/UniqueCharUniqueMaani
+마니
+
+NPC/UniqueCharUniqueDavidBorn
+데이비드본
+
+NPC/UniqueCharUniquePigBobo
+보보
+
+NPC/UniqueCharUniqueAdam
+아담
+
+NPC/UniqueCharUniqueMilo
+마일로
+
+NPC/UniqueCharUniqueSeaWitch
+바다 마녀
+
+NPC/UniqueCharUniqueTeller
+점쟁이
+
+NPC/UniqueCharUniqueHappyMerchant
+쾌활한 가게 주인
+
+NPC/UniqueCharUniqueTavernWaifu
+보스 마마
+
+NPC/UniqueCharUniqueFerrum
+Ferrum
+
+NPC/UniqueCharUniqueCaptainEdward
+에드워드 선장
+
+NPC/UniqueCharUniqueFatdalf
+회색 옷을 입은 마법사
+
+NPC/UniqueCharNoerSnowflake
+눈송이
+
+NPC/UniqueChar_NorthFL_SGT
+NorthFL_SGT
+
+NPC/UniqueChar_NFL_MerCamp_Leader
+NFL_MerCamp_Leader
+
+NPC/UniqueCharNoerRelayOut_PoorBoy
+PoorBoy
+
+NPC/UniqueChar_FishTownT_Shaman
+FishTownT_Shaman
+
+NPC/UniqueCharUniqueKillerRabbit
+KillerRabbit
+
+NPC/UniqueCharUniqueOgreWarBoss
+OgreWarBoss
+
+NPC/UniqueCharUniqueGangBoss
+GangBoss
+
+NPC/UniqueCharSMCloudVillage_Boss
+CloudVillage_Boss
+
+NPC/UniqueCharSMCloudVillage_BossAtk
+CloudVillage_BossAtk
+
+NPC/UniqueChar_OrcSlaveMaster
+OrcSlaveMaster

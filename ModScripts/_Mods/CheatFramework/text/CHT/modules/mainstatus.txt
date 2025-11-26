@@ -1,27 +1,26 @@
 toggle/health
-無限生命值
+无限健康
 
 toggle/food
-無限食物
+无限的食物
 
 toggle/stamina
-無限耐力
+无限的耐力
 
 toggle/money
-無限金錢
+无限的金钱
 
 misc/heal
-治療
+痊愈
 
 misc/heal_wound
-治療傷口
+治愈伤口
 
 command_help/heal_wound
-隨機治療單一傷口。
+治愈一处随机伤口。
 
 misc/faint
-精疲力竭
+疲惫不堪
 
 misc/money
-金錢上限
-
+给钱

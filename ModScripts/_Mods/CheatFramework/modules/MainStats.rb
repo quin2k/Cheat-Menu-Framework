@@ -102,9 +102,9 @@ end
 
 #Hotkeys
 class CheatFramework
-  alias_method :normal_trigger_INFINITESTATS, :normal_trigger
-  def normal_trigger
-    normal_trigger_INFINITESTATS
+  alias_method :hotkey_trigger_INFINITESTATS, :hotkey_trigger
+  def hotkey_trigger
+    hotkey_trigger_INFINITESTATS
     FrameworkUtils.apply_infinite_stats
   end
 end

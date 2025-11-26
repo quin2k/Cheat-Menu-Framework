@@ -1,0 +1,5 @@
+name
+치트 프레임워크
+
+description
+치트 모드가 다시 한번 새롭게 디자인되었습니다. 자세한 변경 사항은 https://github.com/quin2k/Cheat-Menu-Framework에서 확인하세요.

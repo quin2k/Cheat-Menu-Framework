@@ -1,6 +1,5 @@
 name
-作弊菜單框架
+作弊框架
 
 description
-舊的秘籍模組經過重新設計，使用模組來添加新的秘籍。
-
+作弊模组再次重制。详细更改请参见 https://github.com/quin2k/Cheat-Menu-Framework。

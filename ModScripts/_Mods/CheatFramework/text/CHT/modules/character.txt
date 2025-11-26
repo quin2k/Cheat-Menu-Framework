@@ -1,188 +1,203 @@
 commands/primary
-主要
+基本的
 
 commands/primary/health
-健康
+生命
 
 commands/primary/stamina
-耐力
+體力
 
 commands/primary/food
 食物
 
 commands/primary/mood
-情緒
+心情
 
 commands/primary/arousal
-興奮度
+情慾
 
 commands/primary/morality
 道德
 
 command_help/moral
-道德值<30將引發人類攻擊。
-
+道德值低于30会导致人类互相攻击。
 
 commands/levels
 等級
 
 commands/levels/level
-等級
+级
 
 command_help/lvl
-設定後重新計算特質點數。
+设置后重新计算特性点数。
 
 commands/levels/max_level
-最高等級
+最高等级
 
 commands/levels/traits_per_level
-每級可獲取特質數
+每级特性
 
 command_help/tpl1
-升級時可獲得的特質數量。
-
+升级时获得的特质数量。
 
 commands/traits
-特質
+天賦
 
 commands/traits/trait_points
-特質點數
+特质点
 
 command_help/tp1
-應持有點數
+你应该具备的积分
 
 command_help/tp2
-基礎
+根据
 
 command_help/tp3
 技能
 
 command_help/tp4
-特質
+天賦
 
 commands/traits/max_traits
-特質上限
+最大特性
 
 commands/traits/combat
-戰鬥特質
+戰鬥技術
 
 commands/traits/scoutcraft
-偵察特質
+偵查技術
 
 commands/traits/wisdom
-智慧特質
+智慧
 
 commands/traits/survival
-生存特質
+生存技術
 
 commands/traits/constitution
-體質特質
+體值
 
 commands/traits/reset
-重置特質
+重置特性
 
 command_help/reset1
-重置所有特質（含技能）
+重置所有特性（包括技能）
 
 command_help/reset2
-根據等級 × 每級特質點數設定特質點數
-
+根据等级 * 每级特性数量设置特性点数。
 
 commands/appearance
-外觀
+外貌
 
 commands/appearance/dirt
-髒污
+肮脏的
 
 toggle/dirt
-關閉污垢效果
+禁用污垢
 
 command_help/dirt
-將污垢最大值設為0。非全域設定。
+将污垢最大值设置为 0。非全局设置。
 
-commands/appearance/pubes
-清除體毛
+commands/appearance/freckles
+雀斑
+
+commands/appearance/vpubes
+陰毛
+
+commands/appearance/apubes
+肛毛
+
+commands/appearance/vpubegrowth
+阴毛生长
+
+commands/appearance/apubegrowth
+肛门毛发生长
+
+command_help/pubes1
+设置为 0 将阻止增长，设置为 1 或以上将启用增长。
+
+command_help/pubegrowth1
+生长间隔时间。数值越高，生长速度越慢。
+
+command_help/pubegrowth2
+通常需要3-12天。
 
 commands/appearance/hair_color
-髮色
+头发颜色
 
 commands/appearance/hair_color/0
-灰白
+灰色
 
 commands/appearance/hair_color/1
 黑色
 
 commands/appearance/hair_color/2
-漂白
+白化
 
 commands/appearance/hair_color/3
-水藍色
+水蓝色
 
 commands/appearance/hair_color/4
-紅色
+红色
 
 commands/appearance/hair_color/5
-金髮
+金色
 
 toggle/autobandage
-自動包紮
+自动绷带
 
 command_help/autobandage
-自動清除傷口、血液及孔洞損傷。
-
-toggle/autocure
-自動治療
-
-command_help/autocure
-自動清除性病與寄生蟲。
+自动清除伤口、血迹和孔口损伤。
 
 toggle/autocleanout
-自動清潔（外部）
+自動乾淨 （外部）
 
 command_help/autocleanout
-自動清除血液及所有體表精液。
+自动清除血液和所有表面的精液。
 
 toggle/autocleanin
-自動清潔（內部）
+自動乾淨 （英寸）
 
 command_help/autocleanin
-自動清除孔洞內精液。
+自动清除孔洞中的精液。
 
+toggle/autocure
+自动固化
 
-
+command_help/autocure
+自动清除性传播疾病和寄生虫。
 
 commands/race
 種族
 
-window_help/race1
-選擇種族。
-
 commands/race/human
-人類
+人类
 
 commands/race/moot
-穆特族
+混血儿
 
 commands/race/deepone
-前深海族
+预深一
 
 commands/race/truedeepone
-真深海族
+深一度
 
 commands/race/abom_human
-異形（人類）
+憎恶（人类）
 
 commands/race/abom_moot
-異形（穆特族）
+憎恶（混合种族）
 
 commands/race/skills
-種族技能
+种族技能
 
 commands/race/skills/deepone
-覺醒（海巫）
+觉醒（海巫）
 
 commands/race/skills/abomeat
-亵渎（異形）
+亵渎（可憎之事）
 
 commands/race/skills/abomgrab
-藤蔓鞭笞（異形）
+触手鞭（憎恶）
+
+window_help/race1
+选择种族。

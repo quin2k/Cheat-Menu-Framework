@@ -9,7 +9,7 @@ FrameworkModule = {
 MenuFramework::SUBMENU.register_command(
     type:   :toggle,
     key:    "Unlock Gallery", #should be unique
-    label:  "modules/others:command/gallery",
+    label:  "modules/others:commands/gallery",
     state:  "$cheat_unlock_gallery", #toggle variable
     global: false
   )

@@ -1,0 +1,26 @@
+toggle/health
+Salud infinita
+
+toggle/food
+Comida infinita
+
+toggle/stamina
+Resistencia infinita
+
+toggle/money
+Dinero infinito
+
+misc/heal
+Cura
+
+misc/heal_wound
+Curar herida
+
+command_help/heal_wound
+Cura una única herida aleatoria.
+
+misc/faint
+Agotado
+
+misc/money
+Dar dinero

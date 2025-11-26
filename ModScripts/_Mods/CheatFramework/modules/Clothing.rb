@@ -9,7 +9,7 @@ module MenuFramework
     # Toggles 
     #------------------------------------------
     register_command(
-      group:  :TOGGLES,
+      group:  :FIXES,
       type:   :toggle,
       key:    "Prevent Discard", #should be unique to this dictionary
       label:  "modules/others:commands/discard",

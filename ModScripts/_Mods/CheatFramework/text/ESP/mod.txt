@@ -1,0 +1,5 @@
+name
+Marco de trucos
+
+description
+Mod de trucos rediseñado (de nuevo). Para ver los cambios detallados, consulta https://github.com/quin2k/Cheat-Menu-Framework.

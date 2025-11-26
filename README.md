@@ -39,10 +39,18 @@ These should populate in the config when you load the mod for the first time.  I
 ## Planned Improvements
 
 - Fix & include summon options.
-- Add options to edit hotkeys in-game.
-- Add options to edit menu order (for select menus).
+- Create a Config Menu interface with the following features:
+  - Options to edit hotkeys in-game.
+  - Consider handling other keys (M for example)
+  - Options to edit menu order (for select menus).
+  - Reset all settings to default (wipe select INIs)
+  - Ability to toggle loading of mods and load order
+    - (Don't expect load order to be a priority if menu order can be customized.)
 - Create detailed documentation for registration system.
-- Add a menu for editing unique character death status.
+- Possible modification ideas:
+  - Ability to set select (or all) global variables to act as local variables (save specific vs. game specific).  Not sure this is feasable, but seemed like a useful feature.
+  - Ability to view all current global settings?
+
 
 ---
 
@@ -89,6 +97,25 @@ This started out as "I'd like to be able to edit variables" and when I realized 
 <summary>Ver 0.9.1q Changelog</summary>
 
 - Minor change to config file structure before initial release (split global/hotkeys/modules to separate ini files fixed quotes being added to hotkeys.) 
+
+</details>
+<details>
+<summary>Ver 0.9.2q Changelog</summary>
+
+- Fixed issue where editing pregnancy wasn't updating Lona's belly until the next day.
+- Found and fixed an issue with Traits Per Level global not loading properly. If you have issues, delete that line or capitalize "Per"
+- Determined the low-lag features were voiding the whole point of max hp/sat/sta (wasn't preventing death!!) so sped up the check frequency.
+- Main menu is now prioritized over other commands and doesn't check for Ctrl/Shift/Alt. Keep that in mind if customizing hot keys.
+- Moved the "fixes" to their own menu named "Game Tweaks"
+  - Moved Prevent Discard to that section.
+- Added some features inspired by doujinftw in F95zone
+  - Option to edit mob drop quantity.
+  - Option to adjust/remove dropped item decay.
+  - Option to disable equipment restrictions (MagicEQ, HighQuEQ, SaintEQ) no matter what traits you have.
+    - I wanted to do "learn any skill" but this is more future-proof.
+- Added a menu in the Game Tweaks to revive unique NPCs. Inspired by one of kastrom's mods on raidgame.ru.
+- Included some rebirth traits in "Appearance" menu including freckles, pubic/anal hair, and pube growth rates (if active).
+- Tried to improve language support. If you would like to contribute, go to [Google Docs Translation](https://docs.google.com/spreadsheets/d/1hoDT0cJfvXVhomTkJyq5G6tgjrkiBAm26lsjEOWU3_k/edit?usp=sharing).
 
 </details>
 

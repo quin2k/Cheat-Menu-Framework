@@ -1,45 +1,41 @@
 commands/misc
-雜項作弊碼
+杂项
 
 commands/toggles
-切換功能
+切换作弊器
 
 commands/character
-角色設定
+特点
 
 window_help/character1
-變更主角的各項屬性。
-
+改变主角的属性。
 
 commands/config
-設定選單
-
+配置菜单
 
 cheat_toggle/on
-開啟
+启用
 
 cheat_toggle/off
-關閉
+关闭
 
 command_help/execute
-按下Z鍵執行指令。
+按 Z 键运行命令。
 
 command_help/scene
-按下Z鍵進入子選單
+按 Z 键进入子菜单。
 
 command_help/toggle
-按下Z鍵進行切換。
+按Z键进行切换。
 
 command_help/edit
-按下Z鍵進行編輯。
-
+按 Z 键进行编辑。
 
 command_help/num_edit1
-按左鍵減少數值，按右鍵增加數值。
+按左/右键来减/增。
 
 command_help/num_edit2
-按住SHIFT鍵為10倍增，按住CTRL鍵為100倍增。
+SHIFT = x10，CTRL = x100。
 
 commands_status/locked
-作弊功能已啟用
-
+作弊激活

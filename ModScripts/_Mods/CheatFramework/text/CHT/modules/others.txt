@@ -1,46 +1,71 @@
-command/gallery
-解鎖畫廊
+commands/gallery
+解锁画廊
 
-command/world
+commands/world
 世界難度
 
+commands/fix
+游戏调整
 
 commands/friendlyfire
-友軍傷害修復
+修复友军误伤问题
 
 command_help/friendlyfire1
-嘗試防止友軍傷害。
+防止友军误伤的尝试。
 
 commands/stealth
-暗影修復
+隱匿專精
 
 command_help/stealth1
-若擁有潛行技能，動作鍵將無法取消潛行狀態。
+如果你拥有相关技能，动作键不会取消潜行状态。
 
 commands/abomskillfix
-異形吞噬修復
+吞食
 
 command_help/abomskillfix1
-亵渎技能將同時補充食物並治療傷口。
+亵渎技能还可以补充食物和治疗伤口。
 
 commands/achievementfix
-難度成就修復
+难度成就修复
 
 command_help/achievementfix1
-簡化晝夜計算的數學運算。
+简化每日计算的数学运算。
 
 command_help/fixcommand2
-此切換需設定後重新啟動遊戲。
-
+设置完成后需要重启。
 
 commands/discard
-防止物品棄置
+防止丢弃
 
 command_help/discard1
-脫下的衣物將存入背包而非掉落地面。
+脱下的衣物会进入你的物品栏。
 
 commands/forceunequip
-強制卸除裝備
+强制卸下装备
 
 command_help/forceunequip1
-用於強制解除鎖鏈或項圈等束縛裝備。
+用于强行取下链条或项圈。
+
+commands/despawnfix
+物品损耗控制
+
+command_item/off
+禁用
+
+command_item/infinite
+干扰
+
+commands/drops
+增加滴落
+
+command_help/dropsfix1
+调整敌人掉落物品。
+
+commands/equip
+装备任何物品
+
+command_help/equip1
+取消技能要求。
+
+command_help/despawnfix1
+设置掉落物品的持续时间。
