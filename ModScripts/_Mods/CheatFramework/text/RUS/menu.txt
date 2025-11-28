@@ -5,13 +5,13 @@ commands/toggles
 Переключить
 
 commands/character
-Характер
+Персонаж
 
 window_help/character1
-Изменить свойства главного героя.
+Изменить свойства главного персонажа.
 
 commands/config
-Меню конфигурации
+Меню настроек
 
 cheat_toggle/on
 ВКЛ
@@ -32,10 +32,10 @@ command_help/edit
 Нажмите Z для редактирования.
 
 command_help/num_edit1
-Нажимайте влево/вправо, чтобы потерять/приобрести.
+Нажимаем стрелку влево или вправо для настройки.
 
 command_help/num_edit2
 SHIFT = x10, CTRL = x100.
 
 commands_status/locked
-Чит Активный
+Чит Активен

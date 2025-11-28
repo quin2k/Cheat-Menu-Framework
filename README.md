@@ -102,6 +102,7 @@ This started out as "I'd like to be able to edit variables" and when I realized 
 <details>
 <summary>Ver 0.9.2q Changelog</summary>
 
+- Fixed some issues with Friendly Fire Fix not recognizing summons (e.g. Cocona undead) as allies.
 - Fixed issue where editing pregnancy wasn't updating Lona's belly until the next day.
 - Found and fixed an issue with Traits Per Level global not loading properly. If you have issues, delete that line or capitalize "Per"
 - Determined the low-lag features were voiding the whole point of max hp/sat/sta (wasn't preventing death!!) so sped up the check frequency.
@@ -116,6 +117,8 @@ This started out as "I'd like to be able to edit variables" and when I realized 
 - Added a menu in the Game Tweaks to revive unique NPCs. Inspired by one of kastrom's mods on raidgame.ru.
 - Included some rebirth traits in "Appearance" menu including freckles, pubic/anal hair, and pube growth rates (if active).
 - Tried to improve language support. If you would like to contribute, go to [Google Docs Translation](https://docs.google.com/spreadsheets/d/1hoDT0cJfvXVhomTkJyq5G6tgjrkiBAm26lsjEOWU3_k/edit?usp=sharing).
+  - Russian updated courtesy of Sadorimatsu at F95zone.to / raidgame.ru
+  - If you aren't comfortable accessing via Google Docs, DM me and I'll send an excel version.
 
 </details>
 
