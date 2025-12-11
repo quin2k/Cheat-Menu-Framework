@@ -7,6 +7,9 @@ commands/toggles
 commands/character
 Персонаж
 
+commands/npc
+NPC
+
 window_help/character1
 Зміна властивостей головного героя.
 

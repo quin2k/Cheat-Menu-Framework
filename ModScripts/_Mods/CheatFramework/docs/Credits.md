@@ -22,7 +22,7 @@
 ## Inspiration
 - [Shadesishere](https://f95zone.to/members/shadesishere.3139110/) \(mod for monastery donation inspired world difficulty edit.\)
 
-- [doujinftw](https://f95zone.to/members/doujinftw.3105652/) \(item drop rate, equipment bypass and, indirectly, item despawn rate.\)
+- [doujinftw](https://f95zone.to/members/doujinftw.3105652/) \(difficulty reset, item drop rate, equipment bypass and, indirectly, item despawn rate.\)
 
 - [kastrom](https://vk.com/kactpom) \(their undead unique mod seemed limiting (e.g. Adam quest issues), so tried to improve on it.\)
 

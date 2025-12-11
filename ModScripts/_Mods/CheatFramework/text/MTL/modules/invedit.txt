@@ -27,3 +27,9 @@ Adjust Lona's status variables.
 
 command_help/stats_1
 Press Left/Right to lose/gain.
+
+commands/bank
+Open Bank Inventory
+
+commands/summon
+Summon NPC

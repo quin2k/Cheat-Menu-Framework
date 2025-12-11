@@ -28,6 +28,7 @@ These should populate in the config when you load the mod for the first time.  I
 - TOGGLES.Auto Cure = F4
 - NONE.Remove Clothes = F3
 - MISC.Force Remove Clothes = Shift+F3
+- NPC.Bany Anywhere = F2
 
 </details>
 
@@ -38,7 +39,6 @@ These should populate in the config when you load the mod for the first time.  I
 
 ## Planned Improvements
 
-- Fix & include summon options.
 - Create a Config Menu interface with the following features:
   - Options to edit hotkeys in-game.
   - Consider handling other keys (M for example)
@@ -50,6 +50,7 @@ These should populate in the config when you load the mod for the first time.  I
 - Possible modification ideas:
   - Ability to set select (or all) global variables to act as local variables (save specific vs. game specific).  Not sure this is feasable, but seemed like a useful feature.
   - Ability to view all current global settings?
+- If NPC doesn't have enough stamina => dont stop juicing, kill instead (inconsistent behavior)
 
 
 ---
@@ -119,6 +120,24 @@ This started out as "I'd like to be able to edit variables" and when I realized 
 - Tried to improve language support. If you would like to contribute, go to [Google Docs Translation](https://docs.google.com/spreadsheets/d/1hoDT0cJfvXVhomTkJyq5G6tgjrkiBAm26lsjEOWU3_k/edit?usp=sharing).
   - Russian updated courtesy of Sadorimatsu at F95zone.to / raidgame.ru
   - If you aren't comfortable accessing via Google Docs, DM me and I'll send an excel version.
+
+</details>
+<details>
+<summary>Ver 0.9.3q Changelog</summary>
+
+- Fixed a typo in Protect Pregnancy code that prevented Baby Health updates.
+- Added a command to access the bank from anywhere. For those who have hoarding issues.
+  - Set it to F2 as a shortcut.
+- Finally ported over Summon interface from the original mod.  Merged some sections.
+  - It should work exactly the same, BUGS AND ALL, so use with caution!
+- Moved Revive, Summon, World Difficulty, and Bank to new "NPC" Submenu.
+  - Revive menu will now display non-dead NPCs as grayed out (so the menu isn't blank)
+- Added a "Sexual" menu under "Character" 
+  - Adds number editing and toggles for Vag/Urethra/Anal Damage 
+  - Has a command to reset all sex stats - essentially restoring virginity.
+- Added option to "Reset Game Difficulty" to the Misc Cheats Menu.
+  - Basically force-disables Doom Mode. Only visible in Doom Mode.
+  - **Use with caution, can delete your Doom Save.** When testing, entering the game menu before running the cheat seemed to preserve it - but no promises.
 
 </details>
 

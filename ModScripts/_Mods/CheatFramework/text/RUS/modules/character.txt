@@ -201,3 +201,30 @@ commands/race/skills/abomgrab
 
 window_help/race1
 Выберите расу.
+
+commands/sexual
+Сексуальность
+
+commands/sexual/dedit/v
+Повреждение вагины
+
+commands/sexual/dedit/u
+Повреждение уретры
+
+commands/sexual/dedit/a
+Повреждения ануса
+
+commands/sexual/dtoggle/v
+Перекл. поврежд. вагины
+
+commands/sexual/dtoggle/u
+Перекл. поврежд. уретры
+
+commands/sexual/dtoggle/a
+Перекл. поврежд. ануса
+
+commands/sexual/reset
+Сбросить секс-статистику
+
+command_help/sexual/reset
+Вернуть девственность. Может повлиять на атаки.

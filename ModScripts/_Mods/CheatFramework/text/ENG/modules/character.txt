@@ -201,3 +201,30 @@ Tendril Whip (Abomination)
 
 window_help/race1
 Select a race.
+
+commands/sexual
+Sexual
+
+commands/sexual/dedit/v
+Vaginal Damage
+
+commands/sexual/dedit/u
+Urethral Damage
+
+commands/sexual/dedit/a
+Anal Damage
+
+commands/sexual/dtoggle/v
+Vaginal Damage Toggle
+
+commands/sexual/dtoggle/u
+Urethral Damage Toggle
+
+commands/sexual/dtoggle/a
+Anal Damage Toggle
+
+commands/sexual/reset
+Reset Sex Stats
+
+command_help/sexual/reset
+Virginize Lona. May impact sex attack.

@@ -27,3 +27,9 @@ Ajustar situación.
 
 command_help/stats_1
 Pulsa Izquierda/Derecha para perder/ganar.
+
+commands/bank
+Inventario de Open Bank
+
+commands/summon
+Invocar PNJ

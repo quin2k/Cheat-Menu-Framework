@@ -49,6 +49,9 @@ Used to force-remove chains or collars.
 commands/despawnfix
 Item Decay Control
 
+command_help/despawnfix1
+Set duration of dropped items.
+
 command_item/off
 DISABLE
 
@@ -67,5 +70,8 @@ Equip Anything
 command_help/equip1
 Removes skill requirements.
 
-command_help/despawnfix1
-Set duration of dropped items.
+commands/diff
+Reset Game Difficulty
+
+command_help/diff
+Force-disable DOOM Mode

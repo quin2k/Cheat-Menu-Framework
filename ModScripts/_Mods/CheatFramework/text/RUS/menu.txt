@@ -7,6 +7,9 @@ commands/toggles
 commands/character
 Персонаж
 
+commands/npc
+НПС
+
 window_help/character1
 Изменить свойства главного персонажа.
 

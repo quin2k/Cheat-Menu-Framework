@@ -7,6 +7,9 @@ Toggle
 commands/character
 Personaje
 
+commands/npc
+NPC
+
 window_help/character1
 Cambiar propiedades del personaje principal.
 

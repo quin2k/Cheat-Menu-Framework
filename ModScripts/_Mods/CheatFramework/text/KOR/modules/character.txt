@@ -35,10 +35,10 @@ commands/levels/max_level
 최대 레벨
 
 commands/levels/traits_per_level
-레벨당 특성
+레벨별 특성
 
 command_help/tpl1
-레벨업 시 획득하는 특성의 수입니다.
+레벨업 시 획득하는 특성의 개수.
 
 commands/traits
 특성
@@ -47,7 +47,7 @@ commands/traits/trait_points
 특성 점수
 
 command_help/tp1
-당신이 가져야 할 포인트
+획득해야 할 포인트
 
 command_help/tp2
 베이스
@@ -65,7 +65,7 @@ commands/traits/combat
 전투 특성
 
 commands/traits/scoutcraft
-정찰병 특성
+정찰술 특성
 
 commands/traits/wisdom
 지혜 특성
@@ -77,13 +77,13 @@ commands/traits/constitution
 체질 특성
 
 commands/traits/reset
-특성 재설정
+특성 초기화
 
 command_help/reset1
-모든 특성(스킬 포함)을 재설정합니다.
+모든 특성(기술 포함)을 초기화합니다.
 
 command_help/reset2
-레벨에 따라 특성 포인트를 설정합니다. * 레벨당 특성.
+레벨 * 레벨당 특성 개수를 기준으로 특성 포인트를 설정합니다.
 
 commands/appearance
 모습
@@ -95,7 +95,7 @@ toggle/dirt
 먼지 비활성화
 
 command_help/dirt
-먼지 최대값을 0으로 설정합니다. 전역이 아닙니다.
+먼지 최대값을 0으로 설정합니다. 전체 설정은 아닙니다.
 
 commands/appearance/freckles
 주근깨
@@ -104,7 +104,7 @@ commands/appearance/vpubes
 음모
 
 commands/appearance/apubes
-항문 털
+항문털
 
 commands/appearance/vpubegrowth
 음모 성장
@@ -113,13 +113,13 @@ commands/appearance/apubegrowth
 항문 털 성장
 
 command_help/pubes1
-0으로 설정하면 성장이 방지되고, 1+로 설정하면 성장이 활성화됩니다.
+값을 0으로 설정하면 성장이 방지되고, 1 이상으로 설정하면 성장이 활성화됩니다.
 
 command_help/pubegrowth1
-성장 사이의 시간. 높을수록 더 느림.
+성장 간격. 높을수록 성장 속도가 느립니다.
 
 command_help/pubegrowth2
-일반적으로 3~12일 정도 걸립니다.
+일반적으로 3~12일 정도 소요됩니다.
 
 commands/appearance/hair_color
 헤어 컬러
@@ -146,19 +146,19 @@ toggle/autobandage
 자동 붕대
 
 command_help/autobandage
-자동으로 상처, 혈액, 구멍 손상을 제거합니다.
+상처, 출혈 및 손상 부위를 자동으로 제거합니다.
 
 toggle/autocleanout
 자동 청소(아웃)
 
 command_help/autocleanout
-자동으로 혈액과 표면의 모든 정액을 제거합니다.
+혈액과 표면의 정액을 자동으로 제거합니다.
 
 toggle/autocleanin
 자동 청소(내부)
 
 command_help/autocleanin
-자동으로 구멍에서 정액을 제거합니다.
+자동 세척기가 각종 구멍에서 정액을 제거합니다.
 
 toggle/autocure
 자동 경화
@@ -191,13 +191,40 @@ commands/race/skills
 인종 기술
 
 commands/race/skills/deepone
-깨어나다 (바다 마녀)
+깨어나라 (바다 마녀)
 
 commands/race/skills/abomeat
-모독하다 (가증스러운 것)
+모독하다 (가증스러운 행위)
 
 commands/race/skills/abomgrab
-덩굴 채찍 (가증스러운 것)
+덩굴 채찍 (혐오스러운 것)
 
 window_help/race1
 인종을 선택합니다.
+
+commands/sexual
+성적
+
+commands/sexual/dedit/v
+질 손상
+
+commands/sexual/dedit/u
+요도 손상
+
+commands/sexual/dedit/a
+항문 손상
+
+commands/sexual/dtoggle/v
+질 손상 토글
+
+commands/sexual/dtoggle/u
+요도 손상 토글
+
+commands/sexual/dtoggle/a
+항문 손상 토글
+
+commands/sexual/reset
+성생활 통계 초기화
+
+command_help/sexual/reset
+로나를 처녀로 만드세요. 성폭행에 영향을 줄 수 있습니다.

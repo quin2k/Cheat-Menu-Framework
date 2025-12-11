@@ -47,13 +47,16 @@ command_help/forceunequip1
 Используется для принудительного снятия цепей или ошейников.
 
 commands/despawnfix
-Контроль распада предметов
+Контроль выпадания предметов
+
+command_help/despawnfix1
+Установить продолжительность выпадения предметов.
 
 command_item/off
 ОТКЛЮЧИТЬ
 
 command_item/infinite
-БЕСКОНЕЧ.
+БЕСКОНЕЧ
 
 commands/drops
 Увеличить дроп
@@ -67,5 +70,8 @@ commands/equip
 command_help/equip1
 Убирает требования к навыкам.
 
-command_help/despawnfix1
-Установить продолжительность выпадения предметов.
+commands/diff
+Сбросить сложность игры
+
+command_help/diff
+Принудительно отключить режим DOOM

@@ -197,7 +197,34 @@ commands/race/skills/abomeat
 Осквернити (гидоту)
 
 commands/race/skills/abomgrab
-Батіг-вусик (гидота)
+Батіг-вусик (Гидота)
 
 window_help/race1
 Виберіть расу.
+
+commands/sexual
+Сексуальний
+
+commands/sexual/dedit/v
+Пошкодження піхви
+
+commands/sexual/dedit/u
+Пошкодження уретри
+
+commands/sexual/dedit/a
+Анальні пошкодження
+
+commands/sexual/dtoggle/v
+Пошкодження піхви Перемикач
+
+commands/sexual/dtoggle/u
+Перемикач пошкодження уретри
+
+commands/sexual/dtoggle/a
+Перемикач анального пошкодження
+
+commands/sexual/reset
+Скинути статистику сексу
+
+command_help/sexual/reset
+Віргінізуйте Лону. Може вплинути на сексуальний напад.

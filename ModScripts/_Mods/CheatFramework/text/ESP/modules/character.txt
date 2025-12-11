@@ -29,7 +29,7 @@ commands/levels/level
 Nivel
 
 command_help/lvl
-Recalcula los puntos de rasgo cuando se establecen.
+Recalcula los puntos de rasgo cuando se establece.
 
 commands/levels/max_level
 Nivel máximo
@@ -201,3 +201,30 @@ Látigo de Zarcillo (Abominación)
 
 window_help/race1
 Selecciona raza.
+
+commands/sexual
+Sexual
+
+commands/sexual/dedit/v
+Daño vaginal
+
+commands/sexual/dedit/u
+Daño uretral
+
+commands/sexual/dedit/a
+Daño anal
+
+commands/sexual/dtoggle/v
+Daño vaginal Alternar
+
+commands/sexual/dtoggle/u
+Daño uretral Alternar
+
+commands/sexual/dtoggle/a
+Alternar daño anal
+
+commands/sexual/reset
+Restablecer estadísticas de sexo
+
+command_help/sexual/reset
+Virginizar a Lona. Puede tener consecuencias en ataques sexuales.

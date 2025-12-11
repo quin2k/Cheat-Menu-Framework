@@ -67,7 +67,7 @@ module MenuFramework
                     $game_player.actor.actStat.set_stat('dirt', 0, 3)
                   end
                   $game_player.actor.refresh
-      })
+    })
     register_command(
       group:  :APPEARANCE,
       type:   :edit_num,
