@@ -1,5 +1,5 @@
 commands/primary
-Начальный
+Основное
 
 commands/primary/health
 Здоровье
@@ -20,19 +20,19 @@ commands/primary/morality
 Репутация
 
 command_help/moral
-Мораль <30 заставит людей атаковать.
+Репутация <30 приведет к нападению людей.
 
 commands/levels
-Уровень
+Уровни
 
 commands/levels/level
 Уровень
 
 command_help/lvl
-При установке пересчитывает баллы черт.
+При установке пересчитывает очки черт.
 
 commands/levels/max_level
-Максимальный уровень
+Макс. уровень
 
 commands/levels/traits_per_level
 Черты на уровень
@@ -44,13 +44,13 @@ commands/traits
 Черты
 
 commands/traits/trait_points
-Очки тал.
+Очки Черт
 
 command_help/tp1
-Баллы, которые вам следует иметь
+Очки, которые у вас должны быть
 
 command_help/tp2
-База
+Базовые
 
 command_help/tp3
 Навыки
@@ -80,13 +80,13 @@ commands/traits/reset
 Сбросить черты
 
 command_help/reset1
-Сбрасывает все характеристики (включая навыки)
+Сбрасывает все черты (включая навыки)
 
 command_help/reset2
 Устанавливает очки черт на основе уровня * количество черт на уровне.
 
 commands/appearance
-Появление
+Внешность
 
 commands/appearance/dirt
 Грязь
@@ -95,7 +95,7 @@ toggle/dirt
 Отключить грязь
 
 command_help/dirt
-Устанавливает максимальное значение dirt на 0. НЕ ГЛОБАЛЬНО.
+Устанавливает макс. грязи в 0. НЕ ГЛОБАЛЬНО.
 
 commands/appearance/freckles
 Веснушки
@@ -113,7 +113,7 @@ commands/appearance/apubegrowth
 Рост анальных волос
 
 command_help/pubes1
-Установка значения 0 предотвратит рост, 1+ позволит рост.
+Установка 0 предотвратит рост, 1+ включит рост.
 
 command_help/pubegrowth1
 Время между ростом. Выше = медленнее.
@@ -125,49 +125,49 @@ commands/appearance/hair_color
 Цвет волос
 
 commands/appearance/hair_color/0
-Серый
+Серый цвет
 
 commands/appearance/hair_color/1
-Черный
+Черный цвет
 
 commands/appearance/hair_color/2
-Обесцвеченный
+Белый цвет
 
 commands/appearance/hair_color/3
-Светло голубой
+Голубой цвет
 
 commands/appearance/hair_color/4
-Красный
+Красный цвет
 
 commands/appearance/hair_color/5
-Блондинка
+Блонди цвет
 
 toggle/autobandage
-Автоматическое лечение ран
+Авто-перевязка
 
 command_help/autobandage
-Автоматически удаляет раны, кровь и повреждения отверстий.
+Автоматически убирает раны, кровь и повреждения отверстий.
 
 toggle/autocleanout
-Авто-Чистить (выход)
+Авто-Очистка (Внешняя)
 
 command_help/autocleanout
-Автоматически удаляет кровь и всю поверхностную сперму.
+Автоматически убирает кровь и всю сперму на поверхности тела.
 
 toggle/autocleanin
-Авто-Чистить (вход)
+Авто-Очистка (Внутренняя)
 
 command_help/autocleanin
-Автоматически удаляет сперму из отверстий.
+Автоматически убирает сперму из всех отверстий.
 
 toggle/autocure
-Авто-отверждение
+Авто-Лечение
 
 command_help/autocure
-Автоматически удаляет ЗППП и паразитов.
+Автоматически убирает ЗППП и паразитов.
 
 commands/race
-Расу
+Раса
 
 commands/race/human
 Человек
@@ -197,7 +197,34 @@ commands/race/skills/abomeat
 Осквернение (Мерзость)
 
 commands/race/skills/abomgrab
-Усик-кнут (Мерзость)
+Плеть Тендрила (Мерзость)
 
 window_help/race1
-Выберите расу, от которой хотите забеременеть.
+Выберите расу.
+
+commands/sexual
+Сексуальность
+
+commands/sexual/dedit/v
+Повреждение вагины
+
+commands/sexual/dedit/u
+Повреждение уретры
+
+commands/sexual/dedit/a
+Повреждения ануса
+
+commands/sexual/dtoggle/v
+Перекл. поврежд. вагины
+
+commands/sexual/dtoggle/u
+Перекл. поврежд. уретры
+
+commands/sexual/dtoggle/a
+Перекл. поврежд. ануса
+
+commands/sexual/reset
+Сбросить секс-статистику
+
+command_help/sexual/reset
+Вернуть девственность. Может повлиять на атаки.

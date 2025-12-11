@@ -1,11 +1,11 @@
 commands/revive
-Оживляйте уникальных NPC
+Воскресить Уникальных NPC
 
 command/revive/menu3
-Будут отображаться только мертвые NPC.
+Будут показаны только мертвые NPC.
 
 command/revive/menu4
-Нажмите Z, чтобы оживить выбранного NPC.
+Нажмите Z, чтобы воскресить выбранного NPC.
 
 NPC/UniqueCharUniqueCecily
 Сесилия
@@ -50,10 +50,10 @@ NPC/UniqueCharUniqueTavernWaifu
 Большая Мамочка
 
 NPC/UniqueCharUniqueFerrum
-Ferrum
+Феррум
 
 NPC/UniqueCharUniqueCaptainEdward
-Эдвард
+Капитан Эдвард
 
 NPC/UniqueCharUniqueFatdalf
 Седобородый Маг
@@ -62,31 +62,31 @@ NPC/UniqueCharNoerSnowflake
 Снежинка
 
 NPC/UniqueChar_NorthFL_SGT
-NorthFL_SGT
+Сержант СФ (NPC квеста)
 
 NPC/UniqueChar_NFL_MerCamp_Leader
-NFL_MerCamp_Leader
+Капитан Наемников (NPC квеста)
 
 NPC/UniqueCharNoerRelayOut_PoorBoy
-PoorBoy
+Гриот (NPC квеста)
 
 NPC/UniqueChar_FishTownT_Shaman
-FishTownT_Shaman
+Шаман Рыбьего Города (NPC квеста)
 
 NPC/UniqueCharUniqueKillerRabbit
-KillerRabbit
+Кролик-Убийца (NPC квеста)
 
 NPC/UniqueCharUniqueOgreWarBoss
-OgreWarBoss
+ВарБос огров (NPC квеста)
 
 NPC/UniqueCharUniqueGangBoss
-GangBoss
+Босс Банды Ноэра (NPC квеста)
 
 NPC/UniqueCharSMCloudVillage_Boss
-CloudVillage_Boss
+Староста Облачной Деревни (NPC квеста)
 
 NPC/UniqueCharSMCloudVillage_BossAtk
-CloudVillage_BossAtk
+Староста Облачной Деревни А (NPC квеста)
 
 NPC/UniqueChar_OrcSlaveMaster
-OrcSlaveMaster
+Орочий рабовладелец (NPC квеста)

@@ -1,5 +1,5 @@
 name
-Чит-фреймворк
+Чит-меню
 
 description
 Мод Cheats снова переработан. Подробности изменений смотрите на странице https://github.com/quin2k/Cheat-Menu-Framework.

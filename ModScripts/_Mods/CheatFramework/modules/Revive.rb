@@ -8,8 +8,9 @@ module MenuFramework
   module SUBMENU
     # Menu Hook into "Game Tweaks"
     register_command(
-      group:  :FIXES,
+      group:  :NPC,
       type:   :scene,
+      key:    :revive_menu,
       label:  "modules/revive:commands/revive", 
       name:   "CheatMenuReviveNPC",
       dict:   :REVIVE,
@@ -55,7 +56,7 @@ module MenuFramework
         group:  :REVIVE,
         type:   :action,
         key:    char_key,
-        hide:   -> { $story_stats[char_key] != -1 },
+        color:  -> { $story_stats[char_key] != -1 ? 8 : 0 },
         label:  "modules/revive:NPC/#{char_key}",
         action: -> {
           $story_stats[char_key] = 0

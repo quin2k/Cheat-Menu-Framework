@@ -340,6 +340,14 @@ MenuFramework::MENU.register_command(
   dict: :LONA,
   order: 3
 )
+MenuFramework::MENU.register_command(
+  type: :scene,
+  key: :edit_npc,
+  label: "menu:commands/npc",
+  name: "CheatMenuNPCOptions",
+  dict: :NPC,
+  order: 4
+)
 #MenuFramework::MENU.register_command(
 #  type: :scene,
 #  key: :config_menu,

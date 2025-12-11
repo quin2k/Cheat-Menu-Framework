@@ -49,6 +49,9 @@ command_help/forceunequip1
 commands/despawnfix
 物品损耗控制
 
+command_help/despawnfix1
+设置掉落物品的持续时间。
+
 command_item/off
 禁用
 
@@ -67,5 +70,8 @@ commands/equip
 command_help/equip1
 取消技能要求。
 
-command_help/despawnfix1
-设置掉落物品的持续时间。
+commands/diff
+重置游戏难度
+
+command_help/diff
+强制禁用 DOOM 模式

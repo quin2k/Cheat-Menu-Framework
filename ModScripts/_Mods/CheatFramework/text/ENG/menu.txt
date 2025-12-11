@@ -7,6 +7,9 @@ Toggles
 commands/character
 Character
 
+commands/npc
+NPC
+
 window_help/character1
 Change various properties of the main character.
 

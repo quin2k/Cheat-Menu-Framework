@@ -7,6 +7,9 @@ commands/toggles
 commands/character
 特点
 
+commands/npc
+NPC
+
 window_help/character1
 改变主角的属性。
 

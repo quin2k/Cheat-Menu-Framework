@@ -225,7 +225,15 @@ module FrameworkUtils
     return unless self.ingame?
     return if $game_player.actor.preg_level == 0
 
-    $game_player.actor.baby_health += 999 if $cheat_protect_pregnant
+    $game_player.actor.baby_health += 999 if $cheat_protect_pregnancy
+  end
+end
+
+class CheatFramework
+  alias_method :slow_trigger_ProtectPreg, :slow_trigger
+  def slow_trigger
+    slow_trigger_ProtectPreg
+    FrameworkUtils.protect_pregnancy
   end
 end
 

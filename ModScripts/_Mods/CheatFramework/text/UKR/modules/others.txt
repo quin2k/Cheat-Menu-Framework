@@ -11,7 +11,7 @@ commands/friendlyfire
 Виправлення дружнього вогню
 
 command_help/friendlyfire1
-Спроби запобігти вогню по своїх рядах.
+Спроби запобігти дружньому вогню.
 
 commands/stealth
 З Тіні
@@ -44,10 +44,13 @@ commands/forceunequip
 Примусове зняття екіпірування
 
 command_help/forceunequip1
-Використовується для силового зняття ланцюгів або нашийників.
+Використовується для примусового зняття ланцюгів або нашийників.
 
 commands/despawnfix
 Контроль розпаду предметів
+
+command_help/despawnfix1
+Встановіть тривалість випадання предметів.
 
 command_item/off
 ВИМКНУТИ
@@ -67,5 +70,8 @@ commands/equip
 command_help/equip1
 Знімає вимоги до навичок.
 
-command_help/despawnfix1
-Встановіть тривалість випадання предметів.
+commands/diff
+Скинути складність гри
+
+command_help/diff
+Примусове вимкнення режиму DOOM

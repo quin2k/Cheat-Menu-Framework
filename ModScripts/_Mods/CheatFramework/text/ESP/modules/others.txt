@@ -49,6 +49,9 @@ Se utiliza para retirar a la fuerza cadenas o collares.
 commands/despawnfix
 Control de deterioro de objetos
 
+command_help/despawnfix1
+Establecer la duración de los elementos caídos.
+
 command_item/off
 DESACTIVAR
 
@@ -67,5 +70,8 @@ Equipa cualquier cosa
 command_help/equip1
 Elimina los requisitos de habilidades.
 
-command_help/despawnfix1
-Establecer la duración de los elementos caídos.
+commands/diff
+Restablecer la dificultad del juego
+
+command_help/diff
+Desactivar a la fuerza el modo DOOM

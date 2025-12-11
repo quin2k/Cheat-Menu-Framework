@@ -17,7 +17,7 @@ misc/heal_wound
 Вылечить рану
 
 command_help/heal_wound
-Лечит одну случайную рану.
+Вылечить одну случайную рану.
 
 misc/faint
 Упасть

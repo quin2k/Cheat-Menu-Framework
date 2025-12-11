@@ -7,11 +7,14 @@ commands/toggles
 commands/character
 성격
 
+commands/npc
+NPC
+
 window_help/character1
 주인공의 속성을 변경합니다.
 
 commands/config
-구성 메뉴
+설정 메뉴
 
 cheat_toggle/on
 켜기
@@ -20,16 +23,16 @@ cheat_toggle/off
 꺼짐
 
 command_help/execute
-Z를 눌러 명령을 실행하세요.
+Z 키를 눌러 명령을 실행하세요.
 
 command_help/scene
-하위 메뉴로 들어가려면 Z를 누르세요.
+Z 키를 눌러 하위 메뉴로 들어가세요.
 
 command_help/toggle
 Z를 눌러 전환합니다.
 
 command_help/edit
-Z를 눌러 편집하세요.
+편집하려면 Z 키를 누르세요.
 
 command_help/num_edit1
 왼쪽/오른쪽을 눌러 잃거나 얻습니다.
@@ -38,4 +41,4 @@ command_help/num_edit2
 SHIFT = x10, CTRL = x100.
 
 commands_status/locked
-치트 액티브
+치트 활성화됨
