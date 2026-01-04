@@ -1,6 +1,6 @@
 {
 	"id": "cheatframework",
-	"version": "0.9.2q for 0.10.3.1",
+	"version": "0.9.4q for 0.10.3.1",
 	"name": "$cheatframework:mod:name",
 	"description": "$cheatframework:mod:description",
 	"entry": "__init__.rb",

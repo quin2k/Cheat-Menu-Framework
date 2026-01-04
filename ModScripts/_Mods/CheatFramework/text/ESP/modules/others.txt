@@ -1,6 +1,9 @@
 commands/gallery
 Desbloquear galería
 
+command_help/gallery
+
+
 commands/world
 Dificultad mundial
 
@@ -75,3 +78,24 @@ Restablecer la dificultad del juego
 
 command_help/diff
 Desactivar a la fuerza el modo DOOM
+
+commands/siren
+Invocación máxima de Deepone
+
+command_help/siren1
+Edita el total de invocaciones de sirena posibles.
+
+commands/roleplays
+RolePlay-S
+
+commands/roleplays/saves
+Deshabilitar limitador de guardado
+
+commands/roleplays/mana
+MP infinito
+
+commands/roleplays/mana_rage
+Furia de maná
+
+commands/roleplays/mana_rage_max
+Furia de maná máxima

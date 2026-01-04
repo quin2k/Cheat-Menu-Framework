@@ -1,6 +1,9 @@
 commands/gallery
 Unlock Gallery
 
+command_help/gallery
+Access at Fortune Teller in Noer.
+
 commands/world
 World Difficulty
 
@@ -75,3 +78,24 @@ Reset Game Difficulty
 
 command_help/diff
 Force-disable DOOM Mode
+
+commands/siren
+Deepone Summon Max
+
+command_help/siren1
+Edits total Siren Summons possible.
+
+commands/roleplays
+RolePlay-S
+
+commands/roleplays/saves
+Disable Save Limiter
+
+commands/roleplays/mana
+Infinite MP
+
+commands/roleplays/mana_rage
+Mana Rage
+
+commands/roleplays/mana_rage_max
+Mana Rage Max

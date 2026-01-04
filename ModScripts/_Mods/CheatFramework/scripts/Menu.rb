@@ -96,6 +96,15 @@ module MenuFramework
     end
   end
 
+  def self.force_font(contents)
+    return unless contents
+    return if Font.default_name == "Noto Sans CJK TC Black"
+    return unless Font.exist?("Noto Sans CJK TC Black")
+
+    contents.font.name = "Noto Sans CJK TC Black"
+    contents.font.size = Font.default_size
+  end
+
   #==========================================================================
   # Main Menu Registration
   #==========================================================================
@@ -274,6 +283,14 @@ class Window_CheatMainMenu < Window_Command
   # Initialize
   #--------------------------------------------------------------------------
   def initialize; super(0, 0); end
+
+  #--------------------------------------------------------------------------
+  # Draw Setup
+  #--------------------------------------------------------------------------
+  def draw_item(index)
+    MenuFramework.force_font(contents) if contents
+    super
+  end
 
   #--------------------------------------------------------------------------
   # Window Structure

@@ -128,6 +128,7 @@ module Action_Window_Defaults
   # Draw Setup
   #--------------------------------------------------------------------------
   def draw_item(index)
+    MenuFramework.force_font(contents) if contents
     rect = item_rect_for_text(index)
     contents.clear_rect(rect)
 
@@ -342,7 +343,9 @@ module Scene_Defaults
 
   def override_help_window_text(text)
     if @help_window && @help_window.contents
-      @help_window.contents.clear
+      c = @help_window.contents
+      c.clear
+      MenuFramework.force_font(c)
       @help_window.draw_text_ex(4, 0, text)
     end
   end
@@ -405,7 +408,9 @@ module Scene_Defaults
 
       # Update Help Window
       if @help_window && @help_window.contents
-        @help_window.contents.clear
+        c = @help_window.contents
+        c.clear
+        MenuFramework.force_font(c)
         @help_window.draw_text_ex(4, 0, text)
       end
     end

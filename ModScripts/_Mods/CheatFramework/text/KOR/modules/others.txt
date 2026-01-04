@@ -1,6 +1,9 @@
 commands/gallery
 갤러리 잠금 해제
 
+command_help/gallery
+
+
 commands/world
 세계적 어려움
 
@@ -17,7 +20,7 @@ commands/stealth
 그림자에서 수정
 
 command_help/stealth1
-해당 스킬을 보유하고 있다면 액션 키를 눌러도 은신 상태가 해제되지 않습니다.
+스킬을 보유하고 있다면 액션 키를 눌러도 은신이 해제되지 않습니다.
 
 commands/abomskillfix
 혐오스러운 음식 고치다
@@ -75,3 +78,24 @@ commands/diff
 
 command_help/diff
 DOOM 모드 강제 비활성화
+
+commands/siren
+디폰 소환 맥스
+
+command_help/siren1
+편집을 통해 가능한 사이렌 소환 횟수를 모두 수정했습니다.
+
+commands/roleplays
+RolePlay-S
+
+commands/roleplays/saves
+저장 제한 해제
+
+commands/roleplays/mana
+무한 MP
+
+commands/roleplays/mana_rage
+마나 레이지
+
+commands/roleplays/mana_rage_max
+마나 분노 최대치

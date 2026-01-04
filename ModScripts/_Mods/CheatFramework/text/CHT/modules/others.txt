@@ -1,6 +1,9 @@
 commands/gallery
 解锁画廊
 
+command_help/gallery
+
+
 commands/world
 世界難度
 
@@ -75,3 +78,24 @@ commands/diff
 
 command_help/diff
 强制禁用 DOOM 模式
+
+commands/siren
+Deepone召唤Max
+
+command_help/siren1
+修改了塞壬召唤的总次数。
+
+commands/roleplays
+RolePlay-S
+
+commands/roleplays/saves
+禁用保存限制器
+
+commands/roleplays/mana
+无限MP
+
+commands/roleplays/mana_rage
+法力狂怒
+
+commands/roleplays/mana_rage_max
+法力狂怒最大值

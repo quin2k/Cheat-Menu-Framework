@@ -41,6 +41,7 @@ module MenuFramework
       key:    "Max Level",
       label:  "modules/character:commands/levels/max_level",
       state:  "$cheat_variables_max_level",
+      hide:   -> { $framework.roleplay_mod? },
       global: 99,
       min:    50, #I mean, if they want to...
       max:    999,
@@ -57,7 +58,7 @@ module MenuFramework
       help1:  "modules/character:command_help/lvl",
       action: ->(v) { 
                       $game_player.actor.change_level(v, true) 
-                      $game_player.actor.trait_point = FrameworkUtils.calc_trait_points(false)
+                      $game_player.actor.trait_point = FrameworkUtils.calc_trait_points(false) if !$framework.roleplay_mod? 
                     },
       order:  20
     )
@@ -67,6 +68,7 @@ module MenuFramework
       key:    "Traits Per Level",
       label:  "modules/character:commands/levels/traits_per_level",
       state:  "$cheat_variables_traits_per_level",
+      hide:   -> { $framework.roleplay_mod? },
       global: 1,
       help1:  "modules/character:command_help/tpl1",
       help2:  "modules/character:command_help/lvl",
@@ -276,26 +278,29 @@ class LonaActorStat < ActorStat
   end
 end
 
+if $mod_manager.mods['RolePlayS'] && !$mod_manager.mods['RolePlayS'].enabled
 # Overrides max level check
-class Game_Actor < Game_Battler
-   def max_level
-      return $cheat_variables_max_level
-   end
+  class Game_Actor < Game_Battler
+    def max_level
+        return $cheat_variables_max_level
+    end
 
-  # Sets experience to next level, level 99 is last on the table.
-  def param_base(param_id)
-    level_to_check = [[@level,99].min,0].max
-    self.class.params[param_id, level_to_check]
+    # Sets experience to next level, level 99 is last on the table.
+    def param_base(param_id)
+      level_to_check = [[@level,99].min,0].max
+      self.class.params[param_id, level_to_check]
+    end
   end
-end
 
-# Overrides how many traits are earned at level up.
-class Game_Actor < Game_Battler
-  def level_up
-    @level += 1
-	  @trait_point +=$cheat_variables_traits_per_level
-    self.class.learnings.each do |learning|
-      learn_skill(learning.skill_id) if learning.level == @level
+  # Overrides how many traits are earned at level up.
+
+  class Game_Actor < Game_Battler
+    def level_up
+      @level += 1
+      @trait_point +=$cheat_variables_traits_per_level
+      self.class.learnings.each do |learning|
+        learn_skill(learning.skill_id) if learning.level == @level
+      end
     end
   end
 end
