@@ -74,6 +74,10 @@ class CheatFramework
     # Left blank for modules to override
   end
 
+  def roleplay_mod?
+    $mod_manager.mods['RolePlayS'] && $mod_manager.mods['RolePlayS'].enabled
+  end
+
 end
 
 

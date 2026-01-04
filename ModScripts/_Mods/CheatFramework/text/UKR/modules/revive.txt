@@ -1,11 +1,11 @@
 commands/revive
-Відродити унікальних NPC
+Воскресить Унікальних NPC
 
 command/revive/menu3
-Будуть відображатися лише мертві NPC.
+Будут показані тільки мертві NPC.
 
 command/revive/menu4
-Натисніть Z, щоб оживити вибраного NPC.
+Натисніть Z, щоб воскресити вибраного NPC.
 
 NPC/UniqueCharUniqueCecily
 Сесилія
@@ -38,55 +38,55 @@ NPC/UniqueCharUniqueMilo
 Мило
 
 NPC/UniqueCharUniqueSeaWitch
-Морська Відьма
+Морська Ведьма
 
 NPC/UniqueCharUniqueTeller
 Гадалка
 
 NPC/UniqueCharUniqueHappyMerchant
-Торгівець
+Торговець
 
 NPC/UniqueCharUniqueTavernWaifu
 Велика Матуся
 
 NPC/UniqueCharUniqueFerrum
-Ferrum
+Феррум
 
 NPC/UniqueCharUniqueCaptainEdward
-Едвард
+Капітан Едвард
 
 NPC/UniqueCharUniqueFatdalf
-Сівобородий Маг
+Седобородий Маг
 
 NPC/UniqueCharNoerSnowflake
 Сніжинка
 
 NPC/UniqueChar_NorthFL_SGT
-NorthFL_SGT
+Сержант СФ (NPC квеста)
 
 NPC/UniqueChar_NFL_MerCamp_Leader
-NFL_MerCamp_Leader
+Капітан Наемников (NPC квеста)
 
 NPC/UniqueCharNoerRelayOut_PoorBoy
-PoorBoy
+Гріот (NPC квеста)
 
 NPC/UniqueChar_FishTownT_Shaman
-FishTownT_Shaman
+Шаман Рибьего Города (NPC квеста)
 
 NPC/UniqueCharUniqueKillerRabbit
-KillerRabbit
+Кролик-Убийца (NPC квеста)
 
 NPC/UniqueCharUniqueOgreWarBoss
-OgreWarBoss
+ВарБос огров (NPC квеста)
 
 NPC/UniqueCharUniqueGangBoss
-GangBoss
+Босс Банди Ноэра (NPC квеста)
 
 NPC/UniqueCharSMCloudVillage_Boss
-CloudVillage_Boss
+Староста Облачной Деревни (NPC квеста)
 
 NPC/UniqueCharSMCloudVillage_BossAtk
-CloudVillage_BossAtk
+Староста Облачной Деревни А (NPC квеста)
 
 NPC/UniqueChar_OrcSlaveMaster
-OrcSlaveMaster
+Орочий рабовладелец (NPC квеста)

@@ -4,10 +4,21 @@
 
 [Latest version](../../releases/latest)
 
+## Install Instructions
+ - Put the CheatFramework folder into LonaRPG\ModScripts\_Mods. (e.g. LonaRPG\ModScripts\_Mods\CheatFramework\__init__.rb)
+ - Once in place, open the MODS menu from within LonaRPG (right above EXIT).
+ - Press action key (Z) to activate mods, left/right to change their order. 
+   - The one that loads last 'wins'
+ - When using a new mod or bringing mods to a new version of LonaRPG, it is good practice to activate only a few at a time.
+ - Once you've made your changes, move to the top and select "Restart to Apply" (or Accept and just restart manually)
+   - If you get an error during startup, you may need to edit LonaRPG\UserData\GameMods.ini to deactivate a mod.
+   - If CheatFramework is giving you errors, delete/edit LonaRPG\UserData\Cheat Framework\globals.ini
+   - If any of my mods give you errors, please notify me on [F95zone](https://f95zone.to/members/quin2k.428612/) or [Discord](https://discord.com/users/292323791533506560).
+
 ## Requirements
 
 Lowest game version tested: `0.10.0.2`<br>
-Highest game version tested: `0.10.3.1`
+Highest game version tested: `0.10.4.5`
 
 ## Hotkeys
 These should populate in the config when you load the mod for the first time.  If you want to disable any of these, set it to NONE instead of an F-key.  
@@ -32,6 +43,78 @@ These should populate in the config when you load the mod for the first time.  I
 
 </details>
 
+<details>
+<summary>Menu Structure</summary>
+
+- Misc. Cheats
+  - Heal
+  - Heal a Wound
+  - Exhausted
+  - Give Money
+  - Fore Unequip
+- Toggles
+  - Infinite Health/Stamina/Food/Money
+  - Unlock Gallery
+  - Disable Dirt
+  - Auto-Bandage
+  - Auto-Clean (External)
+  - Auto-Clean (Internal) - not fully working
+  - Auto-Cure
+- Character
+  - Levels
+    - Max Levels
+    - Current Level
+    - Traits per Level
+    - Set current Trait Points (duplicate)
+  - Traits
+    - Set Max Traits
+    - Set current Trait Points (duplicate)
+    - Edit Combat/Scoutcraft/Wisdom/Survival/Constitution
+    - Reset Traits (points allocated to skills, etc.)
+  - Primary
+    - Health/Stamina/Food Edits
+    - Mood/Arousal/Dirty/Morality Edits
+  - Appearance
+    - Hair Color
+    - Freckles
+    - Pubic Hair
+  - Pregnancy
+    - Preg Difficulty / Womb Seedbed (Impacts pregnancy length)
+    - Protect Pregnancy (Infinite Baby Health)
+    - Impregnate Lona (Submenu, force specific race)
+  - Race
+    - Set Lona's Race
+    - Enable Racial Skills (Abomination/Deepone)
+  - Sexual
+    - Vaginal/Urethra/Anal Damage Edit
+    - Vaginal/Urethra/Anal Damage Toggle
+    - Reset Sex Stats (Virginize)
+- NPC
+  - Open Bank Inventory
+  - Cummon NPC Submenu
+    - Auto-populated
+  - Revive Unique NPCs Submenu
+  - Deepone Summon Max
+  - Friendly Fire Fix
+  - Edit World Difficulty
+- Items/Weapons/Armors/Status
+  - Auto-populated 
+- Game Tweaks
+  - Item Decay Control
+  - Increased Drops
+  - Equip Anything
+  - From The Shadows Fix
+  - Abomination Eat Fix
+  - Difficulty Achievement Fix
+  - Prevent Discard
+- RolePlay-S
+  - Disable Save Limiter
+  - Infinite MP
+  - Edit Mana Rage & Mana Rage Max
+
+</details>
+
+
 ## Known Issues
 
 - Currently in need of proper translation for default languages. I didn't want to publish something I couldn't test, so I did not include custom languages from the original.
@@ -50,8 +133,6 @@ These should populate in the config when you load the mod for the first time.  I
 - Possible modification ideas:
   - Ability to set select (or all) global variables to act as local variables (save specific vs. game specific).  Not sure this is feasable, but seemed like a useful feature.
   - Ability to view all current global settings?
-- If NPC doesn't have enough stamina => dont stop juicing, kill instead (inconsistent behavior)
-
 
 ---
 
@@ -138,6 +219,23 @@ This started out as "I'd like to be able to edit variables" and when I realized 
 - Added option to "Reset Game Difficulty" to the Misc Cheats Menu.
   - Basically force-disables Doom Mode. Only visible in Doom Mode.
   - **Use with caution, can delete your Doom Save.** When testing, entering the game menu before running the cheat seemed to preserve it - but no promises.
+
+</details>
+<details>
+<summary>Ver 0.9.4q Changelog</summary>
+
+- RolePlay-S Compatability update!
+- Disabled cheats for Max Level (redundant) and Traits Per Level (conflict) if RolePlay-S mod enabled.
+- Disabled font overrides for cheat menu. Could still force it by removing the default font.
+- Added a new RolePlay-S Menu for mod-specific cheats:
+  - Unlimited Saves: Cheat will prevent setting 
+  - Infinite MP: Functions similar to infinite HP/Sta/etc.
+    - Tied to F5 toggle too.
+  - Mana Rage & Mana Rage Max: Allows you to edit variables. Rage increases 1:1 for every MP used and if maxed you die.
+    - Probably only necessary to edit with Infinite MP active.
+- Moved Friendly Fire to NPC Category
+- Added a cheat to edit max summonable Sirens for Deepone to NPC Category.
+- Changed UKR to MTL from Russian instead of English. Figured it'd be more accurate.
 
 </details>
 

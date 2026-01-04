@@ -2,43 +2,43 @@ commands/misc
 Різне
 
 commands/toggles
-Перемикачі
+Переключити
 
 commands/character
 Персонаж
 
 commands/npc
-NPC
+НПС
 
 window_help/character1
-Зміна властивостей головного героя.
+Змінити властивості головного персонажа.
 
 commands/config
-Меню конфігурації
+Меню налаштувань
 
 cheat_toggle/on
-УВІМК.
+ВКЛ
 
 cheat_toggle/off
-ВИМК.
+ВИКЛ
 
 command_help/execute
 Натисніть Z, щоб виконати команду.
 
 command_help/scene
-Натисніть Z, щоб увійти до підменю.
+Натисніть Z, щоб увійти в підменю.
 
 command_help/toggle
-Натисніть Z, щоб переключитися.
+Натисніть Z для переключення.
 
 command_help/edit
 Натисніть Z для редагування.
 
 command_help/num_edit1
-Натисніть ліворуч, щоб зменшити, праворуч, щоб збільшити.
+Натискаємо стрілку вліво або вправо для налаштування.
 
 command_help/num_edit2
 SHIFT = x10, CTRL = x100.
 
 commands_status/locked
-Чіт Актив
+Чіт Активен

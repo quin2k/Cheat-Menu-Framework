@@ -1,5 +1,5 @@
 name
-Шахрайство
+Чіт-меню
 
 description
-Переосмислення моду з чітами (знову). Детальні зміни дивіться за посиланням https://github.com/quin2k/Cheat-Menu-Framework.
+Мод Чити знову перероблений. Подробиці змін дивіться на сторінці https://github.com/quin2k/Cheat-Menu-Framework.

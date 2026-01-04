@@ -51,6 +51,24 @@ module MenuFramework
       global: 1 #default value = Normal
     )
     register_command(
+      group:  :NPC,
+      type:   :edit_list,
+      key:    "Siren Summon Max", #should be unique to this dictionary
+      label:  "modules/others:commands/siren",
+      help1:  "modules/others:command_help/siren1",
+      state:  "$cheat_max_sirens",
+      list:   [
+                { key:  2,   label: "[#{$framework.txt("modules/others:command_item/off")}]" },
+                { key:  4,   label: "[4]" },
+                { key:  6,   label: "[6]" },
+                { key:  8,   label: "[8]" },
+                { key:  10,  label: "[10]" },
+                { key:  12,  label: "[12]" },
+              ],
+      global: 2 #default value = Normal
+    )
+    register_command(
+      group:  :NPC,
       type:   :toggle,
       key:    "Friendly Fire", #should be unique to this dictionary
       label:  "modules/others:commands/friendlyfire",
@@ -341,6 +359,32 @@ if $cheat_item_despawn != 0
         end
       end
       @summoned_evs << [event_name, x, y, id, data]
+    end
+  end
+end
+
+
+class Game_Event
+  alias _booba_orig_refresh refresh
+  def refresh
+    _booba_orig_refresh
+
+    return if @booba_checked
+    @booba_checked = true
+
+    return unless @summon_data
+    event = @event
+    return unless event
+    return unless event.name == "SummonDeeponeProjectile"
+    event.pages.each do |page|
+      next unless page.list
+      page.list.each do |cmd|
+        next unless cmd.code == 355 || cmd.code == 655
+        if cmd.parameters[0].include?("tmpQGcount >= 2")
+          cmd.parameters[0] =
+            "return self.delete if tmpQGcount >= #{$cheat_max_sirens}"
+        end
+      end
     end
   end
 end
