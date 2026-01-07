@@ -228,10 +228,11 @@ This started out as "I'd like to be able to edit variables" and when I realized 
 - Disabled cheats for Max Level (redundant) and Traits Per Level (conflict) if RolePlay-S mod enabled.
 - Disabled font overrides for cheat menu. Could still force it by removing the default font.
 - Added a new RolePlay-S Menu for mod-specific cheats:
-  - Unlimited Saves: Cheat will prevent setting 
+  - Unlimited Saves: Cheat will prevent counting saves, and will reset save count upon load (for games saved before cheat enabled).
   - Infinite MP: Functions similar to infinite HP/Sta/etc.
     - Tied to F5 toggle too.
-  - Mana Rage & Mana Rage Max: Allows you to edit variables. Rage increases 1:1 for every MP used and if maxed you die.
+  - Mana Rage & Mana Rage Max: Allows you to edit variables. 
+    - Rage increases 1:1 for every MP used and if maxed you die.
     - Probably only necessary to edit with Infinite MP active.
 - Moved Friendly Fire to NPC Category
 - Added a cheat to edit max summonable Sirens for Deepone to NPC Category.

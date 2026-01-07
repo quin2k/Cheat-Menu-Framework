@@ -105,6 +105,7 @@ class Window_CheatMenuItems < Window_Command
   # draw_item
   #--------------------------------------------------------------------------
   def draw_item(index)
+    MenuFramework.force_font(contents) if contents
     contents.clear_rect(item_rect_for_text(index))
     rect = item_rect_for_text(index)
     item = @list[index][:ext]
@@ -185,6 +186,7 @@ class Window_CheatMenuStatus < Window_Command
   end
 
   def draw_item(index)
+    MenuFramework.force_font(contents) if contents
     contents.clear_rect(item_rect_for_text(index))
     rect = item_rect_for_text(index)
     item = @list[index][:ext][1]
