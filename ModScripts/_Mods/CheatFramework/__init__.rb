@@ -52,9 +52,8 @@ class CheatFramework
     @mods.load_all
   end
 
-  def load_script(file)
-    path = File.join($framework.path, "scripts", file)
-    load path if File.exist?(path)
+  def load_framework_script(file)
+      load_script($mod_manager.get_resource("cheatframework", "scripts/#{file}"))
   end
 
   def txt(text_flag)
@@ -86,11 +85,11 @@ if $framework.nil?
   $framework.init_config_dir
 
   # Load critical base scripts
-  $framework.load_script("Utils.rb")
-  $framework.load_script("Config.rb")
-  $framework.load_script("Loader.rb")
-  $framework.load_script("Defaults.rb")
-  $framework.load_script("Menu.rb")
+  $framework.load_framework_script("Utils.rb")
+  $framework.load_framework_script("Config.rb")
+  $framework.load_framework_script("Loader.rb")
+  $framework.load_framework_script("Defaults.rb")
+  $framework.load_framework_script("Menu.rb")
 
   # Initialize system
   $framework.ini = FrameworkConfig.new($framework.config_dir)

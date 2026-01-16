@@ -119,6 +119,7 @@ These should populate in the config when you load the mod for the first time.  I
 
 - Currently in need of proper translation for default languages. I didn't want to publish something I couldn't test, so I did not include custom languages from the original.
   - Any native speakers should contact me ASAP with fixes!
+- Giving birth while Infinite Stamina is active causes issues (Lona is supposed to faint, but doesn't).
 
 ## Planned Improvements
 
@@ -228,17 +229,26 @@ This started out as "I'd like to be able to edit variables" and when I realized 
 - Disabled cheats for Max Level (redundant) and Traits Per Level (conflict) if RolePlay-S mod enabled.
 - Disabled font overrides for cheat menu. Could still force it by removing the default font.
 - Added a new RolePlay-S Menu for mod-specific cheats:
-  - Unlimited Saves: Cheat will prevent setting 
+  - Unlimited Saves: Cheat will prevent counting saves, and will reset save count upon load (for games saved before cheat enabled).
   - Infinite MP: Functions similar to infinite HP/Sta/etc.
     - Tied to F5 toggle too.
-  - Mana Rage & Mana Rage Max: Allows you to edit variables. Rage increases 1:1 for every MP used and if maxed you die.
+  - Mana Rage & Mana Rage Max: Allows you to edit variables. 
+    - Rage increases 1:1 for every MP used and if maxed you die.
     - Probably only necessary to edit with Infinite MP active.
 - Moved Friendly Fire to NPC Category
 - Added a cheat to edit max summonable Sirens for Deepone to NPC Category.
 - Changed UKR to MTL from Russian instead of English. Figured it'd be more accurate.
 
 </details>
+<details>
+<summary>Ver 0.9.5q Changelog</summary>
 
+- Minor corrections to fonts (missed some menus impacted by the RolePlayS mod).
+- Code fix for Friendly Fire courtesy of Archangel Dejavu at RaidGame.ru
+- Identified and hopefully fixed file loading issues for some non-english characters.
+  - Started utilizing mod loader to read files vs. attempting to do it directly.
+
+</details>
 ---
 
 ## Credits

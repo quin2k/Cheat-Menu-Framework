@@ -32,10 +32,12 @@ class FrameworkLoader
       # If no metadata block was found, build a sane default from filename
       unless meta
         base = File.basename(file, ".rb")
+        rel = file.sub(@path + File::SEPARATOR, '')
+
         meta = {
           name: base,
           key:  base.downcase.gsub(/[^a-z0-9]+/, '_').to_sym,
-          path: file,
+          path: rel,
           depends_on: [],
           enabled: true,
           order: 999
@@ -69,7 +71,7 @@ def read_metadata(file)
       # normalize keys to symbols if they are strings
       if parsed.is_a?(Hash)
         parsed = parsed.transform_keys { |k| k.is_a?(String) ? k.to_sym : k }
-        parsed[:path] = file
+        parsed[:path] = file.sub(@path + File::SEPARATOR, '')
         parsed[:depends_on] ||= []
         return parsed
       end
@@ -137,6 +139,6 @@ end
   # Safe loader with error handling
   #----------------------------------------------
   def safe_load(file)
-    load file if File.exist?(file)
+    load_script($mod_manager.get_resource("cheatframework", "modules/#{file}"))
   end
 end

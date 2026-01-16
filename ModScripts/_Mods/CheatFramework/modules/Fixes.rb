@@ -132,13 +132,16 @@ if $cheat_friendly_fire_fix
 
       #Indirect attacks such as magic, arrows
       if (user.class == Game_PorjectileCharacter || user.class == Game_DestroyableObject)
-        if user.event  && user.event.summon_data[:user]
+        if user.event && user.event.summon_data && user.event.summon_data[:user]
           source = user.event.summon_data[:user]
+
           if source && source == $game_player
             attacker = "Lona"
-          elsif source && source.npc.master == $game_player
+          elsif source.respond_to?(:npc) && source.npc && source.npc.master == $game_player
             attacker = "Ally"
-          elsif source && source.npc.master && source.npc.master.npc.master == $game_player
+          elsif source.respond_to?(:npc) && source.npc && source.npc.master &&
+                source.npc.master.respond_to?(:npc) && source.npc.master.npc &&
+                source.npc.master.npc.master == $game_player
             attacker = "AllySummon"
           end
         end
@@ -147,22 +150,26 @@ if $cheat_friendly_fire_fix
         #Direct attacks such as melee
         if user == $game_player.actor
           attacker = "Lona"
-        elsif user.master == $game_player
+        elsif user.respond_to?(:master) && user.master == $game_player
           attacker = "Ally"
-        elsif user.master && user.master.npc && user.master.npc.master == $game_player
+        elsif user.respond_to?(:master) && user.master && user.master.respond_to?(:npc) &&
+              user.master.npc && user.master.npc.master == $game_player
           attacker = "AllySummon"
         end
       end
       if target == $game_player
         targeted = "Lona"
-      elsif target.actor.master == $game_player
+      elsif target.respond_to?(:actor) && target.actor && target.actor.master == $game_player
         targeted = "Ally"
-      elsif target.actor.master && target.actor.master.npc && target.actor.master.npc.master == $game_player
+      elsif target.respond_to?(:actor) && target.actor && target.actor.master &&
+            target.actor.master.respond_to?(:npc) && target.actor.master.npc &&
+            target.actor.master.npc.master == $game_player
         targeted = "AllySummon"
       end
 
       #Support magic/skill or target/attacker isn't an ally
-      return false if skill.is_support || !attacker || !targeted
+      return false if skill && skill.respond_to?(:is_support) && skill.is_support
+      return false unless attacker && targeted
       true
     end
   end
