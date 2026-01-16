@@ -1,6 +1,8 @@
 # Credits
 
 ## Code
+- [Archangel Dejavu](https://raidgame.ru/members/8694/) \(for fixes to the Friendly Fire code.\)
+
 - [kenny567](https://f95zone.to/members/240807/) / [k3nny567](https://github.com/K3nny567) \(for editing/publishing/maintaining/distributing the latest version of the cheat mod as late as May 2025. (https://f95zone.to/posts/9588500)\)
 
 - [darkprizm](https://f95zone.to/members/947058/) \(for the [original Cheats mod](https://f95zone.to/posts/5127580/)\)
