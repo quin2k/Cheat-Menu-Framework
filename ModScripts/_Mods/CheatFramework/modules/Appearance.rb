@@ -139,20 +139,10 @@ module MenuFramework
     register_command(
       group:  :TOGGLES,
       type:   :toggle,
-      key:    "Auto Clean Outside", #should be unique
-      label:  "modules/character:toggle/autocleanout",
-      help1:  "modules/character:command_help/autocleanout",
-      state:  "$cheat_autoclean_out", #toggle variable
-      hotkey: { key: "F4", sound: :sound_WaterSpla},
-      global: false
-    )
-    register_command(
-      group:  :TOGGLES,
-      type:   :toggle,
-      key:    "Auto Clean Inside", #should be unique
-      label:  "modules/character:toggle/autocleanin",
-      help1:  "modules/character:command_help/autocleanin",
-      state:  "$cheat_autoclean_in", #toggle variable
+      key:    "Auto Clean", #should be unique
+      label:  "modules/character:toggle/autoclean",
+      help1:  "modules/character:command_help/autoclean",
+      state:  "$cheat_autoclean", #toggle variable
       hotkey: { key: "F4", sound: :sound_WaterSpla},
       global: false
     )
@@ -185,8 +175,7 @@ module FrameworkUtils
     return unless actor
 
     if $cheat_autobandage; autobandage end
-    if $cheat_autoclean_out; autoclean_out end
-    if $cheat_autoclean_in; autoclean_out end
+    if $cheat_autoclean; autoclean end
     if $cheat_autocure; autocure end
   end
 
@@ -195,16 +184,18 @@ module FrameworkUtils
     mass_remove_state(list)
   end
 
-  def self.autoclean_out
-    list = ["CumsCreamPie", "CumsMoonPie", "CumsHead", "CumsTop", "CumsMid", "CumsBot", "CumsMouth", "SemenBursting", "EffectScat", "EffectBleedVag", "EffectBleedAnal"]
-    mass_remove_state(list)
-  end
-
-  def self.autoclean_in
+  # Tank and state were separate cheats before, but cum states are just a
+  # display derived from cumsMeters, so they can't be cleaned independently
+  # of the tank without one undoing the other on the next h-event. Also
+  # bypasses healCums, which only drains one random vag_cums entry per call
+  # (base game bug) and can't fully empty a stacked tank.
+  def self.autoclean
     actor = $game_player.actor
-    actor.cumsMeters.each do |key, value|
-      actor.healCums(key, value) if value > 0
-    end
+    actor.vag_cums.clear
+    actor.cumsMeters.each_key { |key| actor.cumsMeters[key] = 0 }
+    actor.check_cum_maximum
+    actor.update_cum_state
+    mass_remove_state(["SemenBursting", "EffectScat", "EffectBleedVag", "EffectBleedAnal"])
   end
 
   def self.autocure

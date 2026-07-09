@@ -14,7 +14,7 @@ window_help/character1
 Change various properties of the main character.
 
 commands/config
-Config Menu
+Config
 
 cheat_toggle/on
 ON
@@ -34,11 +34,80 @@ Press Z to toggle.
 command_help/edit
 Press Z to edit.
 
+command_help/set_hotkey_hint
+Press C to set hotkey.
+
 command_help/num_edit1
 Press Left to decrease, Right to increase.
 
 command_help/num_edit2
 SHIFT = x10, CTRL = x100.
 
+command_help/hotkey_capture1
+Shift/Ctrl/Alt + a key to assign.
+
+command_help/hotkey_capture2
+C to cancel. Delete to clear.
+
 commands_status/locked
 Cheat Active
+
+warnings/restart_required
+Some changes have been made in the Cheat Menu :that will not update until the game is restarted.
+
+commands/set_hotkeys
+View/Clear Hotkeys
+
+command_help/set_hotkeys1
+See every currently assigned hotkey, or clear one.
+
+command_help/set_hotkeys2
+To assign or change, go it's menu and press C.
+
+commands/edit_order
+Edit Menu Order
+
+command_help/edit_order1
+Reorder any of this framework's menus.
+
+command_help/edit_order2
+ 
+
+commands/reset_order
+Reset Menu Order to Default
+
+command_help/reset_order1
+Clears all custom menu ordering back to default.
+
+command_help/reset_order2
+ 
+
+commands/edit_globals
+Edit Globals
+
+command_help/edit_globals1
+Force a variable to be local (per save) or global.
+
+command_help/edit_globals2
+Z: toggle Local/Global (top row) or the forced value (bottom row).
+
+mode/local
+Local
+
+mode/global
+Global
+
+mode/value_row
+Current Setting
+
+commands/reset_all_settings
+Reset Config Settings
+
+command_help/reset_all_settings1
+Reset hotkeys, menu order, and overrides.
+
+command_help/reset_all_settings2
+Some elements require restart.
+
+commands/cheat_menu_keybind
+Open Cheat Menu

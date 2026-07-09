@@ -233,7 +233,7 @@ module FrameworkUtils
             actor.survival_trait + actor.constitution_trait
     total = base - skills - traits
     return base.to_i,skills.to_i,traits.to_i,total.to_i if math
-    total
+    total.to_i
   end
 
   def self.reset_all_traits

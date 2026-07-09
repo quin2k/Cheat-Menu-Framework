@@ -60,11 +60,101 @@ MenuFramework::SUBMENU.register_command(
 )
 
 #--------------------------------------------------------------------------
+# Cached Item/Weapon/Armor/Status Lists
+#--------------------------------------------------------------------------
+# Pre-filtered once instead of re-scanning the raw data every time.
+module MenuFramework
+  module InvEditCache
+    extend self
+
+    attr_reader :items, :weapons, :armors, :statuses
+
+    def build
+      @items    = build_group($data_items,   "I%03d:")
+      @weapons  = build_group($data_weapons, "W%03d:")
+      @armors   = build_group($data_armors,  "A%03d:")
+      @statuses = $data_StateName.each_pair.reject do |k, v|
+        v.nil? || k.nil? || v.name == "" || v.name == "nil" || v.name == "DataState:nil/name" ||
+          v.description == "" || v.description == "nil" || v.description == "DataState:nil/description"
+      end.to_a
+    end
+
+    def build_group(group, fmt)
+      (1...group.size).each_with_object([]) do |i, list|
+        item = group[i]
+        next if item.nil? || item.item_name.nil? || item.item_name == "" || item.description == ""
+        list << [sprintf(fmt, i), item]
+      end
+    end
+  end
+end
+
+class << DataManager
+  alias_method :cf_invedit_load_mod_database, :load_mod_database
+  def load_mod_database
+    cf_invedit_load_mod_database
+    MenuFramework::InvEditCache.build
+  end
+end
+
+#--------------------------------------------------------------------------
+# Menu Loading Fix
+#--------------------------------------------------------------------------
+# Only draws the current page of rows instead of the whole list
+module MenuFramework
+  module VirtualScrollWindow
+    def contents_height
+      page_row_max * item_height
+    end
+
+    def top_row
+      @virtual_top_row || 0
+    end
+
+    def top_row=(row)
+      row = 0 if row < 0
+      row = row_max - 1 if row > row_max - 1
+      changed = row != top_row
+      @virtual_top_row = row
+      self.oy = 0 # bitmap only ever holds one page - never pan it
+      refresh_visible_rows if changed
+    end
+
+    def draw_all_items
+      first = top_row
+      last  = [top_row + page_row_max, item_max].min - 1
+      (first..last).each { |i| draw_item(i) } if last >= first
+    end
+
+    def item_rect(index)
+      rect = Rect.new
+      rect.width  = item_width
+      rect.height = item_height
+      rect.x = index % col_max * (item_width + spacing)
+      rect.y = (index / col_max - top_row) * item_height
+      rect
+    end
+
+    def refresh
+      @virtual_top_row = 0
+      self.oy = 0
+      super
+    end
+
+    def refresh_visible_rows
+      contents.clear
+      draw_all_items
+    end
+  end
+end
+
+#--------------------------------------------------------------------------
 # Window_CheatMenuItems
 #--------------------------------------------------------------------------
 
 class Window_CheatMenuItems < Window_Command
   include Action_Window_Defaults
+  include MenuFramework::VirtualScrollWindow
   def initialize
     super
     symbol = SceneManager.scene.instance_variable_get(:@menu_symbol)
@@ -173,6 +263,7 @@ end # Window_CheatMenuItems
 
 class Window_CheatMenuStatus < Window_Command
   include Action_Window_Defaults
+  include MenuFramework::VirtualScrollWindow
 
   def make_command_list
     $data_StateName.each_pair do |k, v|
