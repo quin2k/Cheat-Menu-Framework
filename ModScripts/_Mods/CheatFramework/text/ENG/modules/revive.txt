@@ -7,6 +7,12 @@ Only dead NPCs will be displayed.
 command/revive/menu4
 Press Z to revive the selected NPC.
 
+commands/infinitecompanion
+Infinite Companion Duration
+
+command_help/infinitecompanion1
+Recruited companions/followers never auto-leave from running out of time.
+
 NPC/UniqueCharUniqueCecily
 Cecily
 

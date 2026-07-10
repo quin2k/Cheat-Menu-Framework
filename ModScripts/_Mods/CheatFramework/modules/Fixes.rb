@@ -113,6 +113,25 @@ module MenuFramework
       state:  "$cheat_difficulty_achievement_fix",
       global: false
     )
+    register_command(
+      type:   :toggle,
+      key:    "Deepone Can Communicate", #should be unique to this dictionary
+      label:  "modules/others:commands/deeponecommunicate",
+      help1:  "modules/others:command_help/deeponecommunicate1",
+      help2:  "modules/others:command_help/fixcommand2",
+      state:  "$cheat_deepone_weak_fix",
+      global: false
+    )
+    register_command(
+      group:  :NPC,
+      type:   :toggle,
+      key:    "Infinite Companion Duration", #should be unique to this dictionary
+      label:  "modules/revive:commands/infinitecompanion",
+      help1:  "modules/revive:command_help/infinitecompanion1",
+      help2:  "modules/others:command_help/fixcommand2",
+      state:  "$cheat_infinite_companion",
+      global: false
+    )
   end
 end
 
@@ -430,3 +449,104 @@ if $cheat_classless_society
   end
 end
 
+if $cheat_deepone_weak_fix
+  # Base game hard-blocks True Deepone from triggering any non-owned NPC event.
+  class Game_Player
+    def cannotTriggerBecauseTrueDeepone(tmpEvent)
+      false
+    end
+  end
+
+  # Base game also hardcodes True Deepone into forced sneak-or-fight encounters,
+  # auto-hostile city gates, and blocked companion recruitment across a handful
+  # of HCGframes scripts. Rather than shipping our own copies of that game
+  # content (which would go stale the moment the base game updates those
+  # files), patch load_script itself to strip the hardcoded check straight out
+  # of whatever the currently-installed file says, every time it's loaded -
+  # same idea as Game_Map#override_matching in modules/UnlockGallery.rb, just
+  # applied to script text instead of parsed event commands.
+  module DeeponeWeakFixPatch
+    extend self
+    GUARD = 'if $game_player.actor.stat["RaceRecord"] == "TrueDeepone"'
+    BLOCK_OPENER = /\A(if|unless|case|while|until|def|class|module|begin)\b/
+
+    TARGET_PATHS = %w[
+      Data/HCGframes/encounter/BanditMobs.rb
+      Data/HCGframes/encounter/CommonMobs.rb
+      Data/HCGframes/encounter/FishPPL.rb
+      Data/HCGframes/encounter/GangDebtCollet.rb
+      Data/HCGframes/encounter/NobleGuards.rb
+      Data/HCGframes/encounter/NoerGuards.rb
+      Data/HCGframes/encounter/NoerHomeless.rb
+      Data/HCGframes/encounter/NoerMissionary.rb
+      Data/HCGframes/encounter/RoadHalp.rb
+      Data/HCGframes/event/OvermapDoomArmory.rb
+      Data/HCGframes/event/OvermapDoomFortress.rb
+      Data/HCGframes/event/OvermapNoerGateEast.rb
+      Data/HCGframes/event/OvermapNoerGateNoble.rb
+      Data/HCGframes/event/OvermapNoerGateNorth.rb
+      Data/HCGframes/event/OvermapPirateBane.rb
+      Data/HCGframes/event/FishkindCaveCompExtUQConvoy.rb
+      Data/HCGframes/event/OrkindCaveCompExtUQConvoy.rb
+    ]
+    NOER_OUTA_NEEDA_HELP = "Data/HCGframes/encounter/NoerOutaNeedaHelp.rb"
+
+    # Removes the game's own "if RaceRecord == TrueDeepone ... end" branch.
+    # Tracks block-open/close depth (not just "first end after the guard")
+    # since a couple of these files nest a case/end inside the guarded if/end.
+    # If the guard or its matching end can't be found (base game reworded or
+    # restructured it), returns the text unchanged rather than risk corrupting
+    # it - the fix just silently stops applying to that one file until updated.
+    def strip_race_gate(text)
+      lines = text.lines
+      guard_i = lines.index { |l| l.strip == GUARD }
+      return text unless guard_i
+      depth = 1
+      ((guard_i + 1)...lines.length).each do |i|
+        stripped = lines[i].strip
+        depth += 1 if stripped =~ BLOCK_OPENER
+        depth -= 1 if stripped == "end"
+        next unless depth == 0
+        return (lines[0...guard_i] + lines[(i + 1)..-1]).join
+      end
+      text
+    end
+  end
+
+  alias cf_deepone_weak_fix_load_script load_script
+  def load_script(path)
+    unless DeeponeWeakFixPatch::TARGET_PATHS.include?(path) || path == DeeponeWeakFixPatch::NOER_OUTA_NEEDA_HELP
+      return cf_deepone_weak_fix_load_script(path)
+    end
+    text = File.open(path, 'rb', &:read)
+    text = path == DeeponeWeakFixPatch::NOER_OUTA_NEEDA_HELP ? text.gsub(" && !tmpTrueDeepone", "") : DeeponeWeakFixPatch.strip_race_gate(text)
+    self.instance_eval(text, path)
+  rescue => ex
+    msgbox ex.message + "\n" + ex.backtrace.join("\n")
+  end
+
+  # TrueDeepone.json bakes in a +1000 max "weak" penalty. States aren't covered
+  # by $mod_load_script, so patch the parsed effect directly after data loads.
+  class << DataManager
+    alias_method :cf_deepone_weak_fix_load_mod_database, :load_mod_database
+    def load_mod_database
+      cf_deepone_weak_fix_load_mod_database
+      state = $data_StateName.values.find { |s| s && s.name == "TrueDeepone" }
+      lona_effect = state && state.instance_variable_get(:@lona_effect)
+      weak_effect = lona_effect && lona_effect.find { |e| e.attr == "weak" }
+      weak_effect.instance_variable_set(:@adjust, 0) if weak_effect
+    end
+  end
+end
+
+if $cheat_infinite_companion
+  # Every companion "expiry" check (summon_companion, check_companion_outdate?,
+  # and the companion info overlay) only ever acts when these dates aren't nil -
+  # forcing the readers to nil is enough to stop auto-leaving, without touching
+  # either checking method or the recruitment code that writes these dates.
+  class Game_Player
+    def record_companion_front_date; nil; end
+    def record_companion_back_date;  nil; end
+    def record_companion_ext_date;   nil; end
+  end
+end

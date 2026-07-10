@@ -18,7 +18,6 @@ module MenuFramework
       menu4:  "modules/revive:command/revive/menu4"
     )
 
-
     # List of NPC Variables
     REVIVE_LIST = [
       "UniqueCharUniqueCecily",
@@ -62,7 +61,7 @@ module MenuFramework
           $story_stats[char_key] = 0
         }
       )
-    end    
+    end
   end
 end
 

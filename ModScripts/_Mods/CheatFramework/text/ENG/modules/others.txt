@@ -34,6 +34,12 @@ Difficulty Achievement Fix
 command_help/achievementfix1
 Streamlines math for day calculations.
 
+commands/deeponecommunicate
+Deepone Can Communicate
+
+command_help/deeponecommunicate1
+Removes hardcoded checks that lock True Deepone out of interactions.
+
 command_help/fixcommand2
 REQUIRES A RESTART after being set.
 

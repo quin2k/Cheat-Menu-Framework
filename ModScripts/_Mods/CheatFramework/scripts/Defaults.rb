@@ -445,15 +445,25 @@ module Scene_Defaults
 
   def menu_command_update
     save_command_window_state
-    key = @command_window.current_ext 
+    key = @command_window.current_ext
     record = $framework.commands[:MAIN][key]
 
     return unless record
-    record[:action].call if record[:action] 
+    record[:action].call if record[:action]
     SndLib.sys_ok
   end
 
+  # Base game code (e.g. Lona_Portrait#shake) assumes SceneManager.scene is
+  # always Scene_Map, calling SceneManager.scene.hud.perform_damage_effect -
+  # this crashes if a map event's damage popup fires while a cheat menu is
+  # open, since Scene_Map is the only scene with a real hud. Map events keep
+  # ticking while the cheat menu is open by design, so give every cheat scene
+  # a harmless no-op stand-in instead (Scene_Map's own hud accessor still
+  # takes priority for actual map scenes - this is purely a fallback).
+  def hud
+    self
+  end
 
-
-  
+  def perform_damage_effect
+  end
 end
