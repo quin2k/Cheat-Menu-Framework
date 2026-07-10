@@ -25,7 +25,7 @@ module MenuFramework
       key:    "Pregnancy Difficulty", #should be unique to this dictionary
       label:  "modules/pregnancy:commands/difficulty",
       state:  "$cheat_pregnancy_difficulty",
-      global: -1, #default value
+      gdef:   -1, #default value
       help1:  "modules/pregnancy:command_help/difficulty",
       order:  10,
       list:   [
@@ -55,7 +55,7 @@ module MenuFramework
       key:    "Protect Pregnancy",
       label:  "modules/pregnancy:commands/protect",
       state:  "$cheat_protect_pregnancy", #toggle variable
-      global: false,
+      gdef:   false,
       help1:  "modules/pregnancy:command_help/protect",
       order:  30
     )

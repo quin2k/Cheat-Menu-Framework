@@ -148,11 +148,17 @@ Auto-Bandage
 command_help/autobandage
 Auto removes wounds, blood, and orifice damage.
 
-toggle/autoclean
-Auto-Clean
+toggle/autocleanout
+Auto-Clean (External)
 
-command_help/autoclean
-Auto removes cum, its stains, and related blood.
+command_help/autocleanout
+Auto removes blood and all surface cum.
+
+toggle/autocleanin
+Auto-Clean (internal)
+
+command_help/autocleanin
+Auto removes cum from orifices.
 
 toggle/autocure
 Auto-Cure
@@ -216,6 +222,9 @@ Urethral Damage Toggle
 
 commands/sexual/dtoggle/a
 Anal Damage Toggle
+
+command_help/sexual/dtoggle
+Not Global (can be changed to global)
 
 commands/sexual/reset
 Reset Sex Stats

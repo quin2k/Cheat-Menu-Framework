@@ -14,8 +14,15 @@ class CheatFramework
   attr_accessor :txt
   attr_accessor :commands
   attr_accessor :hotkey_defs
+  attr_accessor :hotkey_defaults
   attr_accessor :hotkeys
   attr_accessor :menu_stack
+  attr_accessor :menu_order_snapshot
+  attr_accessor :menu_order_dirty
+  attr_accessor :hotkey_capture_active
+  attr_accessor :restart_needed
+  attr_accessor :force_modes
+  attr_accessor :force_values
 
   def initialize
     @info = $mod_manager.mods["cheatframework"]
@@ -32,15 +39,25 @@ class CheatFramework
         unless SceneManager.scene_is?(Scene_CheatMainMenu)
         SceneManager.call(Scene_CheatMainMenu) if FrameworkUtils.ingame? end 
       }}}
-    @hotkey_defs = { "MENU.Main Menu" => { key: "F9", sound: nil } }
+    # Main Menu Toggle's key lives in Input::SYM_KEYS[:CF_CHEAT_MENU] now.
+    @hotkey_defs = {}
     @hotkeys = Hash.new { |h, k| h[k] = [] }
     @init_config_dir = nil
     @menu_stack = []
+    @menu_order_snapshot = nil
+    @menu_order_dirty = false
+    @hotkey_capture_active = false
+    # Process-wide only, not save-scoped - resets on a real restart.
+    @restart_needed = false
+    # "GROUP.CommandKey" => true/false (override active), for global:-flagged commands.
+    @force_modes = {}
+    # "GROUP.CommandKey" => the value to force when force_modes is active.
+    @force_values = {}
   end
 
 
   def init_config_dir
-    @config_dir = File.join(System_Settings::USER_DATA_PATH, "Cheat Framework")
+    @config_dir = File.join(@path, "config")
     Dir.mkdir(@config_dir) unless Dir.exist?(@config_dir)
   end
 
@@ -73,6 +90,11 @@ class CheatFramework
     # Left blank for modules to override
   end
 
+  # Fires once after a new game starts or a save finishes loading (scripts/Utils.rb).
+  def on_save_ready
+    # Left blank for modules to override
+  end
+
   def roleplay_mod?
     $mod_manager.mods['RolePlayS'] && $mod_manager.mods['RolePlayS'].enabled
   end
@@ -90,13 +112,20 @@ if $framework.nil?
   $framework.load_framework_script("Loader.rb")
   $framework.load_framework_script("Defaults.rb")
   $framework.load_framework_script("Menu.rb")
+  $framework.load_framework_script("Controls.rb")
 
   # Initialize system
   $framework.ini = FrameworkConfig.new($framework.config_dir)
 
   # Discover and load modules & hotkeys
   $framework.init_modules
+  # Pristine, pre-ini state - lets Reset All Settings restore hotkeys live.
+  $framework.hotkey_defaults = $framework.hotkey_defs.each_with_object({}) { |(k, v), h| h[k] = v.dup }
   $framework.ini.init_hotkeys
-  #$framework.ini.init_order
+  $framework.ini.init_menu_toggle_key
+  $framework.ini.init_order
+  FrameworkUtils.build_global_overrides
+  $framework.ini.init_force_modes
+  $framework.ini.init_force_values
 end
 

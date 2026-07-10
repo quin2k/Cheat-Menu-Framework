@@ -42,7 +42,8 @@ module MenuFramework
       label:  "modules/character:commands/levels/max_level",
       state:  "$cheat_variables_max_level",
       hide:   -> { $framework.roleplay_mod? },
-      global: 99,
+      gdef:   99,
+      global: true,
       min:    50, #I mean, if they want to...
       max:    999,
       order:  220
@@ -69,7 +70,8 @@ module MenuFramework
       label:  "modules/character:commands/levels/traits_per_level",
       state:  "$cheat_variables_traits_per_level",
       hide:   -> { $framework.roleplay_mod? },
-      global: 1,
+      gdef:   1,
+      global: true,
       help1:  "modules/character:command_help/tpl1",
       help2:  "modules/character:command_help/lvl",
       min:    1,
@@ -108,9 +110,11 @@ module MenuFramework
       key:    "Max Traits",
       label:  "modules/character:commands/traits/max_traits",
       state:  "$cheat_variables_max_stat",
-      global: 99,
+      gdef:   99,
+      global: true,
       min:    99,
       max:    999,
+      restart: true, # baked into LONA_STAT_DEFAULT at load time below - LonaActorStat.new only ever reads that snapshot
       order:  230
     )
     register_command(
@@ -233,7 +237,7 @@ module FrameworkUtils
             actor.survival_trait + actor.constitution_trait
     total = base - skills - traits
     return base.to_i,skills.to_i,traits.to_i,total.to_i if math
-    total.to_i
+    total
   end
 
   def self.reset_all_traits

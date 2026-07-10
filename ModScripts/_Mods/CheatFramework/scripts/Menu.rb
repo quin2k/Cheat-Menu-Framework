@@ -7,25 +7,49 @@ module FrameworkUtils
   def self.process_hotkeys
     return unless FrameworkUtils.ingame?
 
+    process_menu_toggle_hotkey
+
     $framework.hotkeys.each do |key_const, actions|
       next unless Input.trigger?(key_const)
 
       actions.each do |data|
-        cmd = $framework.commands.dig(data[:group], data[:key], :action)
+        record = $framework.commands.dig(data[:group], data[:key])
+        cmd = record && record[:action]
         next unless cmd
-        # Menu Toggle
-        if data[:group] == :MENU
-          if FrameworkUtils.in_menu?
-            SceneManager.return # already in menu → close it
-          else
-            cmd.call # not in menu → open it
-          end
-          next
-        end
+        # Suppress every other hotkey while a submenu is mid-capture (assigning
+        # a new one), so pressing the target key doesn't also fire whatever
+        # is currently bound to it.
+        next if $framework.hotkey_capture_active
+        # Don't fire cheat hotkeys while browsing the cheat menu itself.
+        next if FrameworkUtils.in_menu?
+        # Letter/digit/punctuation hotkeys silently no-op if the game's own
+        # Key Binds menu currently claims that physical key - F-keys skip
+        # this check entirely (see HotkeySymbols).
+        next if HotkeySymbols.symbols.include?(key_const) && FrameworkUtils.claimed_by_game_controls?(key_const)
         next unless modifiers_match?(data[:mods])
         cmd.call
+        FrameworkUtils.mark_restart_needed(record)
         SndLib.send(data[:sound]) if defined?(SndLib) && data[:sound]
       end
+    end
+  end
+
+  # Main Menu Toggle's key lives solely in Input::SYM_KEYS[:CF_CHEAT_MENU]
+  # (see hook_vanilla_keybind_menu below) - one source of truth shared with
+  # the vanilla Key Binds menu, not a :MENU-group entry in $framework.hotkeys.
+  def self.process_menu_toggle_hotkey
+    return if $framework.hotkey_capture_active
+    return unless Input.trigger?(:CF_CHEAT_MENU)
+
+    record = $framework.commands.dig(:MENU, "Main Menu")
+    cmd = record && record[:action]
+    return unless cmd
+
+    if FrameworkUtils.in_menu?
+      # Loop since SceneManager.return only pops one level at a time.
+      SceneManager.return while FrameworkUtils.in_menu?
+    else
+      cmd.call # not in menu → open it
     end
   end
 
@@ -160,6 +184,8 @@ module MenuFramework
         menu2: opts[:menu2],
         menu3: opts[:menu3],
         menu4: opts[:menu4],
+        order: opts[:order] || 999,
+        default_order: opts[:order] || 999,
         action: action
       }
     end
@@ -194,7 +220,7 @@ module MenuFramework
       type   = opts[:type]   # type of command :scene, :toggle : action :edit_num :edit_list
       group  = opts[:group]  # sub menu group, usually in caps
       state  = opts[:state]  # used to populate information :toggle, :edit_num, :edit_list only.
-      global = opts[:global] # default value for a global variable
+      gdef   = opts[:gdef]   # global default: default value for a globals.ini-backed variable
       hotkey = opts[:hotkey] # structured {key: "Shift+F4", sound: :sys_ok}
       scene  = opts[:scene]  # :scene only (navigation)
       action = opts[:action] # action performed by the command.
@@ -210,9 +236,9 @@ module MenuFramework
         }
       end
 
-      if !opts[:global].nil? && state
+      if !opts[:gdef].nil? && state
         var_name = state[1..-1] # remove $
-        default  = global
+        default  = gdef
 
         # Read from INI or use default
         value = $framework.ini.read_global(key, default)
@@ -258,6 +284,8 @@ module MenuFramework
         label:  opts[:label],
         action: action,
         state:  opts[:state] ? -> { eval(opts[:state]) } : nil,
+        # Raw string form of state:, for the Local/Global override system (§5a).
+        state_str: opts[:state],
         help1:  opts[:help1].is_a?(Proc) ? opts[:help1] : (opts[:help1] ? $framework.txt(opts[:help1]) : nil),
         help2:  opts[:help2].is_a?(Proc) ? opts[:help2] : (opts[:help2] ? $framework.txt(opts[:help2]) : nil),
         help3:  opts[:help3].is_a?(Proc) ? opts[:help3] : (opts[:help3] ? $framework.txt(opts[:help3]) : nil),
@@ -265,9 +293,15 @@ module MenuFramework
         list:   opts[:list],
         min:    opts[:min],
         max:    opts[:max],
+        order:  opts[:order] || 999,
+        default_order: opts[:order] || 999,
         enable: opts.has_key?(:enable) ? opts[:enable] : true,
         hide:   opts.has_key?(:hide)   ? opts[:hide]   : false,
-        color:  opts.has_key?(:color)  ? opts[:color]  : false        
+        color:  opts.has_key?(:color)  ? opts[:color]  : false,
+        restart: opts.has_key?(:restart) ? opts[:restart] : false,
+        # Local/Global override eligibility (Config > Edit Globals). nil = not
+        # eligible. false = natively Local. true = natively Global. See §5a.
+        global: opts.has_key?(:global) ? opts[:global] : nil
       }
     end
   end
@@ -303,8 +337,7 @@ class Window_CheatMainMenu < Window_Command
   #--------------------------------------------------------------------------
   def make_command_list
     return unless $framework.commands[:MAIN]
-    dict =  $framework.commands[:MAIN]
-    dict.each do |key, record|
+    FrameworkUtils.sorted_commands($framework.commands[:MAIN]).each do |key, record|
       add_command(
         $framework.txt(record[:label]),
         :menu_command,
@@ -320,14 +353,186 @@ end # Window_CheatMainMenu
 ##---------------------------------------------------------------------------
 ## Main Menu Scene Initialization
 ##---------------------------------------------------------------------------
+## Restart-needed warning draws into @help_window (otherwise unused in this
+## scene), overriding normal_color on that one instance to animate its color.
+##---------------------------------------------------------------------------
 class Scene_CheatMainMenu < Scene_MenuBase
   include Scene_Defaults
   def create_command_window
     super
     @command_window.set_handler(:cancel, method(:return_scene))
   end
+
+  # Full red -> yellow -> red sweep every ~6 seconds at 60fps.
+  RESTART_WARNING_STEP = 1.0 / 180
+
+  def start
+    super
+    @restart_warning_phase = 0.0   # 0.0 = red, 1.0 = yellow
+    @restart_warning_rising = true
+    @help_window.instance_variable_set(:@restart_warning_color, nil)
+    def @help_window.normal_color
+      @restart_warning_color || super
+    end
+  end
+
+  def update
+    super
+    refresh_restart_warning
+  end
+
+  def refresh_restart_warning
+    unless $framework.restart_needed
+      return unless @help_window.instance_variable_get(:@restart_warning_color)
+      @help_window.instance_variable_set(:@restart_warning_color, nil)
+      @help_window.contents.clear
+      return
+    end
+
+    if @restart_warning_rising
+      @restart_warning_phase += RESTART_WARNING_STEP
+      @restart_warning_rising = false if @restart_warning_phase >= 1.0
+    else
+      @restart_warning_phase -= RESTART_WARNING_STEP
+      @restart_warning_rising = true if @restart_warning_phase <= 0.0
+    end
+    @restart_warning_phase = [[@restart_warning_phase, 0.0].max, 1.0].min
+
+    # Red (255,0,0) -> yellow (255,255,0): only green needs to move.
+    green = (@restart_warning_phase * 255).round
+    @help_window.instance_variable_set(:@restart_warning_color, Color.new(255, green, 0))
+
+    @help_window.contents.clear
+    MenuFramework.force_font(@help_window.contents)
+    @help_window.draw_text_ex(4, 0, $framework.txt("menu:warnings/restart_required"))
+  end
 end
 FrameworkUtils.menu_scenes << Scene_CheatMainMenu
+
+#---------------------------------------------------------------------------
+#  Cheat Menu button on the System page, next to Save Game
+#---------------------------------------------------------------------------
+class Menu_System
+  CHEAT_MENU_BUTTON_TEXT = "Cheat Menu"
+
+  alias_method :create_save_game_sprite_CheatFramework, :create_save_game_sprite
+
+  def create_save_game_sprite
+    real = create_save_game_sprite_CheatFramework
+
+    spr = Sprite.new(@viewport)
+    spr.bitmap = Bitmap.new(180, 30)
+    spr.bitmap.font.color.set(*FONT_COLOR)
+    spr.bitmap.font.size = 28
+    spr.x = real[0].x + 160 + 20
+    spr.y = real[0].y
+    spr.z = 3
+    spr.bitmap.font.outline = false
+    spr.bitmap.draw_text(spr.bitmap.rect, CHEAT_MENU_BUTTON_TEXT)
+    spr.visible = true
+    spr.opacity = OPACITY_INACTIVE
+    @all_sprites << spr
+
+    if Mouse.usable?
+      text_width  = spr.bitmap.text_size(CHEAT_MENU_BUTTON_TEXT).width
+      text_height = spr.bitmap.text_size(CHEAT_MENU_BUTTON_TEXT).height
+      # Multi-rect shape (matches every other multi-column row) so
+      # mouse_update_input's +1 offset lines up with the column indices.
+      @mouse_all_rects[0] = [
+        @mouse_all_rects[0][0],
+        [spr.x, spr.y, text_width, text_height]
+      ]
+    end
+
+    [nil, real[0], spr]
+  end
+
+  # Lands the cursor on Save Game (column 1), not the nil placeholder at 0.
+  alias_method :initialize_CheatFramework, :initialize
+
+  def initialize
+    initialize_CheatFramework
+    @cursor_column_index = 1
+  end
+
+  alias_method :save_command_handler_CheatFramework, :save_command_handler
+
+  def save_command_handler
+    if @cursor_column_index == 2
+      open_cheat_menu_from_system
+    else
+      save_command_handler_CheatFramework
+    end
+  end
+
+  # Skips FrameworkUtils.ingame? on purpose - Scene_Menu is in outgame_scenes.
+  def open_cheat_menu_from_system
+    SndLib.sys_ok
+    SceneManager.call(Scene_CheatMainMenu)
+  end
+
+  # Drives row 0's highlight off final cursor state, since it's a
+  # multi-column row and the base game's own opacity helpers skip those.
+  alias_method :set_cursor_position_CheatFramework, :set_cursor_position
+
+  def set_cursor_position
+    set_cursor_position_CheatFramework
+    refresh_row0_highlight
+  end
+
+  def refresh_row0_highlight
+    row = @commands[0][0]
+    return unless row.length == 3
+    row[1].opacity = OPACITY_INACTIVE
+    row[2].opacity = OPACITY_INACTIVE
+    row[@cursor_column_index].opacity = OPACITY_ACTIVE if @cursor_row_index == 0
+  end
+end
+
+#---------------------------------------------------------------------------
+#  Vanilla Key Binds integration: "Open Cheat Menu" is a normal, rebindable
+#  entry in the game's own controls screen (InputUtils.keyList), and its key
+#  (Input::SYM_KEYS[:CF_CHEAT_MENU]) is the ONLY place the Main Menu Toggle's
+#  key lives - View Hotkeys' own Main Menu row (scripts/Controls.rb) reads
+#  and writes this exact same array, so there's a single source of truth
+#  instead of two independent ones drifting apart. Actual seeding happens in
+#  FrameworkConfig#init_menu_toggle_key (scripts/Config.rb), called once
+#  $framework.ini exists - this only registers the keyList entry, which
+#  doesn't need it.
+#---------------------------------------------------------------------------
+module FrameworkUtils
+  def self.hook_vanilla_keybind_menu
+    InputUtils.keyList << [
+      :CF_CHEAT_MENU,
+      "#{$framework.info.id}:menu:commands/cheat_menu_keybind",
+      "Open Cheat Menu",
+      [:F9]
+    ]
+  end
+
+  # Resolves the live Main Menu Toggle key to a display string (e.g. "F9"
+  # or "M"), for View Hotkeys' own row and HotkeyReserved's dynamic lookup.
+  def self.current_menu_toggle_key
+    code = Input::SYM_KEYS[:CF_CHEAT_MENU] && Input::SYM_KEYS[:CF_CHEAT_MENU].find { |c| c != 0 }
+    return nil unless code
+    symbol = InputUtils.reverse_key_map[code]
+    return nil unless symbol
+    HotkeySymbols.clean_name_for(symbol)
+  end
+end
+
+# Catches rebinds made through the vanilla Key Binds menu (not just View
+# Hotkeys), so the portable backup (config/hotkeys.ini) doesn't go stale.
+class CheatFramework
+  alias_method :slow_trigger_VanillaKeybind, :slow_trigger
+
+  def slow_trigger
+    slow_trigger_VanillaKeybind
+    $framework.ini.sync_menu_toggle_key
+  end
+end
+
+FrameworkUtils.hook_vanilla_keybind_menu
 
 ##===========================================================================
 ## Default Category Initialization
@@ -365,11 +570,11 @@ MenuFramework::MENU.register_command(
   dict: :NPC,
   order: 4
 )
-#MenuFramework::MENU.register_command(
-#  type: :scene,
-#  key: :config_menu,
-#  label: "menu:commands/config",
-#  name: "CheatMenuConfiguration",
-#  dict: :CONFIG,
-#  order: 1000
-#)
+MenuFramework::MENU.register_command(
+  type: :scene,
+  key: :config_menu,
+  label: "menu:commands/config",
+  name: "CheatMenuConfiguration",
+  dict: :CONFIG,
+  order: 1000
+)

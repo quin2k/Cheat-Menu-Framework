@@ -5,6 +5,88 @@
 #===============================================================================
 
 #---------------------------------------------------------------------------
+#  Table of physical F-keys claimed outside CheatFramework
+#---------------------------------------------------------------------------
+module HotkeyReserved
+  TABLE = {
+    "F10" => { label: "Console",              active: -> { true } },
+    "F5"  => { label: "RolePlay-S QuickSave", active: -> { $framework.roleplay_mod? } },
+    "F6"  => { label: "RolePlay-S QuickLoad", active: -> { $framework.roleplay_mod? } },
+    # Blocked at the OS level by 10_removeF1F12.rb, not assignable in Ruby.
+    "F1"  => { label: "Disabled by the game itself (F1AltEnterF12.dll)", active: -> { true } },
+    "F12" => { label: "Disabled by the game itself (F1AltEnterF12.dll)", active: -> { true } },
+  }
+
+  # Main Menu Toggle isn't a fixed key anymore (see FrameworkUtils.
+  # current_menu_toggle_key, scripts/Menu.rb) - checked dynamically instead
+  # of a static TABLE entry, so this stays correct no matter which key it's
+  # currently bound to.
+  def self.info_for(key)
+    key_str = key.to_s.upcase
+    return { label: "Main Menu Toggle", active: true } if key_str == FrameworkUtils.current_menu_toggle_key
+    entry = TABLE[key_str]
+    return nil unless entry
+    entry[:active].call ? entry : nil
+  end
+
+  # Strips any Shift+/Ctrl+/Alt+ prefix and checks just the base F-key.
+  def self.info_for_combo(key_str)
+    return nil unless key_str
+    info_for(key_str.to_s.split('+').last)
+  end
+end
+
+#---------------------------------------------------------------------------
+#  Letter/digit/punctuation hotkey names. Input:: symbol <-> clean display
+#  string (e.g. :LETTER_G <-> "G"), since KEYMAP's own names are either
+#  RGSS-internal (LETTER_*/KEY_*/N0) or, for punctuation, flat-out wrong -
+#  the Hime script's "masculine"/"guillemotright"/etc. entries are leftover
+#  X11 keysym names that happen to share numeric codes with the real
+#  Windows VK_OEM_* codes for ;/=/[/\/]/', not what their names suggest.
+#  LETTER_C is deliberately excluded - it's the hotkey-capture arm/disarm key.
+#---------------------------------------------------------------------------
+module HotkeySymbols
+  DISPLAY_NAMES = {
+    LETTER_A: "A", LETTER_B: "B", LETTER_D: "D", LETTER_E: "E", LETTER_F: "F",
+    LETTER_G: "G", LETTER_H: "H", LETTER_I: "I", LETTER_J: "J", LETTER_K: "K",
+    LETTER_L: "L", LETTER_M: "M", LETTER_N: "N", LETTER_O: "O", LETTER_P: "P",
+    LETTER_Q: "Q", LETTER_R: "R", LETTER_S: "S", LETTER_T: "T", LETTER_U: "U",
+    LETTER_V: "V", LETTER_W: "W", LETTER_X: "X", LETTER_Y: "Y", LETTER_Z: "Z",
+    KEY_1: "1", KEY_2: "2", KEY_3: "3", KEY_4: "4", KEY_5: "5",
+    KEY_6: "6", KEY_7: "7", KEY_8: "8", KEY_9: "9", N0: "0",
+    masculine: ";", guillemotright: "=", onequarter: ",", onehalf: "-",
+    threequarters: ".", questiondown: "/", Ucircumflex: "[", Udiaeresis: "\\",
+    Yacute: "]", THORN: "'"
+  }
+  SYMBOLS_BY_NAME = DISPLAY_NAMES.invert
+
+  def self.symbols
+    DISPLAY_NAMES.keys
+  end
+
+  def self.name_for(symbol)
+    DISPLAY_NAMES[symbol]
+  end
+
+  def self.symbol_for(name)
+    SYMBOLS_BY_NAME[name]
+  end
+
+  # Unlike name_for, always returns something displayable - covers symbols
+  # this table deliberately excludes (like :LETTER_C, valid here even though
+  # it can't be assigned as a regular cheat hotkey) by pattern-stripping the
+  # RGSS-internal prefix directly instead of a table lookup.
+  def self.clean_name_for(symbol)
+    return name_for(symbol) if DISPLAY_NAMES.key?(symbol)
+    str = symbol.to_s
+    return "0" if str == "N0"
+    return str.sub("LETTER_", "") if str.start_with?("LETTER_")
+    return str.sub("KEY_", "")    if str.start_with?("KEY_")
+    str
+  end
+end
+
+#---------------------------------------------------------------------------
 #  Checks if the game is currently in an active gameplay state
 #---------------------------------------------------------------------------
 module FrameworkUtils
@@ -41,6 +123,16 @@ module FrameworkUtils
     @menu_scenes.any? { |scene_class| SceneManager.scene_is?(scene_class) }
   end
 
+  # True if a letter/digit/punctuation hotkey's physical key is currently
+  # bound to one of the game's own controls (Input::SYM_KEYS, live-updated
+  # by the official Key Binds menu). Used to silently skip firing rather
+  # than unmap anything - F-keys don't go through this check at all.
+  def self.claimed_by_game_controls?(key_const)
+    vk_code = Input::KEYMAP[key_const]
+    return false unless vk_code
+    Input::SYM_KEYS.values.any? { |codes| codes.include?(vk_code) }
+  end
+
   def self.custom_state_edit(state, new_value)
     actor = $game_player.actor
     state_id = state
@@ -51,6 +143,53 @@ module FrameworkUtils
       change.abs.times { actor.remove_state_stack(state_id) }
     elsif change > 0
       change.times { actor.add_state(state_id) }
+    end
+  end
+
+  #-------------------------------------------------------------------------
+  #  Sorts a $framework.commands dict by :order, preserving registration
+  #  order for ties (Hash#each_with_index index used as tiebreaker).
+  #-------------------------------------------------------------------------
+  def self.sorted_commands(dictionary)
+    return [] unless dictionary
+    dictionary.to_a.each_with_index
+              .sort_by { |(_key, record), idx| [record[:order] || 999, idx] }
+              .map { |pair, _idx| pair }
+  end
+
+  # Flags that a restart is needed for a restart: true command.
+  def self.mark_restart_needed(record)
+    $framework.restart_needed = true if record && record[:restart]
+  end
+
+  #-------------------------------------------------------------------------
+  #  Hotkey address lookup for the current row (Action_Window_Defaults)
+  #-------------------------------------------------------------------------
+  def self.group_for_dictionary(dict)
+    return nil unless dict
+    entry = $framework.commands.find { |_group, d| d.equal?(dict) }
+    entry ? entry[0] : nil
+  end
+
+  def self.hotkey_tag_for(dict, key)
+    return nil unless key
+    group = group_for_dictionary(dict)
+    return nil unless group
+    data = $framework.hotkey_defs["#{group}.#{key}"]
+    return nil if data.nil? || data[:key].nil? || data[:key].to_s.upcase == "NONE"
+    "[#{data[:key]}]"
+  end
+
+  # Resolves a command's display name, falling back to `fallback` if it has no label:.
+  def self.display_name_for(record, fallback)
+    return fallback.to_s unless record
+    label = record[:label]
+    if label.is_a?(Proc)
+      label.call
+    elsif label
+      $framework.txt(label) rescue fallback.to_s
+    else
+      fallback.to_s
     end
   end
 
@@ -97,6 +236,63 @@ class Scene_Base
   end
 end
 
+#---------------------------------------------------------------------------
+#  Block the debug console (F10) while actively assigning a hotkey
+#---------------------------------------------------------------------------
+class Scene_Base
+  alias_method :trigger_debug_window_entry_CheatFramework, :trigger_debug_window_entry
+
+  def trigger_debug_window_entry
+    return if $framework.hotkey_capture_active
+    trigger_debug_window_entry_CheatFramework
+  end
+end
+
+#---------------------------------------------------------------------------
+#  Calls $framework.on_save_ready after a new game or a loaded save.
+#  Three hooks for full coverage: a fresh game, the standard Scene_Load path
+#  (covers both title-screen and in-game load), and Scene_CustomModeLoad
+#  (auto-saves, Doom-mode save, and RolePlay-S's quickload).
+#---------------------------------------------------------------------------
+module DataManager
+  class << self
+    alias_method :setup_new_game_CheatFramework, :setup_new_game
+
+    def setup_new_game(*args)
+      setup_new_game_CheatFramework(*args)
+      $framework.on_save_ready
+    end
+  end
+end
+
+class Scene_Load
+  alias_method :on_load_success_CheatFramework, :on_load_success
+
+  def on_load_success
+    on_load_success_CheatFramework
+    $framework.on_save_ready
+  end
+end
+
+class Scene_CustomModeLoad
+  alias_method :on_load_success_CheatFramework, :on_load_success
+
+  def on_load_success
+    on_load_success_CheatFramework
+    $framework.on_save_ready
+  end
+end
+
+# Applies every global: true/false command's configured override.
+class CheatFramework
+  alias_method :on_save_ready_FORCE_MODES, :on_save_ready
+
+  def on_save_ready
+    on_save_ready_FORCE_MODES
+    FrameworkUtils.apply_force_modes
+  end
+end
+
 #Set update rate for other triggers.
 class CheatFramework
   alias_method :hotkey_trigger_TIMER, :hotkey_trigger
@@ -131,3 +327,4 @@ module Input
   F4 = [KEYMAP[:F4]]
   Agrave = [KEYMAP[:Agrave]]
 end
+

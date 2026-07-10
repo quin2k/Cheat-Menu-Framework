@@ -18,7 +18,7 @@ module MenuFramework
       menu1:  "menu:window_help/character1",
       name:   "CheatMenuAppearance",
       dict:   :APPEARANCE,
-      order:  50
+      order:  70
     )
 
     #------------------------------------------
@@ -51,7 +51,7 @@ module MenuFramework
       min:    0,
       max:    255,
       action: ->(v) { $game_player.actor.dirt = v },
-      order:  10
+      order:  45
     )
     register_command(
       group:  :TOGGLES,
@@ -60,6 +60,7 @@ module MenuFramework
       label:  "modules/character:toggle/dirt",
       state:  "$game_player.actor.actStat.get_stat('dirt', 3) == 0",
       help1:  "modules/character:command_help/dirt",
+      global: false, 
       action: -> {
                   if $game_player.actor.actStat.get_stat('dirt', 3) == 0
                     $game_player.actor.actStat.set_stat('dirt', 255, 3)
@@ -70,12 +71,14 @@ module MenuFramework
     })
     register_command(
       group:  :APPEARANCE,
-      type:   :edit_num,
+      type:   :edit_list,
       key:    "Freckles",
       label:  "modules/character:commands/appearance/freckles",
       state:  "$game_player.actor.stat['Freckle']",
-      min:    0,
-      max:    1,
+      list:   [
+                { key: 0, label: "[#{$framework.txt("menu:cheat_toggle/off")}]" },
+                { key: 1, label: "[#{$framework.txt("menu:cheat_toggle/on")}]" }
+              ],
       action: ->(v) { FrameworkUtils.custom_state_edit("Freckle", v) }
       )
     register_command(
@@ -133,18 +136,16 @@ module MenuFramework
       label:  "modules/character:toggle/autobandage",
       help1:  "modules/character:command_help/autobandage",
       state:  "$cheat_autobandage", #toggle variable
-      hotkey: { key: "F4", sound: :sound_equip_armor},
-      global: false
+      gdef:   false
     )
     register_command(
       group:  :TOGGLES,
       type:   :toggle,
-      key:    "Auto Clean", #should be unique
-      label:  "modules/character:toggle/autoclean",
-      help1:  "modules/character:command_help/autoclean",
-      state:  "$cheat_autoclean", #toggle variable
-      hotkey: { key: "F4", sound: :sound_WaterSpla},
-      global: false
+      key:    "Auto Clean Inside", #should be unique
+      label:  "modules/character:toggle/autocleanin",
+      help1:  "modules/character:command_help/autocleanin",
+      state:  "$cheat_autoclean_in", #toggle variable
+      gdef:   false
     )
     register_command(
       group:  :TOGGLES,
@@ -153,8 +154,7 @@ module MenuFramework
       label:  "modules/character:toggle/autocure",
       help1:  "modules/character:command_help/autocure",
       state:  "$cheat_autocure", #toggle variable
-      hotkey: { key: "F4", sound: :buff_life},
-      global: false
+      gdef:   false
     )
   end
 end

@@ -63,6 +63,7 @@ module MenuFramework
       key:    "Toggle Vag Damage",
       label:  "modules/character:commands/sexual/dtoggle/v",
       state:  "$game_player.actor.actStat.get_stat('vag_damage', 3) == 0",
+      global: false, 
       action: -> {
                   if $game_player.actor.actStat.get_stat('vag_damage', 3) == 0
                     $game_player.actor.actStat.set_stat('vag_damage', 10000, 3)
@@ -77,6 +78,7 @@ module MenuFramework
       key:    "Toggle Urethra Damage",
       label:  "modules/character:commands/sexual/dtoggle/u",
       state:  "$game_player.actor.actStat.get_stat('urinary_damage', 3) == 0",
+      global: false, 
       action: -> {
                   if $game_player.actor.actStat.get_stat('urinary_damage', 3) == 0
                     $game_player.actor.actStat.set_stat('urinary_damage', 10000, 3)
@@ -91,6 +93,7 @@ module MenuFramework
       key:    "Toggle Anal Damage",
       label:  "modules/character:commands/sexual/dtoggle/a",
       state:  "$game_player.actor.actStat.get_stat('anal_damage', 3) == 0",
+      global: false, 
       action: -> {
                   if $game_player.actor.actStat.get_stat('anal_damage', 3) == 0
                     $game_player.actor.actStat.set_stat('anal_damage', 10000, 3)

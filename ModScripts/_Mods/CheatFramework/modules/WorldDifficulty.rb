@@ -7,6 +7,7 @@ MenuFramework::SUBMENU.register_command(
   min:    0,
   max:    100,
   action: ->(v) { $story_stats["WorldDifficulty"] = v },
+  order:  70
 )
 
 MenuFramework::SUBMENU.register_command(

@@ -11,12 +11,14 @@ module MenuFramework
       group:  :NPC,
       type:   :scene,
       key:    :revive_menu,
-      label:  "modules/revive:commands/revive", 
+      label:  "modules/revive:commands/revive",
       name:   "CheatMenuReviveNPC",
       dict:   :REVIVE,
       menu3:  "modules/revive:command/revive/menu3",
-      menu4:  "modules/revive:command/revive/menu4"
+      menu4:  "modules/revive:command/revive/menu4",
+      order:  80
     )
+
 
     # List of NPC Variables
     REVIVE_LIST = [
@@ -61,7 +63,7 @@ module MenuFramework
           $story_stats[char_key] = 0
         }
       )
-    end
+    end    
   end
 end
 

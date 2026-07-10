@@ -24,7 +24,7 @@ if $framework.roleplay_mod?
     key:    "Infinite Saves", #should be unique
     label:  "modules/others:commands/roleplays/saves",
     state:  "$cheat_infinite_saves", #toggle variable
-    global: false
+    gdef:   false
   )
   MenuFramework::SUBMENU.register_command(
     group:  :ROLEPLAY,
@@ -32,8 +32,8 @@ if $framework.roleplay_mod?
     key:    "Infinite Mana", #should be unique
     label:  "modules/others:commands/roleplays/mana",
     state:  "$cheat_infinite_mana", #toggle variable
-    hotkey: {key: "F5"},
-    global: false
+    hotkey: {key: "F4"},
+    gdef:   false
   )
   MenuFramework::SUBMENU.register_command(
     group:  :ROLEPLAY,

@@ -33,7 +33,8 @@ module MenuFramework
                 { key:  5,  label: "[x8]" },
                 { key: -1,  label: "[#{$framework.txt("modules/others:command_item/infinite")}]" },
               ],
-      global: 1 #default value = Normal
+      gdef:   1, #default value = Normal
+      order:  10
     )
     register_command(
       type:   :edit_list,
@@ -48,7 +49,8 @@ module MenuFramework
                 { key:  2,  label: "[x2]" },
                 { key:  4,  label: "[x4]" },
               ],
-      global: 1 #default value = Normal
+      gdef:   1, #default value = Normal
+      order:  20
     )
     register_command(
       group:  :NPC,
@@ -65,7 +67,8 @@ module MenuFramework
                 { key:  10,  label: "[10]" },
                 { key:  12,  label: "[12]" },
               ],
-      global: 2 #default value = Normal
+      gdef:   2, #default value = Normal
+      order:  90
     )
     register_command(
       group:  :NPC,
@@ -75,7 +78,9 @@ module MenuFramework
       help1:  "modules/others:command_help/friendlyfire1",
       help2:  "modules/others:command_help/fixcommand2",
       state:  "$cheat_friendly_fire_fix",
-      global: false
+      gdef:   false,
+      restart: true, 
+      order:  40
     )
     register_command(
       type:   :toggle,
@@ -84,7 +89,9 @@ module MenuFramework
       help1:  "modules/others:command_help/equip1",
       help2:  "modules/others:command_help/fixcommand2",
       state:  "$cheat_classless_society",
-      global: false
+      gdef:   false,
+      restart: true,
+      order:  30
     )
     register_command(
       type:   :toggle,
@@ -93,7 +100,9 @@ module MenuFramework
       help1:  "modules/others:command_help/stealth1",
       help2:  "modules/others:command_help/fixcommand2",
       state:  "$cheat_stealth_confirm_fix",
-      global: false
+      gdef:   false,
+      restart: true, 
+      order:  50
     )
     register_command(
       type:   :toggle,
@@ -102,7 +111,9 @@ module MenuFramework
       help1:  "modules/others:command_help/abomskillfix1",
       help2:  "modules/others:command_help/fixcommand2",
       state:  "$cheat_abomination_skill_fix",
-      global: false
+      gdef:   false,
+      restart: true, 
+      order:  60
     )
     register_command(
       type:   :toggle,
@@ -111,9 +122,11 @@ module MenuFramework
       help1:  "modules/others:command_help/achievementfix1",
       help2:  "modules/others:command_help/fixcommand2",
       state:  "$cheat_difficulty_achievement_fix",
-      global: false
+      gdef:   false,
+      restart: true, 
+      order:  70
     )
-    register_command(
+        register_command(
       type:   :toggle,
       key:    "Deepone Can Communicate", #should be unique to this dictionary
       label:  "modules/others:commands/deeponecommunicate",
@@ -550,3 +563,4 @@ if $cheat_infinite_companion
     def record_companion_ext_date;   nil; end
   end
 end
+

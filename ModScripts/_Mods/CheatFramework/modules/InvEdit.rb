@@ -44,23 +44,24 @@ MenuFramework::SUBMENU.register_command(
   key:   "Bank Anywhere",
   label: "modules/invedit:commands/bank",
   hotkey: {key: "F2"},
-  action: -> { 
+  order: 100,
+  action: -> {
       SceneManager.goto(Scene_BankStorage)
       SceneManager.scene.prepare(System_Settings::STORAGE_BANK)
   })
 
 MenuFramework::SUBMENU.register_command(
   type:   :scene,
-  group:  :NPC,
+  group:  :MISC,
   key:    :summon,
-  label:  "modules/invedit:commands/summon", 
+  label:  "modules/invedit:commands/summon",
   name:   "CheatMenuSummon",
   dict:   :SUMMON,
-  order:  40
+  order:  60
 )
 
 #--------------------------------------------------------------------------
-# Cached Item/Weapon/Armor/Status Lists
+# Cache Item/weapon/armor/status Lists
 #--------------------------------------------------------------------------
 # Pre-filtered once instead of re-scanning the raw data every time.
 module MenuFramework
@@ -174,21 +175,12 @@ class Window_CheatMenuItems < Window_Command
   # make_command_list
   #--------------------------------------------------------------------------
   def make_command_list
-    case @type
-    when :items
-      group = $data_items
-      fmt = "I%03d:"
-    when :weapons
-      group = $data_weapons
-      fmt = "W%03d:"
-    else
-      group = $data_armors
-      fmt = "A%03d:"
-    end
-    for i in 1...group.size
-      text = sprintf(fmt, i)
-      add_command(text, :item, true, group[i]) if !(group[i].nil? or group[i].item_name.nil? or group[i].item_name == "" or group[i].description == "")
-    end
+    cache = case @type
+            when :items    then MenuFramework::InvEditCache.items
+            when :weapons  then MenuFramework::InvEditCache.weapons
+            else                MenuFramework::InvEditCache.armors
+            end
+    cache.each { |text, item| add_command(text, :item, true, item) }
   end
 
   #--------------------------------------------------------------------------

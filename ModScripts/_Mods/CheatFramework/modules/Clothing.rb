@@ -16,7 +16,8 @@ module MenuFramework
       help1:  "modules/others:command_help/discard1",
       help2:  "modules/others:command_help/fixcommand2",
       state:  "$cheat_prevent_clothing_discard",
-      global: false
+      gdef:   false,
+      restart: true
     )
     register_command(
       group:  :NONE,
@@ -32,7 +33,8 @@ module MenuFramework
       label:  "modules/others:commands/forceunequip",
       help1:  "modules/others:command_help/forceunequip1",
       hotkey: {key: "Shift+F3"},
-      action: -> { FrameworkUtils.unequipall(true) }
+      action: -> { FrameworkUtils.unequipall(true) },
+      order:  50
     )
   end
 end
@@ -40,9 +42,12 @@ end
 module FrameworkUtils
   def self.unequipall(force)
     if self.ingame?
-      $game_player.actor.equip_slots.size.times do |i|
-        next if i == 7 and force == false
-        $game_player.actor.change_equip(i, nil) if $game_player.actor.equip_change_ok?(i) or force
+      actor = $game_player.actor
+      actor.equip_slots.size.times do |i|
+        item = actor.equips[i]
+        next if item && item.type_tag == "Hair"
+        bondage = item && item.type_tag == "Bondage"
+        actor.change_equip(i, nil) if actor.equip_change_ok?(i) || (force && bondage)
         SndLib.sound_equip_armor
       end
     end

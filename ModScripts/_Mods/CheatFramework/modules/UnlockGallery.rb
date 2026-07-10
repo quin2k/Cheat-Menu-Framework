@@ -11,7 +11,7 @@ MenuFramework::SUBMENU.register_command(
     key:    "Unlock Gallery", #should be unique
     label:  "modules/others:commands/gallery",
     state:  "$cheat_unlock_gallery", #toggle variable
-    global: false
+    gdef:   false
   )
 
 #Instead of granting the achievements, this version edits the recollection 

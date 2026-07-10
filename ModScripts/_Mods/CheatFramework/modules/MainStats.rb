@@ -14,8 +14,8 @@ module MenuFramework
       key:    "Infinite Health", #should be unique
       label:  "modules/mainstatus:toggle/health",
       state:  "$cheat_infinite_health", #toggle variable
-      hotkey: {key: "F5"},
-      global: false
+      hotkey: {key: "F4"},
+      gdef:   false
     )
     # Register Infinite Stamina
     register_command(
@@ -24,8 +24,8 @@ module MenuFramework
       key:    "Infinite Stamina", #should be unique
       label:  "modules/mainstatus:toggle/stamina",
       state:  "$cheat_infinite_stamina", #toggle variable
-      hotkey: {key: "F5"},
-      global: false
+      hotkey: {key: "F4"},
+      gdef:   false
     )
     # Register Infinite Food
     register_command(
@@ -34,8 +34,8 @@ module MenuFramework
       key:    "Infinite Food", #should be unique
       label:  "modules/mainstatus:toggle/food",
       state:  "$cheat_infinite_food", #toggle variable
-      hotkey: {key: "F5"},
-      global: false
+      hotkey: {key: "F4"},
+      gdef:   false
     )
 
     #------------------------------
@@ -47,12 +47,12 @@ module MenuFramework
       key:    "Heal", #should be unique
       label:  "modules/mainstatus:misc/heal",
       enable: -> { !($cheat_infinite_health && $cheat_infinite_stamina && $cheat_infinite_food) },
-      hotkey: {key: "F8", sound: :buff_life},
       action: -> {
         FrameworkUtils.health_to_max
         FrameworkUtils.stamina_to_max
         FrameworkUtils.food_to_max
-      }
+      },
+      order:  10
     )
     register_command(
       group:  :MISC,
@@ -62,7 +62,7 @@ module MenuFramework
       enable: -> { !$cheat_autobandage },
       action: -> { $game_player.actor.heal_wound },
       help1:  "modules/mainstatus:command_help/heal_wound",
-      hotkey: {key: "F7", sound: :sound_equip_armor}
+      order:  20
     )
     register_command(
       group:  :MISC,
@@ -70,7 +70,8 @@ module MenuFramework
       key:    "Faint", #should be unique
       enable: -> { !$cheat_infinite_stamina },
       label:  "modules/mainstatus:misc/faint",
-      action: -> { $game_player.actor.sta = -100 }
+      action: -> { $game_player.actor.sta = -100 },
+      order:  30
     )
 
     #------------------------------
@@ -84,7 +85,7 @@ module MenuFramework
       key:    "Infinite Money",
       label:  "modules/mainstatus:toggle/money",
       state:  "$cheat_infinite_money",
-      global: false
+      gdef:   false
     )
     # Register Money Now
     register_command(
@@ -93,8 +94,8 @@ module MenuFramework
       key:    "Money Now",
       label:  "modules/mainstatus:misc/money",
       enable: -> {!$cheat_infinite_money},
-      hotkey: {key: "F6"},
-      action: -> { $game_party.set_gold_only(99999) }
+      action: -> { $game_party.set_gold_only(99999) },
+      order:  40
     )
   end
 end
