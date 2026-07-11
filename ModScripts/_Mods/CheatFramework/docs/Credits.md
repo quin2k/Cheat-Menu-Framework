@@ -1,6 +1,8 @@
 # Credits
 
 ## Code
+- [Claude Code](https://claude.com/claude-code) \(assisted with code, mostly to brainstorm/implement the config menu which continued to confound me. Also helped with debugging and research. All contributions were thoroughly reviewed.\)
+
 - [Archangel Dejavu](https://raidgame.ru/members/8694/) \(for fixes to the Friendly Fire code.\)
 
 - [kenny567](https://f95zone.to/members/240807/) / [k3nny567](https://github.com/K3nny567) \(for editing/publishing/maintaining/distributing the latest version of the cheat mod as late as May 2025. (https://f95zone.to/posts/9588500)\)
@@ -27,6 +29,12 @@
 - [doujinftw](https://f95zone.to/members/doujinftw.3105652/) \(difficulty reset, item drop rate, equipment bypass and, indirectly, item despawn rate.\)
 
 - [kastrom](https://vk.com/kactpom) \(their undead unique mod seemed limiting (e.g. Adam quest issues), so tried to improve on it.\)
+
+- Lona can communicate request 
+
+- Night vision inspired by RolePlay-S (Mana Rage effectively gives night vision).
+
+- Inspired by accidental discovery that Summoning a companion causes their contract to not expire.
 
 ## Translations
 

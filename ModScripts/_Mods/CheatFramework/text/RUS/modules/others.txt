@@ -32,16 +32,43 @@ commands/achievementfix
 Исправление сложности достижения
 
 command_help/achievementfix1
-Упрощает расчет дней для достижений.
+Учитываются более лёгкие уровни сложности, если таковые имеются.
+
+commands/deeponecommunicate
+Deepone может общаться
+
+command_help/deeponecommunicate1
+Удаляет жестко закодированные проверки, которые блокируют взаимодействие с True Deepone.
+
+commands/fastnap
+Быстрый сон
+
+command_help/fastnap1
+Удерживайте клавишу Ctrl во время отдыха, чтобы восстановить выносливость за один раунд. Соотношение еды и выносливости одинаково.
+
+commands/endlesscontracts
+Бесконечные контракты
+
+command_help/endlesscontracts1
+Контракты с привлеченными компаньонами/последователями не имеют срока действия.
+
+commands/nightvision
+Ночное видение
+
+command_help/nightvision1
+Эффект затемнения на карте сил полностью прозрачен. Применяется мгновенно, перезапуск не требуется.
 
 command_help/fixcommand2
-ТРЕБУЕТСЯ ПЕРЕЗАПУСК после настройки.
+Требуется перезапуск. Отключение этой функции выгружает данное исправление.
 
 commands/discard
 Предотвратить выброс
 
 command_help/discard1
 Снятая одежда попадает в инвентарь.
+
+commands/unequip
+Снять одежду
 
 commands/forceunequip
 Принудительно снять

@@ -524,9 +524,9 @@ class Scene_CheatHotkeyList < Scene_MenuBase
 end
 FrameworkUtils.menu_scenes << Scene_CheatHotkeyList
 
-#-------------------------------------------------------------------------
-#  Local/Global override engine (Config > Edit Globals)
-#-------------------------------------------------------------------------
+#--------------------------------------------------------------------------
+# Local/Global override engine (Config > Edit Globals)
+#--------------------------------------------------------------------------
 module FrameworkUtils
   # force_modes["GROUP.CommandKey"] = true/false, is an override active.
   def self.force_mode_for(group, key)

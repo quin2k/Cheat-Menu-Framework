@@ -1,12 +1,14 @@
 FrameworkModule = {
-  name:       "Revive Menu", 
-  key:        :revive_menu, 
-  menu:       :REVIVE #Group key.
+  name:       "Revive Menu",
+  key:        :revive_menu,
+  menu:       :REVIVE
 }
 
 module MenuFramework
   module SUBMENU
-    # Menu Hook into "Game Tweaks"
+    #--------------------------------------------------------------------------
+    # Menu Commands
+    #--------------------------------------------------------------------------
     register_command(
       group:  :NPC,
       type:   :scene,

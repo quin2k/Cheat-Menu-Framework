@@ -12,7 +12,6 @@
  - When using a new mod or bringing mods to a new version of LonaRPG, it is good practice to activate only a few at a time.
  - Once you've made your changes, move to the top and select "Restart to Apply" (or Accept and just restart manually)
    - If you get an error during startup, you may need to edit LonaRPG\UserData\GameMods.ini to deactivate a mod.
-   - If CheatFramework is giving you errors, delete/edit LonaRPG\UserData\Cheat Framework\globals.ini
    - If any of my mods give you errors, please notify me on [F95zone](https://f95zone.to/members/quin2k.428612/) or [Discord](https://discord.com/users/292323791533506560).
 
 ## Requirements
@@ -51,38 +50,32 @@ Conflict Resolution: If the RolePlay-S mod is active, quick-save/load will overr
   - Heal a Wound
   - Exhausted
   - Give Money
-  - Force Unequip
-  - Summon NPC Submenu
-    - Auto-populated
-  - Edit World Difficulty
-  - Revive Unique NPCs Submenu
-  - Deepone Summon Max
-  - Open Bank Inventory
-  - Reset Game Difficulty (Doom Mode only)
+  - Night Vision [N]
+  - Remove Clothes [F3]
+  - Force Unequip [Shift+F3]
 - Toggles
   - Infinite Health/Stamina/Food/Money
-  - Unlock Gallery
   - Disable Dirt
   - Auto-Bandage
   - Auto-Clean
   - Auto-Cure
+  - Unlock Gallery
 - Character
-  - Primary
+  - Primary Stats
     - Health Edit
     - Stamina/Food Edits
     - Mood Edit
     - Dirt Edit
     - Arousal/Morality Edits
-  - Levels
+  - Levels & Traits
     - Max Levels
     - Current Level
     - Traits per Level
-    - Set current Trait Points (duplicate)
-  - Traits
     - Set Max Traits
-    - Set current Trait Points (duplicate)
-    - Edit Combat/Scoutcraft/Wisdom/Survival/Constitution
-    - Reset Traits (points allocated to skills, etc.)
+    - Set current Trait Points
+    - Traits
+      - Edit Combat/Scoutcraft/Wisdom/Survival/Constitution
+      - Reset Traits (points allocated to skills, etc.)
   - Race
     - Set Lona's Race
     - Enable Racial Skills (Abomination/Deepone)
@@ -101,20 +94,30 @@ Conflict Resolution: If the RolePlay-S mod is active, quick-save/load will overr
 - Game Tweaks
   - Item Decay Control
   - Increased Drops
+  - Prevent Discard
   - Equip Anything
-  - Friendly Fire Fix
+  - Fast Nap
   - From The Shadows Fix
   - Abomination Eat Fix
   - Difficulty Achievement Fix
-  - Prevent Discard
+- NPC
+  - Open Bank Inventory
+  - Edit World Difficulty
+  - Friendly Fire Fix
+  - Endless Contracts
   - Deepone Can Communicate
+  - Deepone Summon Max
+  - Summon NPC Submenu
+    - Auto-populated
+  - Revive Unique NPCs Submenu
+  - Reset Game Difficulty (Doom Mode only)
 - Items/Weapons/Armors/Status
   - Auto-populated 
 - RolePlay-S
-  - Edit Mana Rage Max
-  - Disable Save Limiter
   - Infinite MP
+  - Edit Mana Rage Max
   - Edit Mana Rage
+  - Disable Save Limiter
 - Config
   - View/Clear Hotkeys
   - Edit Menu Order 
@@ -129,20 +132,13 @@ Conflict Resolution: If the RolePlay-S mod is active, quick-save/load will overr
 - Currently in need of proper translation for default languages. I didn't want to publish something I couldn't test, so I did not include custom languages from the original.
   - Any native speakers should contact me ASAP with fixes!
 - Giving birth while Infinite Stamina is active causes issues (Lona is supposed to faint, but doesn't).
+- Should be loaded after RolePlay-S. It's minor - local-turned-global variables won't write until you save-and-load the first time.
 
 ## Planned Improvements
 
-- Possible modification ideas:
-  - A code review pass over the existing modules/cheats to double check everything still works as intended.
-  - More cheats: 
-    - Night Vision (inspired by RolePlayS), 
-    - Fast Sleeping (existing mod I always add)
-    - Hire Companion from Anywhere (better than random summon)
-  - Cache the Items/Weapons/Armor/Status editor lists instead of rebuilding them from scratch every time
-    the menu opens.
-  - Mod integration: expose config options in the cheat menu for LonaBellyBooba and FilterVisuals.
-  - Fix Trait Point calculation adding a decimal (`.0`) to the trait variable.
-  - Tweak Freckles so it's a list (Off/On tied to 0/1) instead of an edit_num.
+- Mod integration: Allow editing of my other mod ini files via this mod. Thanks to thatguy88 for the inspiration. 
+- Explore adding more 'Doom' features peacemeal (like pregnancy) - for those who want to experience some of the features without save-locks.
+- Identify global variables that should be able to act as local.
 
 ---
 
@@ -261,6 +257,7 @@ This started out as "I'd like to be able to edit variables" and when I realized 
 <details>
 <summary>Ver 1.0q Changelog</summary>
 
+- Having finally done the to-do-list left by the original author, I think this deserves a 1.0.
 - Added a in-menu way to access the Cheat Menu (same page as Load/Save).
 - Added a way to set/clear hotkeys directly (Only works w/ Commands and Toggles)
 - Added the ability to set hotkeys in-game with C, (key), C.
@@ -287,9 +284,13 @@ This started out as "I'd like to be able to edit variables" and when I realized 
   - Effectively 'refreshes' ini files, solving conflicts with hotkey changes.
 - Added an 'alert' to inform if a cheat may not be working until restart.
 - Added "Deepone Can Communicate" fix toggle inspired by Lona Can Communicate.
+- Added "Night Vision" cheat. Let me know if you want a toned-down version.
+- Added "Endless Contracts" cheat to prevent auto-dismisal of companions.
+- Added "Fast Nap" cheat similar to the stand-alone mod or what is in RolePlay-S.
 - Fixed "Force Remove" cheat to not remove hair (still removes chains/bondage).
+- Reworked fixes that require restart to be more clear about their function. Added a way to 'disable' these for future proofing (the reason I took up this mod was crashes related to one of these fixes).
 - Fixed long load times for Items/Armors/Weapons/States menus.
-- Fixed (?) Auto-Clean toggle.
+- Fixed (?) and mererged Auto-Clean toggle.
 - Moved some menu items around.
 
 </details>

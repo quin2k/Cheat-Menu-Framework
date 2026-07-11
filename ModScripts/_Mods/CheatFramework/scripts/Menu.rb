@@ -1,8 +1,8 @@
 # Cheat Framework: Main Menu
 
-##---------------------------------------------------------------------------
-## Hotkeys
-##---------------------------------------------------------------------------
+#---------------------------------------------------------------------------
+# Hotkeys
+#---------------------------------------------------------------------------
 module FrameworkUtils
   def self.process_hotkeys
     return unless FrameworkUtils.ingame?
@@ -16,15 +16,13 @@ module FrameworkUtils
         record = $framework.commands.dig(data[:group], data[:key])
         cmd = record && record[:action]
         next unless cmd
-        # Suppress every other hotkey while a submenu is mid-capture (assigning
-        # a new one), so pressing the target key doesn't also fire whatever
-        # is currently bound to it.
+        # Suppress hotkeys while a submenu is mid-capture, so the target key
+        # doesn't also fire whatever it's currently bound to.
         next if $framework.hotkey_capture_active
         # Don't fire cheat hotkeys while browsing the cheat menu itself.
         next if FrameworkUtils.in_menu?
-        # Letter/digit/punctuation hotkeys silently no-op if the game's own
-        # Key Binds menu currently claims that physical key - F-keys skip
-        # this check entirely (see HotkeySymbols).
+        # Letter/digit/punctuation hotkeys no-op if the game's own Key Binds
+        # menu claims that key; F-keys skip this check (see HotkeySymbols).
         next if HotkeySymbols.symbols.include?(key_const) && FrameworkUtils.claimed_by_game_controls?(key_const)
         next unless modifiers_match?(data[:mods])
         cmd.call
@@ -34,9 +32,8 @@ module FrameworkUtils
     end
   end
 
-  # Main Menu Toggle's key lives solely in Input::SYM_KEYS[:CF_CHEAT_MENU]
-  # (see hook_vanilla_keybind_menu below) - one source of truth shared with
-  # the vanilla Key Binds menu, not a :MENU-group entry in $framework.hotkeys.
+  # Reads the Main Menu Toggle key from Input::SYM_KEYS[:CF_CHEAT_MENU] (see
+  # hook_vanilla_keybind_menu), not a :MENU-group entry in $framework.hotkeys.
   def self.process_menu_toggle_hotkey
     return if $framework.hotkey_capture_active
     return unless Input.trigger?(:CF_CHEAT_MENU)
@@ -76,9 +73,9 @@ class CheatFramework
   end
 end
 
-##===========================================================================
-## Menu Initialization
-##===========================================================================
+#============================================================================
+# Menu Initialization
+#============================================================================
 module MenuFramework
   #==========================================================================
   # Framework-level helpers
@@ -215,15 +212,15 @@ module MenuFramework
     end
     # Unified command registration method
     def self.orig_register_command(opts)
-      key    = opts[:key]    # unique identifier for the command
-      name   = opts[:name]   # sub menu name for scene/window creation
-      type   = opts[:type]   # type of command :scene, :toggle : action :edit_num :edit_list
-      group  = opts[:group]  # sub menu group, usually in caps
-      state  = opts[:state]  # used to populate information :toggle, :edit_num, :edit_list only.
-      gdef   = opts[:gdef]   # global default: default value for a globals.ini-backed variable
-      hotkey = opts[:hotkey] # structured {key: "Shift+F4", sound: :sys_ok}
-      scene  = opts[:scene]  # :scene only (navigation)
-      action = opts[:action] # action performed by the command.
+      key    = opts[:key]
+      name   = opts[:name]   # scene/window name, when this command opens one
+      type   = opts[:type]
+      group  = opts[:group]
+      state  = opts[:state]  # only :toggle/:edit_num/:edit_list/:info use this
+      gdef   = opts[:gdef]
+      hotkey = opts[:hotkey]
+      scene  = opts[:scene]
+      action = opts[:action]
 
       #Handle group lookup/creation
       group = group.upcase.to_sym
@@ -277,6 +274,10 @@ module MenuFramework
         #msgbox "#{opts.inspect}"
       end
 
+      # Snapshot at boot: does the persisted value equal opts[:restart] (its
+      # numeric "disabled" sentinel)? Lets restart_mismatch? compare this against whatever the value is now.
+      restart_boot_disabled = (opts[:restart].is_a?(Numeric) && state) ? (eval(state) rescue nil) == opts[:restart] : nil
+
       $framework.commands[group][key] = {
         source: opts[:source],
         type:   opts[:type],
@@ -284,7 +285,7 @@ module MenuFramework
         label:  opts[:label],
         action: action,
         state:  opts[:state] ? -> { eval(opts[:state]) } : nil,
-        # Raw string form of state:, for the Local/Global override system (§5a).
+        # Raw string form of state:, used by the Local/Global override system.
         state_str: opts[:state],
         help1:  opts[:help1].is_a?(Proc) ? opts[:help1] : (opts[:help1] ? $framework.txt(opts[:help1]) : nil),
         help2:  opts[:help2].is_a?(Proc) ? opts[:help2] : (opts[:help2] ? $framework.txt(opts[:help2]) : nil),
@@ -299,8 +300,9 @@ module MenuFramework
         hide:   opts.has_key?(:hide)   ? opts[:hide]   : false,
         color:  opts.has_key?(:color)  ? opts[:color]  : false,
         restart: opts.has_key?(:restart) ? opts[:restart] : false,
+        restart_boot_disabled: restart_boot_disabled,
         # Local/Global override eligibility (Config > Edit Globals). nil = not
-        # eligible. false = natively Local. true = natively Global. See §5a.
+        # eligible. false = natively Local. true = natively Global.
         global: opts.has_key?(:global) ? opts[:global] : nil
       }
     end
@@ -308,9 +310,9 @@ module MenuFramework
 end
 
 
-##===========================================================================
-## Main Menu Window Initialization
-##===========================================================================
+#============================================================================
+# Main Menu Window Initialization
+#============================================================================
 class Window_CheatMainMenu < Window_Command
 
   #--------------------------------------------------------------------------
@@ -350,12 +352,11 @@ class Window_CheatMainMenu < Window_Command
 end # Window_CheatMainMenu
 
 
-##---------------------------------------------------------------------------
-## Main Menu Scene Initialization
-##---------------------------------------------------------------------------
-## Restart-needed warning draws into @help_window (otherwise unused in this
-## scene), overriding normal_color on that one instance to animate its color.
-##---------------------------------------------------------------------------
+#---------------------------------------------------------------------------
+# Main Menu Scene Initialization
+#---------------------------------------------------------------------------
+# Restart-needed warning draws into @help_window (otherwise unused here),
+# overriding normal_color on that instance to animate its color.
 class Scene_CheatMainMenu < Scene_MenuBase
   include Scene_Defaults
   def create_command_window
@@ -489,17 +490,8 @@ class Menu_System
   end
 end
 
-#---------------------------------------------------------------------------
-#  Vanilla Key Binds integration: "Open Cheat Menu" is a normal, rebindable
-#  entry in the game's own controls screen (InputUtils.keyList), and its key
-#  (Input::SYM_KEYS[:CF_CHEAT_MENU]) is the ONLY place the Main Menu Toggle's
-#  key lives - View Hotkeys' own Main Menu row (scripts/Controls.rb) reads
-#  and writes this exact same array, so there's a single source of truth
-#  instead of two independent ones drifting apart. Actual seeding happens in
-#  FrameworkConfig#init_menu_toggle_key (scripts/Config.rb), called once
-#  $framework.ini exists - this only registers the keyList entry, which
-#  doesn't need it.
-#---------------------------------------------------------------------------
+# Open Cheat Menu is a rebindable vanilla Key Binds entry. Its key
+# (Input::SYM_KEYS[:CF_CHEAT_MENU]) is the single source of truth, also used by View Hotkeys (Controls.rb).
 module FrameworkUtils
   def self.hook_vanilla_keybind_menu
     InputUtils.keyList << [
@@ -534,9 +526,9 @@ end
 
 FrameworkUtils.hook_vanilla_keybind_menu
 
-##===========================================================================
-## Default Category Initialization
-##===========================================================================
+#============================================================================
+# Default Category Initialization
+#============================================================================
 MenuFramework::MENU.register_command(
   type: :scene,
   key: :misc_menu,
@@ -568,7 +560,7 @@ MenuFramework::MENU.register_command(
   label: "menu:commands/npc",
   name: "CheatMenuNPCOptions",
   dict: :NPC,
-  order: 4
+  order: 5
 )
 MenuFramework::MENU.register_command(
   type: :scene,

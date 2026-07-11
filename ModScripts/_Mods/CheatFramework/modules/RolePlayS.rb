@@ -1,5 +1,5 @@
 FrameworkModule = {
-  name:       "RolePlayS", 
+  name:       "RolePlayS",
   key:        :roleplays,
   menu:       :ROLEPLAY,
   order:      120
@@ -7,43 +7,27 @@ FrameworkModule = {
 
 if $framework.roleplay_mod?
 
-  # Register Main Menu Command
+  #--------------------------------------------------------------------------
+  # Menu Commands
+  #--------------------------------------------------------------------------
   MenuFramework::MENU.register_command(
     type:   :scene,
     dict:   :ROLEPLAY,
     key:    :roleplays,
-    label:  "modules/others:commands/roleplays", 
+    label:  "modules/others:commands/roleplays",
     name:   "RolePlayS",
     order:  100
   )
 
-  # Register Toggle Command
   MenuFramework::SUBMENU.register_command(
     group:  :ROLEPLAY,
     type:   :toggle,
-    key:    "Infinite Saves", #should be unique
-    label:  "modules/others:commands/roleplays/saves",
-    state:  "$cheat_infinite_saves", #toggle variable
-    gdef:   false
-  )
-  MenuFramework::SUBMENU.register_command(
-    group:  :ROLEPLAY,
-    type:   :toggle,
-    key:    "Infinite Mana", #should be unique
+    key:    "Infinite Mana",
     label:  "modules/others:commands/roleplays/mana",
-    state:  "$cheat_infinite_mana", #toggle variable
+    state:  "$cheat_infinite_mana",
     hotkey: {key: "F4"},
-    gdef:   false
-  )
-  MenuFramework::SUBMENU.register_command(
-    group:  :ROLEPLAY,
-    type:   :edit_num,
-    key:    "Mana Rage",
-    label:  "modules/others:commands/roleplays/mana_rage",
-    state:  "$game_player.actor.mana_rage",
-    min:    -20,
-    max:    -> { $game_player.actor.mana_rage_max },
-    action: ->(v) { $game_player.actor.mana_rage = v }
+    gdef:   false,
+    order:  10
   )
   MenuFramework::SUBMENU.register_command(
     group:  :ROLEPLAY,
@@ -54,11 +38,33 @@ if $framework.roleplay_mod?
     min:    20,
     max:    5000,
    action: ->(v) { FrameworkUtils.apply_mana_rage_max(v) },
-    order:  200
+    order:  20
+  )
+  MenuFramework::SUBMENU.register_command(
+    group:  :ROLEPLAY,
+    type:   :edit_num,
+    key:    "Mana Rage",
+    label:  "modules/others:commands/roleplays/mana_rage",
+    state:  "$game_player.actor.mana_rage",
+    min:    -20,
+    max:    -> { $game_player.actor.mana_rage_max },
+    action: ->(v) { $game_player.actor.mana_rage = v },
+    order:  30
+  )
+  MenuFramework::SUBMENU.register_command(
+    group:  :ROLEPLAY,
+    type:   :toggle,
+    key:    "Infinite Saves",
+    label:  "modules/others:commands/roleplays/saves",
+    state:  "$cheat_infinite_saves",
+    gdef:   false,
+    order:  40
   )
 
-
-  # Overide Save System to prevent updating save counts.
+  #--------------------------------------------------------------------------
+  # Save System
+  #--------------------------------------------------------------------------
+  # Overrides the save system to prevent updating save counts.
   class Menu_System
     alias cheat_save_command_handler save_command_handler
     def save_command_handler
@@ -83,8 +89,10 @@ if $framework.roleplay_mod?
     end
   end
 
-
-  # Hotkeys hook for fast updates.
+  #--------------------------------------------------------------------------
+  # Per-Tick Effects
+  #--------------------------------------------------------------------------
+  # Hooks the framework's hotkey tick to also apply RolePlayS's live effects.
   class CheatFramework
     alias_method :hotkey_trigger_ROLEPLAYS, :hotkey_trigger
     def hotkey_trigger
@@ -93,7 +101,6 @@ if $framework.roleplay_mod?
     end
   end
 
-  #Actions per tick
   module FrameworkUtils
     def self.apply_roleplays_cheats
       return unless self.ingame?
@@ -120,10 +127,6 @@ if $framework.roleplay_mod?
       stat.check_current_stat("mana_rage")
     end
 
-
   end
-
-
-
 
 end #if RolePlayS enabled

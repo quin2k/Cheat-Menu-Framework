@@ -1,5 +1,5 @@
 commands/primary
-Основное
+Основные статистические данные
 
 commands/primary/health
 Здоровье
@@ -148,17 +148,11 @@ toggle/autobandage
 command_help/autobandage
 Автоматически убирает раны, кровь и повреждения отверстий.
 
-toggle/autocleanout
+toggle/autoclean
 Авто-Очистка (Внешняя)
 
-command_help/autocleanout
+command_help/autoclean
 Автоматически убирает кровь и всю сперму на поверхности тела.
-
-toggle/autocleanin
-Авто-Очистка (Внутренняя)
-
-command_help/autocleanin
-Автоматически убирает сперму из всех отверстий.
 
 toggle/autocure
 Авто-Лечение

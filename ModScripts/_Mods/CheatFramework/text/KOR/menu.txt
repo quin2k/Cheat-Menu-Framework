@@ -14,7 +14,7 @@ window_help/character1
 주인공의 속성을 변경합니다.
 
 commands/config
-설정 메뉴
+구성
 
 cheat_toggle/on
 켜기
@@ -34,11 +34,86 @@ Z를 눌러 전환합니다.
 command_help/edit
 편집하려면 Z 키를 누르세요.
 
+command_help/set_hotkey_hint
+C 키를 눌러 단축키를 설정하세요.
+
 command_help/num_edit1
 왼쪽/오른쪽을 눌러 잃거나 얻습니다.
 
 command_help/num_edit2
 SHIFT = x10, CTRL = x100.
 
+command_help/hotkey_capture1
+Shift/Ctrl/Alt 키와 다른 키를 함께 눌러 할당하고, Delete 키로 해제합니다.
+
+command_help/hotkey_capture2
+C 또는 X를 눌러 취소하세요.
+
 commands_status/locked
 치트 활성화됨
+
+warnings/restart_required
+일부 치트는 게임을 재시작해야만 작동할 수 있습니다.
+
+commands_status/restart_needed
+재시작
+
+commands/set_hotkeys
+단축키 보기/지우기
+
+command_help/set_hotkeys1
+현재 할당된 단축키를 확인하고 원하는 대로 해제할 수 있습니다.
+
+command_help/set_hotkeys2
+단축키를 추가하려면 명령 메뉴로 이동하여 C 키를 누르십시오.
+
+commands/edit_order
+메뉴 순서 수정
+
+command_help/edit_order1
+이 프레임워크의 메뉴 순서를 변경할 수 있습니다.
+
+command_help/edit_order2
+변경 사항을 저장하거나 취소하라는 메시지가 표시됩니다.
+
+commands/reset_order
+메뉴 순서 재설정
+
+command_help/reset_order1
+사용자 지정 메뉴 설정을 모두 프레임워크의 기본값으로 되돌립니다.
+
+command_help/reset_order2
+즉시 효력이 발생하며, 재시작이 필요하지 않습니다.
+
+commands/edit_globals
+전역 변수 편집
+
+command_help/edit_globals1
+로컬 변수 값이 전역 변수처럼 동작하도록 강제합니다(또는 그 반대로).
+
+command_help/edit_globals2
+Z 키를 눌러 로컬/글로벌 설정을 전환하거나 현재 값을 편집할 수 있습니다.
+
+command_help/local
+전역 설정이 아닙니다(설정에서 변경 가능).
+
+mode/local
+현지의
+
+mode/global
+글로벌
+
+mode/value_row
+현재 설정
+
+commands/reset_all_settings
+설정 초기화
+
+command_help/reset_all_settings1
+단축키, 메뉴 순서 및 재정의 설정을 초기화합니다.
+
+command_help/reset_all_settings2
+모듈/치트 기본 설정을 적용하려면 재시작해야 합니다.
+
+commands/cheat_menu_keybind
+치트 메뉴 열기

@@ -7,16 +7,17 @@ MenuFramework::SUBMENU.register_command(
   min:    0,
   max:    100,
   action: ->(v) { $story_stats["WorldDifficulty"] = v },
-  order:  70
+  order:  20
 )
 
 MenuFramework::SUBMENU.register_command(
-  group:  :MISC,
+  group:  :NPC,
   type:   :action,
   key:    "Disable Doom Mode",
   label:  "modules/others:commands/diff",
   help1:  "modules/others:command_help/diff",
   hide:   -> { $story_stats["Setup_Hardcore"] != 2 },
-  action: -> { $story_stats["Setup_Hardcore"] = 0 
+  order:  90,
+  action: -> { $story_stats["Setup_Hardcore"] = 0
                $story_stats["record_giveup_hardcore"] = 0 }
 )

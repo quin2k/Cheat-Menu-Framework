@@ -5,7 +5,9 @@ FrameworkModule = {
   menu:     :NONE
 }
 
-#Register Menu Command
+#--------------------------------------------------------------------------
+# Menu Commands
+#--------------------------------------------------------------------------
 MenuFramework::MENU.register_command(
   type:   :scene,
   key:    :items,
@@ -44,7 +46,7 @@ MenuFramework::SUBMENU.register_command(
   key:   "Bank Anywhere",
   label: "modules/invedit:commands/bank",
   hotkey: {key: "F2"},
-  order: 100,
+  order: 10,
   action: -> {
       SceneManager.goto(Scene_BankStorage)
       SceneManager.scene.prepare(System_Settings::STORAGE_BANK)
@@ -52,12 +54,12 @@ MenuFramework::SUBMENU.register_command(
 
 MenuFramework::SUBMENU.register_command(
   type:   :scene,
-  group:  :MISC,
+  group:  :NPC,
   key:    :summon,
   label:  "modules/invedit:commands/summon",
   name:   "CheatMenuSummon",
   dict:   :SUMMON,
-  order:  60
+  order:  70
 )
 
 #--------------------------------------------------------------------------
@@ -162,18 +164,12 @@ class Window_CheatMenuItems < Window_Command
     set_type(symbol)
   end
 
-  #--------------------------------------------------------------------------
-  # set_type
-  #--------------------------------------------------------------------------
   def set_type(type)
     @type = type
     refresh
     select(0)
   end
 
-  #--------------------------------------------------------------------------
-  # make_command_list
-  #--------------------------------------------------------------------------
   def make_command_list
     cache = case @type
             when :items    then MenuFramework::InvEditCache.items
@@ -183,9 +179,6 @@ class Window_CheatMenuItems < Window_Command
     cache.each { |text, item| add_command(text, :item, true, item) }
   end
 
-  #--------------------------------------------------------------------------
-  # draw_item
-  #--------------------------------------------------------------------------
   def draw_item(index)
     MenuFramework.force_font(contents) if contents
     contents.clear_rect(item_rect_for_text(index))
@@ -231,9 +224,6 @@ class Window_CheatMenuItems < Window_Command
   end
 
 
-  #--------------------------------------------------------------------------
-  # cursor_right
-  #--------------------------------------------------------------------------
   def cursor_right(wrap = false)
     SndLib.play_cursor
     $game_party.gain_item(current_ext, Input.press?(Input::KEYMAP[:SHIFT]) ? 10 : 1)
@@ -241,9 +231,6 @@ class Window_CheatMenuItems < Window_Command
     draw_item(index)
   end
 
-  #--------------------------------------------------------------------------
-  # cursor_left
-  #--------------------------------------------------------------------------
   def cursor_left(wrap = false)
     SndLib.play_cursor
     $game_party.lose_item(current_ext, Input.press?(Input::KEYMAP[:SHIFT]) ? 10 : 1)
@@ -253,6 +240,9 @@ class Window_CheatMenuItems < Window_Command
 end # Window_CheatMenuItems
 
 
+#--------------------------------------------------------------------------
+# Window_CheatMenuStatus
+#--------------------------------------------------------------------------
 class Window_CheatMenuStatus < Window_Command
   include Action_Window_Defaults
   include MenuFramework::VirtualScrollWindow
@@ -332,8 +322,8 @@ class Game_Actor
   def remove_one_state(state_id)
     state_id = $data_StateName[state_id].id if state_id.is_a?(String)
     return prp "erase_state #{state_id} not found", 1 if !state_id
-    @states.delete_at(@states.index(state_id) || @states.length) ## Line added to remove only one instance.
-    return if state?(state_id) ## Line added to prevent a stack from bugging.
+    @states.delete_at(@states.index(state_id) || @states.length) # Removes only one stacked instance.
+    return if state?(state_id) # Still stacked - stop here to avoid a bugged stack.
     # @state_turns.delete(state_id)
     @state_steps.delete(state_id)
   end
@@ -352,7 +342,7 @@ module MenuFramework
         summonable_keys << npc[0]
       end
 
-      # Compute folders (same logic as old compute_folders)
+      # Group by the key's leading CamelCase segment
       folder_map = Hash.new { |h, k| h[k] = [] }
 
       $data_EventLib.each_key do |key|
@@ -361,7 +351,6 @@ module MenuFramework
         camel = key.split(/(?=[A-Z])/).reject(&:empty?)
         next if camel.empty?
 
-        #folder = camel.first
         # Rename some folders for better grouping
         folder = {"Swine"=>"Wild","Player"=>"Baby","Deepone"=>"Fishkind","Gang"=>"Human"}.fetch(camel.first, camel.first)
 

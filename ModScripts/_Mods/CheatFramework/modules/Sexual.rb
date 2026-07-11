@@ -1,14 +1,14 @@
 FrameworkModule = {
-  name:       "Sexual Stats", #Scene/Window names would be Window_CheatMenuEdit_Lona.
-  key:        :sexual, #Menu key, also used to label source module.
-  menu:       :SEXUAL, #Dictionary / Group key.
+  name:       "Sexual Stats",
+  key:        :sexual,
+  menu:       :SEXUAL,
   depends_on: []
 }
 module MenuFramework
   module SUBMENU
-    #==========================================
+    #--------------------------------------------------------------------------
     # Character Editing Menu
-    #==========================================
+    #--------------------------------------------------------------------------
     register_command(
       group:  :LONA,
       type:   :scene,
@@ -18,9 +18,9 @@ module MenuFramework
       name:   "CheatMenuSexual",
       dict:   :SEXUAL,
     )
-    #------------------------------------------
-    # Damage 
-    #------------------------------------------
+    #--------------------------------------------------------------------------
+    # Damage
+    #--------------------------------------------------------------------------
     register_command(
       group:  :SEXUAL,
       type:   :edit_num,
@@ -54,14 +54,15 @@ module MenuFramework
       max:    5000,
       action: ->(v) { $game_player.actor.anal_damage = v }
     )
-    #------------------------------------------
+    #--------------------------------------------------------------------------
     # Damage Toggles
-    #------------------------------------------
+    #--------------------------------------------------------------------------
     register_command(
       group:  :SEXUAL,
       type:   :toggle,
       key:    "Toggle Vag Damage",
       label:  "modules/character:commands/sexual/dtoggle/v",
+      help1:  "menu:command_help/local",
       state:  "$game_player.actor.actStat.get_stat('vag_damage', 3) == 0",
       global: false, 
       action: -> {
@@ -77,6 +78,7 @@ module MenuFramework
       type:   :toggle,
       key:    "Toggle Urethra Damage",
       label:  "modules/character:commands/sexual/dtoggle/u",
+      help1:  "menu:command_help/local",
       state:  "$game_player.actor.actStat.get_stat('urinary_damage', 3) == 0",
       global: false, 
       action: -> {
@@ -92,6 +94,7 @@ module MenuFramework
       type:   :toggle,
       key:    "Toggle Anal Damage",
       label:  "modules/character:commands/sexual/dtoggle/a",
+      help1:  "menu:command_help/local",
       state:  "$game_player.actor.actStat.get_stat('anal_damage', 3) == 0",
       global: false, 
       action: -> {

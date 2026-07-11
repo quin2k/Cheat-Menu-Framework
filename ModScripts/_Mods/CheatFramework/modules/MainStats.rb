@@ -1,50 +1,53 @@
 FrameworkModule = {
   name:       "Main Stats",
-  key:         :main_stats, #Menu key, also used to label source module.
+  key:         :main_stats,
   order:      90,
   depends_on: []
 }
-#Registry
+
+#--------------------------------------------------------------------------
+# Menu Commands
+#--------------------------------------------------------------------------
 module MenuFramework
   module SUBMENU
-    # Register Infinite Health
     register_command(
       group:  :TOGGLES,
       type:   :toggle,
-      key:    "Infinite Health", #should be unique
+      key:    "Infinite Health",
       label:  "modules/mainstatus:toggle/health",
-      state:  "$cheat_infinite_health", #toggle variable
+      state:  "$cheat_infinite_health",
       hotkey: {key: "F4"},
-      gdef:   false
+      gdef:   false,
+      order:  10
     )
-    # Register Infinite Stamina
     register_command(
       group:  :TOGGLES,
       type:   :toggle,
-      key:    "Infinite Stamina", #should be unique
+      key:    "Infinite Stamina",
       label:  "modules/mainstatus:toggle/stamina",
-      state:  "$cheat_infinite_stamina", #toggle variable
+      state:  "$cheat_infinite_stamina",
       hotkey: {key: "F4"},
-      gdef:   false
+      gdef:   false,
+      order:  20
     )
-    # Register Infinite Food
     register_command(
       group:  :TOGGLES,
       type:   :toggle,
-      key:    "Infinite Food", #should be unique
+      key:    "Infinite Food",
       label:  "modules/mainstatus:toggle/food",
-      state:  "$cheat_infinite_food", #toggle variable
+      state:  "$cheat_infinite_food",
       hotkey: {key: "F4"},
-      gdef:   false
+      gdef:   false,
+      order:  30
     )
 
-    #------------------------------
+    #--------------------------------------------------------------------------
     # Legacy Cheats
-    #------------------------------
+    #--------------------------------------------------------------------------
     register_command(
       group:  :MISC,
       type:   :action,
-      key:    "Heal", #should be unique
+      key:    "Heal",
       label:  "modules/mainstatus:misc/heal",
       enable: -> { !($cheat_infinite_health && $cheat_infinite_stamina && $cheat_infinite_food) },
       action: -> {
@@ -57,7 +60,7 @@ module MenuFramework
     register_command(
       group:  :MISC,
       type:   :action,
-      key:    "Heal Wound", #should be unique
+      key:    "Heal Wound",
       label:  "modules/mainstatus:misc/heal_wound",
       enable: -> { !$cheat_autobandage },
       action: -> { $game_player.actor.heal_wound },
@@ -67,27 +70,25 @@ module MenuFramework
     register_command(
       group:  :MISC,
       type:   :action,
-      key:    "Faint", #should be unique
+      key:    "Faint",
       enable: -> { !$cheat_infinite_stamina },
       label:  "modules/mainstatus:misc/faint",
       action: -> { $game_player.actor.sta = -100 },
       order:  30
     )
 
-    #------------------------------
+    #--------------------------------------------------------------------------
     # Money Cheats
-    #------------------------------
-
-    #Register Infinite Money
+    #--------------------------------------------------------------------------
     register_command(
       group:  :TOGGLES,
       type:   :toggle,
       key:    "Infinite Money",
       label:  "modules/mainstatus:toggle/money",
       state:  "$cheat_infinite_money",
-      gdef:   false
+      gdef:   false,
+      order:  40
     )
-    # Register Money Now
     register_command(
       group:  :MISC,
       type:   :action,
@@ -101,7 +102,9 @@ module MenuFramework
 end
 
 
-#Hotkeys
+#--------------------------------------------------------------------------
+# Hotkey Hook
+#--------------------------------------------------------------------------
 class CheatFramework
   alias_method :hotkey_trigger_INFINITESTATS, :hotkey_trigger
   def hotkey_trigger
@@ -111,7 +114,9 @@ class CheatFramework
 end
 
 
-#Actions per tick
+#--------------------------------------------------------------------------
+# Per-Tick Application
+#--------------------------------------------------------------------------
 module FrameworkUtils
   def self.apply_infinite_stats
     return unless self.ingame?

@@ -32,16 +32,43 @@ commands/achievementfix
 难度成就修复
 
 command_help/achievementfix1
-简化每日计算的数学运算。
+如果适用，则对难度较低的题目给予学分。
+
+commands/deeponecommunicate
+Deepone 可以沟通
+
+command_help/deeponecommunicate1
+移除锁定 True Deepone 进行交互的硬编码检查。
+
+commands/fastnap
+快速小睡
+
+command_help/fastnap1
+休息时按住Ctrl键，即可在一回合内恢复体力。食物/体力比例不变。
+
+commands/endlesscontracts
+无尽的合同
+
+command_help/endlesscontracts1
+招募的同伴/追随者的合同永不过期。
+
+commands/nightvision
+夜视
+
+command_help/nightvision1
+强制地图暗部完全透明。立即生效，无需重启。
 
 command_help/fixcommand2
-设置完成后需要重启。
+需要重启。禁用此修复程序将卸载。
 
 commands/discard
 防止丢弃
 
 command_help/discard1
 脱下的衣物会进入你的物品栏。
+
+commands/unequip
+脱掉衣服
 
 commands/forceunequip
 强制卸下装备
@@ -80,7 +107,7 @@ command_help/diff
 强制禁用 DOOM 模式
 
 commands/siren
-Deepone召唤Max
+深渊召唤 Max
 
 command_help/siren1
 修改了塞壬召唤的总次数。

@@ -1,5 +1,5 @@
 commands/primary
-Primario
+Estadísticas primarias
 
 commands/primary/health
 Salud
@@ -20,10 +20,10 @@ commands/primary/morality
 Moralidad
 
 command_help/moral
-Una moralidad <30 provocará que los humanos ataquen.
+Una moralidad inferior a 30 provocará ataques humanos.
 
 commands/levels
-Niveles
+Niveles y rasgos
 
 commands/levels/level
 Nivel
@@ -65,7 +65,7 @@ commands/traits/combat
 Rasgo de combate
 
 commands/traits/scoutcraft
-Rasgo de Scoutcraft
+Rasgo de exploración
 
 commands/traits/wisdom
 Rasgo de sabiduría
@@ -74,16 +74,16 @@ commands/traits/survival
 Rasgo de supervivencia
 
 commands/traits/constitution
-Rasgo de Constitución
+Rasgo constitucional
 
 commands/traits/reset
 Restablecer rasgos
 
 command_help/reset1
-Restablece todos los rasgos (incluidas las habilidades)
+Restablece todos los rasgos (incluidas las habilidades).
 
 command_help/reset2
-Establece puntos de rasgo según el nivel * Rasgos por nivel.
+Establece puntos de rasgos según el nivel * Rasgos por nivel.
 
 commands/appearance
 Apariencia
@@ -92,13 +92,13 @@ commands/appearance/dirt
 Sucia
 
 toggle/dirt
-Desactivar la suciedad
+Desactivar suciedad
 
 command_help/dirt
-Establece el máximo de suciedad en 0. NO GLOBAL.
+Establece el nivel máximo de suciedad en 0.
 
 commands/appearance/freckles
-Pecas
+pecas
 
 commands/appearance/vpubes
 Vello púbico
@@ -113,13 +113,13 @@ commands/appearance/apubegrowth
 Crecimiento del vello anal
 
 command_help/pubes1
-Establecerlo en 0 evitará el crecimiento, 1+ lo habilita.
+Si se establece en 0, se impedirá el crecimiento; si es igual o superior a 1, se habilitará el crecimiento.
 
 command_help/pubegrowth1
-Tiempo entre crecimientos. A mayor crecimiento, menor.
+Tiempo entre crecimientos. Cuanto mayor sea el tiempo, más lento será el crecimiento.
 
 command_help/pubegrowth2
-Normalmente entre 3-12 días.
+Normalmente entre 3 y 12 días.
 
 commands/appearance/hair_color
 Color de pelo
@@ -148,23 +148,17 @@ Autovenda
 command_help/autobandage
 Elimina automáticamente heridas, sangre y daños en orificios.
 
-toggle/autocleanout
+toggle/autoclean
 Limpieza automática (fuera)
 
-command_help/autocleanout
-Elimina automáticamente la sangre y toda la suciedad de la superficie.
-
-toggle/autocleanin
-Limpieza automática (pulgadas)
-
-command_help/autocleanin
-Elimina automáticamente el semen de los orificios.
+command_help/autoclean
+Elimina automáticamente la sangre y el semen (tanto de entrada como de salida).
 
 toggle/autocure
 Autocurado
 
 command_help/autocure
-Elimina automáticamente ETS y parásitos.
+Elimina automáticamente las ETS y los parásitos.
 
 commands/race
 Cambiar de raza
@@ -191,13 +185,13 @@ commands/race/skills
 Habilidades raciales
 
 commands/race/skills/deepone
-Despertar (Bruja del Mar)
+Despierta (Bruja del Mar)
 
 commands/race/skills/abomeat
 Profanar (Abominación)
 
 commands/race/skills/abomgrab
-Látigo de Zarcillo (Abominación)
+Látigo de tentáculos (Abominación)
 
 window_help/race1
 Selecciona raza.
@@ -215,16 +209,16 @@ commands/sexual/dedit/a
 Daño anal
 
 commands/sexual/dtoggle/v
-Daño vaginal Alternar
+Activar/desactivar daño vaginal
 
 commands/sexual/dtoggle/u
-Daño uretral Alternar
+Activar/desactivar daño uretral
 
 commands/sexual/dtoggle/a
-Alternar daño anal
+Interruptor de daño anal
 
 commands/sexual/reset
 Restablecer estadísticas de sexo
 
 command_help/sexual/reset
-Virginizar a Lona. Puede tener consecuencias en ataques sexuales.
+Virginizar a Lona. Puede provocar un ataque sexual.

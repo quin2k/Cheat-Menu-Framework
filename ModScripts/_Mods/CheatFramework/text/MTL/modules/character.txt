@@ -1,5 +1,5 @@
 commands/primary
-Primary
+Primary Stats
 
 commands/primary/health
 Health
@@ -23,7 +23,7 @@ command_help/moral
 Morality <30 will cause humans to attack.
 
 commands/levels
-Levels
+Levels & Traits
 
 commands/levels/level
 Level
@@ -95,7 +95,7 @@ toggle/dirt
 Disable Dirt
 
 command_help/dirt
-Sets dirt max to 0. NOT GLOBAL.
+Sets maximum dirt to 0.
 
 commands/appearance/freckles
 Freckles
@@ -152,7 +152,7 @@ toggle/autoclean
 Auto-Clean
 
 command_help/autoclean
-Auto removes cum, its stains, and related blood.
+Auto removes blood and cum (in and out).
 
 toggle/autocure
 Auto-Cure
@@ -216,9 +216,6 @@ Urethral Damage Toggle
 
 commands/sexual/dtoggle/a
 Anal Damage Toggle
-
-command_help/sexual/dtoggle
-Sets max to 0. NOT GLOBAL.
 
 commands/sexual/reset
 Reset Sex Stats

@@ -8,13 +8,14 @@ FrameworkModule = {
 
 module MenuFramework
   module SUBMENU
-    #Register Pregnancy Menu Commands
-    #List-style Edit
+    #--------------------------------------------------------------------------
+    # Pregnancy Menu
+    #--------------------------------------------------------------------------
     register_command(
       group:  :LONA,
       type:   :scene,
       key:    :pregnancy,
-      label:  "modules/pregnancy:commands/preg", 
+      label:  "modules/pregnancy:commands/preg",
       name:   "CheatMenuPregnancy",
       dict:   :PREGNANCY,
       order:  60
@@ -22,10 +23,10 @@ module MenuFramework
     register_command(
       group:  :PREGNANCY,
       type:   :edit_list,
-      key:    "Pregnancy Difficulty", #should be unique to this dictionary
+      key:    "Pregnancy Difficulty",
       label:  "modules/pregnancy:commands/difficulty",
       state:  "$cheat_pregnancy_difficulty",
-      gdef:   -1, #default value
+      gdef:   -1,
       help1:  "modules/pregnancy:command_help/difficulty",
       order:  10,
       list:   [
@@ -35,11 +36,10 @@ module MenuFramework
                 { key:  2, label: "[#{$framework.txt("modules/pregnancy:commands/diff_doom")}]" }
               ]
     )
-    #Number-style Edit
     register_command(
       group:  :PREGNANCY,
       type:   :edit_num,
-      key:    "Seedbed", #should be unique to this dictionary
+      key:    "Seedbed",
       label:  "modules/pregnancy:commands/seedbed",
       state:  "$game_player.actor.stat['WombSeedBed']",
       help1:  "modules/pregnancy:command_help/seedbed",
@@ -48,18 +48,20 @@ module MenuFramework
       order:  20,
       action: ->(v) { FrameworkUtils.custom_state_edit("WombSeedBed", v) }
     )
-    #Toggle variable
     register_command(
       group:  :PREGNANCY,
       type:   :toggle,
       key:    "Protect Pregnancy",
       label:  "modules/pregnancy:commands/protect",
-      state:  "$cheat_protect_pregnancy", #toggle variable
+      state:  "$cheat_protect_pregnancy",
       gdef:   false,
       help1:  "modules/pregnancy:command_help/protect",
       order:  30
     )
-    #Sub-sub Menu Link
+
+    #--------------------------------------------------------------------------
+    # Impregnate Submenu
+    #--------------------------------------------------------------------------
     register_command(
       group:  :PREGNANCY,
       type:   :scene,
@@ -70,12 +72,11 @@ module MenuFramework
       order:  40,
       menu1:  "modules/pregnancy:menu_help/impreg_menu1",
       menu4:  "modules/pregnancy:menu_help/impreg_menu4"
-      )
-    #Sub-sub Menu Items =====================================
+    )
     register_command(
       group:  :IMPREGNATE,
       type:   :action,
-      key:    "Human", #should be unique to this dictionary
+      key:    "Human",
       label:  "modules/pregnancy:commands/impreg/human",
       color:  -> { $game_player.actor.baby_race == "Human" ? 16 : 0 },
       action: -> { MenuFramework::Pregnancy.impregnate("Human") },
@@ -84,7 +85,7 @@ module MenuFramework
     register_command(
       group:  :IMPREGNATE,
       type:   :action,
-      key:    "Moot", #should be unique to this dictionary
+      key:    "Moot",
       label:  "modules/pregnancy:commands/impreg/moot",
       color:  -> { $game_player.actor.baby_race == "Moot" ? 16 : 0 },
       action: -> { MenuFramework::Pregnancy.impregnate("Moot") },
@@ -93,7 +94,7 @@ module MenuFramework
     register_command(
       group:  :IMPREGNATE,
       type:   :action,
-      key:    "Deepone", #should be unique to this dictionary
+      key:    "Deepone",
       label:  "modules/pregnancy:commands/impreg/deepone",
       color:  -> { $game_player.actor.baby_race == "Deepone" ? 16 : 0 },
       action: -> { MenuFramework::Pregnancy.impregnate("Deepone") },
@@ -102,7 +103,7 @@ module MenuFramework
     register_command(
       group:  :IMPREGNATE,
       type:   :action,
-      key:    "Fishkind", #should be unique to this dictionary
+      key:    "Fishkind",
       label:  "modules/pregnancy:commands/impreg/fishkind",
       color:  -> { $game_player.actor.baby_race == "Fishkind" ? 16 : 0 },
       action: -> { MenuFramework::Pregnancy.impregnate("Fishkind") },
@@ -111,7 +112,7 @@ module MenuFramework
     register_command(
       group:  :IMPREGNATE,
       type:   :action,
-      key:    "Orkind", #should be unique to this dictionary
+      key:    "Orkind",
       label:  "modules/pregnancy:commands/impreg/orkind",
       color:  -> { $game_player.actor.baby_race == "Orkind" ? 16 : 0 },
       action: -> { MenuFramework::Pregnancy.impregnate("Orkind") },
@@ -120,7 +121,7 @@ module MenuFramework
     register_command(
       group:  :IMPREGNATE,
       type:   :action,
-      key:    "Goblin", #should be unique to this dictionary
+      key:    "Goblin",
       label:  "modules/pregnancy:commands/impreg/goblin",
       color:  -> { $game_player.actor.baby_race == "Goblin" ? 16 : 0 },
       action: -> { MenuFramework::Pregnancy.impregnate("Goblin") },
@@ -129,7 +130,7 @@ module MenuFramework
     register_command(
       group:  :IMPREGNATE,
       type:   :action,
-      key:    "Abomination", #should be unique to this dictionary
+      key:    "Abomination",
       label:  "modules/pregnancy:commands/impreg/abomination",
       color:  -> { $game_player.actor.baby_race == "Abomination" ? 16 : 0 },
       action: -> { MenuFramework::Pregnancy.impregnate("Abomination") },
@@ -138,7 +139,7 @@ module MenuFramework
     register_command(
       group:  :IMPREGNATE,
       type:   :action,
-      key:    "Clear", #should be unique to this dictionary
+      key:    "Clear",
       label:  "modules/pregnancy:commands/clear",
       help1:  "modules/pregnancy:command_help/clear1",
       help2:  "modules/pregnancy:command_help/clear2",
@@ -147,14 +148,15 @@ module MenuFramework
       action: -> { $game_player.actor.cleanup_after_birth },
       enable: -> { !$cheat_protect_pregnancy },
       order:  80
-
     )
-    #========================================================
-    #Conditional Commands (hidden if not pregnant)
+
+    #--------------------------------------------------------------------------
+    # Pregnancy Status (hidden unless currently pregnant)
+    #--------------------------------------------------------------------------
     register_command(
       group:  :PREGNANCY,
       type:   :info,
-      key:    "BabyRace", #should be unique to this dictionary
+      key:    "BabyRace",
       label:  "modules/pregnancy:info/babyRace",
       state:  "$game_player.actor.baby_race",
       hide:   -> { $game_player.actor.preg_level == 0 },
@@ -163,7 +165,7 @@ module MenuFramework
     register_command(
       group:  :PREGNANCY,
       type:   :edit_num,
-      key:    "PregRemaining", #should be unique to this dictionary
+      key:    "PregRemaining",
       label:  "modules/pregnancy:commands/days",
       state:  "$game_player.actor.preg_whenGiveBirth?",
       help1:  "modules/pregnancy:command_help/length1",
@@ -177,7 +179,7 @@ module MenuFramework
     register_command(
       group:  :PREGNANCY,
       type:   :edit_num,
-      key:    "Baby Health", #should be unique to this dictionary
+      key:    "Baby Health",
       label:  "modules/pregnancy:commands/health",
       state:  "$game_player.actor.baby_health",
       hide:   -> { $game_player.actor.preg_level == 0 },
@@ -188,7 +190,7 @@ module MenuFramework
     )
   end
 
-  #Custom functions if too complex for lambda.
+  # Helper functions too complex for an inline action: lambda.
   module Pregnancy
     def self.impregnate(baby_race)
       actor = $game_player.actor
@@ -203,8 +205,8 @@ module MenuFramework
       diff = current - target
       return if diff == 0
 
-      #Editing date of conception, not length of pregnancy. 
-      #Length is based on an array built at conception - increase pregnancy difficultyinstead.
+      # Shifts the conception date rather than the pregnancy length itself -
+      # length comes from an array fixed at conception; use difficulty to change that.
       preg = Game_Date.new(*actor.preg_date)
       if diff > 0
         preg.decDays(diff)
@@ -219,7 +221,7 @@ module MenuFramework
   end
 end
 
-#Functions in FrameworkUtils check per update.
+# Checked every tick via slow_trigger below.
 module FrameworkUtils
   def self.protect_pregnancy
     return unless self.ingame?
@@ -237,17 +239,16 @@ class CheatFramework
   end
 end
 
-#Grounded in original location for variable/function access.
+# Reopens Game_Actor directly (rather than aliasing) since it only needs
+# access to the actor's own state, not to replace existing behavior.
 class Game_Actor
-  #Based set_preg(race,day=0) in Reproduction.rb
+  # Mirrors set_preg(race, day=0) in Reproduction.rb.
   def force_pregnancy(baby_race, day = 0)
     return if empregnanted?
     $story_stats["dialog_preg_exped"] = 1
     @preg_date = $game_date.date
     @preg_race = baby_race
-    # Directly force result
-    @baby_race = baby_race  
-    ####
+    @baby_race = baby_race
     set_baby_health
     add_state("WombSeedBed") if System_Settings::RACE_PREG_GEN_SEEDBED_LEVEL[@preg_race]
     @preg_day = day
@@ -257,18 +258,17 @@ class Game_Actor
   end
 end
 
-#Overwrites create_preg_cycle in Reproduction.rb
+# Overwrites create_preg_cycle in Reproduction.rb.
 module Reproduction
   def create_preg_cycle
 		seedbed_level = self.stat["WombSeedBed"]
 		seedbed_level_deduction=System_Settings::RACE_SEX_SETTING[@baby_race][1][seedbed_level]
-    #Override difficulty if $cheat_pregnancy_difficulty set.
+    # Uses $cheat_pregnancy_difficulty in place of the story hardcore setting when set.
     difficulty = $cheat_pregnancy_difficulty >= 0 ? $cheat_pregnancy_difficulty : $story_stats["Setup_Hardcore"]
 		cycle_template = System_Settings::RACE_SEX_SETTING[@baby_race][0][difficulty]
-    ####
 		preg_cycle=Array.new
 		for i in 0...cycle_template.length-1
-			daysNeeded = [cycle_template[i].to_a.sample-seedbed_level_deduction, 1].max # line changed
+			daysNeeded = [cycle_template[i].to_a.sample-seedbed_level_deduction, 1].max
 			preg_cycle.push(daysNeeded)
 		end
 		preg_cycle.push(cycle_template.last.to_a.sample)

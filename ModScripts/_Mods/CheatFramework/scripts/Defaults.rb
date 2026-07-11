@@ -173,10 +173,12 @@ module Action_Window_Defaults
       right = ">>>"
     end
 
-
     # --- Adjust display name and color ---
     hotkey_tag = FrameworkUtils.hotkey_tag_for(@dictionary, key)
-    tagged_name = hotkey_tag ? "#{name} #{hotkey_tag}" : name
+    # edit_list/edit_num rows cannot be assigned a hotkey, so no conflict with restart tag.
+    restart_tag = hotkey_tag ? nil : (FrameworkUtils.restart_mismatch?(record) ? "[#{$framework.txt("menu:commands_status/restart_needed")}]" : nil)
+    tag = hotkey_tag || restart_tag
+    tagged_name = tag ? "#{name} #{tag}" : name
     display_name = enabled ? tagged_name : "#{tagged_name} (#{$framework.txt("menu:commands_status/locked")})"
     color = enabled ? color : text_color(8)
 
@@ -597,18 +599,11 @@ module Scene_Defaults
     SndLib.sys_ok
   end
   
-  # Base game code (e.g. Lona_Portrait#shake) assumes SceneManager.scene is
-  # always Scene_Map, calling SceneManager.scene.hud.perform_damage_effect -
-  # this crashes if a map event's damage popup fires while a cheat menu is
-  # open, since Scene_Map is the only scene with a real hud. Map events keep
-  # ticking while the cheat menu is open by design, so give every cheat scene
-  # a harmless no-op stand-in instead (Scene_Map's own hud accessor still
-  # takes priority for actual map scenes - this is purely a fallback).
+  # Small fix to prevent crashes when opening the menu during animations.
   def hud
     self
   end
 
-  def perform_damage_effect
 end
 
 #==============================================================================

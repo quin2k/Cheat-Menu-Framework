@@ -14,7 +14,7 @@ window_help/character1
 Cambiar propiedades del personaje principal.
 
 commands/config
-Menú de configuración
+Configuración
 
 cheat_toggle/on
 ACTIVADO
@@ -23,22 +23,97 @@ cheat_toggle/off
 DESACTIVADO
 
 command_help/execute
-Presione Z para ejecutar el comando.
+Pulsa Z para ejecutar el comando.
 
 command_help/scene
-Presione Z para ingresar a un submenú.
+Pulsa Z para acceder a un submenú.
 
 command_help/toggle
 Pulsa Z para alternar.
 
 command_help/edit
-Presione Z para editar.
+Pulsa Z para editar.
+
+command_help/set_hotkey_hint
+Pulsa C para configurar la tecla de acceso rápido.
 
 command_help/num_edit1
 Pulsa Izquierda/Derecha para perder/ganar.
 
 command_help/num_edit2
-MAYÚS = x10, CTRL = x100.
+SHIFT = x10, CTRL = x100.
+
+command_help/hotkey_capture1
+Mayús/Ctrl/Alt + una tecla para asignar, Suprimir para borrar.
+
+command_help/hotkey_capture2
+C o X para cancelar.
 
 commands_status/locked
-Truco activo
+Trampa activa
+
+warnings/restart_required
+Algunos trucos no surtirán efecto hasta que reinicies el juego.
+
+commands_status/restart_needed
+REANUDAR
+
+commands/set_hotkeys
+Ver/Borrar teclas de acceso rápido
+
+command_help/set_hotkeys1
+Consulta las teclas de acceso rápido asignadas actualmente y elimínalas si lo deseas.
+
+command_help/set_hotkeys2
+Para añadir una tecla de acceso rápido, ve al menú del comando y pulsa la tecla C.
+
+commands/edit_order
+Editar pedido del menú
+
+command_help/edit_order1
+Reordena cualquiera de los menús de este marco.
+
+command_help/edit_order2
+Se le pedirá que guarde o descarte los cambios.
+
+commands/reset_order
+Restablecer orden del menú
+
+command_help/reset_order1
+Restablece todas las configuraciones de menú personalizadas a los valores predeterminados del framework.
+
+command_help/reset_order2
+Surte efecto inmediatamente, no requiere reinicio.
+
+commands/edit_globals
+Editar variables globales
+
+command_help/edit_globals1
+Obligar a que un valor local se comporte como una variable global (o viceversa).
+
+command_help/edit_globals2
+Pulsa Z para alternar entre local y global o para editar el valor actual.
+
+command_help/local
+No es global (se puede cambiar en la configuración).
+
+mode/local
+Local
+
+mode/global
+Global
+
+mode/value_row
+Configuración actual
+
+commands/reset_all_settings
+Restablecer configuración
+
+command_help/reset_all_settings1
+Restablecer teclas de acceso rápido, orden del menú y anulaciones.
+
+command_help/reset_all_settings2
+Los valores predeterminados del módulo/truco requieren un reinicio.
+
+commands/cheat_menu_keybind
+Abrir menú de trucos

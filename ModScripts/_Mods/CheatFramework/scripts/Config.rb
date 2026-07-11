@@ -10,9 +10,9 @@ class FrameworkConfig
   attr_reader :key_ini
   attr_reader :var_ini
 
-  # ------------------------
+  #--------------------------------------------------------------------------
   # Initialize and load INI files
-  # ------------------------
+  #--------------------------------------------------------------------------
   def initialize(config_dir)
     Dir.mkdir(config_dir) unless Dir.exist?(config_dir)
     @key_ini = load_or_create(File.join(config_dir, "hotkeys.ini"))
@@ -29,9 +29,9 @@ class FrameworkConfig
     return ini
   end
 
-  # ------------------------
+  #--------------------------------------------------------------------------
   # Read / write helpers
-  # ------------------------
+  #--------------------------------------------------------------------------
   def read(section, key, default = "", ini)
     ini.read if ini.respond_to?(:read)
     if ini.has_section?(section) && ini[section].key?(key)
@@ -47,9 +47,9 @@ class FrameworkConfig
     ini.write
   end
 
-  # ------------------------
+  #--------------------------------------------------------------------------
   # Mod override handlers
-  # ------------------------
+  #--------------------------------------------------------------------------
   def get_enabled(key, default = true)
     val = read("Module Load Overrides", key, default, @mod_ini).to_s.downcase
     return true  if ["true", "1", "yes"].include?(val)
@@ -62,9 +62,9 @@ class FrameworkConfig
     val.to_i.nonzero? || default
   end
 
-  # ------------------------
+  #--------------------------------------------------------------------------
   # Global variables handlers
-  # ------------------------
+  #--------------------------------------------------------------------------
   def read_global(key, default)
     value = read("Global Variables", key, default, @var_ini)
     Object.instance_eval("$#{sanitize_key(key)} = #{format_value(value)}")
@@ -75,9 +75,9 @@ class FrameworkConfig
     write("Global Variables", key, value, @var_ini)
   end
 
-  # ------------------------
+  #--------------------------------------------------------------------------
   # Hotkey handling
-  # ------------------------
+  #--------------------------------------------------------------------------
   def init_hotkeys
     compare_hotkeys_to_ini
     clear_conflicting_hotkeys
@@ -86,9 +86,7 @@ class FrameworkConfig
   end
 
   # Self-clears any of our own hotkeys sitting on a key HotkeyReserved flags.
-  # The menu toggle's own key never appears in hotkey_defs at all anymore
-  # (see Input::SYM_KEYS[:CF_CHEAT_MENU], scripts/Menu.rb), so there's no
-  # self-exclusion to worry about here.
+  # The menu toggle's key never appears in hotkey_defs (see Input::SYM_KEYS[:CF_CHEAT_MENU], scripts/Menu.rb).
   def clear_conflicting_hotkeys
     $framework.hotkey_defs.each do |full_key, data|
       next unless data[:key]
@@ -160,9 +158,9 @@ class FrameworkConfig
     end
   end
 
-  # ------------------------
+  #--------------------------------------------------------------------------
   # Main Menu Toggle key (portable backup)
-  # ------------------------
+  #--------------------------------------------------------------------------
   # Input::SYM_KEYS[:CF_CHEAT_MENU]/$LonaINI (the game's own Key Binds menu)
   def init_menu_toggle_key
     if menu_toggle_key_configured_in_game?
@@ -203,9 +201,9 @@ class FrameworkConfig
     save_menu_toggle_key(live)
   end
 
-  # ------------------------
+  #--------------------------------------------------------------------------
   # Menu order handling
-  # ------------------------
+  #--------------------------------------------------------------------------
   def init_order
     compare_order_to_ini
     save_order_to_ini
@@ -301,11 +299,10 @@ class FrameworkConfig
     $framework.menu_order_dirty = false
   end
 
-  # ------------------------
+  #--------------------------------------------------------------------------
   # Local/Global override handling (Config > Edit Globals)
-  # ------------------------
-  # Unlike menu order/hotkeys, these two actively prune stale entries instead
-  # of leaving them unused.
+  #--------------------------------------------------------------------------
+  # Unlike menu order/hotkeys, these two actively prune stale entries.
   def init_force_modes
     compare_force_modes_to_ini
     save_force_modes_to_ini
@@ -384,9 +381,9 @@ class FrameworkConfig
     value
   end
 
-  # ------------------------
+  #--------------------------------------------------------------------------
   # Full reset (Config > Reset All Settings)
-  # ------------------------
+  #--------------------------------------------------------------------------
   def reset_all_settings
     @mod_ini.delete_section("Module Load Overrides")
     @mod_ini.delete_section("Load Order Overrides")
@@ -432,9 +429,9 @@ class FrameworkConfig
     [mods, base]
   end
 
-  # ------------------------
+  #--------------------------------------------------------------------------
   # Special handlers
-  # ------------------------
+  #--------------------------------------------------------------------------
   private
 
   def sanitize_key(key)

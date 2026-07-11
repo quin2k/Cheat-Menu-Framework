@@ -1,15 +1,15 @@
 FrameworkModule = {
-  name:       "Appearance", #Scene/Window names would be Window_CheatMenuEdit_Lona.
-  key:        :appearance, #Menu key, also used to label source module.
-  menu:       :APPEARANCE, #Dictionary / Group key.
+  name:       "Appearance",
+  key:        :appearance,
+  menu:       :APPEARANCE,
   depends_on: []
 }
 
 module MenuFramework
   module SUBMENU
-    #==========================================
+    #--------------------------------------------------------------------------
     # Character Editing Menu
-    #==========================================
+    #--------------------------------------------------------------------------
     register_command(
       group:  :LONA,
       type:   :scene,
@@ -21,9 +21,9 @@ module MenuFramework
       order:  70
     )
 
-    #------------------------------------------
-    # Appearance 
-    #------------------------------------------
+    #--------------------------------------------------------------------------
+    # Appearance
+    #--------------------------------------------------------------------------
     register_command(
       group:  :APPEARANCE,
       type:   :edit_list,
@@ -60,7 +60,9 @@ module MenuFramework
       label:  "modules/character:toggle/dirt",
       state:  "$game_player.actor.actStat.get_stat('dirt', 3) == 0",
       help1:  "modules/character:command_help/dirt",
-      global: false, 
+      help2:  "menu:command_help/local",
+      global: false,
+      order:  50,
       action: -> {
                   if $game_player.actor.actStat.get_stat('dirt', 3) == 0
                     $game_player.actor.actStat.set_stat('dirt', 255, 3)
@@ -129,37 +131,47 @@ module MenuFramework
       max:    365,
       action: ->(v) { $game_player.actor.pubicHair_Anal_GrowRate = v }
       )
+
+    #--------------------------------------------------------------------------
+    # Auto-Care Toggles
+    #--------------------------------------------------------------------------
       register_command(
       group:  :TOGGLES,
       type:   :toggle,
-      key:    "Auto Bandage", #should be unique
+      key:    "Auto Bandage",
       label:  "modules/character:toggle/autobandage",
       help1:  "modules/character:command_help/autobandage",
-      state:  "$cheat_autobandage", #toggle variable
-      gdef:   false
+      state:  "$cheat_autobandage",
+      gdef:   false,
+      order:  60
     )
     register_command(
       group:  :TOGGLES,
       type:   :toggle,
-      key:    "Auto Clean Inside", #should be unique
-      label:  "modules/character:toggle/autocleanin",
-      help1:  "modules/character:command_help/autocleanin",
-      state:  "$cheat_autoclean_in", #toggle variable
-      gdef:   false
+      key:    "Auto Clean",
+      label:  "modules/character:toggle/autoclean",
+      help1:  "modules/character:command_help/autoclean",
+      state:  "$cheat_autoclean_in",
+      gdef:   false,
+      order:  70
     )
     register_command(
       group:  :TOGGLES,
       type:   :toggle,
-      key:    "Auto Cure", #should be unique
+      key:    "Auto Cure",
       label:  "modules/character:toggle/autocure",
       help1:  "modules/character:command_help/autocure",
-      state:  "$cheat_autocure", #toggle variable
-      gdef:   false
+      state:  "$cheat_autocure",
+      gdef:   false,
+      order:  80
     )
   end
 end
 
-# Uses a slower trigger (~3 seconds) as wounds, etc. aren't as dangerous/frequent
+#--------------------------------------------------------------------------
+# Auto-Care Application
+#--------------------------------------------------------------------------
+# Uses a slower trigger (~3 seconds) since wounds etc. aren't as time-sensitive.
 class CheatFramework
   alias_method :slow_trigger_MODULE_AUTOSTATE, :slow_trigger
   def slow_trigger
@@ -184,11 +196,8 @@ module FrameworkUtils
     mass_remove_state(list)
   end
 
-  # Tank and state were separate cheats before, but cum states are just a
-  # display derived from cumsMeters, so they can't be cleaned independently
-  # of the tank without one undoing the other on the next h-event. Also
-  # bypasses healCums, which only drains one random vag_cums entry per call
-  # (base game bug) and can't fully empty a stacked tank.
+  # Clears the cum tank and its derived states together, since the states are
+  # computed from the tank. Bypasses healCums, which only drains one entry per call.
   def self.autoclean
     actor = $game_player.actor
     actor.vag_cums.clear

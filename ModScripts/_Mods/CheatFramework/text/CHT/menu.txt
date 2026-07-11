@@ -14,7 +14,7 @@ window_help/character1
 改变主角的属性。
 
 commands/config
-配置菜单
+配置
 
 cheat_toggle/on
 启用
@@ -34,11 +34,86 @@ command_help/toggle
 command_help/edit
 按 Z 键进行编辑。
 
+command_help/set_hotkey_hint
+按 C 设置快捷键。
+
 command_help/num_edit1
 按左/右键来减/增。
 
 command_help/num_edit2
 SHIFT = x10，CTRL = x100。
 
+command_help/hotkey_capture1
+Shift/Ctrl/Alt + 一个键用于分配，Delete 键用于清除。
+
+command_help/hotkey_capture2
+按C或X取消。
+
 commands_status/locked
 作弊激活
+
+warnings/restart_required
+有些作弊码需要重启游戏才能生效。
+
+commands_status/restart_needed
+重启
+
+commands/set_hotkeys
+查看/清除快捷键
+
+command_help/set_hotkeys1
+查看当前已分配的热键，并根据需要清除它们。
+
+command_help/set_hotkeys2
+要添加热键，请转到命令菜单并按 C。
+
+commands/edit_order
+编辑菜单顺序
+
+command_help/edit_order1
+重新排列此框架中的任何菜单。
+
+command_help/edit_order2
+系统会提示您保存或放弃更改。
+
+commands/reset_order
+重置菜单顺序
+
+command_help/reset_order1
+将所有自定义菜单设置清除为框架的默认值。
+
+command_help/reset_order2
+立即生效，无需重启。
+
+commands/edit_globals
+编辑全局变量
+
+command_help/edit_globals1
+强制局部值作为全局变量（或反之亦然）。
+
+command_help/edit_globals2
+按 Z 键可切换本地/全局模式或编辑当前值。
+
+command_help/local
+非全局设置（可在配置中更改）
+
+mode/local
+当地的
+
+mode/global
+全球的
+
+mode/value_row
+当前设置
+
+commands/reset_all_settings
+重置配置设置
+
+command_help/reset_all_settings1
+重置快捷键、菜单顺序和覆盖设置。
+
+command_help/reset_all_settings2
+模块/作弊默认设置需要重启。
+
+commands/cheat_menu_keybind
+打开作弊菜单

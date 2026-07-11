@@ -44,25 +44,28 @@ command_help/num_edit2
 SHIFT = x10, CTRL = x100.
 
 command_help/hotkey_capture1
-Shift/Ctrl/Alt + a key to assign.
+Shift/Ctrl/Alt + a key to assign, Delete to clear.
 
 command_help/hotkey_capture2
-C to cancel. Delete to clear.
+C or X to cancel.
 
 commands_status/locked
 Cheat Active
 
 warnings/restart_required
-Some changes have been made in the Cheat Menu :that will not update until the game is restarted.
+Some cheats will not be effective until you restart the game.
+
+commands_status/restart_needed
+RESTART
 
 commands/set_hotkeys
 View/Clear Hotkeys
 
 command_help/set_hotkeys1
-See every currently assigned hotkey, or clear one.
+See currently assigned hotkeys and clear them as desired.
 
 command_help/set_hotkeys2
-To assign or change, go it's menu and press C.
+To add a hotkey, go to the command's menu and press C.
 
 commands/edit_order
 Edit Menu Order
@@ -71,25 +74,28 @@ command_help/edit_order1
 Reorder any of this framework's menus.
 
 command_help/edit_order2
- 
+You'll be prompted to Save or Discard changes.
 
 commands/reset_order
-Reset Menu Order to Default
+Reset Menu Order
 
 command_help/reset_order1
-Clears all custom menu ordering back to default.
+Clears all custom menu settings back to the framework's defaults.
 
 command_help/reset_order2
- 
+Takes effect immediately, no restart needed.
 
 commands/edit_globals
 Edit Globals
 
 command_help/edit_globals1
-Force a variable to be local (per save) or global.
+Force local value to behave as global variable (or vise versa).
 
 command_help/edit_globals2
-Z: toggle Local/Global (top row) or the forced value (bottom row).
+Z to toggle Local/Global or edit current value.
+
+command_help/local
+Not Global (can be changed in Config)
 
 mode/local
 Local
@@ -107,7 +113,7 @@ command_help/reset_all_settings1
 Reset hotkeys, menu order, and overrides.
 
 command_help/reset_all_settings2
-Some elements require restart.
+Module/cheat defaults need a restart.
 
 commands/cheat_menu_keybind
 Open Cheat Menu

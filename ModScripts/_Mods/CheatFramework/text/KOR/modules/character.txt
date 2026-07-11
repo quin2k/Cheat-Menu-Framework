@@ -1,5 +1,5 @@
 commands/primary
-주요한
+주요 통계
 
 commands/primary/health
 건강
@@ -23,7 +23,7 @@ command_help/moral
 도덕성이 30 미만이면 인간이 공격하게 됩니다.
 
 commands/levels
-레벨
+레벨 및 특성
 
 commands/levels/level
 레벨
@@ -95,7 +95,7 @@ toggle/dirt
 먼지 비활성화
 
 command_help/dirt
-먼지 최대값을 0으로 설정합니다. 전체 설정은 아닙니다.
+최대 먼지량을 0으로 설정합니다.
 
 commands/appearance/freckles
 주근깨
@@ -113,7 +113,7 @@ commands/appearance/apubegrowth
 항문 털 성장
 
 command_help/pubes1
-값을 0으로 설정하면 성장이 방지되고, 1 이상으로 설정하면 성장이 활성화됩니다.
+값을 0으로 설정하면 성장이 억제되고, 1 이상으로 설정하면 성장이 활성화됩니다.
 
 command_help/pubegrowth1
 성장 간격. 높을수록 성장 속도가 느립니다.
@@ -148,17 +148,11 @@ toggle/autobandage
 command_help/autobandage
 상처, 출혈 및 손상 부위를 자동으로 제거합니다.
 
-toggle/autocleanout
+toggle/autoclean
 자동 청소(아웃)
 
-command_help/autocleanout
-혈액과 표면의 정액을 자동으로 제거합니다.
-
-toggle/autocleanin
-자동 청소(내부)
-
-command_help/autocleanin
-자동 세척기가 각종 구멍에서 정액을 제거합니다.
+command_help/autoclean
+혈액과 정액을 자동으로 제거합니다 (입구 및 출구).
 
 toggle/autocure
 자동 경화

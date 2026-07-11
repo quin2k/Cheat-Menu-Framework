@@ -1,5 +1,5 @@
 commands/primary
-基本的
+主要统计数据
 
 commands/primary/health
 生命
@@ -23,7 +23,7 @@ command_help/moral
 道德值低于30会导致人类互相攻击。
 
 commands/levels
-等級
+等級&天賦
 
 commands/levels/level
 级
@@ -95,7 +95,7 @@ toggle/dirt
 禁用污垢
 
 command_help/dirt
-将污垢最大值设置为 0。非全局设置。
+将最大污垢值设置为 0。
 
 commands/appearance/freckles
 雀斑
@@ -148,17 +148,11 @@ toggle/autobandage
 command_help/autobandage
 自动清除伤口、血迹和孔口损伤。
 
-toggle/autocleanout
+toggle/autoclean
 自動乾淨 （外部）
 
-command_help/autocleanout
-自动清除血液和所有表面的精液。
-
-toggle/autocleanin
-自動乾淨 （英寸）
-
-command_help/autocleanin
-自动清除孔洞中的精液。
+command_help/autoclean
+自动清除血液和精液（进出）。
 
 toggle/autocure
 自动固化

@@ -34,11 +34,86 @@ command_help/toggle
 command_help/edit
 Натисніть Z для редагування.
 
+command_help/set_hotkey_hint
+Натисніть C, щоб встановити гарячу клавішу.
+
 command_help/num_edit1
 Натискаємо стрілку вліво або вправо для налаштування.
 
 command_help/num_edit2
 SHIFT = x10, CTRL = x100.
 
+command_help/hotkey_capture1
+Shift/Ctrl/Alt + клавіша для призначення, Delete для очищення.
+
+command_help/hotkey_capture2
+C або X для скасування.
+
 commands_status/locked
 Чіт Активен
+
+warnings/restart_required
+Деякі чіти не будуть ефективними, доки ви не перезапустите гру.
+
+commands_status/restart_needed
+ПЕРЕЗАПУСК
+
+commands/set_hotkeys
+Переглянути/Очистити гарячі клавіші
+
+command_help/set_hotkeys1
+Перегляньте поточні призначені гарячі клавіші та очистіть їх за потреби.
+
+command_help/set_hotkeys2
+Щоб додати гарячу клавішу, перейдіть до меню команди та натисніть клавішу C.
+
+commands/edit_order
+Редагувати порядок меню
+
+command_help/edit_order1
+Змінити порядок будь-якого меню цього фреймворку.
+
+command_help/edit_order2
+Вам буде запропоновано зберегти або скасувати зміни.
+
+commands/reset_order
+Скинути порядок меню
+
+command_help/reset_order1
+Скидає всі налаштування користувацького меню до значень фреймворку за замовчуванням.
+
+command_help/reset_order2
+Набуває чинності негайно, перезавантаження не потрібне.
+
+commands/edit_globals
+Редагувати глобальні переменні
+
+command_help/edit_globals1
+Змусити локальне значення поводитися як глобальна змінна (або навпаки).
+
+command_help/edit_globals2
+Z для перемикання між локальним/глобальним режимами або редагування поточного значення.
+
+command_help/local
+Не глобально (можна змінити в конфігурації)
+
+mode/local
+Місцевий
+
+mode/global
+Глобальний
+
+mode/value_row
+Поточні налаштування
+
+commands/reset_all_settings
+Скинути налаштування конфігурації
+
+command_help/reset_all_settings1
+Скинути гарячі клавіші, порядок меню та заміни.
+
+command_help/reset_all_settings2
+Потрібне перезавантаження налаштувань модулів/читів за замовчуванням.
+
+commands/cheat_menu_keybind
+Відкрити меню читів

@@ -4,9 +4,9 @@
 #  Provides utility functions for the Cheat Framework.
 #===============================================================================
 
-#---------------------------------------------------------------------------
-#  Table of physical F-keys claimed outside CheatFramework
-#---------------------------------------------------------------------------
+#--------------------------------------------------------------------------
+# Table of physical F-keys claimed outside CheatFramework
+#--------------------------------------------------------------------------
 module HotkeyReserved
   TABLE = {
     "F10" => { label: "Console",              active: -> { true } },
@@ -17,10 +17,8 @@ module HotkeyReserved
     "F12" => { label: "Disabled by the game itself (F1AltEnterF12.dll)", active: -> { true } },
   }
 
-  # Main Menu Toggle isn't a fixed key anymore (see FrameworkUtils.
-  # current_menu_toggle_key, scripts/Menu.rb) - checked dynamically instead
-  # of a static TABLE entry, so this stays correct no matter which key it's
-  # currently bound to.
+  # Main Menu Toggle key is resolved dynamically via
+  # FrameworkUtils.current_menu_toggle_key (scripts/Menu.rb) rather than a static TABLE entry.
   def self.info_for(key)
     key_str = key.to_s.upcase
     return { label: "Main Menu Toggle", active: true } if key_str == FrameworkUtils.current_menu_toggle_key
@@ -36,15 +34,11 @@ module HotkeyReserved
   end
 end
 
-#---------------------------------------------------------------------------
-#  Letter/digit/punctuation hotkey names. Input:: symbol <-> clean display
-#  string (e.g. :LETTER_G <-> "G"), since KEYMAP's own names are either
-#  RGSS-internal (LETTER_*/KEY_*/N0) or, for punctuation, flat-out wrong -
-#  the Hime script's "masculine"/"guillemotright"/etc. entries are leftover
-#  X11 keysym names that happen to share numeric codes with the real
-#  Windows VK_OEM_* codes for ;/=/[/\/]/', not what their names suggest.
-#  LETTER_C is deliberately excluded - it's the hotkey-capture arm/disarm key.
-#---------------------------------------------------------------------------
+#--------------------------------------------------------------------------
+# Hotkey Display Names
+#--------------------------------------------------------------------------
+# Punctuation entries are leftover X11 keysym names reused for Windows VK_OEM_*
+# keys, not literal. LETTER_C is excluded - it's the hotkey-capture arm/disarm key.
 module HotkeySymbols
   DISPLAY_NAMES = {
     LETTER_A: "A", LETTER_B: "B", LETTER_D: "D", LETTER_E: "E", LETTER_F: "F",
@@ -72,10 +66,8 @@ module HotkeySymbols
     SYMBOLS_BY_NAME[name]
   end
 
-  # Unlike name_for, always returns something displayable - covers symbols
-  # this table deliberately excludes (like :LETTER_C, valid here even though
-  # it can't be assigned as a regular cheat hotkey) by pattern-stripping the
-  # RGSS-internal prefix directly instead of a table lookup.
+  # Unlike name_for, always returns something displayable, including symbols
+  # the table excludes (like :LETTER_C) by stripping the RGSS-internal prefix directly.
   def self.clean_name_for(symbol)
     return name_for(symbol) if DISPLAY_NAMES.key?(symbol)
     str = symbol.to_s
@@ -86,9 +78,9 @@ module HotkeySymbols
   end
 end
 
-#---------------------------------------------------------------------------
-#  Checks if the game is currently in an active gameplay state
-#---------------------------------------------------------------------------
+#--------------------------------------------------------------------------
+# FrameworkUtils
+#--------------------------------------------------------------------------
 module FrameworkUtils
   class << self
     attr_accessor :menu_scenes
@@ -123,10 +115,8 @@ module FrameworkUtils
     @menu_scenes.any? { |scene_class| SceneManager.scene_is?(scene_class) }
   end
 
-  # True if a letter/digit/punctuation hotkey's physical key is currently
-  # bound to one of the game's own controls (Input::SYM_KEYS, live-updated
-  # by the official Key Binds menu). Used to silently skip firing rather
-  # than unmap anything - F-keys don't go through this check at all.
+  # True if this hotkey's physical key is already bound to one of the game's
+  # own controls (Input::SYM_KEYS, live-updated by Key Binds). F-keys never go through this check.
   def self.claimed_by_game_controls?(key_const)
     vk_code = Input::KEYMAP[key_const]
     return false unless vk_code
@@ -146,10 +136,7 @@ module FrameworkUtils
     end
   end
 
-  #-------------------------------------------------------------------------
-  #  Sorts a $framework.commands dict by :order, preserving registration
-  #  order for ties (Hash#each_with_index index used as tiebreaker).
-  #-------------------------------------------------------------------------
+  # Sorts a $framework.commands dict by :order, using registration order as a tiebreaker.
   def self.sorted_commands(dictionary)
     return [] unless dictionary
     dictionary.to_a.each_with_index
@@ -157,14 +144,29 @@ module FrameworkUtils
               .map { |pair, _idx| pair }
   end
 
-  # Flags that a restart is needed for a restart: true command.
-  def self.mark_restart_needed(record)
-    $framework.restart_needed = true if record && record[:restart]
+  # For restart: <number> commands, true if the live value's on/off state now
+  # disagrees with what was snapshotted at boot (restart_boot_disabled).
+  def self.restart_mismatch?(record)
+    return false unless record && record[:restart].is_a?(Numeric) && record[:state]
+    boot_disabled = record[:restart_boot_disabled]
+    return false if boot_disabled.nil?
+    current_val = record[:state].call rescue nil
+    return false if current_val.nil?
+    (current_val == record[:restart]) != boot_disabled
   end
 
-  #-------------------------------------------------------------------------
-  #  Hotkey address lookup for the current row (Action_Window_Defaults)
-  #-------------------------------------------------------------------------
+  # Flags that a restart is needed: on every change for restart: true, or only
+  # when the change crosses the disabled/enabled boundary for restart: <number>.
+  def self.mark_restart_needed(record)
+    return unless record && record[:restart]
+    if record[:restart].is_a?(Numeric)
+      $framework.restart_needed = true if restart_mismatch?(record)
+    else
+      $framework.restart_needed = true
+    end
+  end
+
+  # Hotkey address lookup for the current row (Action_Window_Defaults).
   def self.group_for_dictionary(dict)
     return nil unless dict
     entry = $framework.commands.find { |_group, d| d.equal?(dict) }
@@ -195,9 +197,9 @@ module FrameworkUtils
 
 end
 
-#---------------------------------------------------------------------------
-#  Overrides to remove debug massaging in SceneManager
-#---------------------------------------------------------------------------
+#--------------------------------------------------------------------------
+# Overrides to remove debug massaging in SceneManager
+#--------------------------------------------------------------------------
 class Scene_Base
   def return_scene
     SceneManager.return
@@ -215,18 +217,18 @@ module SceneManager
   end
 end
 
-#---------------------------------------------------------------------------
-#  Window Base adjustment to reduce padding
-#---------------------------------------------------------------------------
+#--------------------------------------------------------------------------
+# Window Base adjustment to reduce padding
+#--------------------------------------------------------------------------
 class Window_Base < Window
   def new_line_x
     standard_padding / 2
   end
 end
 
-#---------------------------------------------------------------------------
-#  Scene Base update override to include cheat triggers
-#---------------------------------------------------------------------------
+#--------------------------------------------------------------------------
+# Scene Base update override to include cheat triggers
+#--------------------------------------------------------------------------
 class Scene_Base
   alias_method :update_Framework, :update
 
@@ -236,9 +238,9 @@ class Scene_Base
   end
 end
 
-#---------------------------------------------------------------------------
-#  Block the debug console (F10) while actively assigning a hotkey
-#---------------------------------------------------------------------------
+#--------------------------------------------------------------------------
+# Block the debug console (F10) while actively assigning a hotkey
+#--------------------------------------------------------------------------
 class Scene_Base
   alias_method :trigger_debug_window_entry_CheatFramework, :trigger_debug_window_entry
 
@@ -248,12 +250,11 @@ class Scene_Base
   end
 end
 
-#---------------------------------------------------------------------------
-#  Calls $framework.on_save_ready after a new game or a loaded save.
-#  Three hooks for full coverage: a fresh game, the standard Scene_Load path
-#  (covers both title-screen and in-game load), and Scene_CustomModeLoad
-#  (auto-saves, Doom-mode save, and RolePlay-S's quickload).
-#---------------------------------------------------------------------------
+#--------------------------------------------------------------------------
+# Calls $framework.on_save_ready after a new game or a loaded save
+#--------------------------------------------------------------------------
+# Three hooks for full coverage: a fresh game, Scene_Load (title-screen and
+# in-game load), and Scene_CustomModeLoad (auto-saves, Doom-mode save, RolePlay-S quickload).
 module DataManager
   class << self
     alias_method :setup_new_game_CheatFramework, :setup_new_game
@@ -293,7 +294,7 @@ class CheatFramework
   end
 end
 
-#Set update rate for other triggers.
+# Sets the update rate for other triggers.
 class CheatFramework
   alias_method :hotkey_trigger_TIMER, :hotkey_trigger
 
@@ -317,9 +318,9 @@ class CheatFramework
   end
 end
 
-#---------------------------------------------------------------------------
-#  Add extra triggerable keys to Input module
-#---------------------------------------------------------------------------
+#--------------------------------------------------------------------------
+# Add extra triggerable keys to Input module
+#--------------------------------------------------------------------------
 module Input
   F1 = [KEYMAP[:F1]]
   F2 = [KEYMAP[:F2]]

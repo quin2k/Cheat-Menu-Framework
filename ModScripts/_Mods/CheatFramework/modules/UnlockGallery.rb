@@ -1,22 +1,21 @@
 FrameworkModule = {
-  name:       "Unlock Gallery", 
-  key:         :unlock_gallery, 
-  menu:       :TOGGLES, #Group key.
+  name:       "Unlock Gallery",
+  key:         :unlock_gallery,
+  menu:       :TOGGLES,
   order:      90
 }
 
-#Register Toggle Command
 MenuFramework::SUBMENU.register_command(
     type:   :toggle,
-    key:    "Unlock Gallery", #should be unique
+    key:    "Unlock Gallery",
     label:  "modules/others:commands/gallery",
-    state:  "$cheat_unlock_gallery", #toggle variable
-    gdef:   false
+    state:  "$cheat_unlock_gallery",
+    gdef:   false,
+    order:  90
   )
 
-#Instead of granting the achievements, this version edits the recollection 
-# events to bypass the achievement check. This should work even if new 
-# events are added, as it's looking for the calls to GameLona.ini
+# Bypasses the gallery achievement check by rewriting the recollection room's
+# own event conditions, so it keeps working even if new events are added.
 class Game_Map
   alias setup_event_hack_UnlockGallery setup_event_hack
   def setup_event_hack
@@ -29,7 +28,7 @@ class Game_Map
     end
   end
 
-  #Function to automate map event editing
+  # Replaces matching script-command conditions across every event on the map.
   def override_matching(condition_str, replacement_str, page_index = 0)
     @map.events.each_value do |event|
       next unless event && event.pages
