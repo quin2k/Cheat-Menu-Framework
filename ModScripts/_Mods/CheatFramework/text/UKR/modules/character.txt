@@ -1,5 +1,5 @@
 commands/primary
-Основне
+Основні статистичні дані
 
 commands/primary/health
 Здоров’я
@@ -23,7 +23,7 @@ command_help/moral
 Репутация <30 приведе до нападу людей.
 
 commands/levels
-Рівень
+Рівень & Риси
 
 commands/levels/level
 Рівень
@@ -148,17 +148,11 @@ toggle/autobandage
 command_help/autobandage
 Автоматично знищує рани, кров і пошкодження відкривання.
 
-toggle/autocleanout
+toggle/autoclean
 Авто-Очистка (Зовнішня)
 
-command_help/autocleanout
+command_help/autoclean
 Автоматично збирає кров і всю сперму на поверхні тіла.
-
-toggle/autocleanin
-Авто-Очистка (Внутренняя)
-
-command_help/autocleanin
-Автоматично вибирає сперму з усіх відверстів.
 
 toggle/autocure
 Автолікування

@@ -1,15 +1,15 @@
 FrameworkModule = {
-  name:       "Appearance", #Scene/Window names would be Window_CheatMenuEdit_Lona.
-  key:        :appearance, #Menu key, also used to label source module.
-  menu:       :APPEARANCE, #Dictionary / Group key.
+  name:       "Appearance",
+  key:        :appearance,
+  menu:       :APPEARANCE,
   depends_on: []
 }
 
 module MenuFramework
   module SUBMENU
-    #==========================================
+    #--------------------------------------------------------------------------
     # Character Editing Menu
-    #==========================================
+    #--------------------------------------------------------------------------
     register_command(
       group:  :LONA,
       type:   :scene,
@@ -18,12 +18,12 @@ module MenuFramework
       menu1:  "menu:window_help/character1",
       name:   "CheatMenuAppearance",
       dict:   :APPEARANCE,
-      order:  50
+      order:  70
     )
 
-    #------------------------------------------
-    # Appearance 
-    #------------------------------------------
+    #--------------------------------------------------------------------------
+    # Appearance
+    #--------------------------------------------------------------------------
     register_command(
       group:  :APPEARANCE,
       type:   :edit_list,
@@ -51,7 +51,7 @@ module MenuFramework
       min:    0,
       max:    255,
       action: ->(v) { $game_player.actor.dirt = v },
-      order:  10
+      order:  45
     )
     register_command(
       group:  :TOGGLES,
@@ -60,6 +60,9 @@ module MenuFramework
       label:  "modules/character:toggle/dirt",
       state:  "$game_player.actor.actStat.get_stat('dirt', 3) == 0",
       help1:  "modules/character:command_help/dirt",
+      help2:  "menu:command_help/local",
+      global: false,
+      order:  50,
       action: -> {
                   if $game_player.actor.actStat.get_stat('dirt', 3) == 0
                     $game_player.actor.actStat.set_stat('dirt', 255, 3)
@@ -70,12 +73,14 @@ module MenuFramework
     })
     register_command(
       group:  :APPEARANCE,
-      type:   :edit_num,
+      type:   :edit_list,
       key:    "Freckles",
       label:  "modules/character:commands/appearance/freckles",
       state:  "$game_player.actor.stat['Freckle']",
-      min:    0,
-      max:    1,
+      list:   [
+                { key: 0, label: "[#{$framework.txt("menu:cheat_toggle/off")}]" },
+                { key: 1, label: "[#{$framework.txt("menu:cheat_toggle/on")}]" }
+              ],
       action: ->(v) { FrameworkUtils.custom_state_edit("Freckle", v) }
       )
     register_command(
@@ -126,50 +131,47 @@ module MenuFramework
       max:    365,
       action: ->(v) { $game_player.actor.pubicHair_Anal_GrowRate = v }
       )
+
+    #--------------------------------------------------------------------------
+    # Auto-Care Toggles
+    #--------------------------------------------------------------------------
       register_command(
       group:  :TOGGLES,
       type:   :toggle,
-      key:    "Auto Bandage", #should be unique
+      key:    "Auto Bandage",
       label:  "modules/character:toggle/autobandage",
       help1:  "modules/character:command_help/autobandage",
-      state:  "$cheat_autobandage", #toggle variable
-      hotkey: { key: "F4", sound: :sound_equip_armor},
-      global: false
+      state:  "$cheat_autobandage",
+      gdef:   false,
+      order:  60
     )
     register_command(
       group:  :TOGGLES,
       type:   :toggle,
-      key:    "Auto Clean Outside", #should be unique
-      label:  "modules/character:toggle/autocleanout",
-      help1:  "modules/character:command_help/autocleanout",
-      state:  "$cheat_autoclean_out", #toggle variable
-      hotkey: { key: "F4", sound: :sound_WaterSpla},
-      global: false
+      key:    "Auto Clean",
+      label:  "modules/character:toggle/autoclean",
+      help1:  "modules/character:command_help/autoclean",
+      state:  "$cheat_autoclean_in",
+      gdef:   false,
+      order:  70
     )
     register_command(
       group:  :TOGGLES,
       type:   :toggle,
-      key:    "Auto Clean Inside", #should be unique
-      label:  "modules/character:toggle/autocleanin",
-      help1:  "modules/character:command_help/autocleanin",
-      state:  "$cheat_autoclean_in", #toggle variable
-      hotkey: { key: "F4", sound: :sound_WaterSpla},
-      global: false
-    )
-    register_command(
-      group:  :TOGGLES,
-      type:   :toggle,
-      key:    "Auto Cure", #should be unique
+      key:    "Auto Cure",
       label:  "modules/character:toggle/autocure",
       help1:  "modules/character:command_help/autocure",
-      state:  "$cheat_autocure", #toggle variable
-      hotkey: { key: "F4", sound: :buff_life},
-      global: false
+      state:  "$cheat_autocure",
+      gdef:   false,
+      order:  80
     )
   end
 end
 
-# Uses a slower trigger (~3 seconds) as wounds, etc. aren't as dangerous/frequent
+#--------------------------------------------------------------------------
+# Auto-Care Application
+#--------------------------------------------------------------------------
+# Uses a slower trigger (~3 seconds) since wounds etc. aren't as time-sensitive.
 class CheatFramework
   alias_method :slow_trigger_MODULE_AUTOSTATE, :slow_trigger
   def slow_trigger
@@ -185,8 +187,7 @@ module FrameworkUtils
     return unless actor
 
     if $cheat_autobandage; autobandage end
-    if $cheat_autoclean_out; autoclean_out end
-    if $cheat_autoclean_in; autoclean_out end
+    if $cheat_autoclean; autoclean end
     if $cheat_autocure; autocure end
   end
 
@@ -195,16 +196,15 @@ module FrameworkUtils
     mass_remove_state(list)
   end
 
-  def self.autoclean_out
-    list = ["CumsCreamPie", "CumsMoonPie", "CumsHead", "CumsTop", "CumsMid", "CumsBot", "CumsMouth", "SemenBursting", "EffectScat", "EffectBleedVag", "EffectBleedAnal"]
-    mass_remove_state(list)
-  end
-
-  def self.autoclean_in
+  # Clears the cum tank and its derived states together, since the states are
+  # computed from the tank. Bypasses healCums, which only drains one entry per call.
+  def self.autoclean
     actor = $game_player.actor
-    actor.cumsMeters.each do |key, value|
-      actor.healCums(key, value) if value > 0
-    end
+    actor.vag_cums.clear
+    actor.cumsMeters.each_key { |key| actor.cumsMeters[key] = 0 }
+    actor.check_cum_maximum
+    actor.update_cum_state
+    mass_remove_state(["SemenBursting", "EffectScat", "EffectBleedVag", "EffectBleedAnal"])
   end
 
   def self.autocure

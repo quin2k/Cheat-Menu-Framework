@@ -15,9 +15,9 @@ class FrameworkLoader
     @loaded = []
   end
 
-  #----------------------------------------------
+  #--------------------------------------------------------------------------
   # Find all files in modules folder
-  #----------------------------------------------
+  #--------------------------------------------------------------------------
   def discover
     unless Dir.exist?(@path)
       return
@@ -50,7 +50,7 @@ class FrameworkLoader
       meta[:path] ||= file
       meta[:depends_on] ||= []
 
-      # apply INI overrides (your helper names)
+      # apply INI overrides
       meta[:enabled] = @ini.get_enabled("#{key}.enabled", meta.fetch(:enabled, true))
       meta[:order]   = @ini.get_load_order("#{key}.order", meta.fetch(:order, 999))
 
@@ -59,9 +59,9 @@ class FrameworkLoader
     end
   end
 
-  #----------------------------------------------
+  #--------------------------------------------------------------------------
   # Collects metadata from files without loading
-  #----------------------------------------------
+  #--------------------------------------------------------------------------
 def read_metadata(file)
   content = File.read(file)
   if content =~ /FrameworkModule\s*=\s*(\{.*?\})/m
@@ -83,17 +83,17 @@ def read_metadata(file)
 end
 
 
-  #----------------------------------------------
+  #--------------------------------------------------------------------------
   # Load called by init after discovery
-  #----------------------------------------------
+  #--------------------------------------------------------------------------
   def load_all
     resolve_dependencies
     load_enabled_modules
   end
 
-  #----------------------------------------------
+  #--------------------------------------------------------------------------
   # Reorder modules based on dependencies
-  #----------------------------------------------
+  #--------------------------------------------------------------------------
   def resolve_dependencies
     # Simple topological sort
     sorted = []
@@ -115,16 +115,14 @@ end
 
     @modules.each { |m| visit.call(m) }
     @modules = sorted.sort_by { |m| m[:order] }
-    #msgbox "Sorted Modules: #{@modules.inspect}"
   end
 
-  #----------------------------------------------
+  #--------------------------------------------------------------------------
   # Load modules, filtering disabled ones
-  #----------------------------------------------
+  #--------------------------------------------------------------------------
   def load_enabled_modules
     @modules.each do |mod|
       next unless mod[:enabled]
-      #msgbox "Loading #{mod[:name]}"
 
       begin
         safe_load(mod[:path])
@@ -135,9 +133,9 @@ end
     end
   end
 
-  #----------------------------------------------
+  #--------------------------------------------------------------------------
   # Safe loader with error handling
-  #----------------------------------------------
+  #--------------------------------------------------------------------------
   def safe_load(file)
     load_script($mod_manager.get_resource("cheatframework", "modules/#{file}"))
   end

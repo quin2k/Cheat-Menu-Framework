@@ -12,34 +12,33 @@
  - When using a new mod or bringing mods to a new version of LonaRPG, it is good practice to activate only a few at a time.
  - Once you've made your changes, move to the top and select "Restart to Apply" (or Accept and just restart manually)
    - If you get an error during startup, you may need to edit LonaRPG\UserData\GameMods.ini to deactivate a mod.
-   - If CheatFramework is giving you errors, delete/edit LonaRPG\UserData\Cheat Framework\globals.ini
    - If any of my mods give you errors, please notify me on [F95zone](https://f95zone.to/members/quin2k.428612/) or [Discord](https://discord.com/users/292323791533506560).
 
 ## Requirements
 
 Lowest game version tested: `0.10.0.2`<br>
-Highest game version tested: `0.10.4.5`
+Highest game version tested: `0.10.7.5.16`
 
 ## Hotkeys
-These should populate in the config when you load the mod for the first time.  If you want to disable any of these, set it to NONE instead of an F-key.  
+These should populate in the config when you load the mod for the first time.  If you want to disable any of these, go to Config > View/Clear Hotkeys.  Any command or toggle can be assigned a hotkey by pressing **C** to edit, a key or combo, then  **C** again to save. 
+
+Key combos can include Shift/Ctrl/Alt. Usable keys are any unused F-key, letter (T, Y, U, I, O, P, G, H, J, K, L, V, B, N, M), digit (1, 2, 3, 4, 5, 6, 7, 8, 9, 0), or symbol `; = , - . / [ \ ] '` that is not otherwise assigned in a known Mod or the Keyboard Key Bindings Menu. If there is a conflict, the shortcut key will not update. .
+
+The Cheat Menu still defaults to **F9**. You can change this in the hotkeys.ini, the Key Bindings Menu or in Config > View/Clear Hotkeys in the cheat menu. Can't get into the cheat menu? It is also mapped to the Settings Menu (the save/load screen).
 
 <details>
 <summary>Default Hotkeys</summary>
 
 - MENU.Main Menu = F9
-- MISC.Heal = F8
-- MISC.Heal Wound = F7
-- MISC.Money Now = F6
-- TOGGLES.Infinite Health = F5
-- TOGGLES.Infinite Stamina = F5
-- TOGGLES.Infinite Food = F5
-- TOGGLES.Auto Bandage = F4
-- TOGGLES.Auto Clean Outside = F4
-- TOGGLES.Auto Clean Inside = F4
-- TOGGLES.Auto Cure = F4
 - NONE.Remove Clothes = F3
 - MISC.Force Remove Clothes = Shift+F3
-- NPC.Bany Anywhere = F2
+- MISC.Bank Anywhere = F2
+- TOGGLES.Infinite Health = F4
+- TOGGLES.Infinite Stamina = F4
+- TOGGLES.Infinite Food = F4
+- ROLEPLAY.Infinite Mana = F4 (RolePlay-S mod only)
+
+Conflict Resolution: If the RolePlay-S mod is active, quick-save/load will override any hotkeys assigned to F5/F6. Similarly, if you reassign Cheat Menu's hotkey, any overlapping hotkeys will be unbound.
 
 </details>
 
@@ -51,66 +50,79 @@ These should populate in the config when you load the mod for the first time.  I
   - Heal a Wound
   - Exhausted
   - Give Money
-  - Fore Unequip
+  - Night Vision [N]
+  - Remove Clothes [F3]
+  - Force Unequip [Shift+F3]
 - Toggles
   - Infinite Health/Stamina/Food/Money
-  - Unlock Gallery
   - Disable Dirt
   - Auto-Bandage
-  - Auto-Clean (External)
-  - Auto-Clean (Internal) - not fully working
+  - Auto-Clean
   - Auto-Cure
+  - Unlock Gallery
 - Character
-  - Levels
+  - Primary Stats
+    - Health Edit
+    - Stamina/Food Edits
+    - Mood Edit
+    - Dirt Edit
+    - Arousal/Morality Edits
+  - Levels & Traits
     - Max Levels
     - Current Level
     - Traits per Level
-    - Set current Trait Points (duplicate)
-  - Traits
     - Set Max Traits
-    - Set current Trait Points (duplicate)
-    - Edit Combat/Scoutcraft/Wisdom/Survival/Constitution
-    - Reset Traits (points allocated to skills, etc.)
-  - Primary
-    - Health/Stamina/Food Edits
-    - Mood/Arousal/Dirty/Morality Edits
-  - Appearance
-    - Hair Color
-    - Freckles
-    - Pubic Hair
+    - Set current Trait Points
+    - Traits
+      - Edit Combat/Scoutcraft/Wisdom/Survival/Constitution
+      - Reset Traits (points allocated to skills, etc.)
+  - Race
+    - Set Lona's Race
+    - Enable Racial Skills (Abomination/Deepone)
   - Pregnancy
     - Preg Difficulty / Womb Seedbed (Impacts pregnancy length)
     - Protect Pregnancy (Infinite Baby Health)
     - Impregnate Lona (Submenu, force specific race)
-  - Race
-    - Set Lona's Race
-    - Enable Racial Skills (Abomination/Deepone)
+  - Appearance
+    - Hair Color
+    - Freckles
+    - Pubic Hair
   - Sexual
     - Vaginal/Urethra/Anal Damage Edit
     - Vaginal/Urethra/Anal Damage Toggle
     - Reset Sex Stats (Virginize)
-- NPC
-  - Open Bank Inventory
-  - Cummon NPC Submenu
-    - Auto-populated
-  - Revive Unique NPCs Submenu
-  - Deepone Summon Max
-  - Friendly Fire Fix
-  - Edit World Difficulty
-- Items/Weapons/Armors/Status
-  - Auto-populated 
 - Game Tweaks
   - Item Decay Control
   - Increased Drops
+  - Prevent Discard
   - Equip Anything
+  - Fast Nap
   - From The Shadows Fix
   - Abomination Eat Fix
   - Difficulty Achievement Fix
-  - Prevent Discard
+- NPC
+  - Open Bank Inventory
+  - Edit World Difficulty
+  - Friendly Fire Fix
+  - Endless Contracts
+  - Deepone Can Communicate
+  - Deepone Summon Max
+  - Summon NPC Submenu
+    - Auto-populated
+  - Revive Unique NPCs Submenu
+  - Reset Game Difficulty (Doom Mode only)
+- Items/Weapons/Armors/Status
+  - Auto-populated 
 - RolePlay-S
-  - Disable Save Limiter
   - Infinite MP
-  - Edit Mana Rage & Mana Rage Max
+  - Edit Mana Rage Max
+  - Edit Mana Rage
+  - Disable Save Limiter
+- Config
+  - View/Clear Hotkeys
+  - Edit Menu Order 
+  - Edit Globals 
+  - Reset Config Settings
 
 </details>
 
@@ -120,20 +132,13 @@ These should populate in the config when you load the mod for the first time.  I
 - Currently in need of proper translation for default languages. I didn't want to publish something I couldn't test, so I did not include custom languages from the original.
   - Any native speakers should contact me ASAP with fixes!
 - Giving birth while Infinite Stamina is active causes issues (Lona is supposed to faint, but doesn't).
+- Should be loaded after RolePlay-S. It's minor - local-turned-global variables won't write until you save-and-load the first time.
 
 ## Planned Improvements
 
-- Create a Config Menu interface with the following features:
-  - Options to edit hotkeys in-game.
-  - Consider handling other keys (M for example)
-  - Options to edit menu order (for select menus).
-  - Reset all settings to default (wipe select INIs)
-  - Ability to toggle loading of mods and load order
-    - (Don't expect load order to be a priority if menu order can be customized.)
-- Create detailed documentation for registration system.
-- Possible modification ideas:
-  - Ability to set select (or all) global variables to act as local variables (save specific vs. game specific).  Not sure this is feasable, but seemed like a useful feature.
-  - Ability to view all current global settings?
+- Mod integration: Allow editing of my other mod ini files via this mod. Thanks to thatguy88 for the inspiration. 
+- Explore adding more 'Doom' features peacemeal (like pregnancy) - for those who want to experience some of the features without save-locks.
+- Identify global variables that should be able to act as local.
 
 ---
 
@@ -247,6 +252,46 @@ This started out as "I'd like to be able to edit variables" and when I realized 
 - Code fix for Friendly Fire courtesy of Archangel Dejavu at RaidGame.ru
 - Identified and hopefully fixed file loading issues for some non-english characters.
   - Started utilizing mod loader to read files vs. attempting to do it directly.
+
+</details>
+<details>
+<summary>Ver 1.0q Changelog</summary>
+
+- Having finally done the to-do-list left by the original author, I think this deserves a 1.0.
+- Added a in-menu way to access the Cheat Menu (same page as Load/Save).
+- Added a way to set/clear hotkeys directly (Only works w/ Commands and Toggles)
+- Added the ability to set hotkeys in-game with C, (key), C.
+  - Includes conflict resolution, preventing/clearing hotkeys that conflict.
+- Implemented Config Menu with the following features:
+  - View Hotkeys 
+    - Ability to edit Cheat Menu hotkey in-game (F2, F3, F4, F7, F8, F9, F11)
+    - Ability to view/clear existing hotkey bindings.
+  - Edit Menu Order
+    - Ability to customize all menus (including the config menu, globals menu).
+  - Edit Globals
+    - Ability to force some local variables to act as global variables (across saves)
+    - Ability to force select global variables to act as local variables 
+      - (let me know if I should add more).
+    - Ability to set these variables in a centralized area.
+  - Reset Config Settings
+    - Returns config settings (order, hotkeys, etc.) back to default.
+
+</details>
+<details>
+<summary>Ver 1.1q Changelog</summary>
+
+- Moved ini files to mod folder (heard that has less conflicts for JoiPlay).
+  - Effectively 'refreshes' ini files, solving conflicts with hotkey changes.
+- Added an 'alert' to inform if a cheat may not be working until restart.
+- Added "Deepone Can Communicate" fix toggle inspired by Lona Can Communicate.
+- Added "Night Vision" cheat. Let me know if you want a toned-down version.
+- Added "Endless Contracts" cheat to prevent auto-dismisal of companions.
+- Added "Fast Nap" cheat similar to the stand-alone mod or what is in RolePlay-S.
+- Fixed "Force Remove" cheat to not remove hair (still removes chains/bondage).
+- Reworked fixes that require restart to be more clear about their function. Added a way to 'disable' these for future proofing (the reason I took up this mod was crashes related to one of these fixes).
+- Fixed long load times for Items/Armors/Weapons/States menus.
+- Fixed (?) and mererged Auto-Clean toggle.
+- Moved some menu items around.
 
 </details>
 ---

@@ -32,16 +32,43 @@ commands/achievementfix
 Difficulty Achievement Fix
 
 command_help/achievementfix1
-Streamlines math for day calculations.
+Gives credit for easier difficulties if applicable.
+
+commands/deeponecommunicate
+Deepone Can Communicate
+
+command_help/deeponecommunicate1
+Removes hardcoded checks that lock True Deepone out of interactions.
+
+commands/fastnap
+Fast Nap
+
+command_help/fastnap1
+Hold Ctrl while resting to restore stamina in one round. Same food/stamina ratio.
+
+commands/endlesscontracts
+Endless Contracts
+
+command_help/endlesscontracts1
+Recruited companions/followers contracts never expire.
+
+commands/nightvision
+Night Vision
+
+command_help/nightvision1
+Forces map darkness fully transparent. Applies instantly, no restart needed.
 
 command_help/fixcommand2
-REQUIRES A RESTART after being set.
+Requires Restart. Disable unloads this fix.
 
 commands/discard
 Prevent Discard
 
 command_help/discard1
 Stripped clothes go to your inventory.
+
+commands/unequip
+Remove Clothes
 
 commands/forceunequip
 Force Unequip

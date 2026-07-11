@@ -16,3 +16,4 @@
 # Ignore work/reference folders
 /ModScripts/_Mods/CheatFramework/New Folder/**
 /ModScripts/_Mods/CheatFramework/othermods/**
+/ModScripts/_Mods/CheatFramework/config/*.ini

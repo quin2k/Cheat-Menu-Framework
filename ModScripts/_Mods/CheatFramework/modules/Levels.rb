@@ -1,16 +1,16 @@
 FrameworkModule = {
-  name:       "Levels", #Scene/Window names would be Window_CheatMenuEdit_Lona.
-  key:        :levels, #Menu key, also used to label source module.
-  menu:       :LEVELS, #Dictionary / Group key.
+  name:       "Levels",
+  key:        :levels,
+  menu:       :LEVELS,
   order:      10,
   depends_on: []
 }
 
 module MenuFramework
   module SUBMENU
-    #==========================================
+    #--------------------------------------------------------------------------
     # Character Editing Menu
-    #==========================================
+    #--------------------------------------------------------------------------
     register_command(
       group:  :LONA,
       type:   :scene,
@@ -21,20 +21,10 @@ module MenuFramework
       dict:   :LEVELS,
       order:  40
     )
-    register_command(
-      group:  :LONA,
-      type:   :scene,
-      key:    :edit_trait,
-      label:  "modules/character:commands/traits",
-      menu1:  "menu:window_help/character1",
-      name:   "CheatMenuTraits",
-      dict:   :TRAITS,
-      order:  40
-    )
 
-    #------------------------------------------
-    # Levels 
-    #------------------------------------------
+    #--------------------------------------------------------------------------
+    # Levels
+    #--------------------------------------------------------------------------
     register_command(
       group:  :LEVELS,
       type:   :edit_num,
@@ -42,10 +32,10 @@ module MenuFramework
       label:  "modules/character:commands/levels/max_level",
       state:  "$cheat_variables_max_level",
       hide:   -> { $framework.roleplay_mod? },
-      global: 99,
-      min:    50, #I mean, if they want to...
+      gdef:   99,
+      min:    50, # Allowed below the 99 default.
       max:    999,
-      order:  220
+      order:  10
     )
     register_command(
       group:  :LEVELS,
@@ -69,52 +59,31 @@ module MenuFramework
       label:  "modules/character:commands/levels/traits_per_level",
       state:  "$cheat_variables_traits_per_level",
       hide:   -> { $framework.roleplay_mod? },
-      global: 1,
+      gdef:   1,
       help1:  "modules/character:command_help/tpl1",
       help2:  "modules/character:command_help/lvl",
       min:    1,
       max:    20,
       action: ->(v) { $cheat_variables_traits_per_level = v
-                      $framework.ini.write_global("Traits Per Level", v) 
+                      $framework.ini.write_global("Traits Per Level", v)
                       $game_player.actor.trait_point = FrameworkUtils.calc_trait_points(false)
                     },
-      order:  40
+      order:  30
     )
-    # Intentional duplicate to display changes caused by Level and TPL
     register_command(
       group:  :LEVELS,
-      type:   :info,
-      key:    "Trait Points Info",
-      label:  "modules/character:commands/traits/trait_points",
-      state:  "$game_player.actor.trait_point",
-      color:  -> { 8 },
-      help1:  -> {         
-        to = FrameworkUtils.calc_trait_points(false)
-        text = "#{$framework.txt("modules/character:command_help/tp1")}: #{to}"
-        },
-      help2:  -> {
-        ba,sk,tr,to = FrameworkUtils.calc_trait_points(true)
-        text = "#{ba}(#{$framework.txt("modules/character:command_help/tp2")}) - #{sk}(#{$framework.txt("modules/character:command_help/tp3")}) - #{tr}(#{$framework.txt("modules/character:command_help/tp4")}"
-        },
-      order:  50
-    )
-
-    #------------------------------------------
-    # Traits
-    #------------------------------------------
-    register_command(
-      group:  :TRAITS,
       type:   :edit_num,
       key:    "Max Traits",
       label:  "modules/character:commands/traits/max_traits",
       state:  "$cheat_variables_max_stat",
-      global: 99,
+      gdef:   99,
       min:    99,
       max:    999,
-      order:  230
+      restart: true, # baked into LONA_STAT_DEFAULT at load time below - LonaActorStat.new only ever reads that snapshot
+      order:  40
     )
     register_command(
-      group:  :TRAITS,
+      group:  :LEVELS,
       type:   :edit_num,
       key:    "Trait Points",
       label:  "modules/character:commands/traits/trait_points",
@@ -132,6 +101,21 @@ module MenuFramework
       action: ->(v) { $game_player.actor.trait_point = v },
       order:  50
     )
+    register_command(
+      group:  :LEVELS,
+      type:   :scene,
+      key:    :edit_trait,
+      label:  "modules/character:commands/traits",
+      menu1:  "menu:window_help/character1",
+      name:   "CheatMenuTraits",
+      dict:   :TRAITS,
+      order:  60
+    )
+
+
+    #--------------------------------------------------------------------------
+    # Traits
+    #--------------------------------------------------------------------------
     register_command(
       group:  :TRAITS,
       type:   :edit_num,
@@ -265,7 +249,7 @@ class Game_Actor < Game_Battler
   end
 end
 
-# Helper function for the section below.
+# Raises the caps LonaActorStat.new reads for max stats and traits.
 class LonaActorStat < ActorStat
   def self.override_stat(max_val)
     [0, 0, max_val, max_val, 0, 0, 0]
@@ -278,8 +262,10 @@ class LonaActorStat < ActorStat
   end
 end
 
+#--------------------------------------------------------------------------
+# RolePlay-S Compatibility Overrides
+#--------------------------------------------------------------------------
 if $mod_manager.mods['RolePlayS'] && !$mod_manager.mods['RolePlayS'].enabled
-# Overrides max level check
   class Game_Actor < Game_Battler
     def max_level
         return $cheat_variables_max_level

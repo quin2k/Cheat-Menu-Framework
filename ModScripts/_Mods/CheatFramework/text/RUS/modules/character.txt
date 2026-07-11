@@ -1,5 +1,5 @@
 commands/primary
-Основное
+Основные статистические данные
 
 commands/primary/health
 Здоровье
@@ -17,10 +17,10 @@ commands/primary/arousal
 Возбуждение
 
 commands/primary/morality
-Репутация
+Мораль
 
 command_help/moral
-Репутация <30 приведет к нападению людей.
+Мораль <30 приведет к нападению людей.
 
 commands/levels
 Уровни
@@ -148,17 +148,11 @@ toggle/autobandage
 command_help/autobandage
 Автоматически убирает раны, кровь и повреждения отверстий.
 
-toggle/autocleanout
-Авто-Очистка (Внешняя)
+toggle/autoclean
+Авто-Очистка
 
-command_help/autocleanout
-Автоматически убирает кровь и всю сперму на поверхности тела.
-
-toggle/autocleanin
-Авто-Очистка (Внутренняя)
-
-command_help/autocleanin
-Автоматически убирает сперму из всех отверстий.
+command_help/autoclean
+Автоматически убирает кровь и сперму (внутри и снаружи).
 
 toggle/autocure
 Авто-Лечение

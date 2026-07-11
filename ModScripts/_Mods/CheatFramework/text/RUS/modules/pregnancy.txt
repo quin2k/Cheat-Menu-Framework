@@ -2,7 +2,7 @@ commands/preg
 Беременность
 
 commands/difficulty
-Трудности беременности
+Сложность беременности
 
 commands/diff_off
 ВЫКЛ

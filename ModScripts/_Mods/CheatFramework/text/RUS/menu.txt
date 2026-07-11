@@ -34,11 +34,86 @@ command_help/toggle
 command_help/edit
 Нажмите Z для редактирования.
 
+command_help/set_hotkey_hint
+Нажмите клавишу C, чтобы назначить горячую клавишу.
+
 command_help/num_edit1
 Нажимаем стрелку влево или вправо для настройки.
 
 command_help/num_edit2
 SHIFT = x10, CTRL = x100.
 
+command_help/hotkey_capture1
+Нажмите Shift/Ctrl/Alt + клавишу для назначения, Delete для удаления.
+
+command_help/hotkey_capture2
+Для отмены используйте C или X.
+
 commands_status/locked
 Чит Активен
+
+warnings/restart_required
+Некоторые читы не вступят в силу, пока вы не перезапустите игру.
+
+commands_status/restart_needed
+ПЕРЕЗАПУСК
+
+commands/set_hotkeys
+Просмотр/Очистка горячих клавиш
+
+command_help/set_hotkeys1
+Просмотрите назначенные в данный момент горячие клавиши и снимите их при необходимости.
+
+command_help/set_hotkeys2
+Чтобы добавить горячую клавишу, перейдите в меню команды и нажмите клавишу C.
+
+commands/edit_order
+Изменить порядок блюд в меню
+
+command_help/edit_order1
+Изменяйте порядок пунктов меню в этом фреймворке.
+
+command_help/edit_order2
+Вам будет предложено сохранить или отменить изменения.
+
+commands/reset_order
+Сбросить порядок пунктов меню
+
+command_help/reset_order1
+Сбрасывает все пользовательские настройки меню до значений по умолчанию, установленных в фреймворке.
+
+command_help/reset_order2
+Вступает в силу немедленно, перезапуск не требуется.
+
+commands/edit_globals
+Редактировать глобальные параметры
+
+command_help/edit_globals1
+Принудительное использование локального значения в качестве глобальной переменной (или наоборот).
+
+command_help/edit_globals2
+Нажмите Z для переключения между локальным и глобальным режимами или для редактирования текущего значения.
+
+command_help/local
+Не является глобальной настройкой (можно изменить в настройках).
+
+mode/local
+Местный
+
+mode/global
+Глобальный
+
+mode/value_row
+Текущие настройки
+
+commands/reset_all_settings
+Сбросить настройки конфигурации
+
+command_help/reset_all_settings1
+Сбросить горячие клавиши, порядок пунктов меню и переопределения.
+
+command_help/reset_all_settings2
+Для сброса настроек модуля/читов по умолчанию требуется перезапуск.
+
+commands/cheat_menu_keybind
+Открыть меню читов

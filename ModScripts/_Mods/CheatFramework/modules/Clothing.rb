@@ -1,38 +1,43 @@
 FrameworkModule = {
-  name:       "Clothing Utils", 
-  key:        :clothing_utils, 
+  name:       "Clothing Utils",
+  key:        :clothing_utils,
 }
 
+#--------------------------------------------------------------------------
+# Menu Commands
+#--------------------------------------------------------------------------
 module MenuFramework
   module SUBMENU
-    #------------------------------------------
-    # Toggles 
-    #------------------------------------------
     register_command(
       group:  :FIXES,
       type:   :toggle,
-      key:    "Prevent Discard", #should be unique to this dictionary
+      key:    "Prevent Discard",
       label:  "modules/others:commands/discard",
       help1:  "modules/others:command_help/discard1",
       help2:  "modules/others:command_help/fixcommand2",
       state:  "$cheat_prevent_clothing_discard",
-      global: false
-    )
-    register_command(
-      group:  :NONE,
-      type:   :action,
-      key:    "Remove Clothes", #should be unique to this dictionary
-      hotkey: {key: "F3"},
-      action: -> { FrameworkUtils.unequipall(false) }
+      gdef:   false,
+      restart: true,
+      order:  30
     )
     register_command(
       group:  :MISC,
       type:   :action,
-      key:    "Force Remove Clothes", #should be unique to this dictionary
+      key:    "Remove Clothes",
+      label:  "modules/others:commands/unequip",
+      hotkey: {key: "F3"},
+      action: -> { FrameworkUtils.unequipall(false) },
+      order:  60
+    )
+    register_command(
+      group:  :MISC,
+      type:   :action,
+      key:    "Force Remove Clothes",
       label:  "modules/others:commands/forceunequip",
       help1:  "modules/others:command_help/forceunequip1",
       hotkey: {key: "Shift+F3"},
-      action: -> { FrameworkUtils.unequipall(true) }
+      action: -> { FrameworkUtils.unequipall(true) },
+      order:  70
     )
   end
 end
@@ -40,15 +45,21 @@ end
 module FrameworkUtils
   def self.unequipall(force)
     if self.ingame?
-      $game_player.actor.equip_slots.size.times do |i|
-        next if i == 7 and force == false
-        $game_player.actor.change_equip(i, nil) if $game_player.actor.equip_change_ok?(i) or force
+      actor = $game_player.actor
+      actor.equip_slots.size.times do |i|
+        item = actor.equips[i]
+        next if item && item.type_tag == "Hair"
+        bondage = item && item.type_tag == "Bondage"
+        actor.change_equip(i, nil) if actor.equip_change_ok?(i) || (force && bondage)
         SndLib.sound_equip_armor
       end
     end
   end
 end
 
+#--------------------------------------------------------------------------
+# Prevent Discard Patch
+#--------------------------------------------------------------------------
 if $cheat_prevent_clothing_discard
   module GIM_CHCG
     def combat_remove_random_equip_exec(tar_name,eqp_target=combat_hit_get_removable_slots,summon=true)

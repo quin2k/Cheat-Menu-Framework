@@ -1,106 +1,110 @@
 FrameworkModule = {
   name:       "Main Stats",
-  key:         :main_stats, #Menu key, also used to label source module.
+  key:         :main_stats,
   order:      90,
   depends_on: []
 }
-#Registry
+
+#--------------------------------------------------------------------------
+# Menu Commands
+#--------------------------------------------------------------------------
 module MenuFramework
   module SUBMENU
-    # Register Infinite Health
     register_command(
       group:  :TOGGLES,
       type:   :toggle,
-      key:    "Infinite Health", #should be unique
+      key:    "Infinite Health",
       label:  "modules/mainstatus:toggle/health",
-      state:  "$cheat_infinite_health", #toggle variable
-      hotkey: {key: "F5"},
-      global: false
+      state:  "$cheat_infinite_health",
+      hotkey: {key: "F4"},
+      gdef:   false,
+      order:  10
     )
-    # Register Infinite Stamina
     register_command(
       group:  :TOGGLES,
       type:   :toggle,
-      key:    "Infinite Stamina", #should be unique
+      key:    "Infinite Stamina",
       label:  "modules/mainstatus:toggle/stamina",
-      state:  "$cheat_infinite_stamina", #toggle variable
-      hotkey: {key: "F5"},
-      global: false
+      state:  "$cheat_infinite_stamina",
+      hotkey: {key: "F4"},
+      gdef:   false,
+      order:  20
     )
-    # Register Infinite Food
     register_command(
       group:  :TOGGLES,
       type:   :toggle,
-      key:    "Infinite Food", #should be unique
+      key:    "Infinite Food",
       label:  "modules/mainstatus:toggle/food",
-      state:  "$cheat_infinite_food", #toggle variable
-      hotkey: {key: "F5"},
-      global: false
+      state:  "$cheat_infinite_food",
+      hotkey: {key: "F4"},
+      gdef:   false,
+      order:  30
     )
 
-    #------------------------------
+    #--------------------------------------------------------------------------
     # Legacy Cheats
-    #------------------------------
+    #--------------------------------------------------------------------------
     register_command(
       group:  :MISC,
       type:   :action,
-      key:    "Heal", #should be unique
+      key:    "Heal",
       label:  "modules/mainstatus:misc/heal",
       enable: -> { !($cheat_infinite_health && $cheat_infinite_stamina && $cheat_infinite_food) },
-      hotkey: {key: "F8", sound: :buff_life},
       action: -> {
         FrameworkUtils.health_to_max
         FrameworkUtils.stamina_to_max
         FrameworkUtils.food_to_max
-      }
+      },
+      order:  10
     )
     register_command(
       group:  :MISC,
       type:   :action,
-      key:    "Heal Wound", #should be unique
+      key:    "Heal Wound",
       label:  "modules/mainstatus:misc/heal_wound",
       enable: -> { !$cheat_autobandage },
       action: -> { $game_player.actor.heal_wound },
       help1:  "modules/mainstatus:command_help/heal_wound",
-      hotkey: {key: "F7", sound: :sound_equip_armor}
+      order:  20
     )
     register_command(
       group:  :MISC,
       type:   :action,
-      key:    "Faint", #should be unique
+      key:    "Faint",
       enable: -> { !$cheat_infinite_stamina },
       label:  "modules/mainstatus:misc/faint",
-      action: -> { $game_player.actor.sta = -100 }
+      action: -> { $game_player.actor.sta = -100 },
+      order:  30
     )
 
-    #------------------------------
+    #--------------------------------------------------------------------------
     # Money Cheats
-    #------------------------------
-
-    #Register Infinite Money
+    #--------------------------------------------------------------------------
     register_command(
       group:  :TOGGLES,
       type:   :toggle,
       key:    "Infinite Money",
       label:  "modules/mainstatus:toggle/money",
       state:  "$cheat_infinite_money",
-      global: false
+      gdef:   false,
+      order:  40
     )
-    # Register Money Now
     register_command(
       group:  :MISC,
       type:   :action,
       key:    "Money Now",
       label:  "modules/mainstatus:misc/money",
       enable: -> {!$cheat_infinite_money},
-      hotkey: {key: "F6"},
-      action: -> { $game_party.set_gold_only(99999) }
+      action: -> { $game_party.set_gold_only(99999) },
+      order:  40
     )
   end
 end
 
 
-#Hotkeys
+#--------------------------------------------------------------------------
+# Hotkey Hook
+#--------------------------------------------------------------------------
 class CheatFramework
   alias_method :hotkey_trigger_INFINITESTATS, :hotkey_trigger
   def hotkey_trigger
@@ -110,7 +114,9 @@ class CheatFramework
 end
 
 
-#Actions per tick
+#--------------------------------------------------------------------------
+# Per-Tick Application
+#--------------------------------------------------------------------------
 module FrameworkUtils
   def self.apply_infinite_stats
     return unless self.ingame?

@@ -1,9 +1,12 @@
 FrameworkModule = {
-  name:       "Game Fixes", 
-  key:        :game_fixes, 
+  name:       "Game Fixes",
+  key:        :game_fixes,
   menu:       :FIXES #Group key.
 }
 
+#--------------------------------------------------------------------------
+# Menu Commands
+#--------------------------------------------------------------------------
 module MenuFramework
   module MENU
     register_command(
@@ -15,12 +18,12 @@ module MenuFramework
   end
 
   module SUBMENU
-    #------------------------------------------
-    # Toggles 
-    #------------------------------------------
+    #--------------------------------------------------------------------------
+    # Toggles
+    #--------------------------------------------------------------------------
     register_command(
       type:   :edit_list,
-      key:    "Despawn Fix", #should be unique to this dictionary
+      key:    "Despawn Fix",
       label:  "modules/others:commands/despawnfix",
       help1:  "modules/others:command_help/despawnfix1",
       help2:  "modules/others:command_help/despawnfix2",
@@ -33,11 +36,13 @@ module MenuFramework
                 { key:  5,  label: "[x8]" },
                 { key: -1,  label: "[#{$framework.txt("modules/others:command_item/infinite")}]" },
               ],
-      global: 1 #default value = Normal
+      gdef:   1,
+      restart: 0,
+      order:  10
     )
     register_command(
       type:   :edit_list,
-      key:    "Increase Drop Rate", #should be unique to this dictionary
+      key:    "Increase Drop Rate",
       label:  "modules/others:commands/drops",
       help1:  "modules/others:command_help/dropsfix1",
       help2:  "modules/others:command_help/despawnfix2",
@@ -48,12 +53,14 @@ module MenuFramework
                 { key:  2,  label: "[x2]" },
                 { key:  4,  label: "[x4]" },
               ],
-      global: 1 #default value = Normal
+      gdef:   1,
+      restart: 0,
+      order:  20
     )
     register_command(
       group:  :NPC,
       type:   :edit_list,
-      key:    "Siren Summon Max", #should be unique to this dictionary
+      key:    "Siren Summon Max",
       label:  "modules/others:commands/siren",
       help1:  "modules/others:command_help/siren1",
       state:  "$cheat_max_sirens",
@@ -65,63 +72,151 @@ module MenuFramework
                 { key:  10,  label: "[10]" },
                 { key:  12,  label: "[12]" },
               ],
-      global: 2 #default value = Normal
+      gdef:   2,
+      order:  60
     )
+
+    #--------------------------------------------------------------------------
+    # Restart-Capable Fixes
+    #--------------------------------------------------------------------------
+    # Shared Disable / Off / On list for every fix below.
+    FIX_TOGGLE_LIST = [
+      { key: -1, label: "[#{$framework.txt("modules/others:command_item/off")}]" },
+      { key:  0, label: "[#{$framework.txt("menu:cheat_toggle/off")}]" },
+      { key:  1, label: "[#{$framework.txt("menu:cheat_toggle/on")}]" },
+    ]
     register_command(
       group:  :NPC,
-      type:   :toggle,
-      key:    "Friendly Fire", #should be unique to this dictionary
+      type:   :edit_list,
+      key:    "Friendly Fire",
       label:  "modules/others:commands/friendlyfire",
       help1:  "modules/others:command_help/friendlyfire1",
       help2:  "modules/others:command_help/fixcommand2",
       state:  "$cheat_friendly_fire_fix",
-      global: false
+      list:   FIX_TOGGLE_LIST,
+      gdef:   -1,
+      restart: -1,
+      order:  30
     )
     register_command(
-      type:   :toggle,
-      key:    "Equip Anything", #should be unique to this dictionary
+      type:   :edit_list,
+      key:    "Equip Anything",
       label:  "modules/others:commands/equip",
       help1:  "modules/others:command_help/equip1",
       help2:  "modules/others:command_help/fixcommand2",
       state:  "$cheat_classless_society",
-      global: false
+      list:   FIX_TOGGLE_LIST,
+      gdef:   -1,
+      restart: -1,
+      order:  40
     )
     register_command(
-      type:   :toggle,
-      key:    "Stealth Fix", #should be unique to this dictionary
+      type:   :edit_list,
+      key:    "Stealth Fix",
       label:  "modules/others:commands/stealth",
       help1:  "modules/others:command_help/stealth1",
       help2:  "modules/others:command_help/fixcommand2",
       state:  "$cheat_stealth_confirm_fix",
-      global: false
+      list:   FIX_TOGGLE_LIST,
+      gdef:   -1,
+      restart: -1,
+      order:  60
     )
     register_command(
-      type:   :toggle,
-      key:    "Abomination Skill Fix", #should be unique to this dictionary
+      type:   :edit_list,
+      key:    "Abomination Skill Fix",
       label:  "modules/others:commands/abomskillfix",
       help1:  "modules/others:command_help/abomskillfix1",
       help2:  "modules/others:command_help/fixcommand2",
       state:  "$cheat_abomination_skill_fix",
-      global: false
+      list:   FIX_TOGGLE_LIST,
+      gdef:   -1,
+      restart: -1,
+      order:  70
     )
     register_command(
-      type:   :toggle,
-      key:    "Achievement Fix", #should be unique to this dictionary
+      type:   :edit_list,
+      key:    "Achievement Fix",
       label:  "modules/others:commands/achievementfix",
       help1:  "modules/others:command_help/achievementfix1",
       help2:  "modules/others:command_help/fixcommand2",
       state:  "$cheat_difficulty_achievement_fix",
-      global: false
+      list:   FIX_TOGGLE_LIST,
+      gdef:   -1,
+      restart: -1,
+      order:  80
+    )
+    register_command(
+      group:  :NPC,
+      type:   :edit_list,
+      key:    "Deepone Can Communicate",
+      label:  "modules/others:commands/deeponecommunicate",
+      help1:  "modules/others:command_help/deeponecommunicate1",
+      help2:  "modules/others:command_help/fixcommand2",
+      state:  "$cheat_deepone_weak_fix",
+      list:   FIX_TOGGLE_LIST,
+      gdef:   -1,
+      restart: -1,
+      order:  50
+    )
+    register_command(
+      type:   :edit_list,
+      key:    "Fast Nap",
+      label:  "modules/others:commands/fastnap",
+      help1:  "modules/others:command_help/fastnap1",
+      help2:  "modules/others:command_help/fixcommand2",
+      state:  "$cheat_fast_nap",
+      list:   FIX_TOGGLE_LIST,
+      gdef:   -1,
+      restart: -1,
+      hide:   -> { $framework.roleplay_mod? },
+      order:  50
+    )
+    register_command(
+      group:  :NPC,
+      type:   :edit_list,
+      key:    "Endless Contracts",
+      label:  "modules/others:commands/endlesscontracts",
+      help1:  "modules/others:command_help/endlesscontracts1",
+      help2:  "modules/others:command_help/fixcommand2",
+      state:  "$cheat_infinite_companion",
+      list:   FIX_TOGGLE_LIST,
+      gdef:   -1,
+      restart: -1,
+      order:  40
+    )
+
+    #--------------------------------------------------------------------------
+    # Misc
+    #--------------------------------------------------------------------------
+    register_command(
+      group:  :MISC,
+      type:   :toggle,
+      key:    "Night Vision",
+      label:  "modules/others:commands/nightvision",
+      help1:  "modules/others:command_help/nightvision1",
+      state:  "$cheat_night_vision",
+      gdef:   false,
+      order:  50,
+      action: -> {
+        $cheat_night_vision = !$cheat_night_vision
+        $framework.ini.write_global("Night Vision", $cheat_night_vision)
+        $game_map.shadows.cf_reapply_opacity if FrameworkUtils.ingame? && $game_map && $game_map.shadows
+      }
     )
   end
 end
 
 
-if $cheat_friendly_fire_fix
+#--------------------------------------------------------------------------
+# Friendly Fire Fix
+#--------------------------------------------------------------------------
+if $cheat_friendly_fire_fix >= 0
   module Battle_System
     alias_method :skill_result_check_ignore_tgt_nofriendlyfire, :skill_result_check_ignore_tgt
 
     def skill_result_check_ignore_tgt(character, skill)
+      return skill_result_check_ignore_tgt_nofriendlyfire(character, skill) unless $cheat_friendly_fire_fix == 1
       return true if block_friendly_fire(self, character, skill)
       skill_result_check_ignore_tgt_nofriendlyfire(character, skill)
     end
@@ -176,9 +271,15 @@ if $cheat_friendly_fire_fix
 end
 
 
-if $cheat_stealth_confirm_fix
+#--------------------------------------------------------------------------
+# Stealth Fix
+#--------------------------------------------------------------------------
+if $cheat_stealth_confirm_fix >= 0
   class Game_Player
+    alias_method :cf_stealth_confirm_fix_update_nonmoving, :update_nonmoving
+
     def update_nonmoving(last_moving)
+      return cf_stealth_confirm_fix_update_nonmoving(last_moving) unless $cheat_stealth_confirm_fix == 1
       return if $game_map.interpreter.running?
       if last_moving
         $game_party.on_player_walk
@@ -196,22 +297,27 @@ if $cheat_stealth_confirm_fix
 end
 
 
-if $cheat_abomination_skill_fix
+#--------------------------------------------------------------------------
+# Abomination Skill Fix
+#--------------------------------------------------------------------------
+if $cheat_abomination_skill_fix >= 0
   class Game_Actor
+    alias_method :cf_abomination_skill_fix_check_Abom_heal_HealthSta, :check_Abom_heal_HealthSta
+
+    # Restores sat, stamina, and health, and heals wounds.
     def check_Abom_heal_HealthSta(tmpCost = 10)
-      tmpSuccess = false
+      return cf_abomination_skill_fix_check_Abom_heal_HealthSta(tmpCost) unless $cheat_abomination_skill_fix == 1
+      self.heal_wound
       tmpSTA = self.sta
       tmpStaMax = self.battle_stat.get_stat("sta", 2)
       tmpStaVS = ((tmpSTA - tmpStaMax).abs).to_i
       tmpHp = self.health
       tmpHpMax = self.battle_stat.get_stat("health", 2)
-      tmpHpVS = 0
       tmpHpVS = ((tmpHp - tmpHpMax).abs).to_i
       tmpSat = self.sat
       tmpSatMax = self.battle_stat.get_stat("sat", 2)
       tmpSatVS = ((tmpSat - tmpSatMax).abs).to_i
 
-      #self.sat -= tmpCost
       if $story_stats["Setup_Hardcore"] >= 1
         satScore = (tmpCost * 0.5).round
       else
@@ -234,8 +340,7 @@ if $cheat_abomination_skill_fix
         self.health += tmpHpInc
       end
 
-      tmpSuccess = true
-      tmpSuccess
+      true
     end
   end
 
@@ -306,23 +411,20 @@ if $cheat_abomination_skill_fix
       end
     end
   end
-
-  class Game_Actor
-    alias_method :check_Abom_heal_HealthSta_HEALWOUND, :check_Abom_heal_HealthSta
-
-    def check_Abom_heal_HealthSta(tmpCost = 10)
-      self.heal_wound
-      check_Abom_heal_HealthSta_HEALWOUND(tmpCost)
-    end
-  end
 end
 
 
-if $cheat_difficulty_achievement_fix
+#--------------------------------------------------------------------------
+# Achievement Fix
+#--------------------------------------------------------------------------
+if $cheat_difficulty_achievement_fix >= 0
   module GIM_ADDON
+    alias_method :cf_achievement_fix_achCheckDate, :achCheckDate
+
+    # Grants Hell and Doom achievement tiers independently for each date.
     def achCheckDate
+      return cf_achievement_fix_achCheckDate unless $cheat_difficulty_achievement_fix == 1
       return if $story_stats["Setup_HardcoreAmt"] != [1772,3,1]
-      #Doomsday Mode
       case $game_date.date[0..2]
       when [1772,3,2]
         GabeSDK.getAchievement("HellModDateT1") if $story_stats["Setup_Hardcore"] >= 1
@@ -339,6 +441,10 @@ if $cheat_difficulty_achievement_fix
   end
 end
 
+
+#--------------------------------------------------------------------------
+# Item Decay Control
+#--------------------------------------------------------------------------
 if $cheat_item_despawn != 0
   class Game_Map
     alias rq_orig_reserve_summon_event reserve_summon_event
@@ -371,6 +477,10 @@ if $cheat_item_despawn != 0
 end
 
 
+#--------------------------------------------------------------------------
+# Deepone Summon Max
+#--------------------------------------------------------------------------
+# Rewrites the summon-limit check baked into this event's own script commands.
 class Game_Event
   alias _booba_orig_refresh refresh
   def refresh
@@ -397,32 +507,48 @@ class Game_Event
 end
 
 
+#--------------------------------------------------------------------------
+# Increase Drop Rate
+#--------------------------------------------------------------------------
 if $cheat_item_drops != 0
   class Game_NonPlayerCharacter
     alias orig_min_drop_amt min_drop_amt
     alias orig_max_drop_amt max_drop_amt
 
+    # Falls back to the normal amount when the multiplier is 0 (Disabled).
     def min_drop_amt
+      return orig_min_drop_amt unless $cheat_item_drops > 0
       (orig_min_drop_amt * $cheat_item_drops).to_i
     end
 
     def max_drop_amt
+      return orig_max_drop_amt unless $cheat_item_drops > 0
       (orig_max_drop_amt * $cheat_item_drops).to_i
     end
   end
 end
 
-if $cheat_classless_society
+#--------------------------------------------------------------------------
+# Equip Anything
+#--------------------------------------------------------------------------
+if $cheat_classless_society >= 0
   class Game_BattlerBase
+    alias_method :cf_classless_society_equip_wtype_ok, :equip_wtype_ok?
+    alias_method :cf_classless_society_equip_atype_ok, :equip_atype_ok?
+    alias_method :cf_classless_society_usable_item_conditions_met, :usable_item_conditions_met?
+
     def equip_wtype_ok?(wtype_id)
+      return cf_classless_society_equip_wtype_ok(wtype_id) unless $cheat_classless_society == 1
       # Allow equipping weapons no matter the type.
       true
     end
     def equip_atype_ok?(atype_id)
+      return cf_classless_society_equip_atype_ok(atype_id) unless $cheat_classless_society == 1
       # Allow equipping armor no matter the type.
       true
     end
     def usable_item_conditions_met?(item)
+      return cf_classless_society_usable_item_conditions_met(item) unless $cheat_classless_society == 1
       # Allow weapon skills regardless of prerequisites
       return true if item.is_a?(RPG::Skill) && added_skills.include?(item.id)
       movable?
@@ -430,3 +556,213 @@ if $cheat_classless_society
   end
 end
 
+#--------------------------------------------------------------------------
+# Deepone Can Communicate
+#--------------------------------------------------------------------------
+if $cheat_deepone_weak_fix >= 0
+  # Lets True Deepone trigger NPC events normally instead of being hard-blocked.
+  class Game_Player
+    alias_method :cf_deepone_weak_fix_cannotTriggerBecauseTrueDeepone, :cannotTriggerBecauseTrueDeepone
+
+    def cannotTriggerBecauseTrueDeepone(tmpEvent)
+      return cf_deepone_weak_fix_cannotTriggerBecauseTrueDeepone(tmpEvent) unless $cheat_deepone_weak_fix == 1
+      false
+    end
+  end
+
+  # Strips the game's own "if RaceRecord == TrueDeepone ... end" block out of
+  # a handful of HCGframes script files at load time, so True Deepone no
+  # longer gets forced into sneak-or-fight encounters, auto-hostile city
+  # gates, or blocked companion recruitment.
+  module DeeponeWeakFixPatch
+    extend self
+    GUARD = 'if $game_player.actor.stat["RaceRecord"] == "TrueDeepone"'
+    BLOCK_OPENER = /\A(if|unless|case|while|until|def|class|module|begin)\b/
+
+    TARGET_PATHS = %w[
+      Data/HCGframes/encounter/BanditMobs.rb
+      Data/HCGframes/encounter/CommonMobs.rb
+      Data/HCGframes/encounter/FishPPL.rb
+      Data/HCGframes/encounter/GangDebtCollet.rb
+      Data/HCGframes/encounter/NobleGuards.rb
+      Data/HCGframes/encounter/NoerGuards.rb
+      Data/HCGframes/encounter/NoerHomeless.rb
+      Data/HCGframes/encounter/NoerMissionary.rb
+      Data/HCGframes/encounter/RoadHalp.rb
+      Data/HCGframes/event/OvermapDoomArmory.rb
+      Data/HCGframes/event/OvermapDoomFortress.rb
+      Data/HCGframes/event/OvermapNoerGateEast.rb
+      Data/HCGframes/event/OvermapNoerGateNoble.rb
+      Data/HCGframes/event/OvermapNoerGateNorth.rb
+      Data/HCGframes/event/OvermapPirateBane.rb
+      Data/HCGframes/event/FishkindCaveCompExtUQConvoy.rb
+      Data/HCGframes/event/OrkindCaveCompExtUQConvoy.rb
+    ]
+    NOER_OUTA_NEEDA_HELP = "Data/HCGframes/encounter/NoerOutaNeedaHelp.rb"
+
+    # Tracks block-open/close depth (not just "first end after the guard")
+    # since a couple of these files nest a case/end inside the guarded if/end.
+    # Returns the text unchanged if the guard can't be found.
+    def strip_race_gate(text)
+      lines = text.lines
+      guard_i = lines.index { |l| l.strip == GUARD }
+      return text unless guard_i
+      depth = 1
+      ((guard_i + 1)...lines.length).each do |i|
+        stripped = lines[i].strip
+        depth += 1 if stripped =~ BLOCK_OPENER
+        depth -= 1 if stripped == "end"
+        next unless depth == 0
+        return (lines[0...guard_i] + lines[(i + 1)..-1]).join
+      end
+      text
+    end
+  end
+
+  alias cf_deepone_weak_fix_load_script load_script
+  def load_script(path)
+    return cf_deepone_weak_fix_load_script(path) unless $cheat_deepone_weak_fix == 1
+    unless DeeponeWeakFixPatch::TARGET_PATHS.include?(path) || path == DeeponeWeakFixPatch::NOER_OUTA_NEEDA_HELP
+      return cf_deepone_weak_fix_load_script(path)
+    end
+    text = File.open(path, 'rb', &:read)
+    text = path == DeeponeWeakFixPatch::NOER_OUTA_NEEDA_HELP ? text.gsub(" && !tmpTrueDeepone", "") : DeeponeWeakFixPatch.strip_race_gate(text)
+    self.instance_eval(text, path)
+  rescue => ex
+    msgbox ex.message + "\n" + ex.backtrace.join("\n")
+  end
+
+  # TrueDeepone.json's +1000 max "weak" penalty is a parsed state effect, not
+  # covered by load_script - tag the one ItemEffect instance so #adjust can
+  # zero it out live instead of editing it once and being stuck with it.
+  class << DataManager
+    alias_method :cf_deepone_weak_fix_load_mod_database, :load_mod_database
+    def load_mod_database
+      cf_deepone_weak_fix_load_mod_database
+      state = $data_StateName.values.find { |s| s && s.name == "TrueDeepone" }
+      lona_effect = state && state.instance_variable_get(:@lona_effect)
+      weak_effect = lona_effect && lona_effect.find { |e| e.attr == "weak" }
+      weak_effect.instance_variable_set(:@cf_deepone_weak_marker, true) if weak_effect
+    end
+  end
+
+  module ItemConfigs
+    class ItemEffect
+      alias_method :cf_deepone_weak_fix_adjust, :adjust
+      def adjust
+        return 0 if @cf_deepone_weak_marker && $cheat_deepone_weak_fix == 1
+        cf_deepone_weak_fix_adjust
+      end
+    end
+  end
+end
+
+#--------------------------------------------------------------------------
+# Endless Contracts
+#--------------------------------------------------------------------------
+if $cheat_infinite_companion >= 0
+  # Companion expiry checks only act when these dates aren't nil, so forcing
+  # them to nil is enough to stop auto-leaving.
+  class Game_Player
+    alias_method :cf_infinite_companion_record_companion_front_date, :record_companion_front_date
+    alias_method :cf_infinite_companion_record_companion_back_date,  :record_companion_back_date
+    alias_method :cf_infinite_companion_record_companion_ext_date,   :record_companion_ext_date
+
+    def record_companion_front_date
+      return cf_infinite_companion_record_companion_front_date unless $cheat_infinite_companion == 1
+      nil
+    end
+    def record_companion_back_date
+      return cf_infinite_companion_record_companion_back_date unless $cheat_infinite_companion == 1
+      nil
+    end
+    def record_companion_ext_date
+      return cf_infinite_companion_record_companion_ext_date unless $cheat_infinite_companion == 1
+      nil
+    end
+  end
+end
+
+#--------------------------------------------------------------------------
+# Fast Nap
+#--------------------------------------------------------------------------
+if $cheat_fast_nap >= 0 && !$framework.roleplay_mod?
+  # Holding Ctrl while resting spends sat/food up front, in 10-point chunks,
+  # to heal several 20-point chunks of stamina/health at once instead of the
+  # normal slow trickle - stamina tops off first, health only once stamina
+  # is already full.
+  #
+  # Skipped when RolePlay-S is active: it replaces this same method with its
+  # own TakeNap-based nap system with no alias back to the original, so
+  # whichever mod loads later would silently win.
+  class Game_Actor
+    alias_method :cf_fast_nap_check_sat_heal_HealthSta, :check_sat_heal_HealthSta
+
+    def check_sat_heal_HealthSta(tmpCost = 10)
+      return cf_fast_nap_check_sat_heal_HealthSta(tmpCost) unless $cheat_fast_nap == 1 && Input.press?(:CTRL)
+
+      staMax = battle_stat.get_stat("sta", 2)
+      hpMax  = battle_stat.get_stat("health", 2)
+      staVS  = (staMax - self.sta).abs
+      hpVS   = $story_stats["Setup_Hardcore"] > 0 ? 0 : (hpMax - self.health).abs
+      return cf_fast_nap_check_sat_heal_HealthSta(tmpCost) if self.sat < tmpCost || (staVS == 0 && hpVS == 0)
+
+      staChunks = ((staMax - self.sta) / 20).to_i
+      hpChunks  = ((hpMax - self.health) / 20).to_i
+      satChunks = (self.sat / 10).to_i
+      restoreSta = staChunks > 1
+      restoreHp  = hpChunks > 1 && self.sta == staMax
+      return cf_fast_nap_check_sat_heal_HealthSta(tmpCost) unless restoreSta || restoreHp
+
+      fullSta = [staChunks, satChunks].min
+      fullHp  = [hpChunks, satChunks].min
+      self.sat -= restoreSta ? tmpCost * fullSta : tmpCost * fullHp
+
+      satScore = tmpCost * 2
+      if staVS != 0 && satScore > 0
+        staInc = [staVS, satScore].min.to_i
+        satScore -= staInc
+        if restoreSta
+          self.sta += staInc * fullSta
+          SndLib.buff_life
+        else
+          self.sta += staInc
+        end
+      end
+      if hpVS != 0 && satScore > 0
+        hpInc = [hpVS, satScore].min.to_i
+        if restoreHp
+          self.health += hpInc * fullHp
+          SndLib.buff_life
+        else
+          self.health += hpInc
+        end
+      end
+      true
+    end
+  end
+end
+
+#--------------------------------------------------------------------------
+# Night Vision
+#--------------------------------------------------------------------------
+# Shadow#set_opacity is the single choke point every day/night/underground/
+# per-map darkness call goes through - remember whatever the game actually
+# asked for, and substitute half that value only while the toggle is on
+# (fully clearing it looked flat - some shading even at "daytime" opacity
+# is apparently expected), so turning it off restores the real value
+# without reloading the map.
+# Installed unconditionally so it can be flipped live with no restart.
+class Shadow
+  alias_method :cf_night_vision_set_opacity, :set_opacity
+
+  def set_opacity(a, time = nil)
+    @cf_true_opacity = a
+    cf_night_vision_set_opacity($cheat_night_vision ? (a / 2) : a, time)
+  end
+
+  def cf_reapply_opacity
+    true_opacity = @cf_true_opacity || @a
+    cf_night_vision_set_opacity($cheat_night_vision ? (true_opacity / 2) : true_opacity, nil)
+  end
+end

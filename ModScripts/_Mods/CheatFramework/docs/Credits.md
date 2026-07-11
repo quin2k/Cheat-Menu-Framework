@@ -1,6 +1,8 @@
 # Credits
 
 ## Code
+- [Claude Code](https://claude.com/claude-code) \(assisted with code, mostly to brainstorm/implement the config menu which continued to confound me. Also helped with debugging and research. All contributions were thoroughly reviewed.\)
+
 - [Archangel Dejavu](https://raidgame.ru/members/8694/) \(for fixes to the Friendly Fire code.\)
 
 - [kenny567](https://f95zone.to/members/240807/) / [k3nny567](https://github.com/K3nny567) \(for editing/publishing/maintaining/distributing the latest version of the cheat mod as late as May 2025. (https://f95zone.to/posts/9588500)\)
@@ -22,6 +24,10 @@
 - And most importantly, Yanfly for the code that was previously used in the old Cheats Mod dependency file, and the remaining portions that still exist in the `Inventory Editor CheatModule`
 
 ## Inspiration
+- [Petaduo](https://f95zone.to/members/petaduo.3814433/) \(Suggestion to incorporate [Lona CAN Communicate Mod](https://raidgame.ru/mods/628/) as a cheat.\)
+
+- [Lazi Ness](https://raidgame.ru/members/5664/) \(Mana Rage from [RolePlay-S](https://raidgame.ru/mods/565/) effectively gave night vision, which got me thinking...\)
+
 - [Shadesishere](https://f95zone.to/members/shadesishere.3139110/) \(mod for monastery donation inspired world difficulty edit.\)
 
 - [doujinftw](https://f95zone.to/members/doujinftw.3105652/) \(difficulty reset, item drop rate, equipment bypass and, indirectly, item despawn rate.\)
@@ -32,7 +38,7 @@
 
 - Russian language fixes courtesy of [Sado Yasashi](https://f95zone.to/members/sado-yasashi.7065366/) / [Sadorimatsu](https://raidgame.ru/members/1/)
 
-- DeepL (Please send me something better!)
+- Google Translate (Please send me something better if you don't like it!)
 
 ## Notes
 >

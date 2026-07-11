@@ -1,16 +1,16 @@
 FrameworkModule = {
-  name:       "Primary Stats", #Scene/Window names would be Window_CheatMenuEdit_Lona.
-  key:        :primary, #Menu key, also used to label source module.
-  menu:       :PRIMARY, #Dictionary / Group key.
+  name:       "Primary Stats",
+  key:        :primary,
+  menu:       :PRIMARY,
   order:      90,
   depends_on: []
 }
 
 module MenuFramework
   module SUBMENU
-    #==========================================
+    #--------------------------------------------------------------------------
     # Character Editing Menu
-    #==========================================
+    #--------------------------------------------------------------------------
     register_command(
       group:  :LONA,
       type:   :scene,
@@ -22,9 +22,9 @@ module MenuFramework
       order:  10
     )
 
-    #------------------------------------------
-    # Primary 
-    #------------------------------------------
+    #--------------------------------------------------------------------------
+    # Primary Stats
+    #--------------------------------------------------------------------------
     register_command(
       group:  :PRIMARY,
       type:   :edit_num,

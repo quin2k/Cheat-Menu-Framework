@@ -32,16 +32,43 @@ commands/achievementfix
 난이도 달성 수정
 
 command_help/achievementfix1
-일별 계산을 위한 수학 계산 과정을 간소화합니다.
+가능한 경우 쉬운 난이도에 대해서는 가산점을 부여합니다.
+
+commands/deeponecommunicate
+Deepone은 소통할 수 있습니다
+
+command_help/deeponecommunicate1
+True Deepone이 상호 작용하지 못하도록 막는 하드코딩된 검사를 제거합니다.
+
+commands/fastnap
+빠른 낮잠
+
+command_help/fastnap1
+휴식 중에 Ctrl 키를 누르면 한 턴에 체력이 회복됩니다. 음식/체력 회복 비율은 동일합니다.
+
+commands/endlesscontracts
+끝없는 계약
+
+command_help/endlesscontracts1
+영입한 동료/추종자와의 계약은 만료되지 않습니다.
+
+commands/nightvision
+야간 투시경
+
+command_help/nightvision1
+맵의 어두운 부분을 완전히 투명하게 만듭니다. 즉시 적용되며, 재시작이 필요 없습니다.
 
 command_help/fixcommand2
-설정 후 재시작이 필요합니다.
+재시작이 필요합니다. 비활성화하면 이 수정 사항이 적용되지 않습니다.
 
 commands/discard
 폐기 방지
 
 command_help/discard1
 벗긴 옷은 인벤토리로 들어갑니다.
+
+commands/unequip
+옷을 벗으세요
 
 commands/forceunequip
 강제로 장비 해제

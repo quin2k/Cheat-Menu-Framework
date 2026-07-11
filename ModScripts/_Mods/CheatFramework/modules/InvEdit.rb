@@ -5,7 +5,9 @@ FrameworkModule = {
   menu:     :NONE
 }
 
-#Register Menu Command
+#--------------------------------------------------------------------------
+# Menu Commands
+#--------------------------------------------------------------------------
 MenuFramework::MENU.register_command(
   type:   :scene,
   key:    :items,
@@ -44,7 +46,8 @@ MenuFramework::SUBMENU.register_command(
   key:   "Bank Anywhere",
   label: "modules/invedit:commands/bank",
   hotkey: {key: "F2"},
-  action: -> { 
+  order: 10,
+  action: -> {
       SceneManager.goto(Scene_BankStorage)
       SceneManager.scene.prepare(System_Settings::STORAGE_BANK)
   })
@@ -53,11 +56,100 @@ MenuFramework::SUBMENU.register_command(
   type:   :scene,
   group:  :NPC,
   key:    :summon,
-  label:  "modules/invedit:commands/summon", 
+  label:  "modules/invedit:commands/summon",
   name:   "CheatMenuSummon",
   dict:   :SUMMON,
-  order:  40
+  order:  70
 )
+
+#--------------------------------------------------------------------------
+# Cache Item/weapon/armor/status Lists
+#--------------------------------------------------------------------------
+# Pre-filtered once instead of re-scanning the raw data every time.
+module MenuFramework
+  module InvEditCache
+    extend self
+
+    attr_reader :items, :weapons, :armors, :statuses
+
+    def build
+      @items    = build_group($data_items,   "I%03d:")
+      @weapons  = build_group($data_weapons, "W%03d:")
+      @armors   = build_group($data_armors,  "A%03d:")
+      @statuses = $data_StateName.each_pair.reject do |k, v|
+        v.nil? || k.nil? || v.name == "" || v.name == "nil" || v.name == "DataState:nil/name" ||
+          v.description == "" || v.description == "nil" || v.description == "DataState:nil/description"
+      end.to_a
+    end
+
+    def build_group(group, fmt)
+      (1...group.size).each_with_object([]) do |i, list|
+        item = group[i]
+        next if item.nil? || item.item_name.nil? || item.item_name == "" || item.description == ""
+        list << [sprintf(fmt, i), item]
+      end
+    end
+  end
+end
+
+class << DataManager
+  alias_method :cf_invedit_load_mod_database, :load_mod_database
+  def load_mod_database
+    cf_invedit_load_mod_database
+    MenuFramework::InvEditCache.build
+  end
+end
+
+#--------------------------------------------------------------------------
+# Menu Loading Fix
+#--------------------------------------------------------------------------
+# Only draws the current page of rows instead of the whole list
+module MenuFramework
+  module VirtualScrollWindow
+    def contents_height
+      page_row_max * item_height
+    end
+
+    def top_row
+      @virtual_top_row || 0
+    end
+
+    def top_row=(row)
+      row = 0 if row < 0
+      row = row_max - 1 if row > row_max - 1
+      changed = row != top_row
+      @virtual_top_row = row
+      self.oy = 0 # bitmap only ever holds one page - never pan it
+      refresh_visible_rows if changed
+    end
+
+    def draw_all_items
+      first = top_row
+      last  = [top_row + page_row_max, item_max].min - 1
+      (first..last).each { |i| draw_item(i) } if last >= first
+    end
+
+    def item_rect(index)
+      rect = Rect.new
+      rect.width  = item_width
+      rect.height = item_height
+      rect.x = index % col_max * (item_width + spacing)
+      rect.y = (index / col_max - top_row) * item_height
+      rect
+    end
+
+    def refresh
+      @virtual_top_row = 0
+      self.oy = 0
+      super
+    end
+
+    def refresh_visible_rows
+      contents.clear
+      draw_all_items
+    end
+  end
+end
 
 #--------------------------------------------------------------------------
 # Window_CheatMenuItems
@@ -65,45 +157,28 @@ MenuFramework::SUBMENU.register_command(
 
 class Window_CheatMenuItems < Window_Command
   include Action_Window_Defaults
+  include MenuFramework::VirtualScrollWindow
   def initialize
     super
     symbol = SceneManager.scene.instance_variable_get(:@menu_symbol)
     set_type(symbol)
   end
 
-  #--------------------------------------------------------------------------
-  # set_type
-  #--------------------------------------------------------------------------
   def set_type(type)
     @type = type
     refresh
     select(0)
   end
 
-  #--------------------------------------------------------------------------
-  # make_command_list
-  #--------------------------------------------------------------------------
   def make_command_list
-    case @type
-    when :items
-      group = $data_items
-      fmt = "I%03d:"
-    when :weapons
-      group = $data_weapons
-      fmt = "W%03d:"
-    else
-      group = $data_armors
-      fmt = "A%03d:"
-    end
-    for i in 1...group.size
-      text = sprintf(fmt, i)
-      add_command(text, :item, true, group[i]) if !(group[i].nil? or group[i].item_name.nil? or group[i].item_name == "" or group[i].description == "")
-    end
+    cache = case @type
+            when :items    then MenuFramework::InvEditCache.items
+            when :weapons  then MenuFramework::InvEditCache.weapons
+            else                MenuFramework::InvEditCache.armors
+            end
+    cache.each { |text, item| add_command(text, :item, true, item) }
   end
 
-  #--------------------------------------------------------------------------
-  # draw_item
-  #--------------------------------------------------------------------------
   def draw_item(index)
     MenuFramework.force_font(contents) if contents
     contents.clear_rect(item_rect_for_text(index))
@@ -149,9 +224,6 @@ class Window_CheatMenuItems < Window_Command
   end
 
 
-  #--------------------------------------------------------------------------
-  # cursor_right
-  #--------------------------------------------------------------------------
   def cursor_right(wrap = false)
     SndLib.play_cursor
     $game_party.gain_item(current_ext, Input.press?(Input::KEYMAP[:SHIFT]) ? 10 : 1)
@@ -159,9 +231,6 @@ class Window_CheatMenuItems < Window_Command
     draw_item(index)
   end
 
-  #--------------------------------------------------------------------------
-  # cursor_left
-  #--------------------------------------------------------------------------
   def cursor_left(wrap = false)
     SndLib.play_cursor
     $game_party.lose_item(current_ext, Input.press?(Input::KEYMAP[:SHIFT]) ? 10 : 1)
@@ -171,8 +240,12 @@ class Window_CheatMenuItems < Window_Command
 end # Window_CheatMenuItems
 
 
+#--------------------------------------------------------------------------
+# Window_CheatMenuStatus
+#--------------------------------------------------------------------------
 class Window_CheatMenuStatus < Window_Command
   include Action_Window_Defaults
+  include MenuFramework::VirtualScrollWindow
 
   def make_command_list
     $data_StateName.each_pair do |k, v|
@@ -249,8 +322,8 @@ class Game_Actor
   def remove_one_state(state_id)
     state_id = $data_StateName[state_id].id if state_id.is_a?(String)
     return prp "erase_state #{state_id} not found", 1 if !state_id
-    @states.delete_at(@states.index(state_id) || @states.length) ## Line added to remove only one instance.
-    return if state?(state_id) ## Line added to prevent a stack from bugging.
+    @states.delete_at(@states.index(state_id) || @states.length) # Removes only one stacked instance.
+    return if state?(state_id) # Still stacked - stop here to avoid a bugged stack.
     # @state_turns.delete(state_id)
     @state_steps.delete(state_id)
   end
@@ -269,7 +342,7 @@ module MenuFramework
         summonable_keys << npc[0]
       end
 
-      # Compute folders (same logic as old compute_folders)
+      # Group by the key's leading CamelCase segment
       folder_map = Hash.new { |h, k| h[k] = [] }
 
       $data_EventLib.each_key do |key|
@@ -278,7 +351,6 @@ module MenuFramework
         camel = key.split(/(?=[A-Z])/).reject(&:empty?)
         next if camel.empty?
 
-        #folder = camel.first
         # Rename some folders for better grouping
         folder = {"Swine"=>"Wild","Player"=>"Baby","Deepone"=>"Fishkind","Gang"=>"Human"}.fetch(camel.first, camel.first)
 

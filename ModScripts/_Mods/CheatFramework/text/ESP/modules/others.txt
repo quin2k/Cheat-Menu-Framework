@@ -14,10 +14,10 @@ commands/friendlyfire
 Solución para el fuego amigo
 
 command_help/friendlyfire1
-Intentos de evitar el fuego amigo.
+Intentos de prevenir el fuego amigo.
 
 commands/stealth
-Desde las sombras Fix
+Desde las sombras
 
 command_help/stealth1
 La tecla de acción no cancelará el sigilo si tienes la habilidad.
@@ -26,34 +26,61 @@ commands/abomskillfix
 Abominación Comer Arreglar
 
 command_help/abomskillfix1
-La habilidad Profanar también llenará de comida y curará heridas.
+La habilidad Profanar también repondrá la comida y curará las heridas.
 
 commands/achievementfix
-Solución de logro de dificultad
+Solución para el problema de dificultad
 
 command_help/achievementfix1
-Agiliza las matemáticas para los cálculos diarios.
+Se otorgan puntos por dificultades más fáciles, si corresponde.
+
+commands/deeponecommunicate
+Deepone puede comunicarse
+
+command_help/deeponecommunicate1
+Elimina las comprobaciones codificadas que impiden que True Deepone interactúe con el sistema.
+
+commands/fastnap
+Siesta rápida
+
+command_help/fastnap1
+Mantén pulsada la tecla Ctrl mientras descansas para recuperar resistencia en una ronda. La proporción de comida/resistencia es la misma.
+
+commands/endlesscontracts
+Contratos sin fin
+
+command_help/endlesscontracts1
+Los contratos de los compañeros/seguidores reclutados nunca caducan.
+
+commands/nightvision
+Visión nocturna
+
+command_help/nightvision1
+Fuerzas que hacen que la oscuridad del mapa sea totalmente transparente. Se aplica al instante, no es necesario reiniciar.
 
 command_help/fixcommand2
-REQUIERE REINICIO después de ser configurado.
+Requiere reiniciar. Deshabilitar desactiva esta corrección.
 
 commands/discard
 Prevenir el descarte
 
 command_help/discard1
-La ropa despojada va a tu inventario.
+Las prendas despojadas de sus prendas van a tu inventario.
+
+commands/unequip
+Quítate la ropa
 
 commands/forceunequip
-Fuerza de desequipar
+Desequipar por fuerza
 
 command_help/forceunequip1
-Se utiliza para retirar a la fuerza cadenas o collares.
+Se utiliza para quitar cadenas o collares a la fuerza.
 
 commands/despawnfix
-Control de deterioro de objetos
+Control de deterioro de artículos
 
 command_help/despawnfix1
-Establecer la duración de los elementos caídos.
+Establece la duración de los objetos caídos.
 
 command_item/off
 DESACTIVAR
@@ -62,34 +89,34 @@ command_item/infinite
 INF
 
 commands/drops
-Aumentar gotas
+Aumentar las caídas
 
 command_help/dropsfix1
-Ajusta las gotas que caen de los enemigos.
+Ajusta los objetos que sueltan los enemigos.
 
 commands/equip
 Equipa cualquier cosa
 
 command_help/equip1
-Elimina los requisitos de habilidades.
+Elimina los requisitos de habilidad.
 
 commands/diff
-Restablecer la dificultad del juego
+Reiniciar la dificultad del juego
 
 command_help/diff
-Desactivar a la fuerza el modo DOOM
+Desactivar forzosamente el modo DOOM
 
 commands/siren
-Invocación máxima de Deepone
+Invocar a Deepone Max
 
 command_help/siren1
-Edita el total de invocaciones de sirena posibles.
+Ediciones totales posibles de Invocaciones de Sirena.
 
 commands/roleplays
 RolePlay-S
 
 commands/roleplays/saves
-Deshabilitar limitador de guardado
+Desactivar limitador de guardado
 
 commands/roleplays/mana
 MP infinito

@@ -1,5 +1,5 @@
 commands/primary
-Primary
+Primary Stats
 
 commands/primary/health
 Health
@@ -23,7 +23,7 @@ command_help/moral
 Morality <30 will cause humans to attack.
 
 commands/levels
-Levels
+Levels & Traits
 
 commands/levels/level
 Level
@@ -95,7 +95,7 @@ toggle/dirt
 Disable Dirt
 
 command_help/dirt
-Sets dirt max to 0. NOT GLOBAL.
+Sets maximum dirt to 0.
 
 commands/appearance/freckles
 Freckles
@@ -148,17 +148,11 @@ Auto-Bandage
 command_help/autobandage
 Auto removes wounds, blood, and orifice damage.
 
-toggle/autocleanout
-Auto-Clean (External)
+toggle/autoclean
+Auto-Clean
 
-command_help/autocleanout
-Auto removes blood and all surface cum.
-
-toggle/autocleanin
-Auto-Clean (internal)
-
-command_help/autocleanin
-Auto removes cum from orifices.
+command_help/autoclean
+Auto removes blood and cum (in and out).
 
 toggle/autocure
 Auto-Cure

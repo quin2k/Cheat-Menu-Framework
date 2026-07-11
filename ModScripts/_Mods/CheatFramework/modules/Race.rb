@@ -1,14 +1,14 @@
 FrameworkModule = {
-  name:       "Race Changer", 
-  key:         :edit_race, 
-  menu:       :RACE #Group key.
+  name:       "Race Changer",
+  key:         :edit_race,
+  menu:       :RACE
 }
 
 module MenuFramework
   module SUBMENU
-    #==========================================
+    #--------------------------------------------------------------------------
     # Character Editing Menu
-    #==========================================
+    #--------------------------------------------------------------------------
     register_command(
       group:  :LONA,
       type:   :scene,
@@ -19,13 +19,13 @@ module MenuFramework
       dict:   :RACE,
       order:  50
     )
-    
-    #------------------------------------------
-    # Race Commands 
-    #------------------------------------------
+
+    #--------------------------------------------------------------------------
+    # Race Commands
+    #--------------------------------------------------------------------------
     register_command(
       type:   :action,
-      key:    "Human", #should be unique to this dictionary
+      key:    "Human",
       label:  "modules/character:commands/race/human",
       color:  -> { $game_player.actor.stat["RaceRecord"] == "Human" ? 16 : 0 },
       action: -> { $game_player.actor.reBirthSetRace("Human") },
@@ -33,7 +33,7 @@ module MenuFramework
     )
     register_command(
       type:   :action,
-      key:    "Moot", #should be unique to this dictionary
+      key:    "Moot",
       label:  "modules/character:commands/race/moot",
       color:  -> { $game_player.actor.stat["RaceRecord"] == "Moot" ? 16 : 0 },
       action: -> { $game_player.actor.reBirthSetRace("Moot") },
@@ -41,7 +41,7 @@ module MenuFramework
     )
     register_command(
       type:   :action,
-      key:    "Deepone", #should be unique to this dictionary
+      key:    "Deepone",
       label:  "modules/character:commands/race/deepone",
       color:  -> { $game_player.actor.stat["RaceRecord"] == "PreDeepone" ? 16 : 0 },
       action: -> { $game_player.actor.reBirthSetRace("Deepone") },
@@ -49,7 +49,7 @@ module MenuFramework
     )
     register_command(
       type:   :action,
-      key:    "True Deepone", #should be unique to this dictionary
+      key:    "True Deepone",
       label:  "modules/character:commands/race/truedeepone",
       color:  -> { $game_player.actor.stat["RaceRecord"] == "TrueDeepone" ? 16 : 0 },
       action: -> { $game_player.actor.reBirthSetRace("TrueDeepone") },
@@ -57,7 +57,7 @@ module MenuFramework
     )
     register_command(
       type:   :action,
-      key:    "Human Abomination", #should be unique to this dictionary
+      key:    "Human Abomination",
       label:  "modules/character:commands/race/abom_human",
       color:  -> { ($game_player.actor.stat["RaceRecord"] == "Abomination" && $game_player.actor.stat["Race"] == "Human") ? 16 : 0 },
       action: -> { $game_player.actor.reBirthSetRace("HumanAbomination") ; $game_party.lose_item("ItemBluePotion",3) },
@@ -65,19 +65,19 @@ module MenuFramework
     )
     register_command(
       type:   :action,
-      key:    "Moot Abomination", #should be unique to this dictionary
+      key:    "Moot Abomination",
       label:  "modules/character:commands/race/abom_moot",
       color:  -> { ($game_player.actor.stat["RaceRecord"] == "Abomination" && $game_player.actor.stat["Race"] == "Moot") ? 16 : 0 },
       action: -> { $game_player.actor.reBirthSetRace("MootAbomination") ; $game_party.lose_item("ItemBluePotion",3) },
       order:  60
     )
 
-    #------------------------------------------
-    # Race Skills 
-    #------------------------------------------
+    #--------------------------------------------------------------------------
+    # Race Skills
+    #--------------------------------------------------------------------------
     register_command(
       type:   :scene,
-      key:    "Race Skills", #should be unique to this dictionary
+      key:    "Race Skills",
       label:  "modules/character:commands/race/skills",
       color:  -> { ["Abomination", "TrueDeepone", "PreDeepone"].include?($game_player.actor.stat["RaceRecord"]) ? 0 : 8 },
       name:   "CheatMenuRaceSkills",
@@ -86,7 +86,7 @@ module MenuFramework
     register_command(
       group:  :RACESKILL,
       type:   :toggle,
-      key:    "Sea Witch Awaken", #should be unique to this dictionary
+      key:    "Sea Witch Awaken",
       label:  "modules/character:commands/race/skills/deepone",
       state:  "$game_player.actor.skill_learn?($data_skills[65])",
       color:  -> { ["TrueDeepone", "PreDeepone"].include?($game_player.actor.stat["RaceRecord"]) ? 0 : 8 },
@@ -95,7 +95,7 @@ module MenuFramework
     register_command(
       group:  :RACESKILL,
       type:   :toggle,
-      key:    "Abom Desecrate Skill", #should be unique to this dictionary
+      key:    "Abom Desecrate Skill",
       label:  "modules/character:commands/race/skills/abomeat",
       state:  "$game_player.actor.skill_learn?($data_skills[67])",
       color:  -> { $game_player.actor.stat["RaceRecord"] == "Abomination" ? 0 : 8 },
@@ -104,7 +104,7 @@ module MenuFramework
     register_command(
       group:  :RACESKILL,
       type:   :toggle,
-      key:    "Abom Tendril Whip", #should be unique to this dictionary
+      key:    "Abom Tendril Whip",
       label:  "modules/character:commands/race/skills/abomgrab",
       state:  "$game_player.actor.skill_learn?($data_skills[66])",
       color:  -> { $game_player.actor.stat["RaceRecord"] == "Abomination" ? 0 : 8 },

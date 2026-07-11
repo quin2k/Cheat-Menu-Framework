@@ -15,6 +15,7 @@ module Action_Window_Defaults
   def initialize
     super(160, 0)
     @dictionary = nil
+    @hotkey_capture_mode = false
     clear_edit
   end
 
@@ -40,7 +41,7 @@ module Action_Window_Defaults
   #--------------------------------------------------------------------------
   def commands_from_group
     return unless @dictionary
-    @dictionary.each do |key, record|
+    FrameworkUtils.sorted_commands(@dictionary).each do |key, record|
       next if record[:hide].is_a?(Proc) ? record[:hide].call : record[:hide]
       enable = record[:enable].is_a?(Proc) ? record[:enable].call : record[:enable]
 
@@ -58,6 +59,7 @@ module Action_Window_Defaults
   # Command Definition
   #--------------------------------------------------------------------------
   def run_default_command
+    return if @hotkey_capture_mode # assigning a hotkey, not activating the row
 
     key = current_ext
     record = @dictionary[key]
@@ -73,6 +75,7 @@ module Action_Window_Defaults
       refresh
     else
       record[:action].call if record[:action]
+      FrameworkUtils.mark_restart_needed(record)
       SndLib.sys_ok
       refresh
     end
@@ -118,6 +121,7 @@ module Action_Window_Defaults
       #Run the command as-is if nothing required.
       instance_exec(&record[:action])
     end
+    FrameworkUtils.mark_restart_needed(record)
     SndLib.sys_ok
     clear_edit
   end
@@ -169,14 +173,22 @@ module Action_Window_Defaults
       right = ">>>"
     end
 
-
     # --- Adjust display name and color ---
-    display_name = enabled ? name : "#{name} (#{$framework.txt("menu:commands_status/locked")})"
+    hotkey_tag = FrameworkUtils.hotkey_tag_for(@dictionary, key)
+    # edit_list/edit_num rows cannot be assigned a hotkey, so no conflict with restart tag.
+    restart_tag = hotkey_tag ? nil : (FrameworkUtils.restart_mismatch?(record) ? "[#{$framework.txt("menu:commands_status/restart_needed")}]" : nil)
+    tag = hotkey_tag || restart_tag
+    tagged_name = tag ? "#{name} #{tag}" : name
+    display_name = enabled ? tagged_name : "#{tagged_name} (#{$framework.txt("menu:commands_status/locked")})"
     color = enabled ? color : text_color(8)
 
     if @editing && key == @editing_this
       color = text_color(16)
       right = @edit_value.to_s
+    end
+
+    if @hotkey_capture_mode && index == self.index
+      color = text_color(16)
     end
 
     # --- Draw ---
@@ -227,12 +239,139 @@ module Action_Window_Defaults
   end
   
   def process_cancel
-    if @editing
+    if @hotkey_capture_mode
+      exit_hotkey_capture
+    elsif @editing
       clear_edit
       refresh
     else
       super
     end
+  end
+
+  #--------------------------------------------------------------------------
+  # Hotkey Capture
+  #--------------------------------------------------------------------------
+  # LETTER_C arms the row, Shift/Ctrl/Alt+key assigns (F-key or letter/digit/
+  # punctuation, see HotkeySymbols), Delete/Backspace clears, LETTER_C/Cancel
+  # disarms. Any command can hold a hotkey via hotkey_defs.
+  FKEY_SYMBOLS = (1..12).map { |n| :"F#{n}" }
+
+  # :edit_num/:edit_list actions need a value argument, which a bare keypress can't supply.
+  CAPTURABLE_TYPES = [:toggle, :action, :scene]
+
+  def update
+    super
+    return unless active
+
+    if @hotkey_capture_mode
+      update_hotkey_capture
+    elsif !@editing && current_ext && Input.trigger?(:LETTER_C)
+      if capturable_row?
+        enter_hotkey_capture
+      else
+        SndLib.sys_buzzer
+      end
+    end
+  end
+
+  def capturable_row?
+    return false unless @dictionary && current_ext
+    record = @dictionary[current_ext]
+    record && CAPTURABLE_TYPES.include?(record[:type])
+  end
+
+  # Cursor movement is frozen on the armed row while capturing.
+  def process_cursor_move
+    return if @hotkey_capture_mode
+    super
+  end
+
+  def enter_hotkey_capture
+    @hotkey_capture_mode = true
+    $framework.hotkey_capture_active = true
+    SndLib.play_cursor
+    refresh_help_window
+    refresh
+  end
+
+  # Backs out without assigning anything - the only time "C to cancel" is
+  # accurate, since assign/clear below leave on their own once committed.
+  def exit_hotkey_capture
+    SndLib.play_cursor
+    leave_hotkey_capture
+  end
+
+  def leave_hotkey_capture
+    @hotkey_capture_mode = false
+    $framework.hotkey_capture_active = false
+    refresh_help_window
+    refresh
+  end
+
+  def update_hotkey_capture
+    if Input.trigger?(:LETTER_C)
+      exit_hotkey_capture
+      return
+    end
+
+    if Input.trigger?(:BACK) || Input.trigger?(:DELETE)
+      clear_current_hotkey
+      return
+    end
+
+    (FKEY_SYMBOLS + HotkeySymbols.symbols).each do |key_sym|
+      next unless Input.trigger?(key_sym)
+      assign_current_hotkey(key_sym)
+      return
+    end
+  end
+
+  def current_hotkey_full_key
+    key = current_ext
+    return nil unless key
+    group = FrameworkUtils.group_for_dictionary(@dictionary)
+    return nil unless group
+    "#{group}.#{key}"
+  end
+
+  def assign_current_hotkey(key_sym)
+    full_key = current_hotkey_full_key
+    return unless full_key
+
+    if HotkeyReserved.info_for(key_sym.to_s)
+      SndLib.sys_buzzer # reserved (Main Menu Key and F10 always, F5/F6 while RolePlay-S is active) - refuse, modifiers don't help
+      return
+    end
+
+    mods = []
+    mods << "Shift" if Input.press?(:SHIFT)
+    mods << "Ctrl"  if Input.press?(:CTRL)
+    mods << "Alt"   if Input.press?(:ALT)
+    key_str = (mods + [HotkeySymbols.name_for(key_sym) || key_sym.to_s]).join("+")
+
+    if $framework.hotkey_defs[full_key]
+      $framework.hotkey_defs[full_key][:key] = key_str
+    else
+      $framework.hotkey_defs[full_key] = { key: key_str, sound: nil }
+    end
+
+    $framework.ini.save_hotkeys_to_ini
+    $framework.ini.build_hotkey_map # live immediately - no restart needed
+    SndLib.sys_ok
+    leave_hotkey_capture
+  end
+
+  def clear_current_hotkey
+    full_key = current_hotkey_full_key
+    return unless full_key
+    return unless $framework.hotkey_defs[full_key]
+
+    $framework.hotkey_defs[full_key][:key] = "NONE"
+    $framework.ini.save_hotkeys_to_ini
+    $framework.ini.build_hotkey_map
+    SndLib.sys_cancel
+    leave_hotkey_capture
   end
 
   def edit_key_multiply
@@ -383,21 +522,28 @@ module Scene_Defaults
         help3 = @help_window_text3 rescue nil #scene specific text
         help4 = @help_window_text4 rescue nil #scene specific text
         if help3.nil? && help4.nil?
-          if @action_window && @action_window.instance_variable_get(:@editing_number)
+          if @action_window && @action_window.instance_variable_get(:@hotkey_capture_mode)
+            help3 = $framework.txt("menu:command_help/hotkey_capture1")
+            help4 = $framework.txt("menu:command_help/hotkey_capture2")
+          elsif @action_window && @action_window.instance_variable_get(:@editing_number)
             help3 = $framework.txt("menu:command_help/num_edit1")
             help4 = $framework.txt("menu:command_help/num_edit2")
           elsif @action_window && @action_window.instance_variable_get(:@editing)
             help3 = ""
             help4 = $framework.txt("menu:command_help/num_edit1")
           else
-            help3 = ""
-            case record && record[:type]
-            when :action then help4 = $framework.txt("menu:command_help/execute")
-            when :scene  then help4 = $framework.txt("menu:command_help/scene")
-            when :toggle then help4 = $framework.txt("menu:command_help/toggle")
-            when :edit_num, :edit_list then help4 = $framework.txt("menu:command_help/edit")
-            else help4 = ""
+            type = record && record[:type]
+            case type
+            when :action then help3 = $framework.txt("menu:command_help/execute")
+            when :scene  then help3 = $framework.txt("menu:command_help/scene")
+            when :toggle then help3 = $framework.txt("menu:command_help/toggle")
+            when :edit_num, :edit_list then help3 = $framework.txt("menu:command_help/edit")
+            else help3 = ""
             end
+            # Only :action/:toggle/:scene rows can carry a hotkey (see
+            # Action_Window_Defaults::CAPTURABLE_TYPES) - :edit_num/:edit_list
+            # get no hint since pressing C there just buzzes.
+            help4 = [:action, :scene, :toggle].include?(type) ? $framework.txt("menu:command_help/set_hotkey_hint") : ""
           end
         end
       end
@@ -445,15 +591,57 @@ module Scene_Defaults
 
   def menu_command_update
     save_command_window_state
-    key = @command_window.current_ext 
+    key = @command_window.current_ext
     record = $framework.commands[:MAIN][key]
 
     return unless record
-    record[:action].call if record[:action] 
+    record[:action].call if record[:action]
     SndLib.sys_ok
   end
-
-
-
   
+  # Small fix to prevent crashes when opening the menu during animations.
+  def hud
+    self
+  end
+
+end
+
+#==============================================================================
+# Config List Defaults (Edit Menu Order / View Hotkeys / Edit Globals - the
+# full-width single-window screens in scripts/Controls.rb)
+#==============================================================================
+module Window_ConfigList_Defaults
+  def window_width;  Graphics.width; end
+  def window_height; Graphics.height - 120; end
+
+  def force_content_font
+    MenuFramework.force_font(contents) if contents
+  end
+end
+
+module Scene_ConfigList_Defaults
+  # Breadcrumb save/restore/clamp, keyed by each scene's own menu_key.
+  def save_selection
+    $framework.menu_stack.push({
+      menu:   menu_key,
+      symbol: @command_window.current_ext,
+      index:  @command_window.index
+    })
+  end
+
+  def restore_selection
+    entry = $framework.menu_stack.reverse.find { |e| e[:menu] == menu_key }
+    return unless entry
+    list = @command_window.instance_variable_get(:@list)
+    idx = list.index { |cmd| cmd[:ext] == entry[:symbol] } || entry[:index] || 0
+    idx = [[idx, 0].max, list.size - 1].min
+    @command_window.select(idx)
+  end
+
+  def clamp_selection
+    list = @command_window.instance_variable_get(:@list)
+    return if list.empty?
+    idx = [[@command_window.index, 0].max, list.size - 1].min
+    @command_window.select(idx)
+  end
 end
