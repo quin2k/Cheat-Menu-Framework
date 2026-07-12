@@ -65,7 +65,7 @@ module MenuFramework
       help1:  "modules/others:command_help/siren1",
       state:  "$cheat_max_sirens",
       list:   [
-                { key:  2,   label: "[#{$framework.txt("modules/others:command_item/off")}]" },
+                { key:  2,   label: "[#{$framework.txt("menu:cheat_toggle/off")} (2)]" },
                 { key:  4,   label: "[4]" },
                 { key:  6,   label: "[6]" },
                 { key:  8,   label: "[8]" },
@@ -94,7 +94,7 @@ module MenuFramework
       help2:  "modules/others:command_help/fixcommand2",
       state:  "$cheat_friendly_fire_fix",
       list:   FIX_TOGGLE_LIST,
-      gdef:   -1,
+      gdef:   0,
       restart: -1,
       order:  30
     )
@@ -106,7 +106,7 @@ module MenuFramework
       help2:  "modules/others:command_help/fixcommand2",
       state:  "$cheat_classless_society",
       list:   FIX_TOGGLE_LIST,
-      gdef:   -1,
+      gdef:   0,
       restart: -1,
       order:  40
     )
@@ -118,7 +118,7 @@ module MenuFramework
       help2:  "modules/others:command_help/fixcommand2",
       state:  "$cheat_stealth_confirm_fix",
       list:   FIX_TOGGLE_LIST,
-      gdef:   -1,
+      gdef:   0,
       restart: -1,
       order:  60
     )
@@ -130,7 +130,7 @@ module MenuFramework
       help2:  "modules/others:command_help/fixcommand2",
       state:  "$cheat_abomination_skill_fix",
       list:   FIX_TOGGLE_LIST,
-      gdef:   -1,
+      gdef:   0,
       restart: -1,
       order:  70
     )
@@ -142,7 +142,7 @@ module MenuFramework
       help2:  "modules/others:command_help/fixcommand2",
       state:  "$cheat_difficulty_achievement_fix",
       list:   FIX_TOGGLE_LIST,
-      gdef:   -1,
+      gdef:   0,
       restart: -1,
       order:  80
     )
@@ -155,7 +155,7 @@ module MenuFramework
       help2:  "modules/others:command_help/fixcommand2",
       state:  "$cheat_deepone_weak_fix",
       list:   FIX_TOGGLE_LIST,
-      gdef:   -1,
+      gdef:   0,
       restart: -1,
       order:  50
     )
@@ -167,7 +167,7 @@ module MenuFramework
       help2:  "modules/others:command_help/fixcommand2",
       state:  "$cheat_fast_nap",
       list:   FIX_TOGGLE_LIST,
-      gdef:   -1,
+      gdef:   0,
       restart: -1,
       hide:   -> { $framework.roleplay_mod? },
       order:  50
@@ -181,7 +181,7 @@ module MenuFramework
       help2:  "modules/others:command_help/fixcommand2",
       state:  "$cheat_infinite_companion",
       list:   FIX_TOGGLE_LIST,
-      gdef:   -1,
+      gdef:   0,
       restart: -1,
       order:  40
     )
