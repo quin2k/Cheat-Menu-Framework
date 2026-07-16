@@ -570,10 +570,7 @@ if $cheat_deepone_weak_fix >= 0
     end
   end
 
-  # Strips the game's own "if RaceRecord == TrueDeepone ... end" block out of
-  # a handful of HCGframes script files at load time, so True Deepone no
-  # longer gets forced into sneak-or-fight encounters, auto-hostile city
-  # gates, or blocked companion recruitment.
+  # Strips the game's own True Deepone race-gate block out of these HCGframes files at load time.
   module DeeponeWeakFixPatch
     extend self
     GUARD = 'if $game_player.actor.stat["RaceRecord"] == "TrueDeepone"'
@@ -600,9 +597,7 @@ if $cheat_deepone_weak_fix >= 0
     ]
     NOER_OUTA_NEEDA_HELP = "Data/HCGframes/encounter/NoerOutaNeedaHelp.rb"
 
-    # Tracks block-open/close depth (not just "first end after the guard")
-    # since a couple of these files nest a case/end inside the guarded if/end.
-    # Returns the text unchanged if the guard can't be found.
+    # Tracks block depth since some files nest a case/end inside the guard.
     def strip_race_gate(text)
       lines = text.lines
       guard_i = lines.index { |l| l.strip == GUARD }
@@ -632,14 +627,13 @@ if $cheat_deepone_weak_fix >= 0
     msgbox ex.message + "\n" + ex.backtrace.join("\n")
   end
 
-  # TrueDeepone.json's +1000 max "weak" penalty is a parsed state effect, not
-  # covered by load_script - tag the one ItemEffect instance so #adjust can
-  # zero it out live instead of editing it once and being stuck with it.
+  # TrueDeepone.json's +1000 "weak" penalty is a state effect load_script doesn't
+  # touch - tag the ItemEffect instance so #adjust can zero it out live.
   class << DataManager
     alias_method :cf_deepone_weak_fix_load_mod_database, :load_mod_database
     def load_mod_database
       cf_deepone_weak_fix_load_mod_database
-      state = $data_StateName.values.find { |s| s && s.name == "TrueDeepone" }
+      state = $data_StateName["TrueDeepone"] # same lookup Game_Actor#add_state uses
       lona_effect = state && state.instance_variable_get(:@lona_effect)
       weak_effect = lona_effect && lona_effect.find { |e| e.attr == "weak" }
       weak_effect.instance_variable_set(:@cf_deepone_weak_marker, true) if weak_effect
@@ -661,8 +655,7 @@ end
 # Endless Contracts
 #--------------------------------------------------------------------------
 if $cheat_infinite_companion >= 0
-  # Companion expiry checks only act when these dates aren't nil, so forcing
-  # them to nil is enough to stop auto-leaving.
+  # Expiry checks only act when these dates aren't nil, so nil stops auto-leaving.
   class Game_Player
     alias_method :cf_infinite_companion_record_companion_front_date, :record_companion_front_date
     alias_method :cf_infinite_companion_record_companion_back_date,  :record_companion_back_date
@@ -687,14 +680,8 @@ end
 # Fast Nap
 #--------------------------------------------------------------------------
 if $cheat_fast_nap >= 0 && !$framework.roleplay_mod?
-  # Holding Ctrl while resting spends sat/food up front, in 10-point chunks,
-  # to heal several 20-point chunks of stamina/health at once instead of the
-  # normal slow trickle - stamina tops off first, health only once stamina
-  # is already full.
-  #
-  # Skipped when RolePlay-S is active: it replaces this same method with its
-  # own TakeNap-based nap system with no alias back to the original, so
-  # whichever mod loads later would silently win.
+  # Ctrl+rest spends sat in 10-point chunks to heal 20-point chunks of stamina/health at once.
+  # Skipped under RolePlay-S: it replaces this same method unaliased, so load order would decide the winner.
   class Game_Actor
     alias_method :cf_fast_nap_check_sat_heal_HealthSta, :check_sat_heal_HealthSta
 
@@ -746,13 +733,8 @@ end
 #--------------------------------------------------------------------------
 # Night Vision
 #--------------------------------------------------------------------------
-# Shadow#set_opacity is the single choke point every day/night/underground/
-# per-map darkness call goes through - remember whatever the game actually
-# asked for, and substitute half that value only while the toggle is on
-# (fully clearing it looked flat - some shading even at "daytime" opacity
-# is apparently expected), so turning it off restores the real value
-# without reloading the map.
-# Installed unconditionally so it can be flipped live with no restart.
+# Shadow#set_opacity is the single choke point for all map darkness - halve
+# whatever it's asked for while the toggle is on, restore it exactly on off.
 class Shadow
   alias_method :cf_night_vision_set_opacity, :set_opacity
 
