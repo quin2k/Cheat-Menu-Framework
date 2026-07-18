@@ -294,6 +294,19 @@ This started out as "I'd like to be able to edit variables" and when I realized 
 - Moved some menu items around.
 
 </details>
+<details>
+<summary>Ver 1.1.+q Changelog</summary>
+
+- Will compress these into version 1.2 later.
+- 1.1.1
+  - Fixed hook for Deepone Can Communicate.
+- 1.1.2
+  - Removed call to save keys that was causing JoiPlay to crash.
+- 1.1.3
+  - Added untranslated text (lamda) support to main menus registration.
+  - Added visual cues to cheat menus when there are off-screen options.
+
+</details>
 ---
 
 ## Credits

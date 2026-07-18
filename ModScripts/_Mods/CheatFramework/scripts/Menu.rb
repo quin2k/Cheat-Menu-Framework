@@ -314,11 +314,19 @@ end
 # Main Menu Window Initialization
 #============================================================================
 class Window_CheatMainMenu < Window_Command
+  include MenuFramework::ScrollArrows
 
   #--------------------------------------------------------------------------
   # Initialize
   #--------------------------------------------------------------------------
-  def initialize; super(0, 0); end
+  def initialize
+    super(0, 0)
+    create_scroll_arrows
+  end
+
+  def scroll_arrow_tile_count
+    1
+  end
 
   #--------------------------------------------------------------------------
   # Draw Setup
@@ -341,7 +349,7 @@ class Window_CheatMainMenu < Window_Command
     return unless $framework.commands[:MAIN]
     FrameworkUtils.sorted_commands($framework.commands[:MAIN]).each do |key, record|
       add_command(
-        $framework.txt(record[:label]),
+        record[:label].is_a?(Proc) ? record[:label].call : $framework.txt(record[:label]),
         :menu_command,
         true,
         record[:key]

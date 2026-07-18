@@ -62,10 +62,10 @@ commands/set_hotkeys
 View/Clear Hotkeys
 
 command_help/set_hotkeys1
-See currently assigned hotkeys and clear them as desired.
+Set or clear currently assigned hotkeys.
 
 command_help/set_hotkeys2
-To add a hotkey, go to the command's menu and press C.
+Highlight a command and press C to set a hotkey.
 
 commands/edit_order
 Edit Menu Order

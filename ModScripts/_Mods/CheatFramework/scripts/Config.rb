@@ -184,7 +184,6 @@ class FrameworkConfig
   def apply_menu_toggle_key(key_str)
     key_sym = HotkeySymbols.symbol_for(key_str) || key_str.to_sym
     Input::SYM_KEYS[:CF_CHEAT_MENU] = [Input::KEYMAP[key_sym] || Input::KEYMAP[:F9], 0, 0]
-    InputUtils.save_keyboard_settings
     save_menu_toggle_key(key_str)
   end
 
