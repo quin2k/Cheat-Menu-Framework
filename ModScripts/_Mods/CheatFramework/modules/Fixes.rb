@@ -599,7 +599,7 @@ if $cheat_deepone_weak_fix >= 0
 
     # Tracks block depth since some files nest a case/end inside the guard.
     def strip_race_gate(text)
-      lines = text.lines
+      lines = text.lines.to_a
       guard_i = lines.index { |l| l.strip == GUARD }
       return text unless guard_i
       depth = 1
@@ -621,7 +621,7 @@ if $cheat_deepone_weak_fix >= 0
       return cf_deepone_weak_fix_load_script(path)
     end
     text = File.open(path, 'rb', &:read)
-    text = path == DeeponeWeakFixPatch::NOER_OUTA_NEEDA_HELP ? text.gsub(" && !tmpTrueDeepone", "") : DeeponeWeakFixPatch.strip_race_gate(text)
+    text = path == DeeponeWeakFixPatch::NOER_OUTA_NEEDA_HELP ? text.gsub(/[ \t]*&&\s*!tmpTrueDeepone/, "") : DeeponeWeakFixPatch.strip_race_gate(text)
     self.instance_eval(text, path)
   rescue => ex
     msgbox ex.message + "\n" + ex.backtrace.join("\n")

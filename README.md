@@ -139,6 +139,8 @@ Conflict Resolution: If the RolePlay-S mod is active, quick-save/load will overr
 - Mod integration: Allow editing of my other mod ini files via this mod. Thanks to thatguy88 for the inspiration. 
 - Explore adding more 'Doom' features peacemeal (like pregnancy) - for those who want to experience some of the features without save-locks.
 - Identify global variables that should be able to act as local.
+- Exp Multiplier cheat?  Credit Braunray42
+- Equip anything fix Seawich block too.  I thought of this too when testing, but I'll give credit to Braunray42 as well.
 
 ---
 
@@ -305,6 +307,8 @@ This started out as "I'd like to be able to edit variables" and when I realized 
 - 1.1.3
   - Added untranslated text (lamda) support to main menus registration.
   - Added visual cues to cheat menus when there are off-screen options.
+- 1.1.4
+  - Another fix for Deepone Can Communicate.
 
 </details>
 ---
