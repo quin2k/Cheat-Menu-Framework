@@ -34,6 +34,12 @@ command_help/lvl
 commands/levels/max_level
 最高等级
 
+commands/levels/exp_rate
+经验值
+
+command_help/exp_rate1
+倍增从所有来源获得的经验值。
+
 commands/levels/traits_per_level
 每级特性
 
@@ -161,7 +167,10 @@ command_help/autocure
 自动清除性传播疾病和寄生虫。
 
 commands/race
-種族
+设置赛
+
+window_help/race1
+选择种族。
 
 commands/race/human
 人类
@@ -181,8 +190,8 @@ commands/race/abom_human
 commands/race/abom_moot
 憎恶（混合种族）
 
-commands/race/skills
-种族技能
+commands/racecheats
+赛车作弊
 
 commands/race/skills/deepone
 觉醒（海巫）
@@ -193,8 +202,23 @@ commands/race/skills/abomeat
 commands/race/skills/abomgrab
 触手鞭（憎恶）
 
-window_help/race1
-选择种族。
+commands/deeponecommunicate
+Deepone 可以沟通
+
+command_help/deeponecommunicate1
+移除锁定 True Deepone 进行交互的硬编码检查。
+
+commands/abomskillfix
+吞食
+
+command_help/abomskillfix1
+亵渎技能还可以补充食物和治疗伤口。
+
+commands/siren
+Deepone召唤Max
+
+command_help/siren1
+修改了塞壬召唤的总次数。
 
 commands/sexual
 性

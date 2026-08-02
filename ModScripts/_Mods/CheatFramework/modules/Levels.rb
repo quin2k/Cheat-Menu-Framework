@@ -54,6 +54,24 @@ module MenuFramework
     )
     register_command(
       group:  :LEVELS,
+      type:   :edit_list,
+      key:    "Exp Rate",
+      label:  "modules/character:commands/levels/exp_rate",
+      help1:  "modules/character:command_help/exp_rate1",
+      state:  "$cheat_exp_rate",
+      list:   [
+                { key: 0, label: "[#{$framework.txt("menu:cheat_toggle/disable")}]" },
+                { key: 1, label: "[x1]" },
+                { key: 2, label: "[x2]" },
+                { key: 4, label: "[x4]" },
+                { key: 8, label: "[x8]" },
+              ],
+      gdef:   1,
+      restart: 0,
+      order:  25
+    )
+    register_command(
+      group:  :LEVELS,
       type:   :edit_num,
       key:    "Traits Per Level",
       label:  "modules/character:commands/levels/traits_per_level",
@@ -287,6 +305,21 @@ if $mod_manager.mods['RolePlayS'] && !$mod_manager.mods['RolePlayS'].enabled
       self.class.learnings.each do |learning|
         learn_skill(learning.skill_id) if learning.level == @level
       end
+    end
+  end
+end
+
+#--------------------------------------------------------------------------
+# Exp Rate
+#--------------------------------------------------------------------------
+# gain_exp always multiplies by this before truncating to an int - RolePlay-S's
+# own gain_exp override still calls through to this same original method.
+if $cheat_exp_rate != 0
+  class Game_Actor
+    alias_method :cf_exp_rate_final_exp_rate, :final_exp_rate
+    def final_exp_rate
+      return cf_exp_rate_final_exp_rate unless $cheat_exp_rate > 0
+      (cf_exp_rate_final_exp_rate * $cheat_exp_rate).round
     end
   end
 end

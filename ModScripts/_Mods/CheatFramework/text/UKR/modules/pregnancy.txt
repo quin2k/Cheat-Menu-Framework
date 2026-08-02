@@ -4,18 +4,6 @@ commands/preg
 commands/difficulty
 Трудности беременности
 
-commands/diff_off
-ВИКЛ
-
-commands/diff_hard
-Важко
-
-commands/diff_hell
-Пекло
-
-commands/diff_doom
-Кінець світу
-
 commands/seedbed
 SB (Матка)
 

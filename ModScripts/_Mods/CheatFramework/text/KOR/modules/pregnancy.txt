@@ -2,22 +2,10 @@ commands/preg
 임신
 
 commands/difficulty
-임신 어려움
-
-commands/diff_off
-끄다
-
-commands/diff_hard
-딱딱한
-
-commands/diff_hell
-지옥
-
-commands/diff_doom
-운명
+임신 관련 어려움
 
 commands/seedbed
-자궁 씨앗 침대
+자궁 씨앗밭
 
 commands/protect
 임신을 보호하세요
@@ -56,31 +44,31 @@ commands/impreg/abomination
 어보미네이션
 
 commands/clear
-임신 확인
+임신
 
 menu_help/impreg_menu1
-임신시킬 인종을 선택하세요.
+임신을 원하는 상대방의 인종을 선택하세요.
 
 menu_help/impreg_menu4
-Z를 눌러 로나를 임신시키세요!
+Z 키를 눌러 로나를 임신시키세요!
 
 command_help/difficulty
-이는 임신 기간에만 영향을 미칩니다.
+이는 임신 기간에만 영향을 미칠 뿐입니다.
 
 command_help/seedbed
 로나의 상태를 직접 조정합니다.
 
 command_help/protect
-아기 건강을 최대로 유지하고 'Clear'를 비활성화합니다.
+아기의 건강 상태를 최대로 유지하고 '정리' 기능을 비활성화합니다.
 
 command_help/length1
-임신 기간을 편집하려면 선택하세요.
+임신 기간을 수정하려면 선택하세요.
 
 command_help/length2
-이사를 하면 임신이 시작됩니다.
+제로를 움직이면 임신이 시작됩니다.
 
 command_help/clear1
 로나의 임신을 조용히 제거하세요.
 
 command_help/clear2
-비활성화하면 임신 보호가 켜집니다.
+비활성화된 경우, 임신 보호 기능이 활성화됩니다.

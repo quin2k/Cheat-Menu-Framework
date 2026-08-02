@@ -8,7 +8,7 @@ commands/character
 Personaje
 
 commands/npc
-NPC
+Ajustes de los PNJ
 
 window_help/character1
 Cambiar propiedades del personaje principal.
@@ -21,6 +21,27 @@ ACTIVADO
 
 cheat_toggle/off
 DESACTIVADO
+
+cheat_toggle/default
+POR DEFECTO
+
+cheat_toggle/hard
+DURO
+
+cheat_toggle/hell
+INFIERNO
+
+cheat_toggle/doom
+CONDENAR
+
+cheat_toggle/disable
+DESACTIVAR
+
+cheat_toggle/infinite
+INF
+
+command_help/fixcommand2
+Requiere reiniciar. Deshabilitar desactiva esta corrección.
 
 command_help/execute
 Pulsa Z para ejecutar el comando.
@@ -83,7 +104,7 @@ command_help/reset_order1
 Restablece todas las configuraciones de menú personalizadas a los valores predeterminados del framework.
 
 command_help/reset_order2
-Surte efecto inmediatamente, no requiere reinicio.
+Surte efecto inmediatamente, no es necesario reiniciar.
 
 commands/edit_globals
 Editar variables globales

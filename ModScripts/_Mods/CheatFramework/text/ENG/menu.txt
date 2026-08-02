@@ -8,7 +8,7 @@ commands/character
 Character
 
 commands/npc
-NPC
+NPC Tweaks
 
 window_help/character1
 Change various properties of the main character.
@@ -21,6 +21,27 @@ ON
 
 cheat_toggle/off
 OFF
+
+cheat_toggle/default
+DEFAULT
+
+cheat_toggle/hard
+HARD
+
+cheat_toggle/hell
+HELL
+
+cheat_toggle/doom
+DOOM
+
+cheat_toggle/disable
+DISABLE
+
+cheat_toggle/infinite
+INF
+
+command_help/fixcommand2
+Requires Restart. Disable unloads this fix.
 
 command_help/execute
 Press Z to run command.
@@ -62,10 +83,10 @@ commands/set_hotkeys
 View/Clear Hotkeys
 
 command_help/set_hotkeys1
-Set or clear currently assigned hotkeys.
+See currently assigned hotkeys and clear them as desired.
 
 command_help/set_hotkeys2
-Highlight a command and press C to set a hotkey.
+To add a hotkey, go to the command's menu and press C.
 
 commands/edit_order
 Edit Menu Order

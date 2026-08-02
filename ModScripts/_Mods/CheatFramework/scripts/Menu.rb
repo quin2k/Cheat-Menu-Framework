@@ -560,7 +560,7 @@ MenuFramework::MENU.register_command(
   menu1: "menu:window_help/character1",
   name: "CheatMenuEditLona",
   dict: :LONA,
-  order: 3
+  order: 4
 )
 MenuFramework::MENU.register_command(
   type: :scene,
@@ -568,7 +568,7 @@ MenuFramework::MENU.register_command(
   label: "menu:commands/npc",
   name: "CheatMenuNPCOptions",
   dict: :NPC,
-  order: 5
+  order: 6
 )
 MenuFramework::MENU.register_command(
   type: :scene,

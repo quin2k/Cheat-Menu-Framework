@@ -1,0 +1,17 @@
+commands/othermods
+其他模组
+
+commands/roleplays
+RolePlay-S
+
+commands/roleplays/saves
+禁用保存限制器
+
+commands/roleplays/mana
+无限MP
+
+commands/roleplays/mana_rage
+法力狂怒
+
+commands/roleplays/mana_rage_max
+法力狂怒最大值

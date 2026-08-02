@@ -10,15 +10,21 @@ module MenuFramework
   module SUBMENU
     register_command(
       group:  :FIXES,
-      type:   :toggle,
+      type:   :edit_list,
       key:    "Prevent Discard",
       label:  "modules/others:commands/discard",
       help1:  "modules/others:command_help/discard1",
-      help2:  "modules/others:command_help/fixcommand2",
+      help2:  "menu:command_help/fixcommand2",
       state:  "$cheat_prevent_clothing_discard",
-      gdef:   false,
-      restart: true,
-      order:  30
+      # Inline 3-state list instead of reusing Fixes.rb's FIX_TOGGLE_LIST.
+      list:   [
+                { key: -1, label: "[#{$framework.txt("menu:cheat_toggle/disable")}]" },
+                { key:  0, label: "[#{$framework.txt("menu:cheat_toggle/off")}]" },
+                { key:  1, label: "[#{$framework.txt("menu:cheat_toggle/on")}]" },
+              ],
+      gdef:   0,
+      restart: -1,
+      order:  50
     )
     register_command(
       group:  :MISC,
@@ -60,9 +66,13 @@ end
 #--------------------------------------------------------------------------
 # Prevent Discard Patch
 #--------------------------------------------------------------------------
-if $cheat_prevent_clothing_discard
+if $cheat_prevent_clothing_discard >= 0
   module GIM_CHCG
+    alias_method :cf_prevent_discard_combat_remove_random_equip_exec, :combat_remove_random_equip_exec
     def combat_remove_random_equip_exec(tar_name,eqp_target=combat_hit_get_removable_slots,summon=true)
+      unless $cheat_prevent_clothing_discard == 1
+        return cf_prevent_discard_combat_remove_random_equip_exec(tar_name,eqp_target,summon)
+      end
       eqp_target = $data_system.equip_type_name[eqp_target] if eqp_target.is_a?(String)
       $game_player.actor.change_equip(eqp_target, nil)
       weaponSlots = $data_system.weapon_slots

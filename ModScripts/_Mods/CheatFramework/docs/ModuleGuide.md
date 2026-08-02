@@ -123,9 +123,9 @@ register_command(
   state:  "$cheat_pregnancy_difficulty",
   gdef:   -1,
   list:   [
-            { key: -1, label: "[#{$framework.txt("modules/pregnancy:commands/diff_off")}]" },
-            { key:  0, label: "[#{$framework.txt("modules/pregnancy:commands/diff_hard")}]" },
-            { key:  1, label: "[#{$framework.txt("modules/pregnancy:commands/diff_hell")}]" },
+            { key: -1, label: "[#{$framework.txt("menu:cheat_toggle/off")}]" },
+            { key:  0, label: "[#{$framework.txt("menu:commands/diff_hard")}]" },
+            { key:  1, label: "[#{$framework.txt("menu:commands/diff_hell")}]" },
           ],
 )
 ```

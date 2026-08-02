@@ -4,18 +4,6 @@ Pregnancy
 commands/difficulty
 Pregnancy Difficulty
 
-commands/diff_off
-OFF
-
-commands/diff_hard
-HARD
-
-commands/diff_hell
-HELL
-
-commands/diff_doom
-DOOM
-
 commands/seedbed
 Womb Seedbed
 

@@ -42,25 +42,15 @@ MenuFramework::MENU.register_command(
 
 MenuFramework::SUBMENU.register_command(
   type:  :action,
-  group: :NPC,
+  group: :MISC,
   key:   "Bank Anywhere",
   label: "modules/invedit:commands/bank",
   hotkey: {key: "F2"},
-  order: 10,
+  order: 100,
   action: -> {
       SceneManager.goto(Scene_BankStorage)
       SceneManager.scene.prepare(System_Settings::STORAGE_BANK)
   })
-
-MenuFramework::SUBMENU.register_command(
-  type:   :scene,
-  group:  :NPC,
-  key:    :summon,
-  label:  "modules/invedit:commands/summon",
-  name:   "CheatMenuSummon",
-  dict:   :SUMMON,
-  order:  70
-)
 
 #--------------------------------------------------------------------------
 # Cache Item/weapon/armor/status Lists
@@ -186,10 +176,7 @@ class Window_CheatMenuItems < Window_Command
     item = @list[index][:ext]
     name = item.name
     change_color(normal_color, $game_party.item_number(item) > 0)
-    if $game_party.item_number(item) > 0 && item.name == ""
-      change_color(knockout_color)
-      name = "#{$framework.txt("menu:info/alert")}"
-    end
+    change_color(knockout_color) if $game_party.item_number(item) > 0 && item.name == ""
     draw_text(rect, command_name(index))
     rect.x += text_size(command_name(index)).width
     rect.width -= text_size(command_name(index)).width
@@ -326,82 +313,5 @@ class Game_Actor
     return if state?(state_id) # Still stacked - stop here to avoid a bugged stack.
     # @state_turns.delete(state_id)
     @state_steps.delete(state_id)
-  end
-end
-
-module MenuFramework
-  module Summons
-    extend self
-
-    def build_dynamic_summons
-      summonable_keys = []
-
-      # Collect summonable NPC/event keys
-      $data_npcs.each do |npc|
-        next unless npc
-        summonable_keys << npc[0]
-      end
-
-      # Group by the key's leading CamelCase segment
-      folder_map = Hash.new { |h, k| h[k] = [] }
-
-      $data_EventLib.each_key do |key|
-        next unless summonable_keys.include?(key)
-
-        camel = key.split(/(?=[A-Z])/).reject(&:empty?)
-        next if camel.empty?
-
-        # Rename some folders for better grouping
-        folder = {"Swine"=>"Wild","Player"=>"Baby","Deepone"=>"Fishkind","Gang"=>"Human"}.fetch(camel.first, camel.first)
-
-        folder_map[folder] << key
-      end
-
-      # Register folder scenes under :SUMMON
-      folder_map.keys.sort.each_with_index do |folder, i|
-        dict = :"SUMMON_#{folder.upcase}"
-
-        MenuFramework::SUBMENU.register_command(
-          group:  :SUMMON,
-          type:   :scene,
-          key:    folder,
-          label:  -> {folder},
-          name:   "CheatMenuSummon_#{folder}",
-          dict:   dict,
-          order:  (i + 1) * 10
-        )
-
-        # Register each NPC inside the folder dictionary
-        folder_map[folder].sort.each_with_index do |npc_key, j|
-          MenuFramework::SUBMENU.register_command(
-            group:  dict,
-            type:   :action,
-            key:    npc_key,
-            label:  -> {npc_key},
-            order:  (j + 1) * 10,
-            action: -> {
-              begin
-                $game_map.summon_event(
-                  npc_key,
-                  $game_player.x,
-                  $game_player.y
-                )
-              rescue => e
-                p "Summon error #{npc_key}: #{e.message}"
-              end
-            }
-          )
-        end
-      end
-    end
-  end
-end
-
-# Run builder at load time
-class << DataManager
-  alias_method :cf_summon_load_db, :load_database
-  def load_database
-    cf_summon_load_db
-    MenuFramework::Summons.build_dynamic_summons
   end
 end

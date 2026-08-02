@@ -20,7 +20,7 @@ commands/primary/morality
 Слава
 
 command_help/moral
-Репутация <30 приведе до нападу людей.
+Мораль <30 приведе до нападу людей.
 
 commands/levels
 Рівень & Риси
@@ -33,6 +33,12 @@ command_help/lvl
 
 commands/levels/max_level
 Макс. рівень
+
+commands/levels/exp_rate
+Коефіцієнт досвіду
+
+command_help/exp_rate1
+Множить досвід, отриманий з усіх джерел.
 
 commands/levels/traits_per_level
 Черти на рівень
@@ -149,10 +155,10 @@ command_help/autobandage
 Автоматично знищує рани, кров і пошкодження відкривання.
 
 toggle/autoclean
-Авто-Очистка (Зовнішня)
+Авто-Очищення
 
 command_help/autoclean
-Автоматично збирає кров і всю сперму на поверхні тіла.
+Автоматично збирає кров і сперму (всередині і снаружи).
 
 toggle/autocure
 Автолікування
@@ -161,7 +167,10 @@ command_help/autocure
 Автоматично знищує ЗППП і паразитів.
 
 commands/race
-Раса
+Встановити гонку
+
+window_help/race1
+Виберіть розу.
 
 commands/race/human
 Людина
@@ -181,8 +190,8 @@ commands/race/abom_human
 commands/race/abom_moot
 Мерзость (смешанная)
 
-commands/race/skills
-Росові навички
+commands/racecheats
+Чітки для гонок
 
 commands/race/skills/deepone
 Пробуждение (Морская Ведьма)
@@ -193,8 +202,23 @@ commands/race/skills/abomeat
 commands/race/skills/abomgrab
 Плеть Тендрила (Мерзость)
 
-window_help/race1
-Виберіть розу.
+commands/deeponecommunicate
+Deepone може спілкуватися
+
+command_help/deeponecommunicate1
+Видаляє жорстко запрограмовані перевірки, які блокують взаємодію з True Deepone.
+
+commands/abomskillfix
+Осквернення
+
+command_help/abomskillfix1
+Навик "Осквернение" також буде насищать и лечить раны.
+
+commands/siren
+Макс. призыв глубинных
+
+command_help/siren1
+Змінює загальне кол-во можливих викликів Сирен.
 
 commands/sexual
 Сексуальність

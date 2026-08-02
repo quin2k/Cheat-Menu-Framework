@@ -32,4 +32,4 @@ commands/bank
 开放银行库存
 
 commands/summon
-召唤NPC
+召唤

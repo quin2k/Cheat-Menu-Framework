@@ -8,7 +8,7 @@ commands/character
 特点
 
 commands/npc
-NPC
+NPC调整
 
 window_help/character1
 改变主角的属性。
@@ -21,6 +21,27 @@ cheat_toggle/on
 
 cheat_toggle/off
 关闭
+
+cheat_toggle/default
+默认
+
+cheat_toggle/hard
+困難
+
+cheat_toggle/hell
+地獄
+
+cheat_toggle/doom
+末日
+
+cheat_toggle/disable
+禁用
+
+cheat_toggle/infinite
+干扰
+
+command_help/fixcommand2
+需要重启。禁用此修复程序将卸载。
 
 command_help/execute
 按 Z 键运行命令。

@@ -17,7 +17,7 @@
 ## Requirements
 
 Lowest game version tested: `0.10.0.2`<br>
-Highest game version tested: `0.10.7.5.16`
+Highest game version tested: `0.10.7.5.17`
 
 ## Hotkeys
 These should populate in the config when you load the mod for the first time.  If you want to disable any of these, go to Config > View/Clear Hotkeys.  Any command or toggle can be assigned a hotkey by pressing **C** to edit, a key or combo, then  **C** again to save. 
@@ -30,7 +30,7 @@ The Cheat Menu still defaults to **F9**. You can change this in the hotkeys.ini,
 <summary>Default Hotkeys</summary>
 
 - MENU.Main Menu = F9
-- NONE.Remove Clothes = F3
+- MISC.Remove Clothes = F3
 - MISC.Force Remove Clothes = Shift+F3
 - MISC.Bank Anywhere = F2
 - TOGGLES.Infinite Health = F4
@@ -50,9 +50,9 @@ Conflict Resolution: If the RolePlay-S mod is active, quick-save/load will overr
   - Heal a Wound
   - Exhausted
   - Give Money
-  - Night Vision [N]
   - Remove Clothes [F3]
   - Force Unequip [Shift+F3]
+  - Open Bank Inventory [F2]
 - Toggles
   - Infinite Health/Stamina/Food/Money
   - Disable Dirt
@@ -60,6 +60,9 @@ Conflict Resolution: If the RolePlay-S mod is active, quick-save/load will overr
   - Auto-Clean
   - Auto-Cure
   - Unlock Gallery
+- Summon
+  - Arena Submenu
+  - Auto-populated
 - Character
   - Primary Stats
     - Health Edit
@@ -76,9 +79,16 @@ Conflict Resolution: If the RolePlay-S mod is active, quick-save/load will overr
     - Traits
       - Edit Combat/Scoutcraft/Wisdom/Survival/Constitution
       - Reset Traits (points allocated to skills, etc.)
-  - Race
+  - Set Race
     - Set Lona's Race
-    - Enable Racial Skills (Abomination/Deepone)
+  - Race Cheats
+    - ---Deepone---
+    - Deepone Can Communicate
+    - Deepone Summon Max
+    - Enable Awaken skill
+    - ---Abomination---
+    - Abomination Eat Fix
+    - Enable Desecrate/Tendril Whip skills
   - Pregnancy
     - Preg Difficulty / Womb Seedbed (Impacts pregnancy length)
     - Protect Pregnancy (Infinite Baby Health)
@@ -92,24 +102,26 @@ Conflict Resolution: If the RolePlay-S mod is active, quick-save/load will overr
     - Vaginal/Urethra/Anal Damage Toggle
     - Reset Sex Stats (Virginize)
 - Game Tweaks
-  - Item Decay Control
-  - Increased Drops
-  - Prevent Discard
+  - Night Vision
+  - Noclip
   - Equip Anything
   - Fast Nap
+  - Prevent Discard
   - From The Shadows Fix
-  - Abomination Eat Fix
   - Difficulty Achievement Fix
-- NPC
-  - Open Bank Inventory
-  - Edit World Difficulty
+- NPC Tweaks
   - Friendly Fire Fix
   - Endless Contracts
-  - Deepone Can Communicate
-  - Deepone Summon Max
-  - Summon NPC Submenu
-    - Auto-populated
+  - Prevent Death
+  - Irresistible
   - Revive Unique NPCs Submenu
+- Difficulty
+  - Edit World Difficulty
+  - Item Decay Control
+  - Increased Drops
+  - Addiction Effects (Off/Hard/Hell)
+  - Milk Overflow (Off/Hard/Hell)
+  - Preg Difficulty (same setting as under Character > Pregnancy)
   - Reset Game Difficulty (Doom Mode only)
 - Items/Weapons/Armors/Status
   - Auto-populated 
@@ -139,8 +151,6 @@ Conflict Resolution: If the RolePlay-S mod is active, quick-save/load will overr
 - Mod integration: Allow editing of my other mod ini files via this mod. Thanks to thatguy88 for the inspiration. 
 - Explore adding more 'Doom' features peacemeal (like pregnancy) - for those who want to experience some of the features without save-locks.
 - Identify global variables that should be able to act as local.
-- Exp Multiplier cheat?  Credit Braunray42
-- Equip anything fix Seawich block too.  I thought of this too when testing, but I'll give credit to Braunray42 as well.
 
 ---
 
@@ -294,21 +304,36 @@ This started out as "I'd like to be able to edit variables" and when I realized 
 - Fixed long load times for Items/Armors/Weapons/States menus.
 - Fixed (?) and mererged Auto-Clean toggle.
 - Moved some menu items around.
+- Removed call to save keys that was causing JoiPlay to crash.
+- Added untranslated text (lambda) support to main menus registration.
+- Added visual cues to cheat menus when there are off-screen options.
+- Several fixes for "Deepone Can Communicate" from 1.1.1-4.
 
 </details>
 <details>
-<summary>Ver 1.1.+q Changelog</summary>
+<summary>Ver 1.2q Changelog</summary>
 
-- Will compress these into version 1.2 later.
-- 1.1.1
-  - Fixed hook for Deepone Can Communicate.
-- 1.1.2
-  - Removed call to save keys that was causing JoiPlay to crash.
-- 1.1.3
-  - Added untranslated text (lamda) support to main menus registration.
-  - Added visual cues to cheat menus when there are off-screen options.
-- 1.1.4
-  - Another fix for Deepone Can Communicate.
+- "Equip Anything" now also bypasses True Deepone's weapon/armor locks.
+- Added "Exp Rate" cheat (x1/x2/x4/x8) to Levels & Traits.
+  - Should be compatible with RoleplayS.
+- Added "Noclip" cheat. Walk through terrain, walls, and NPCs - also freezes overworld changes.
+- Added "Forage Glow" cheat that will highlight spawned items in the wild.
+- Added Difficulty-related 'features' similar to Pregnency Difficulty:
+  - Added "Addiction Effects" cheat (Off/Hard/Hell) to unlock (or lock) Ograsm/Semen/Drug addiction overevents.
+  - Added "Milk Overflow" cheat (Off/Hard/Hell) to unlock (or lock) milk overflow/splash overevent.
+- Added some additional Companion Cheats
+  - "Prevent Death" - Locks Companion and Lona HP to >1. Companions will not fall below 0 stamina.
+  - "Irresistible" - Crawling Companions and Lona now bypass other agro checks, favoring "fucker" interactions.
+- Improved on Summon Menu
+  - Added support for Arena summons.
+  - Filtered some crash-inducing summons.
+  - Filtered out the babies.
+  - Added some 'lost' NPCs.
+- Rearranged menus 
+  - See above for in-depth details. 
+  - Moved Summon to it's own menu.
+  - Added a "Race Cheats" to Character menu (houses deepone/abomination cheats/skills).
+  - Added a "Difficulty" menu for difficulty-related cheats (both good and bad).
 
 </details>
 ---

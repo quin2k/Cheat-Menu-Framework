@@ -32,4 +32,4 @@ commands/bank
 공개 은행 재고
 
 commands/summon
-NPC 소환
+소환

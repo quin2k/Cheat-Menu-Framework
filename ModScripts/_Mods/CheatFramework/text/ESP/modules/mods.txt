@@ -1,0 +1,17 @@
+commands/othermods
+Otros mods
+
+commands/roleplays
+RolePlay-S
+
+commands/roleplays/saves
+Desactivar limitador de guardado
+
+commands/roleplays/mana
+MP infinito
+
+commands/roleplays/mana_rage
+Furia de maná
+
+commands/roleplays/mana_rage_max
+Furia de maná máxima

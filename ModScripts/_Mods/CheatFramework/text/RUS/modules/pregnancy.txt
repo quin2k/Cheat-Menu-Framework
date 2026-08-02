@@ -2,19 +2,7 @@ commands/preg
 Беременность
 
 commands/difficulty
-Сложность беременности
-
-commands/diff_off
-ВЫКЛ
-
-commands/diff_hard
-HARD
-
-commands/diff_hell
-HELL
-
-commands/diff_doom
-DOOM
+Трудности беременности
 
 commands/seedbed
 Лечение утробы

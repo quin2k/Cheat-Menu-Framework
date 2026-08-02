@@ -8,7 +8,7 @@ commands/character
 Персонаж
 
 commands/npc
-НПС
+Налаштування NPC
 
 window_help/character1
 Змінити властивості головного персонажа.
@@ -21,6 +21,27 @@ cheat_toggle/on
 
 cheat_toggle/off
 ВИКЛ
+
+cheat_toggle/default
+ЗА ЗАМОВЧАННЯМ
+
+cheat_toggle/hard
+Важко
+
+cheat_toggle/hell
+Пекло
+
+cheat_toggle/doom
+Кінець світу
+
+cheat_toggle/disable
+ВІДКЛЮЧИТИ
+
+cheat_toggle/infinite
+БЕСКОНЕЧ
+
+command_help/fixcommand2
+Потрібно перезавантаження. Вимкнення вивантажує це виправлення.
 
 command_help/execute
 Натисніть Z, щоб виконати команду.

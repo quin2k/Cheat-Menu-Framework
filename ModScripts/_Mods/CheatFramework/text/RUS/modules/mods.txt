@@ -1,0 +1,17 @@
+commands/othermods
+Другие моды
+
+commands/roleplays
+RolePlay-S
+
+commands/roleplays/saves
+Откл. лимит сохранений
+
+commands/roleplays/mana
+Бесконечная мана (МР)
+
+commands/roleplays/mana_rage
+Ярость маны
+
+commands/roleplays/mana_rage_max
+Макс. Ярость маны
