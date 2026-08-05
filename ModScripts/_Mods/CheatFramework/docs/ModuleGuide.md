@@ -123,9 +123,9 @@ register_command(
   state:  "$cheat_pregnancy_difficulty",
   gdef:   -1,
   list:   [
-            { key: -1, label: "[#{$framework.txt("modules/pregnancy:commands/diff_off")}]" },
-            { key:  0, label: "[#{$framework.txt("modules/pregnancy:commands/diff_hard")}]" },
-            { key:  1, label: "[#{$framework.txt("modules/pregnancy:commands/diff_hell")}]" },
+            { key: -1, label: "[#{$framework.txt("menu:cheat_toggle/off")}]" },
+            { key:  0, label: "[#{$framework.txt("menu:commands/diff_hard")}]" },
+            { key:  1, label: "[#{$framework.txt("menu:commands/diff_hell")}]" },
           ],
 )
 ```
@@ -184,6 +184,36 @@ You don't need to build the screen by hand — the framework generates it the fi
 `name:`. That's enough for the vast majority of cheats. Building a fully custom, hand-drawn screen is
 possible but a much bigger topic — look at `Controls.rb` or `InvEdit.rb` for examples if you need it,
 or ask someone familiar with the framework for help.
+
+## 4b. Adding your own row to the *Main Menu* (root screen)
+
+§4a's `group:` puts your new screen's link *inside* an existing category, like `:LONA`. If instead you
+want your module to show up as its own row on the root screen — the one the player sees when pressing
+the Main Menu key, alongside "Miscellaneous," "Toggles," "Character," and "NPC Options" — register with
+`MenuFramework::MENU` instead of `MenuFramework::SUBMENU`:
+
+```ruby
+module MenuFramework
+  module MENU
+    register_command(
+      type:  :scene,
+      label: "modules/mymodule:commands/root",
+      name:  "CheatMenuMyModule",
+      order: 40,
+    )
+  end
+end
+```
+
+If your `FrameworkModule` header (§2) already sets `menu:`, that value becomes this new screen's group
+automatically — you don't need to pass `dict:` yourself, and any `MenuFramework::SUBMENU.register_command`
+calls in the same file don't need `group:` either, for the same reason. `modules/Fixes.rb` is a small,
+complete example of this: one `MENU` entry ("Game Fixes") holding several plain `SUBMENU` toggles, none of
+which mention `group:` because the header's `menu: :FIXES` already ties them together.
+
+Everything else about the `:scene` command (`type:`, `label:`, `name:`) works exactly like §4a. The only
+difference is *where* the link to your new screen appears: `MENU` puts it on the root screen, `SUBMENU`
+(with a `group:`) tucks it inside whichever existing category you choose instead.
 
 ## 5. Making your cheat remember its setting (`gdef:` + `state:`)
 
@@ -386,7 +416,8 @@ separately by someone else.
 
 1. Create `modules/YourModule.rb`.
 2. Add a `FrameworkModule` header (§2) — optional for something tiny.
-3. Decide: are you adding rows to an existing menu, or a whole new screen (§4a)?
+3. Decide: are you adding rows to an existing menu, a whole new screen linked from one (§4a), or your
+   own row on the root Main Menu (§4b)?
 4. Register your command(s) using the type table in §4.
 5. If it's a cheat *setting* (not existing game data), add `gdef:` + a plain `$variable` `state:` and
    skip `action:` — persistence is automatic (§5).

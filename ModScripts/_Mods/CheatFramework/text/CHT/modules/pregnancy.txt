@@ -4,18 +4,6 @@ commands/preg
 commands/difficulty
 妊娠困难
 
-commands/diff_off
-离开
-
-commands/diff_hard
-困難
-
-commands/diff_hell
-地獄
-
-commands/diff_doom
-末日
-
 commands/seedbed
 子宮苗床
 

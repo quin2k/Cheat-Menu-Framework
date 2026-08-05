@@ -34,6 +34,12 @@ command_help/lvl
 commands/levels/max_level
 최대 레벨
 
+commands/levels/exp_rate
+경험 비율
+
+command_help/exp_rate1
+모든 출처에서 얻는 경험치를 곱합니다.
+
 commands/levels/traits_per_level
 레벨별 특성
 
@@ -113,7 +119,7 @@ commands/appearance/apubegrowth
 항문 털 성장
 
 command_help/pubes1
-값을 0으로 설정하면 성장이 억제되고, 1 이상으로 설정하면 성장이 활성화됩니다.
+값을 0으로 설정하면 성장이 방지되고, 1 이상으로 설정하면 성장이 활성화됩니다.
 
 command_help/pubegrowth1
 성장 간격. 높을수록 성장 속도가 느립니다.
@@ -155,13 +161,16 @@ command_help/autoclean
 혈액과 정액을 자동으로 제거합니다 (입구 및 출구).
 
 toggle/autocure
-자동 경화
+자동 치료
 
 command_help/autocure
 자동으로 성병과 기생충을 제거합니다.
 
 commands/race
-인종 변경
+레이스 설정
+
+window_help/race1
+인종을 선택합니다.
 
 commands/race/human
 인간
@@ -181,8 +190,8 @@ commands/race/abom_human
 commands/race/abom_moot
 어보미네이션 (혼혈)
 
-commands/race/skills
-인종 기술
+commands/racecheats
+레이스 치트
 
 commands/race/skills/deepone
 깨어나라 (바다 마녀)
@@ -193,8 +202,23 @@ commands/race/skills/abomeat
 commands/race/skills/abomgrab
 덩굴 채찍 (혐오스러운 것)
 
-window_help/race1
-인종을 선택합니다.
+commands/deeponecommunicate
+Deepone은 소통할 수 있습니다
+
+command_help/deeponecommunicate1
+True Deepone이 상호 작용하지 못하도록 막는 하드코딩된 검사를 제거합니다.
+
+commands/abomskillfix
+혐오스러운 음식 고치다
+
+command_help/abomskillfix1
+신성모독 스킬은 음식도 채워주고 상처도 치료해줍니다.
+
+commands/siren
+디폰 소환 맥스
+
+command_help/siren1
+편집을 통해 가능한 사이렌 소환 횟수를 모두 수정했습니다.
 
 commands/sexual
 성적

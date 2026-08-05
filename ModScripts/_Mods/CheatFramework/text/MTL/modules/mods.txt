@@ -1,0 +1,17 @@
+commands/othermods
+Other Mods
+
+commands/roleplays
+RolePlay-S
+
+commands/roleplays/saves
+Disable Save Limiter
+
+commands/roleplays/mana
+Infinite MP
+
+commands/roleplays/mana_rage
+Mana Rage
+
+commands/roleplays/mana_rage_max
+Mana Rage Max

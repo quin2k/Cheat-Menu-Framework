@@ -4,10 +4,97 @@
 #  Handles default commands structure and interface
 #===============================================================================
 
+module MenuFramework
+  module ScrollArrows
+    ARROW_SRC_DOWN  = Rect.new(0, 0, 19, 12)
+    ARROW_WIDTH     = 12
+    ARROW_HEIGHT    = 8
+    ARROW_Z = 200
+    JIGGLE_PERIOD = 60
+    ARROW_UP_Y_OFFSET   = 4 # nudge down to re-center against the smaller glyphs
+    ARROW_DOWN_Y_OFFSET = 0
+
+    # Cap the cluster at 180px so it doesn't stretch to fill wide windows.
+    def scroll_arrow_span
+      [contents_width, 180].min
+    end
+
+    # Override to 1 for a single centered arrow instead of a 3-wide cluster.
+    def scroll_arrow_tile_count
+      3
+    end
+
+    def create_scroll_arrows
+      source = Cache.system("Menu/08Items/item_arrow")
+      down_glyph = Bitmap.new(ARROW_WIDTH, ARROW_HEIGHT)
+      down_glyph.stretch_blt(down_glyph.rect, source, ARROW_SRC_DOWN)
+      @scroll_arrow_down = build_scroll_arrow(down_glyph)
+      @scroll_arrow_up   = build_scroll_arrow(flip_glyph(down_glyph))
+      update_scroll_arrows
+    end
+
+    # Row-by-row reversal instead of a negative sprite zoom (zoom_y = -1
+    # silently failed to render at all) - keeps up/down pixel-identical.
+    def flip_glyph(glyph)
+      flipped = Bitmap.new(glyph.width, glyph.height)
+      glyph.height.times do |row|
+        flipped.blt(0, glyph.height - 1 - row, glyph, Rect.new(0, row, glyph.width, 1))
+      end
+      flipped
+    end
+
+    def build_scroll_arrow(glyph)
+      span = scroll_arrow_span
+      sprite = Sprite.new
+      sprite.z = ARROW_Z
+      sprite.bitmap = Bitmap.new(span, ARROW_HEIGHT)
+      scroll_arrow_tile_positions(span).each do |dest_x|
+        sprite.bitmap.blt(dest_x, 0, glyph, glyph.rect)
+      end
+      sprite.x = self.x + padding + (contents_width - span) / 2
+      sprite.visible = false
+      sprite
+    end
+
+    def scroll_arrow_tile_positions(span)
+      count = scroll_arrow_tile_count
+      return [span / 2 - ARROW_WIDTH / 2] if count <= 1
+      (0...count).map { |i| i * (span - ARROW_WIDTH) / (count - 1) }
+    end
+
+    def update_scroll_arrows
+      return unless @scroll_arrow_up && @scroll_arrow_down
+      more_rows = page_row_max > 0 && row_max > page_row_max
+      @scroll_arrow_up.visible   = more_rows && top_row > 0
+      @scroll_arrow_down.visible = more_rows && bottom_row < row_max - 1
+
+      jiggle = Graphics.frame_count % JIGGLE_PERIOD / (JIGGLE_PERIOD / 3)
+      @scroll_arrow_up.y   = self.y + ARROW_UP_Y_OFFSET - jiggle if @scroll_arrow_up.visible
+      @scroll_arrow_down.y = self.y + height - padding_bottom + ARROW_DOWN_Y_OFFSET + jiggle if @scroll_arrow_down.visible
+    end
+
+    def dispose_scroll_arrows
+      @scroll_arrow_up.dispose   if @scroll_arrow_up
+      @scroll_arrow_down.dispose if @scroll_arrow_down
+    end
+
+    def update
+      super
+      update_scroll_arrows
+    end
+
+    def dispose
+      dispose_scroll_arrows
+      super
+    end
+  end
+end
+
 #==============================================================================
 # Action Window Module
 #==============================================================================
 module Action_Window_Defaults
+  include MenuFramework::ScrollArrows
   attr_accessor :dictionary
   #--------------------------------------------------------------------------
   # Initialize
@@ -17,6 +104,7 @@ module Action_Window_Defaults
     @dictionary = nil
     @hotkey_capture_mode = false
     clear_edit
+    create_scroll_arrows
   end
 
   def clear_edit
@@ -611,8 +699,14 @@ end
 # full-width single-window screens in scripts/Controls.rb)
 #==============================================================================
 module Window_ConfigList_Defaults
+  include MenuFramework::ScrollArrows
   def window_width;  Graphics.width; end
   def window_height; Graphics.height - 120; end
+
+  def initialize(*args)
+    super
+    create_scroll_arrows
+  end
 
   def force_content_font
     MenuFramework.force_font(contents) if contents

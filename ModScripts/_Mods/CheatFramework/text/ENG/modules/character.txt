@@ -34,6 +34,12 @@ Recalculates Trait Points when set.
 commands/levels/max_level
 Max Level
 
+commands/levels/exp_rate
+Exp Rate
+
+command_help/exp_rate1
+Multiplies exp gained from all sources.
+
 commands/levels/traits_per_level
 Traits per Level
 
@@ -161,7 +167,10 @@ command_help/autocure
 Auto removes STDs and parasites.
 
 commands/race
-Race
+Set Race
+
+window_help/race1
+Select a race.
 
 commands/race/human
 Human
@@ -181,8 +190,8 @@ Abomination (Human)
 commands/race/abom_moot
 Abomination (Moot)
 
-commands/race/skills
-Racial Skills
+commands/racecheats
+Race Cheats
 
 commands/race/skills/deepone
 Awaken (Sea Witch)
@@ -193,8 +202,23 @@ Desecrate (Abomination)
 commands/race/skills/abomgrab
 Tendril Whip (Abomination)
 
-window_help/race1
-Select a race.
+commands/deeponecommunicate
+Deepone Can Communicate
+
+command_help/deeponecommunicate1
+Removes hardcoded checks that lock True Deepone out of interactions.
+
+commands/abomskillfix
+Abomination Eat Fix
+
+command_help/abomskillfix1
+Desecrate skill will also fill food and heal wounds.
+
+commands/siren
+Deepone Summon Max
+
+command_help/siren1
+Edits total Siren Summons possible.
 
 commands/sexual
 Sexual

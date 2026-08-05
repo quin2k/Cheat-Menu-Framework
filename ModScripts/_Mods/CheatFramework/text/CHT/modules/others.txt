@@ -2,31 +2,10 @@ commands/gallery
 解锁画廊
 
 command_help/gallery
-
-
-commands/world
-世界難度
+在诺尔的算命先生处即可获得帮助。
 
 commands/fix
 游戏调整
-
-commands/friendlyfire
-修复友军误伤问题
-
-command_help/friendlyfire1
-防止友军误伤的尝试。
-
-commands/stealth
-隱匿專精
-
-command_help/stealth1
-如果你拥有相关技能，动作键不会取消潜行状态。
-
-commands/abomskillfix
-吞食
-
-command_help/abomskillfix1
-亵渎技能还可以补充食物和治疗伤口。
 
 commands/achievementfix
 难度成就修复
@@ -34,11 +13,11 @@ commands/achievementfix
 command_help/achievementfix1
 如果适用，则对难度较低的题目给予学分。
 
-commands/deeponecommunicate
-Deepone 可以沟通
+commands/stealth
+隱匿專精
 
-command_help/deeponecommunicate1
-移除锁定 True Deepone 进行交互的硬编码检查。
+command_help/stealth1
+如果你拥有相关技能，动作键不会取消潜行状态。
 
 commands/fastnap
 快速小睡
@@ -46,20 +25,23 @@ commands/fastnap
 command_help/fastnap1
 休息时按住Ctrl键，即可在一回合内恢复体力。食物/体力比例不变。
 
-commands/endlesscontracts
-无尽的合同
-
-command_help/endlesscontracts1
-招募的同伴/追随者的合同永不过期。
-
 commands/nightvision
 夜视
 
 command_help/nightvision1
 强制地图暗部完全透明。立即生效，无需重启。
 
-command_help/fixcommand2
-需要重启。禁用此修复程序将卸载。
+commands/noclip
+Noclip
+
+command_help/noclip1
+可以穿过地形、墙壁和NPC。冻结世界地图上的变化。
+
+commands/forageglow
+觅食之光
+
+command_help/forageglow1
+使可采集资源节点更容易被发现。
 
 commands/discard
 防止丢弃
@@ -76,29 +58,17 @@ commands/forceunequip
 command_help/forceunequip1
 用于强行取下链条或项圈。
 
-commands/despawnfix
-物品损耗控制
-
-command_help/despawnfix1
-设置掉落物品的持续时间。
-
-command_item/off
-禁用
-
-command_item/infinite
-干扰
-
-commands/drops
-增加滴落
-
-command_help/dropsfix1
-调整敌人掉落物品。
-
 commands/equip
 装备任何物品
 
 command_help/equip1
-取消技能要求。
+移除武器和护甲限制。
+
+commands/difficulty
+困难
+
+commands/world
+世界難度
 
 commands/diff
 重置游戏难度
@@ -106,23 +76,50 @@ commands/diff
 command_help/diff
 强制禁用 DOOM 模式
 
-commands/siren
-深渊召唤 Max
+commands/addictioneffects
+成瘾效应
 
-command_help/siren1
-修改了塞壬召唤的总次数。
+command_help/addictioneffects1
+覆盖 Ograsm/精液/药物成瘾事件。
 
-commands/roleplays
-RolePlay-S
+commands/milkoverflow
+牛奶溢出
 
-commands/roleplays/saves
-禁用保存限制器
+command_help/milkoverflow1
+覆盖基于难度的牛奶溢出/飞溅事件。
 
-commands/roleplays/mana
-无限MP
+commands/despawnfix
+物品损耗控制
 
-commands/roleplays/mana_rage
-法力狂怒
+command_help/despawnfix1
+设置掉落物品的持续时间。
 
-commands/roleplays/mana_rage_max
-法力狂怒最大值
+commands/drops
+增加滴落
+
+command_help/dropsfix1
+调整敌人掉落物品。
+
+commands/friendlyfire
+修复友军误伤问题
+
+command_help/friendlyfire1
+防止友军误伤的尝试。
+
+commands/endlesscontracts
+无尽的合同
+
+command_help/endlesscontracts1
+招募的同伴/追随者的合同永不过期。
+
+commands/immortal
+预防死亡
+
+command_help/immortal1
+同伴和洛娜的生命值不会低于 1 点。
+
+commands/irresistible
+无法抗拒
+
+command_help/irresistible1
+如果体力<0，则优先进行性攻击。

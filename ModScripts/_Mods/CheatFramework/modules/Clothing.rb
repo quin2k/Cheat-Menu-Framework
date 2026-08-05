@@ -10,15 +10,21 @@ module MenuFramework
   module SUBMENU
     register_command(
       group:  :FIXES,
-      type:   :toggle,
+      type:   :edit_list,
       key:    "Prevent Discard",
       label:  "modules/others:commands/discard",
       help1:  "modules/others:command_help/discard1",
-      help2:  "modules/others:command_help/fixcommand2",
+      help2:  "menu:command_help/fixcommand2",
       state:  "$cheat_prevent_clothing_discard",
-      gdef:   false,
-      restart: true,
-      order:  30
+      # Inline 3-state list instead of reusing Fixes.rb's FIX_TOGGLE_LIST.
+      list:   [
+                { key: -1, label: "[#{$framework.txt("menu:cheat_toggle/disable")}]" },
+                { key:  0, label: "[#{$framework.txt("menu:cheat_toggle/off")}]" },
+                { key:  1, label: "[#{$framework.txt("menu:cheat_toggle/on")}]" },
+              ],
+      gdef:   0,
+      restart: -1,
+      order:  50
     )
     register_command(
       group:  :MISC,
@@ -60,21 +66,14 @@ end
 #--------------------------------------------------------------------------
 # Prevent Discard Patch
 #--------------------------------------------------------------------------
-if $cheat_prevent_clothing_discard
-  module GIM_CHCG
-    def combat_remove_random_equip_exec(tar_name,eqp_target=combat_hit_get_removable_slots,summon=true)
-      eqp_target = $data_system.equip_type_name[eqp_target] if eqp_target.is_a?(String)
-      $game_player.actor.change_equip(eqp_target, nil)
-      weaponSlots = $data_system.weapon_slots
-      tarType = weaponSlots.include?(eqp_target) ? "Weapon" : "Armor"
-      #$game_party.drop_tgt_item_and_summon(tarType,tar_name,1,summon)
-      if weaponSlots.include?(eqp_target) && summon
-        SndLib.sound_combat_sword_hit_sword(vol=80,effect=65+rand(10))
-      else
-        SndLib.sound_DressTear(vol=80,effect=75+rand(10))
-      end
-      $game_player.actor.update_state_frames
-      $game_player.update
+# remove_equip_on_hit is the current (post B.0.10.8.05) choke point for combat clothing-strips -
+# force summon off so the item returns to inventory instead of dropping as a pickup on the ground.
+if $cheat_prevent_clothing_discard >= 0
+  class Game_Actor
+    alias_method :cf_prevent_discard_remove_equip_on_hit, :remove_equip_on_hit
+    def remove_equip_on_hit(slot_key=self.remove_equip_slot_picker, summon=true, sound_play=true)
+      summon = false if $cheat_prevent_clothing_discard == 1
+      cf_prevent_discard_remove_equip_on_hit(slot_key, summon, sound_play)
     end
   end
 end

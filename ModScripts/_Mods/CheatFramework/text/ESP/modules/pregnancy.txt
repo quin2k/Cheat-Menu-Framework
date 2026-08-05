@@ -2,22 +2,10 @@ commands/preg
 Embarazo
 
 commands/difficulty
-Dificultad en el embarazo
-
-commands/diff_off
-APAGADO
-
-commands/diff_hard
-DURO
-
-commands/diff_hell
-INFIERNO
-
-commands/diff_doom
-CONDENAR
+Dificultades durante el embarazo
 
 commands/seedbed
-Semillero de útero
+Lecho de siembra del útero
 
 commands/protect
 Proteger el embarazo
@@ -59,28 +47,28 @@ commands/clear
 Embarazo claro
 
 menu_help/impreg_menu1
-Seleccione la raza por la que desea ser impregnada.
+Seleccione la raza que desea fecundar.
 
 menu_help/impreg_menu4
-¡Presiona Z para embarazar a Lona!
+¡Pulsa Z para embarazar a Lona!
 
 command_help/difficulty
-Esto sólo influirá en la duración del embarazo.
+Esto solo influirá en la duración del embarazo.
 
 command_help/seedbed
 Ajusta directamente el estado de Lona.
 
 command_help/protect
-Mantiene la salud del bebé al máximo, desactiva 'Borrar'
+Mantiene la salud del bebé al máximo y desactiva la opción "Borrar".
 
 command_help/length1
-Seleccione para editar la duración del embarazo.
+Seleccione esta opción para editar la duración del embarazo.
 
 command_help/length2
-Zero provocará un embarazo una vez que te mudes.
+Zero provocará el embarazo una vez que te mudes.
 
 command_help/clear1
-Eliminar silenciosamente el embarazo de Lona.
+Eliminar el embarazo de Lona en silencio.
 
 command_help/clear2
-Si está deshabilitado, Proteger el embarazo está activado.
+Si está desactivada, la protección contra el embarazo está activada.

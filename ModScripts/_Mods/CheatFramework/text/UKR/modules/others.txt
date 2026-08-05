@@ -2,31 +2,10 @@ commands/gallery
 Відкрити галерею
 
 command_help/gallery
-
-
-commands/world
-Небезпека світу
+Доступ до ворожки в Ноєрі.
 
 commands/fix
 Налаштування
-
-commands/friendlyfire
-Исправление дружественного огня
-
-command_help/friendlyfire1
-Попытки предотвратить дружественный огонь.
-
-commands/stealth
-З Тіні
-
-command_help/stealth1
-Клавиша дії не відмінить скритність, якщо є навик.
-
-commands/abomskillfix
-Осквернення
-
-command_help/abomskillfix1
-Навик "Осквернение" також буде насищать и лечить раны.
 
 commands/achievementfix
 Виправлення складності досягнення
@@ -34,11 +13,11 @@ commands/achievementfix
 command_help/achievementfix1
 За потреби зараховується легша складність.
 
-commands/deeponecommunicate
-Deepone може спілкуватися
+commands/stealth
+З Тіні
 
-command_help/deeponecommunicate1
-Видаляє жорстко запрограмовані перевірки, які блокують взаємодію з True Deepone.
+command_help/stealth1
+Клавиша дії не відмінить скритність, якщо є навик.
 
 commands/fastnap
 Швидкий сон
@@ -46,20 +25,23 @@ commands/fastnap
 command_help/fastnap1
 Утримуйте Ctrl під час відпочинку, щоб відновити витривалість за один раунд. Те саме співвідношення їжі та витривалості.
 
-commands/endlesscontracts
-Нескінченні контракти
-
-command_help/endlesscontracts1
-Контракти з завербованими компаньйонами/послідовниками ніколи не закінчуються.
-
 commands/nightvision
 Нічне бачення
 
 command_help/nightvision1
 Примусово робить карту повністю прозорою. Застосовується миттєво, перезапуск не потрібен.
 
-command_help/fixcommand2
-Потрібно перезавантаження. Вимкнення вивантажує це виправлення.
+commands/noclip
+Без кліпу
+
+command_help/noclip1
+Пройдіть крізь місцевість, стіни та NPC. Заморозьте зміни у світі.
+
+commands/forageglow
+Сяйво корму
+
+command_help/forageglow1
+Полегшує виявлення вузлів ресурсів, придатних для вилову.
 
 commands/discard
 Предотвратить виброс
@@ -76,29 +58,17 @@ commands/forceunequip
 command_help/forceunequip1
 Используется для принудительного снятия цепей або ошейников.
 
-commands/despawnfix
-Контроль випадання предметів
-
-command_help/despawnfix1
-Встановити тривалість випадіння предметів.
-
-command_item/off
-ВІДКЛЮЧИТИ
-
-command_item/infinite
-БЕСКОНЕЧ
-
-commands/drops
-Збільшити краплю
-
-command_help/dropsfix1
-Налаштовує дроп з врагів.
-
 commands/equip
 Экипировать что удобно
 
 command_help/equip1
-Убирає вимоги до навикам.
+Знімає обмеження на зброю і броню.
+
+commands/difficulty
+Складність
+
+commands/world
+Небезпека світу
 
 commands/diff
 Сбросить складність гри
@@ -106,23 +76,50 @@ commands/diff
 command_help/diff
 Принудительно відключити режим DOOM
 
-commands/siren
-Макс. призыв глубинных
+commands/addictioneffects
+Наслідки залежності
 
-command_help/siren1
-Змінює загальне кол-во можливих викликів Сирен.
+command_help/addictioneffects1
+Ігнорувати події Огразму/Сперми/Наркотичної залежності.
 
-commands/roleplays
-RolePlay-S
+commands/milkoverflow
+Переповнення молока
 
-commands/roleplays/saves
-Відкл. ліміт збережених
+command_help/milkoverflow1
+Ігнорувати події переповнення/розбризкування молока на основі складності.
 
-commands/roleplays/mana
-Бесконечная мана (МР)
+commands/despawnfix
+Контроль випадання предметів
 
-commands/roleplays/mana_rage
-Яскравість мани
+command_help/despawnfix1
+Встановити тривалість випадіння предметів.
 
-commands/roleplays/mana_rage_max
-Макс. Ярость маны
+commands/drops
+Збільшити краплю
+
+command_help/dropsfix1
+Налаштовує дроп з врагів.
+
+commands/friendlyfire
+Исправление дружественного огня
+
+command_help/friendlyfire1
+Попытки предотвратить дружественный огонь.
+
+commands/endlesscontracts
+Нескінченні контракти
+
+command_help/endlesscontracts1
+Контракти з завербованими компаньйонами/послідовниками ніколи не закінчуються.
+
+commands/immortal
+Запобігти смерті
+
+command_help/immortal1
+Соратники та Лона не можуть мати менше 1 здоров'я.
+
+commands/irresistible
+Неперевершений
+
+command_help/irresistible1
+Надайте пріоритет сексуальному таргетуванню, якщо витривалість <0.

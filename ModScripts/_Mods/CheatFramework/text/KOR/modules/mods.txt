@@ -1,0 +1,17 @@
+commands/othermods
+기타 모드
+
+commands/roleplays
+RolePlay-S
+
+commands/roleplays/saves
+저장 제한 해제
+
+commands/roleplays/mana
+무한 MP
+
+commands/roleplays/mana_rage
+마나 레이지
+
+commands/roleplays/mana_rage_max
+마나 분노 최대치

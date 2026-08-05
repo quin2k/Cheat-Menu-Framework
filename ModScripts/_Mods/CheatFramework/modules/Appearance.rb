@@ -151,7 +151,7 @@ module MenuFramework
       key:    "Auto Clean",
       label:  "modules/character:toggle/autoclean",
       help1:  "modules/character:command_help/autoclean",
-      state:  "$cheat_autoclean_in",
+      state:  "$cheat_autoclean",
       gdef:   false,
       order:  70
     )

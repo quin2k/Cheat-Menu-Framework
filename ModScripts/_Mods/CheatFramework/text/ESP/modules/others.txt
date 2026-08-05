@@ -2,31 +2,10 @@ commands/gallery
 Desbloquear galería
 
 command_help/gallery
-
-
-commands/world
-Dificultad mundial
+Acceso en la Adivina de Noer.
 
 commands/fix
 Ajustes del juego
-
-commands/friendlyfire
-Solución para el fuego amigo
-
-command_help/friendlyfire1
-Intentos de prevenir el fuego amigo.
-
-commands/stealth
-Desde las sombras
-
-command_help/stealth1
-La tecla de acción no cancelará el sigilo si tienes la habilidad.
-
-commands/abomskillfix
-Abominación Comer Arreglar
-
-command_help/abomskillfix1
-La habilidad Profanar también repondrá la comida y curará las heridas.
 
 commands/achievementfix
 Solución para el problema de dificultad
@@ -34,11 +13,11 @@ Solución para el problema de dificultad
 command_help/achievementfix1
 Se otorgan puntos por dificultades más fáciles, si corresponde.
 
-commands/deeponecommunicate
-Deepone puede comunicarse
+commands/stealth
+Desde las sombras
 
-command_help/deeponecommunicate1
-Elimina las comprobaciones codificadas que impiden que True Deepone interactúe con el sistema.
+command_help/stealth1
+La tecla de acción no cancelará el sigilo si tienes la habilidad.
 
 commands/fastnap
 Siesta rápida
@@ -46,20 +25,23 @@ Siesta rápida
 command_help/fastnap1
 Mantén pulsada la tecla Ctrl mientras descansas para recuperar resistencia en una ronda. La proporción de comida/resistencia es la misma.
 
-commands/endlesscontracts
-Contratos sin fin
-
-command_help/endlesscontracts1
-Los contratos de los compañeros/seguidores reclutados nunca caducan.
-
 commands/nightvision
 Visión nocturna
 
 command_help/nightvision1
 Fuerzas que hacen que la oscuridad del mapa sea totalmente transparente. Se aplica al instante, no es necesario reiniciar.
 
-command_help/fixcommand2
-Requiere reiniciar. Deshabilitar desactiva esta corrección.
+commands/noclip
+Noclip
+
+command_help/noclip1
+Atraviesa terrenos, paredes y PNJ. Congela los cambios en el mundo exterior.
+
+commands/forageglow
+Resplandor de forraje
+
+command_help/forageglow1
+Facilita la localización de los nodos de recursos recolectables.
 
 commands/discard
 Prevenir el descarte
@@ -76,29 +58,17 @@ Desequipar por fuerza
 command_help/forceunequip1
 Se utiliza para quitar cadenas o collares a la fuerza.
 
-commands/despawnfix
-Control de deterioro de artículos
-
-command_help/despawnfix1
-Establece la duración de los objetos caídos.
-
-command_item/off
-DESACTIVAR
-
-command_item/infinite
-INF
-
-commands/drops
-Aumentar las caídas
-
-command_help/dropsfix1
-Ajusta los objetos que sueltan los enemigos.
-
 commands/equip
 Equipa cualquier cosa
 
 command_help/equip1
-Elimina los requisitos de habilidad.
+Elimina las restricciones sobre armas y armaduras.
+
+commands/difficulty
+Dificultad
+
+commands/world
+Dificultad mundial
 
 commands/diff
 Reiniciar la dificultad del juego
@@ -106,23 +76,50 @@ Reiniciar la dificultad del juego
 command_help/diff
 Desactivar forzosamente el modo DOOM
 
-commands/siren
-Invocar a Deepone Max
+commands/addictioneffects
+Efectos de la adicción
 
-command_help/siren1
-Ediciones totales posibles de Invocaciones de Sirena.
+command_help/addictioneffects1
+Anular eventos de abuso/semen/adicción a las drogas.
 
-commands/roleplays
-RolePlay-S
+commands/milkoverflow
+Desbordamiento de leche
 
-commands/roleplays/saves
-Desactivar limitador de guardado
+command_help/milkoverflow1
+Anular los eventos de desbordamiento/salpicaduras de leche basados ​​en la dificultad.
 
-commands/roleplays/mana
-MP infinito
+commands/despawnfix
+Control de deterioro de artículos
 
-commands/roleplays/mana_rage
-Furia de maná
+command_help/despawnfix1
+Establece la duración de los objetos que caen.
 
-commands/roleplays/mana_rage_max
-Furia de maná máxima
+commands/drops
+Aumentar las caídas
+
+command_help/dropsfix1
+Ajusta los objetos que sueltan los enemigos.
+
+commands/friendlyfire
+Solución para el fuego amigo
+
+command_help/friendlyfire1
+Intentos de prevenir el fuego amigo.
+
+commands/endlesscontracts
+Contratos sin fin
+
+command_help/endlesscontracts1
+Los contratos de los compañeros/seguidores reclutados nunca caducan.
+
+commands/immortal
+Prevenir la muerte
+
+command_help/immortal1
+Los compañeros y Lona no pueden bajar de 1 punto de vida.
+
+commands/irresistible
+Irresistible
+
+command_help/irresistible1
+Prioriza la focalización sexual si la resistencia <0.

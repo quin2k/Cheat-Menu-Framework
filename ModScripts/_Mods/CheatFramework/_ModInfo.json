@@ -1,13 +1,11 @@
 {
 	"id": "cheatframework",
-	"version": "0.9.4q for 0.10.3.1",
+	"version": "1.2q",
 	"name": "$cheatframework:mod:name",
 	"description": "$cheatframework:mod:description",
 	"entry": "__init__.rb",
 	"texts": "text",
-	"requires": {
-		"LonaRPG": [">=", 0.9404]
-	},
+	"requires": {},
 	"before": [],
 	"thumbnail": "preview.png"
 }

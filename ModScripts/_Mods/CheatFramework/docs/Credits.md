@@ -24,6 +24,8 @@
 - And most importantly, Yanfly for the code that was previously used in the old Cheats Mod dependency file, and the remaining portions that still exist in the `Inventory Editor CheatModule`
 
 ## Inspiration
+- [Braunray42](https://f95zone.to/members/braunray42.11194152/) \(Suggestion for EXP multiplier and Equip Anything to bypass race-specific restrictions.\)
+
 - [Petaduo](https://f95zone.to/members/petaduo.3814433/) \(Suggestion to incorporate [Lona CAN Communicate Mod](https://raidgame.ru/mods/628/) as a cheat.\)
 
 - [Lazi Ness](https://raidgame.ru/members/5664/) \(Mana Rage from [RolePlay-S](https://raidgame.ru/mods/565/) effectively gave night vision, which got me thinking...\)

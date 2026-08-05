@@ -34,6 +34,12 @@ Recalcula los puntos de rasgo cuando se establece.
 commands/levels/max_level
 Nivel máximo
 
+commands/levels/exp_rate
+Tasa de Exp
+
+command_help/exp_rate1
+Multiplica la experiencia obtenida de todas las fuentes.
+
 commands/levels/traits_per_level
 Rasgos por nivel
 
@@ -161,7 +167,10 @@ command_help/autocure
 Elimina automáticamente las ETS y los parásitos.
 
 commands/race
-Cambiar de raza
+Establecer carrera
+
+window_help/race1
+Selecciona raza.
 
 commands/race/human
 Humano
@@ -181,8 +190,8 @@ Abominación (Humana)
 commands/race/abom_moot
 Abominación (mestizo)
 
-commands/race/skills
-Habilidades raciales
+commands/racecheats
+Trucos de carrera
 
 commands/race/skills/deepone
 Despierta (Bruja del Mar)
@@ -193,8 +202,23 @@ Profanar (Abominación)
 commands/race/skills/abomgrab
 Látigo de tentáculos (Abominación)
 
-window_help/race1
-Selecciona raza.
+commands/deeponecommunicate
+Deepone puede comunicarse
+
+command_help/deeponecommunicate1
+Elimina las comprobaciones codificadas que impiden que True Deepone interactúe con el sistema.
+
+commands/abomskillfix
+Abominación Comer Arreglar
+
+command_help/abomskillfix1
+La habilidad Profanar también repondrá la comida y curará las heridas.
+
+commands/siren
+Invocar a Deepone Max
+
+command_help/siren1
+Ediciones totales posibles de Invocaciones de Sirena.
 
 commands/sexual
 Sexual

@@ -4,29 +4,8 @@ commands/gallery
 command_help/gallery
 Доступно у Гадалки в Ноэртауне.
 
-commands/world
-Oпасность мира
-
 commands/fix
 Настройки
-
-commands/friendlyfire
-Исправление дружественного огня
-
-command_help/friendlyfire1
-Попытки предотвратить дружественный огонь.
-
-commands/stealth
-Из Тени
-
-command_help/stealth1
-Клавиша действия не отменит скрытность, если есть навык.
-
-commands/abomskillfix
-Осквернение
-
-command_help/abomskillfix1
-Навык "Осквернение" также будет насыщать и лечить раны.
 
 commands/achievementfix
 Исправление сложности достижения
@@ -34,11 +13,11 @@ commands/achievementfix
 command_help/achievementfix1
 Учитываются более лёгкие уровни сложности, если таковые имеются.
 
-commands/deeponecommunicate
-Глубинная может общаться
+commands/stealth
+Из Тени
 
-command_help/deeponecommunicate1
-Удаляет жёстко закодированные проверки, блокирующие взаимодействие с Морской ведьмой.
+command_help/stealth1
+Клавиша действия не отменит скрытность, если есть навык.
 
 commands/fastnap
 Быстрый сон
@@ -46,20 +25,23 @@ commands/fastnap
 command_help/fastnap1
 Удерживайте клавишу Ctrl во время отдыха, чтобы восстановить выносливость за один раунд. Соотношение еды и выносливости одинаково.
 
-commands/endlesscontracts
-Бесконечные контракты
-
-command_help/endlesscontracts1
-Контракты с привлеченными компаньонами/последователями не имеют срока действия.
-
 commands/nightvision
 Ночное видение
 
 command_help/nightvision1
 Делает темноту на карте полностью прозрачной. Применяется мгновенно, перезапуск не требуется.
 
-command_help/fixcommand2
-Требуется перезапуск. Отключение этой функции выгружает данное исправление.
+commands/noclip
+Ноклип
+
+command_help/noclip1
+Проходить сквозь местность, стены и NPC. Замораживает изменения в игровом мире.
+
+commands/forageglow
+Свечение кормовых растений
+
+command_help/forageglow1
+Облегчает обнаружение мест сбора ресурсов.
 
 commands/discard
 Предотвратить выброс
@@ -76,29 +58,17 @@ commands/forceunequip
 command_help/forceunequip1
 Используется для принудительного снятия цепей или ошейников.
 
-commands/despawnfix
-Контроль выпадания предметов
-
-command_help/despawnfix1
-Установить продолжительность выпадения предметов.
-
-command_item/off
-ОТКЛЮЧИТЬ
-
-command_item/infinite
-БЕСКОНЕЧ
-
-commands/drops
-Увеличить дроп
-
-command_help/dropsfix1
-Настраивает дроп с врагов.
-
 commands/equip
 Экипировать что угодно
 
 command_help/equip1
-Убирает требования к навыкам.
+Снимает ограничения на оружие и броню.
+
+commands/difficulty
+Сложность
+
+commands/world
+Oпасность мира
 
 commands/diff
 Сбросить сложность игры
@@ -106,23 +76,50 @@ commands/diff
 command_help/diff
 Принудительно отключить режим DOOM
 
-commands/siren
-Макс. призыв глубинных
+commands/addictioneffects
+Эффекты зависимости
 
-command_help/siren1
-Изменяет общее кол-во возможных призываемых Сирен.
+command_help/addictioneffects1
+Отключите события, связанные с огремом/спермой/наркотической зависимостью.
 
-commands/roleplays
-RolePlay-S
+commands/milkoverflow
+Перелив молока
 
-commands/roleplays/saves
-Откл. лимит сохранений
+command_help/milkoverflow1
+Отключить события перелива/разбрызгивания молока, зависящие от уровня сложности.
 
-commands/roleplays/mana
-Бесконечная мана (МР)
+commands/despawnfix
+Контроль выпадания предметов
 
-commands/roleplays/mana_rage
-Ярость маны
+command_help/despawnfix1
+Установить продолжительность выпадения предметов.
 
-commands/roleplays/mana_rage_max
-Макс. Ярость маны
+commands/drops
+Увеличить дроп
+
+command_help/dropsfix1
+Настраивает дроп с врагов.
+
+commands/friendlyfire
+Исправление дружественного огня
+
+command_help/friendlyfire1
+Попытки предотвратить дружественный огонь.
+
+commands/endlesscontracts
+Бесконечные контракты
+
+command_help/endlesscontracts1
+Контракты с привлеченными компаньонами/последователями не имеют срока действия.
+
+commands/immortal
+Предотвратить смерть
+
+command_help/immortal1
+Состояние здоровья спутников и Лоны не может опуститься ниже 1 HP.
+
+commands/irresistible
+Неотразимый
+
+command_help/irresistible1
+При выносливости <0 приоритет отдается сексуальным целям.

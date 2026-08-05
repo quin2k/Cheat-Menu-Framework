@@ -34,6 +34,12 @@ command_help/lvl
 commands/levels/max_level
 Макс. уровень
 
+commands/levels/exp_rate
+Скорость экспонирования
+
+command_help/exp_rate1
+Умножает опыт, полученный из всех источников.
+
 commands/levels/traits_per_level
 Черты на уровень
 
@@ -161,7 +167,10 @@ command_help/autocure
 Автоматически убирает ЗППП и паразитов.
 
 commands/race
-Раса
+Установить гонку
+
+window_help/race1
+Выберите расу.
 
 commands/race/human
 Человек
@@ -181,8 +190,8 @@ commands/race/abom_human
 commands/race/abom_moot
 Мерзость (смешанная)
 
-commands/race/skills
-Расовые навыки
+commands/racecheats
+Читы для гонок
 
 commands/race/skills/deepone
 Пробуждение (Морская Ведьма)
@@ -193,8 +202,23 @@ commands/race/skills/abomeat
 commands/race/skills/abomgrab
 Плеть Тендрила (Мерзость)
 
-window_help/race1
-Выберите расу.
+commands/deeponecommunicate
+Глубинная может общаться
+
+command_help/deeponecommunicate1
+Удаляет жёстко закодированные проверки, блокирующие взаимодействие с Морской ведьмой.
+
+commands/abomskillfix
+Осквернение
+
+command_help/abomskillfix1
+Навык "Осквернение" также будет насыщать и лечить раны.
+
+commands/siren
+Макс. призыв глубинных
+
+command_help/siren1
+Изменяет общее кол-во возможных призываемых Сирен.
 
 commands/sexual
 Сексуальность

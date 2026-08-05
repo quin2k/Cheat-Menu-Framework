@@ -11,6 +11,18 @@ class FrameworkConfig
   attr_reader :var_ini
 
   #--------------------------------------------------------------------------
+  # Legacy Global Variable Fixes
+  #--------------------------------------------------------------------------
+  # Fixes for stale "Global Variables" entries in globals.ini carried over from an older config.
+  # Applied once at startup, before anything else reads globals.ini.
+  #   {type: :value,  key:, from:, to:} - value "from" -> "to"
+  #   {type: :rename, from:, to:}       - key "from" -> "to"
+  #   {type: :delete, key:}             - drop the key
+  LEGACY_GLOBAL_FIXES = [
+    {type: :value, key: "Prevent Discard", from: "true", to: "1"},
+  ]
+
+  #--------------------------------------------------------------------------
   # Initialize and load INI files
   #--------------------------------------------------------------------------
   def initialize(config_dir)
@@ -18,6 +30,32 @@ class FrameworkConfig
     @key_ini = load_or_create(File.join(config_dir, "hotkeys.ini"))
     @var_ini = load_or_create(File.join(config_dir, "globals.ini"))
     @mod_ini = load_or_create(File.join(config_dir, "modules.ini"))
+    migrate_legacy_globals
+  end
+
+  def migrate_legacy_globals
+    section = "Global Variables"
+    return unless @var_ini.has_section?(section)
+    data = @var_ini[section]
+    changed = false
+    LEGACY_GLOBAL_FIXES.each do |fix|
+      case fix[:type]
+      when :value
+        next unless data.key?(fix[:key]) && data[fix[:key]].to_s == fix[:from]
+        data[fix[:key]] = fix[:to]
+        changed = true
+      when :rename
+        next unless data.key?(fix[:from])
+        data[fix[:to]] = data[fix[:from]] unless data.key?(fix[:to])
+        data.delete(fix[:from])
+        changed = true
+      when :delete
+        next unless data.key?(fix[:key])
+        data.delete(fix[:key])
+        changed = true
+      end
+    end
+    @var_ini.write if changed
   end
 
   def load_or_create(path)
@@ -95,9 +133,23 @@ class FrameworkConfig
     end
   end
 
+  # Drops any "GROUP.Key" mapping whose command no longer exists (renamed, moved to a different
+  # key, or removed entirely) instead of reviving it as a phantom hotkey_defs entry - safer than
+  # guessing what it should remap to. $framework.commands is fully populated by init_modules,
+  # which always runs before this (see __init__.rb), so it's a complete, reliable source of truth.
+  def prune_orphaned_hotkeys(section)
+    @key_ini[section].keys.each do |full_key|
+      group, key = full_key.split('.', 2)
+      next if group && key && $framework.commands[group.to_sym] && $framework.commands[group.to_sym].key?(key)
+      @key_ini[section].delete(full_key)
+    end
+  end
+
   def compare_hotkeys_to_ini
     section = "Cheat Hotkeys"
     return unless @key_ini.has_section?(section)
+
+    prune_orphaned_hotkeys(section)
 
     @key_ini[section].each do |full_key, value|
       next if value.nil?
@@ -178,14 +230,28 @@ class FrameworkConfig
   end
 
   def menu_toggle_key_configured_in_game?
-    (0..2).any? { |i| $LonaINI["Keyboard"].key?("CF_CHEAT_MENU_#{i}") }
+    (0..2).any? do |i|
+      val = $LonaINI["Keyboard"]["CF_CHEAT_MENU_#{i}"]
+      val && val != 0 && val != "0"
+    end
   end
 
   def apply_menu_toggle_key(key_str)
     key_sym = HotkeySymbols.symbol_for(key_str) || key_str.to_sym
     Input::SYM_KEYS[:CF_CHEAT_MENU] = [Input::KEYMAP[key_sym] || Input::KEYMAP[:F9], 0, 0]
-    InputUtils.save_keyboard_settings
     save_menu_toggle_key(key_str)
+    save_menu_toggle_key_to_game_ini
+  end
+
+  # hook_vanilla_keybind_menu puts :CF_CHEAT_MENU in InputUtils.keyList, so MouseSupport's
+  # frequent InputUtils.load_input_settings calls reload it from $LonaINI - write it there too
+  # or our default gets overwritten back to unbound the next time the mouse toggles.
+  def save_menu_toggle_key_to_game_ini
+    (0..2).each do |i|
+      code = Input::SYM_KEYS[:CF_CHEAT_MENU][i]
+      $LonaINI["Keyboard"]["CF_CHEAT_MENU_#{i}"] = code != 0 ? InputUtils.reverse_key_map[code].to_s : "0"
+    end
+    $LonaINI.save
   end
 
   def save_menu_toggle_key(key_str)

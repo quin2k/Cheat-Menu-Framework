@@ -314,11 +314,19 @@ end
 # Main Menu Window Initialization
 #============================================================================
 class Window_CheatMainMenu < Window_Command
+  include MenuFramework::ScrollArrows
 
   #--------------------------------------------------------------------------
   # Initialize
   #--------------------------------------------------------------------------
-  def initialize; super(0, 0); end
+  def initialize
+    super(0, 0)
+    create_scroll_arrows
+  end
+
+  def scroll_arrow_tile_count
+    1
+  end
 
   #--------------------------------------------------------------------------
   # Draw Setup
@@ -341,7 +349,7 @@ class Window_CheatMainMenu < Window_Command
     return unless $framework.commands[:MAIN]
     FrameworkUtils.sorted_commands($framework.commands[:MAIN]).each do |key, record|
       add_command(
-        $framework.txt(record[:label]),
+        record[:label].is_a?(Proc) ? record[:label].call : $framework.txt(record[:label]),
         :menu_command,
         true,
         record[:key]
@@ -451,8 +459,8 @@ class Menu_System
   # Lands the cursor on Save Game (column 1), not the nil placeholder at 0.
   alias_method :initialize_CheatFramework, :initialize
 
-  def initialize
-    initialize_CheatFramework
+  def initialize(actor)
+    initialize_CheatFramework(actor)
     @cursor_column_index = 1
   end
 
@@ -552,7 +560,7 @@ MenuFramework::MENU.register_command(
   menu1: "menu:window_help/character1",
   name: "CheatMenuEditLona",
   dict: :LONA,
-  order: 3
+  order: 4
 )
 MenuFramework::MENU.register_command(
   type: :scene,
@@ -560,7 +568,7 @@ MenuFramework::MENU.register_command(
   label: "menu:commands/npc",
   name: "CheatMenuNPCOptions",
   dict: :NPC,
-  order: 5
+  order: 6
 )
 MenuFramework::MENU.register_command(
   type: :scene,

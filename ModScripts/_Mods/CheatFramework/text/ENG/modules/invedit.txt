@@ -32,4 +32,4 @@ commands/bank
 Open Bank Inventory
 
 commands/summon
-Summon NPC
+Summon

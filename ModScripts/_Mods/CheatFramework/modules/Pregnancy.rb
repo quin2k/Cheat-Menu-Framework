@@ -30,10 +30,10 @@ module MenuFramework
       help1:  "modules/pregnancy:command_help/difficulty",
       order:  10,
       list:   [
-                { key: -1, label: "[#{$framework.txt("modules/pregnancy:commands/diff_off")}]" },
-                { key:  0, label: "[#{$framework.txt("modules/pregnancy:commands/diff_hard")}]" },
-                { key:  1, label: "[#{$framework.txt("modules/pregnancy:commands/diff_hell")}]" },
-                { key:  2, label: "[#{$framework.txt("modules/pregnancy:commands/diff_doom")}]" }
+                { key: -1, label: "[#{$framework.txt("menu:cheat_toggle/off")}]" },
+                { key:  0, label: "[#{$framework.txt("menu:cheat_toggle/hard")}]" },
+                { key:  1, label: "[#{$framework.txt("menu:cheat_toggle/hell")}]" },
+                { key:  2, label: "[#{$framework.txt("menu:cheat_toggle/doom")}]" }
               ]
     )
     register_command(

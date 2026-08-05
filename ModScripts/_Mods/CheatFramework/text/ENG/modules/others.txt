@@ -4,29 +4,8 @@ Unlock Gallery
 command_help/gallery
 Access at Fortune Teller in Noer.
 
-commands/world
-World Difficulty
-
 commands/fix
 Game Tweaks
-
-commands/friendlyfire
-Friendly Fire Fix
-
-command_help/friendlyfire1
-Attempts to prevent friendly fire.
-
-commands/stealth
-From The Shadows Fix
-
-command_help/stealth1
-Action key won't cancel sneak if you have the skill.
-
-commands/abomskillfix
-Abomination Eat Fix
-
-command_help/abomskillfix1
-Desecrate skill will also fill food and heal wounds.
 
 commands/achievementfix
 Difficulty Achievement Fix
@@ -34,11 +13,11 @@ Difficulty Achievement Fix
 command_help/achievementfix1
 Gives credit for easier difficulties if applicable.
 
-commands/deeponecommunicate
-Deepone Can Communicate
+commands/stealth
+From The Shadows Fix
 
-command_help/deeponecommunicate1
-Removes hardcoded checks that lock True Deepone out of interactions.
+command_help/stealth1
+Action key won't cancel sneak if you have the skill.
 
 commands/fastnap
 Fast Nap
@@ -46,20 +25,23 @@ Fast Nap
 command_help/fastnap1
 Hold Ctrl while resting to restore stamina in one round. Same food/stamina ratio.
 
-commands/endlesscontracts
-Endless Contracts
-
-command_help/endlesscontracts1
-Recruited companions/followers contracts never expire.
-
 commands/nightvision
 Night Vision
 
 command_help/nightvision1
 Forces map darkness fully transparent. Applies instantly, no restart needed.
 
-command_help/fixcommand2
-Requires Restart. Disable unloads this fix.
+commands/noclip
+Noclip
+
+command_help/noclip1
+Walk through terrain, walls, and NPCs. Freezes overworld changes.
+
+commands/forageglow
+Forage Glow
+
+command_help/forageglow1
+Makes forageable resource nodes easier to spot. 
 
 commands/discard
 Prevent Discard
@@ -76,29 +58,17 @@ Force Unequip
 command_help/forceunequip1
 Used to force-remove chains or collars.
 
-commands/despawnfix
-Item Decay Control
-
-command_help/despawnfix1
-Set duration of dropped items.
-
-command_item/off
-DISABLE
-
-command_item/infinite
-INF
-
-commands/drops
-Increase Drops
-
-command_help/dropsfix1
-Adjusts drops from enemies.
-
 commands/equip
 Equip Anything
 
 command_help/equip1
-Removes skill requirements.
+Removes weapon and armor restrictions.
+
+commands/difficulty
+Difficulty
+
+commands/world
+World Difficulty
 
 commands/diff
 Reset Game Difficulty
@@ -106,23 +76,50 @@ Reset Game Difficulty
 command_help/diff
 Force-disable DOOM Mode
 
-commands/siren
-Deepone Summon Max
+commands/addictioneffects
+Addiction Effects
 
-command_help/siren1
-Edits total Siren Summons possible.
+command_help/addictioneffects1
+Override Ograsm/Semen/Drug addiction events.
 
-commands/roleplays
-RolePlay-S
+commands/milkoverflow
+Milk Overflow
 
-commands/roleplays/saves
-Disable Save Limiter
+command_help/milkoverflow1
+Override difficulty-based milk overflow/splash events.
 
-commands/roleplays/mana
-Infinite MP
+commands/despawnfix
+Item Decay Control
 
-commands/roleplays/mana_rage
-Mana Rage
+command_help/despawnfix1
+Set duration of dropped items.
 
-commands/roleplays/mana_rage_max
-Mana Rage Max
+commands/drops
+Increase Drops
+
+command_help/dropsfix1
+Adjusts drops from enemies.
+
+commands/friendlyfire
+Friendly Fire Fix
+
+command_help/friendlyfire1
+Attempts to prevent friendly fire.
+
+commands/endlesscontracts
+Endless Contracts
+
+command_help/endlesscontracts1
+Recruited companions/followers contracts never expire.
+
+commands/immortal
+Prevent Death
+
+command_help/immortal1
+Companions and Lona cannot drop below 1 hp.
+
+commands/irresistible
+Irresistible
+
+command_help/irresistible1
+Prioritize sexual targeting if stamina <0.

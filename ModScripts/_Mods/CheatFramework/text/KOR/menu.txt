@@ -8,7 +8,7 @@ commands/character
 성격
 
 commands/npc
-NPC
+NPC 조정
 
 window_help/character1
 주인공의 속성을 변경합니다.
@@ -21,6 +21,27 @@ cheat_toggle/on
 
 cheat_toggle/off
 꺼짐
+
+cheat_toggle/default
+기본
+
+cheat_toggle/hard
+딱딱한
+
+cheat_toggle/hell
+지옥
+
+cheat_toggle/doom
+운명
+
+cheat_toggle/disable
+장애를 입히다
+
+cheat_toggle/infinite
+INF
+
+command_help/fixcommand2
+재시작이 필요합니다. 비활성화하면 이 수정 사항이 적용되지 않습니다.
 
 command_help/execute
 Z 키를 눌러 명령을 실행하세요.
