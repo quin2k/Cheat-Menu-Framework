@@ -230,13 +230,28 @@ class FrameworkConfig
   end
 
   def menu_toggle_key_configured_in_game?
-    (0..2).any? { |i| $LonaINI["Keyboard"].key?("CF_CHEAT_MENU_#{i}") }
+    (0..2).any? do |i|
+      val = $LonaINI["Keyboard"]["CF_CHEAT_MENU_#{i}"]
+      val && val != 0 && val != "0"
+    end
   end
 
   def apply_menu_toggle_key(key_str)
     key_sym = HotkeySymbols.symbol_for(key_str) || key_str.to_sym
     Input::SYM_KEYS[:CF_CHEAT_MENU] = [Input::KEYMAP[key_sym] || Input::KEYMAP[:F9], 0, 0]
     save_menu_toggle_key(key_str)
+    save_menu_toggle_key_to_game_ini
+  end
+
+  # hook_vanilla_keybind_menu puts :CF_CHEAT_MENU in InputUtils.keyList, so MouseSupport's
+  # frequent InputUtils.load_input_settings calls reload it from $LonaINI - write it there too
+  # or our default gets overwritten back to unbound the next time the mouse toggles.
+  def save_menu_toggle_key_to_game_ini
+    (0..2).each do |i|
+      code = Input::SYM_KEYS[:CF_CHEAT_MENU][i]
+      $LonaINI["Keyboard"]["CF_CHEAT_MENU_#{i}"] = code != 0 ? InputUtils.reverse_key_map[code].to_s : "0"
+    end
+    $LonaINI.save
   end
 
   def save_menu_toggle_key(key_str)

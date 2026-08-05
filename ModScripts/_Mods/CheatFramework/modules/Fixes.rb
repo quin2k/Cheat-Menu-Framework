@@ -127,7 +127,6 @@ if $cheat_stealth_confirm_fix >= 0
       return cf_stealth_confirm_fix_update_nonmoving(last_moving) unless $cheat_stealth_confirm_fix == 1
       return if $game_map.interpreter.running?
       if last_moving
-        $game_party.on_player_walk
         return if check_touch_event
       end
       if inputToTriggerEvent? && movable? && !actor.lonaDeath?

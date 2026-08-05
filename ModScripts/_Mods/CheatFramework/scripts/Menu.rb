@@ -459,8 +459,8 @@ class Menu_System
   # Lands the cursor on Save Game (column 1), not the nil placeholder at 0.
   alias_method :initialize_CheatFramework, :initialize
 
-  def initialize
-    initialize_CheatFramework
+  def initialize(actor)
+    initialize_CheatFramework(actor)
     @cursor_column_index = 1
   end
 

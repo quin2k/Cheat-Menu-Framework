@@ -16,8 +16,12 @@
 
 ## Requirements
 
-Lowest game version tested: `0.10.0.2`<br>
-Highest game version tested: `0.10.7.5.17`
+Lowest game version tested: `0.10.8.05`<br>
+Highest game version tested: `0.10.8.05`
+
+> [!IMPORTANT]
+> Use **CheatFramework v1.1.4q** if playing on a game versions **`0.10.0.2` to `0.10.7.5.17`**. 
+> Major code structure changed in the basegame, removing backard compatibility.
 
 ## Hotkeys
 These should populate in the config when you load the mod for the first time.  If you want to disable any of these, go to Config > View/Clear Hotkeys.  Any command or toggle can be assigned a hotkey by pressing **C** to edit, a key or combo, then  **C** again to save. 
@@ -334,6 +338,8 @@ This started out as "I'd like to be able to edit variables" and when I realized 
   - Moved Summon to it's own menu.
   - Added a "Race Cheats" to Character menu (houses deepone/abomination cheats/skills).
   - Added a "Difficulty" menu for difficulty-related cheats (both good and bad).
+  - Added code fixes needed for 0.10.8.05+
+  - Added fix for issue where F9 hotkey was not being set by default
 
 </details>
 ---
