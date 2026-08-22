@@ -66,14 +66,35 @@ end
 #--------------------------------------------------------------------------
 # Prevent Discard Patch
 #--------------------------------------------------------------------------
-# remove_equip_on_hit is the current (post B.0.10.8.05) choke point for combat clothing-strips -
-# force summon off so the item returns to inventory instead of dropping as a pickup on the ground.
 if $cheat_prevent_clothing_discard >= 0
-  class Game_Actor
-    alias_method :cf_prevent_discard_remove_equip_on_hit, :remove_equip_on_hit
-    def remove_equip_on_hit(slot_key=self.remove_equip_slot_picker, summon=true, sound_play=true)
-      summon = false if $cheat_prevent_clothing_discard == 1
-      cf_prevent_discard_remove_equip_on_hit(slot_key, summon, sound_play)
+  if defined?(Game_Actor) && Game_Actor.method_defined?(:remove_equip_on_hit)
+    class Game_Actor
+      alias_method :cf_prevent_discard_remove_equip_on_hit, :remove_equip_on_hit
+      def remove_equip_on_hit(slot_key=self.remove_equip_slot_picker, summon=true, sound_play=true)
+        summon = false if $cheat_prevent_clothing_discard == 1
+        cf_prevent_discard_remove_equip_on_hit(slot_key, summon, sound_play)
+      end
+    end
+  elsif defined?(GIM_CHCG) && GIM_CHCG.method_defined?(:combat_remove_random_equip_exec)
+    module GIM_CHCG
+      alias_method :cf_prevent_discard_combat_remove_random_equip_exec, :combat_remove_random_equip_exec
+      def combat_remove_random_equip_exec(tar_name,eqp_target=combat_hit_get_removable_slots,summon=true)
+        unless $cheat_prevent_clothing_discard == 1
+          return cf_prevent_discard_combat_remove_random_equip_exec(tar_name,eqp_target,summon)
+        end
+        eqp_target = $data_system.equip_type_name[eqp_target] if eqp_target.is_a?(String)
+        $game_player.actor.change_equip(eqp_target, nil)
+        weaponSlots = $data_system.weapon_slots
+        tarType = weaponSlots.include?(eqp_target) ? "Weapon" : "Armor"
+        #$game_party.drop_tgt_item_and_summon(tarType,tar_name,1,summon)
+        if weaponSlots.include?(eqp_target) && summon
+          SndLib.sound_combat_sword_hit_sword(vol=80,effect=65+rand(10))
+        else
+          SndLib.sound_DressTear(vol=80,effect=75+rand(10))
+        end
+        $game_player.actor.update_state_frames
+        $game_player.update
+      end
     end
   end
 end

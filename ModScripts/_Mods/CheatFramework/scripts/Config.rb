@@ -218,7 +218,7 @@ class FrameworkConfig
     if menu_toggle_key_configured_in_game?
       Input::SYM_KEYS[:CF_CHEAT_MENU] = (0..2).map do |i|
         val = $LonaINI["Keyboard"]["CF_CHEAT_MENU_#{i}"]
-        (val && val != 0 && val != "0") ? (Input::KEYMAP[val.to_sym] || 0) : 0
+        (val && val != 0 && val != "0") ? (Input::KEYMAP[val.to_s.to_sym] || 0) : 0
       end
       live = FrameworkUtils.current_menu_toggle_key
       save_menu_toggle_key(live) if live
