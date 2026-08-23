@@ -127,6 +127,8 @@ if $cheat_stealth_confirm_fix >= 0
       return cf_stealth_confirm_fix_update_nonmoving(last_moving) unless $cheat_stealth_confirm_fix == 1
       return if $game_map.interpreter.running?
       if last_moving
+        # on_player_walk was removed from Game_Party in B.0.10.8.05; only call it pre-patch.
+        $game_party.on_player_walk if $game_party.respond_to?(:on_player_walk)
         return if check_touch_event
       end
       if inputToTriggerEvent? && movable? && !actor.lonaDeath?
