@@ -15,3 +15,30 @@ commands/roleplays/mana_rage
 
 commands/roleplays/mana_rage_max
 Макс. Ярость маны
+
+commands/othermods/booba_cosmetic
+Косметичний режим (Груди)
+
+commands/othermods/booba_oldnipples
+Старі соски
+
+commands/othermods/filter_whitecum
+Біла сперма
+
+commands/othermods/filter_events
+Кольорові події
+
+commands/othermods/filter_melanin
+Фільтр меланіну сосків
+
+commands/othermods/filter_pubes
+Фільтр лобкового волосся
+
+commands/othermods/filter_dirt
+Фільтр бруду
+
+commands/othermods/filter_wounds
+Фільтр ран
+
+commands/othermods/filter_bleeding
+Фільтр кровотечі

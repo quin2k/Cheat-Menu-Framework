@@ -15,3 +15,30 @@ Furia de maná
 
 commands/roleplays/mana_rage_max
 Furia de maná máxima
+
+commands/othermods/booba_cosmetic
+Modo Cosmético de Pechos
+
+commands/othermods/booba_oldnipples
+Pezones Antiguos
+
+commands/othermods/filter_whitecum
+Semen Blanco
+
+commands/othermods/filter_events
+Eventos Recoloreados
+
+commands/othermods/filter_melanin
+Filtro de Melanina del Pezón
+
+commands/othermods/filter_pubes
+Filtro de Vello Púbico
+
+commands/othermods/filter_dirt
+Filtro de Suciedad
+
+commands/othermods/filter_wounds
+Filtro de Heridas
+
+commands/othermods/filter_bleeding
+Filtro de Sangrado

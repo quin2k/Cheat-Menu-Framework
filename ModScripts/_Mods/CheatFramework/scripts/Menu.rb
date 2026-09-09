@@ -274,9 +274,14 @@ module MenuFramework
         #msgbox "#{opts.inspect}"
       end
 
-      # Snapshot at boot: does the persisted value equal opts[:restart] (its
-      # numeric "disabled" sentinel)? Lets restart_mismatch? compare this against whatever the value is now.
-      restart_boot_disabled = (opts[:restart].is_a?(Numeric) && state) ? (eval(state) rescue nil) == opts[:restart] : nil
+      # Snapshot at boot for restart_mismatch? to compare against: whether the
+      # value equals the restart: sentinel, or (restart: true) the raw value itself.
+      restart_boot_disabled =
+        if state && opts[:restart].is_a?(Numeric)
+          (eval(state) rescue nil) == opts[:restart]
+        elsif state && opts[:restart] == true
+          (eval(state) rescue nil)
+        end
 
       $framework.commands[group][key] = {
         source: opts[:source],

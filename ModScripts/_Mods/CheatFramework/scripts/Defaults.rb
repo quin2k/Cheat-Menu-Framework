@@ -473,12 +473,19 @@ module Action_Window_Defaults
     if @editing_number
       @edit_value += change
       @edit_value = [[@edit_value, @edit_min].max, @edit_max].min
-    else    
+    else
       return unless @edit_list && @edit_list.is_a?(Array)
       @edit_index = (@edit_index + change) % @edit_list.size  # cycles properly
       @edit_value = @edit_list[@edit_index][:label]
     end
     refresh
+    refresh_help_window if live_help_command?
+  end
+
+  # True if this row's help1-4 is a Proc, so it needs redrawing mid-edit.
+  def live_help_command?
+    record = @dictionary && @editing_this ? @dictionary[@editing_this] : nil
+    record && [:help1, :help2, :help3, :help4].any? { |k| record[k].is_a?(Proc) }
   end
 end
 
@@ -487,6 +494,7 @@ end
 #==============================================================================
 module Scene_Defaults
   attr_accessor :menu_symbol
+  attr_reader :action_window
   def start
     super
     create_command_window

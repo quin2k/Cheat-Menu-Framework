@@ -39,6 +39,7 @@ module MenuFramework
                 { key: 5, label: "[#{$framework.txt("modules/character:commands/appearance/hair_color/5")}]" }
               ],
       action: ->(v) { $game_player.actor.record_HairColor = v; $game_player.refresh_chs },
+      hide:   -> { defined?(LonaRecolor) },
       order:  30
     )
     register_command(
@@ -165,6 +166,13 @@ module MenuFramework
       gdef:   false,
       order:  80
     )
+
+    #--------------------------------------------------------------------------
+    # Optional companion mod integration
+    #--------------------------------------------------------------------------
+    if defined?(LonaRecolor) && LonaRecolor.respond_to?(:register_appearance_commands)
+      LonaRecolor.register_appearance_commands
+    end
   end
 end
 
@@ -218,5 +226,35 @@ module FrameworkUtils
     active_states.each do |state|
       actor.remove_state(state)
     end
+  end
+end
+
+# ---------------------------------
+# Live portrait preview in the Appearance menu
+# ---------------------------------
+class Scene_CheatMenuAppearance
+  alias_method :start_Framework_portrait_preview, :start
+  def start
+    start_Framework_portrait_preview
+    $game_portraits.setRprt("Lona")
+    portrait = $game_portraits.getPortrait("Lona")
+    portrait.skip_animation
+    canvas = portrait.instance_variable_get(:@canvas) 
+    left_shift = (0.4 * Graphics.width).round
+    portrait.set_position((Graphics.width - canvas[0]) / 2 - left_shift, (Graphics.height - canvas[1]) / 2)
+  end
+
+  alias_method :update_Framework_portrait_preview, :update
+  def update
+    update_Framework_portrait_preview
+    $game_portraits.getPortrait("Lona").update
+  end
+
+  alias_method :terminate_Framework_portrait_preview, :terminate
+  def terminate
+    portrait = $game_portraits.getPortrait("Lona")
+    portrait.hide
+    portrait.skip_animation # same animation-won't-progress-here issue as start
+    terminate_Framework_portrait_preview
   end
 end
