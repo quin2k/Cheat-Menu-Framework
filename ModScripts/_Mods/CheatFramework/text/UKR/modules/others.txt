@@ -123,3 +123,15 @@ commands/irresistible
 
 command_help/irresistible1
 Надайте пріоритет сексуальному таргетуванню, якщо витривалість <0.
+
+commands/beastfix
+Виправлення звірів
+
+command_help/beastfix1
+Дозволяє деяким заблокованим тваринам паруватися.
+
+commands/companionrape
+Зґвалтування супутниками
+
+command_help/companionrape1
+Дозволяє супутникам переслідувати Лону відповідно до їхніх уподобань.

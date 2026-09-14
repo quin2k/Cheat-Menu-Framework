@@ -123,3 +123,15 @@ Irresistible
 
 command_help/irresistible1
 Prioritize sexual targeting if stamina <0.
+
+commands/beastfix
+Beast Fix
+
+command_help/beastfix1
+Allows some blocked animals to fornicate.
+
+commands/companionrape
+Companion Rape
+
+command_help/companionrape1
+Allows companions to target Lona based on their preferences.

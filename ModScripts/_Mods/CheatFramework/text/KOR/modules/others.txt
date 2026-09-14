@@ -123,3 +123,15 @@ commands/irresistible
 
 command_help/irresistible1
 체력이 0 미만일 경우 성적 목표 달성을 우선시하십시오.
+
+commands/beastfix
+야수 수정
+
+command_help/beastfix1
+차단된 일부 동물이 교미할 수 있도록 합니다.
+
+commands/companionrape
+동료 강간
+
+command_help/companionrape1
+동료가 자신의 선호에 따라 로나를 목표로 삼을 수 있도록 합니다.

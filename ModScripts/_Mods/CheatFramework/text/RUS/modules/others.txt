@@ -123,3 +123,15 @@ commands/irresistible
 
 command_help/irresistible1
 При выносливости <0 приоритет отдается сексуальным целям.
+
+commands/beastfix
+Исправление зверей
+
+command_help/beastfix1
+Позволяет некоторым заблокированным животным совокупляться.
+
+commands/companionrape
+Изнасилование спутниками
+
+command_help/companionrape1
+Позволяет спутникам преследовать Лону в соответствии с их предпочтениями.

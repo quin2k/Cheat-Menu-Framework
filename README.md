@@ -61,6 +61,7 @@ Conflict Resolution: If the RolePlay-S mod is active, quick-save/load will overr
   - Auto-Clean
   - Auto-Cure
   - Unlock Gallery
+  - Lona Vulnerable
 - Summon
   - Arena Submenu
   - Auto-populated
@@ -115,6 +116,8 @@ Conflict Resolution: If the RolePlay-S mod is active, quick-save/load will overr
   - Endless Contracts
   - Prevent Death
   - Irresistible
+  - Beast Fix
+  - Companion Rape
   - Revive Unique NPCs Submenu
 - Difficulty
   - Edit World Difficulty
@@ -156,7 +159,6 @@ Conflict Resolution: If the RolePlay-S mod is active, quick-save/load will overr
 
 - Currently in need of proper translation for default languages. I didn't want to publish something I couldn't test, so I did not include custom languages from the original.
   - Any native speakers should contact me ASAP with fixes!
-- Giving birth while Infinite Stamina is active causes issues (Lona is supposed to faint, but doesn't).
 - Should be loaded after RolePlay-S. It's minor - local-turned-global variables won't write until you save-and-load the first time.
 
 ## Planned Improvements
@@ -364,6 +366,15 @@ This started out as "I'd like to be able to edit variables" and when I realized 
 - Moved RolePlay-S cheats into the Other Mods menu (Infinite MP, Mana Rage, Mana Rage Max, Disable Save Limiter).
 - RESTART tag is now smarter and realizes if you changed your mind.
 - Difficulty: fixed Despawn Fix's restart tag and its event-matching logic.
+- Fixed issue with custom hotkeys being unbound on the next restart instead of saving.
+- Added a fix to Infinite Stamina it'll disable when Lona is giving birth to prevent a softlock.
+- Added "Lona Vulnerable" toggle. Caps her stamina at 0 releases when she collapses.
+- Added "Beast Fix" and "Companion Rape" to NPC Tweaks.
+  - Beast Fix corrects the "Others" alignment issue and simultaneously unlocks some additional beasts
+    - Warning: Beast Fix changes Horse Carry and Doggy preferences (were locked).
+    - Idea credit: thatdude64.
+  - Companion Rape lets companions evaluate Lona as a target (based on existing preferences).
+    - Best paired with "Irresistable", "Infinite Stamina" and "Lona Vulnerable" for endless fun.
 
 </details>
 

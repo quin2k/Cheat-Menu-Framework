@@ -24,3 +24,9 @@ misc/faint
 
 misc/money
 기부하기
+
+toggle/vulnerable
+로나 취약
+
+command_help/vulnerable1
+기절하거나 이 토글을 끌 때까지 스태미나가 0 이상으로 오르지 않도록 합니다.

@@ -123,3 +123,15 @@ commands/irresistible
 
 command_help/irresistible1
 如果体力<0，则优先进行性攻击。
+
+commands/beastfix
+野兽修复
+
+command_help/beastfix1
+允许一些被阻止的动物交配。
+
+commands/companionrape
+同伴强暴
+
+command_help/companionrape1
+允许同伴根据自己的偏好以洛娜为目标。

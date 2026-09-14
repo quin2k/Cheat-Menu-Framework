@@ -140,7 +140,10 @@ class FrameworkConfig
   def prune_orphaned_hotkeys(section)
     @key_ini[section].keys.each do |full_key|
       group, key = full_key.split('.', 2)
-      next if group && key && $framework.commands[group.to_sym] && $framework.commands[group.to_sym].key?(key)
+      # split always yields a String key, but commands can be registered with either
+      # a String or Symbol key (see Controls.rb#resolve_record) - check both.
+      dict = group && key && $framework.commands[group.to_sym]
+      next if dict && (dict.key?(key) || dict.key?(key.to_sym))
       @key_ini[section].delete(full_key)
     end
   end

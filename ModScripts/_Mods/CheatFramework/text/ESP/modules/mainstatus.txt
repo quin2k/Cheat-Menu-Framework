@@ -24,3 +24,9 @@ Agotado
 
 misc/money
 Dar dinero
+
+toggle/vulnerable
+Lona vulnerable
+
+command_help/vulnerable1
+Impide que la resistencia suba de 0 hasta que se desmaye o desactives este interruptor.
