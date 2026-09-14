@@ -24,3 +24,9 @@ misc/faint
 
 misc/money
 给钱
+
+toggle/vulnerable
+洛娜易受攻击
+
+command_help/vulnerable1
+使耐力无法高于 0，直到她昏迷或您关闭此开关为止。

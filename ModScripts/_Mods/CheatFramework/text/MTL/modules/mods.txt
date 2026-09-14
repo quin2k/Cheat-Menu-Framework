@@ -1,9 +1,6 @@
 commands/othermods
 Other Mods
 
-commands/roleplays
-RolePlay-S
-
 commands/roleplays/saves
 Disable Save Limiter
 
@@ -15,3 +12,30 @@ Mana Rage
 
 commands/roleplays/mana_rage_max
 Mana Rage Max
+
+commands/othermods/booba_cosmetic
+Booba Cosmetic Mode
+
+commands/othermods/booba_oldnipples
+Old Nipples
+
+commands/othermods/filter_whitecum
+White Cum
+
+commands/othermods/filter_events
+Recolored Events
+
+commands/othermods/filter_melanin
+Filter Nipple Melanin
+
+commands/othermods/filter_pubes
+Filter Pubic Hair
+
+commands/othermods/filter_dirt
+Filter Dirt
+
+commands/othermods/filter_wounds
+Filter Wounds
+
+commands/othermods/filter_bleeding
+Filter Bleeding

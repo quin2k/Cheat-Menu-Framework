@@ -63,6 +63,30 @@ module MenuFramework
       restart: -1,
       order:  46
     )
+    register_command(
+      type:   :edit_list,
+      key:    "Beast Fix",
+      label:  "modules/others:commands/beastfix",
+      help1:  "modules/others:command_help/beastfix1",
+      help2:  "menu:command_help/fixcommand2",
+      state:  "$cheat_beast_fix",
+      list:   FIX_TOGGLE_LIST,
+      gdef:   0,
+      restart: true,
+      order:  47
+    )
+    register_command(
+      type:   :edit_list,
+      key:    "Companion Rape",
+      label:  "modules/others:commands/companionrape",
+      help1:  "modules/others:command_help/companionrape1",
+      help2:  "menu:command_help/fixcommand2",
+      state:  "$cheat_companion_rape",
+      list:   FIX_TOGGLE_LIST,
+      gdef:   0,
+      restart: -1,
+      order:  48
+    )
   end
 end
 
@@ -255,6 +279,132 @@ if $cheat_irresistible_companions >= 0
       return unless target == $game_player && $game_player.actor.sta <= 0
       @ai_state = fucker?(target, friendly?(target)) ? :fucker : :none
       set_ai_state_balloon
+    end
+  end
+end
+
+#--------------------------------------------------------------------------
+# Beast Fix
+#--------------------------------------------------------------------------
+if $cheat_beast_fix >= 0
+  # WildBoar/WildDog/WildHorse ship reachable; CompDoggy/CompHorseCarry ship hard-disabled
+  # (sex==65535, never true) - companions get a higher weak threshold than wild animals.
+  BEAST_FIX_WEAK_THRESHOLD = {
+    "WildBoar"       => 40,
+    "WildDog"        => 40,
+    "WildHorse"      => 80,
+    "CompDoggy"      => 150,
+    "CompHorseCarry" => 150,
+  }
+
+  # chcg4's "Others" pose entries ship ~80px too high on y; only nudges a value still at the
+  # exact broken default, so an upstream fix becomes a silent no-op instead of double-applying.
+  BEAST_ALIGN_FIX = {
+    "chcg4_EventMouth_Others" => {from: 38,  to: 118},
+    "chcg4_EventAnal_Others"  => {from: 287, to: 367},
+    "chcg4_EventVag_Others"   => {from: 262, to: 342},
+  }
+
+  class << DataManager
+    alias_method :cf_beastfix_load_mod_database, :load_mod_database
+    def load_mod_database
+      cf_beastfix_load_mod_database
+      return unless $cheat_beast_fix == 1
+      BEAST_FIX_WEAK_THRESHOLD.each do |name, weak|
+        npc = $data_npcs[name]
+        npc.fucker_condition = {"weak" => [weak, ">"], "sex" => [0, "="]} if npc
+      end
+      parts = $data_lona_portrait && $data_lona_portrait[1]["chcg4"]
+      return unless parts
+      parts.each do |part|
+        fix = BEAST_ALIGN_FIX[part.part_name]
+        part.posY = fix[:to] if fix && part.posY == fix[:from]
+      end
+    end
+  end
+
+  # WildHorse/WildDog/CompDoggy's template graphic uses a chartype with no real sex-pose data,
+  # so grab() never reaches :sex - remap each to a working one, reusing existing matching art.
+  class Game_Event
+    alias_method :cf_beastfix_setup_charset_page_settings, :setup_charset_page_settings
+    def setup_charset_page_settings
+      if $cheat_beast_fix == 1 && @event && @page
+        case @event.name
+        when "WildHorse"
+          if @page.graphic.character_name == "-char-Creatures80C01"
+            @page.graphic.character_name = "-char-Creatures76MF01"
+            @page.graphic.character_index = 1
+            @page.graphic.pattern = 0
+          end
+        when "WildDog"
+          if @page.graphic.character_name == "-char-Creatures48C01"
+            @page.graphic.character_name = "-char-CreaturesDOG76M"
+            @page.graphic.character_index = 0
+            @page.graphic.pattern = 2
+          end
+        when "CompDoggy"
+          if @page.graphic.character_name == "-char-Creatures48C01"
+            @page.graphic.character_name = "-char-CreaturesDOG76M"
+            @page.graphic.character_index = 1
+            @page.graphic.pattern = 0
+          end
+        end
+      end
+      cf_beastfix_setup_charset_page_settings
+    end
+  end
+end
+
+#--------------------------------------------------------------------------
+# Companion Rape
+#--------------------------------------------------------------------------
+if $cheat_companion_rape >= 0
+  # Lets a companion :fucker-target its own team instead of being filtered out as friendly -
+  # patches both independent checks. Needs Beast Fix (or similar) for the condition to be reachable.
+  CF_SENSOR_IFF_BYPASS_NAMES = []
+
+  class Game_NonPlayerCharacter
+    # Escape hatch for granting the bypass to something that isn't a recruited companion
+    # (@master == $game_player) yet, e.g. an NPC still under test.
+    def cf_companion_rape_ignore_iff?
+      @master == $game_player || CF_SENSOR_IFF_BYPASS_NAMES.include?(@npc_name)
+    end
+
+    alias_method :cf_companion_rape_process_target, :process_target
+    def process_target(target, distance, signal, sensor_type)
+      return cf_companion_rape_process_target(target, distance, signal, sensor_type) unless $cheat_companion_rape == 1
+      return if @event.chk_skill_eff_reserved
+      return if !target.actor
+      return process_target_lost if target.deleted? || (!$game_map.events.value?(target) && target != $game_player)
+      return process_target_lost if target && target.actor.action_state == :death
+      is_friend = friendly?(target)
+      return if is_friend && !fucker?(target, is_friend)
+      process_ai_state(target, distance, signal, sensor_type)
+      process_alert_level(target, distance, signal, sensor_type) if non_battle? && @ai_state != :none
+      return unless @alert_level == 2
+      @targetLock_HP = 10
+      case @ai_state
+      when :fucker; process_fucker(target, distance, signal, sensor_type)
+      when :killer; process_killer(target, distance, signal, sensor_type)
+      when :assaulter; process_assulter(target, distance, signal, sensor_type)
+      when :flee; process_flee(target, distance, signal, sensor_type)
+      else set_alert_level(0) if @fraction_mode == 1 || @fraction_mode == 4 || @fraction_mode == 2
+      end
+    end
+  end
+
+  class Sensors::Basic_Sensor
+    class << self
+      alias_method :cf_companion_rape_signal_IgnoreCheck, :signal_IgnoreCheck
+      def signal_IgnoreCheck(character, target, track_mode = false)
+        return cf_companion_rape_signal_IgnoreCheck(character, target, track_mode) unless $cheat_companion_rape == 1
+        return true if not_actor?(target)
+        return true if same_char?(target, character)
+        return true if ignore_dead? && target.npc.action_state == :death
+        return true if ignore_obj_chk(character, target)
+        return true if use_iff? && !character.actor.cf_companion_rape_ignore_iff? && character.actor.friendly?(target)
+        return true if friendly_only? && !character.actor.friendly?(target)
+      end
     end
   end
 end

@@ -99,6 +99,14 @@ class CheatFramework
     $mod_manager.mods['RolePlayS'] && $mod_manager.mods['RolePlayS'].enabled
   end
 
+  def bellybooba_mod?
+    $mod_manager.mods['bellybooba'] && $mod_manager.mods['bellybooba'].enabled
+  end
+
+  def filter_visuals_mod?
+    $mod_manager.mods['visuals'] && $mod_manager.mods['visuals'].enabled
+  end
+
 end
 
 

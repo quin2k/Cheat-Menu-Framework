@@ -144,15 +144,17 @@ module FrameworkUtils
               .map { |pair, _idx| pair }
   end
 
-  # For restart: <number> commands, true if the live value's on/off state now
-  # disagrees with what was snapshotted at boot (restart_boot_disabled).
+  # True if the live value disagrees with the boot-time snapshot: crossed the
+  # restart: <number> sentinel boundary, or (restart: true) just changed at all.
   def self.restart_mismatch?(record)
-    return false unless record && record[:restart].is_a?(Numeric) && record[:state]
+    return false unless record && record[:state]
+    restart = record[:restart]
+    return false unless restart.is_a?(Numeric) || restart == true
     boot_disabled = record[:restart_boot_disabled]
     return false if boot_disabled.nil?
     current_val = record[:state].call rescue nil
     return false if current_val.nil?
-    (current_val == record[:restart]) != boot_disabled
+    restart.is_a?(Numeric) ? (current_val == restart) != boot_disabled : current_val != boot_disabled
   end
 
   # Flags that a restart is needed: on every change for restart: true, or only
@@ -180,6 +182,17 @@ module FrameworkUtils
     data = $framework.hotkey_defs["#{group}.#{key}"]
     return nil if data.nil? || data[:key].nil? || data[:key].to_s.upcase == "NONE"
     "[#{data[:key]}]"
+  end
+
+  # The {key:, label:} entry currently highlighted in an in-progress edit_list edit.
+  def self.current_edit_option
+    scene = SceneManager.scene
+    return nil unless scene.respond_to?(:action_window)
+    aw = scene.action_window
+    return nil unless aw && aw.instance_variable_get(:@editing)
+    list = aw.instance_variable_get(:@edit_list)
+    idx  = aw.instance_variable_get(:@edit_index)
+    list && list[idx]
   end
 
   # Resolves a command's display name, falling back to `fallback` if it has no label:.

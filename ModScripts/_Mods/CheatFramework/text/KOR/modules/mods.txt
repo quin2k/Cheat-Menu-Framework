@@ -15,3 +15,30 @@ commands/roleplays/mana_rage
 
 commands/roleplays/mana_rage_max
 마나 분노 최대치
+
+commands/othermods/booba_cosmetic
+가슴 코스메틱 모드
+
+commands/othermods/booba_oldnipples
+이전 유두
+
+commands/othermods/filter_whitecum
+하얀 정액
+
+commands/othermods/filter_events
+색상 변경 이벤트
+
+commands/othermods/filter_melanin
+유두 멜라닌 필터
+
+commands/othermods/filter_pubes
+음모 필터
+
+commands/othermods/filter_dirt
+먼지 필터
+
+commands/othermods/filter_wounds
+상처 필터
+
+commands/othermods/filter_bleeding
+출혈 필터

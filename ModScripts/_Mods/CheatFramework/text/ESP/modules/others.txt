@@ -123,3 +123,15 @@ Irresistible
 
 command_help/irresistible1
 Prioriza la focalización sexual si la resistencia <0.
+
+commands/beastfix
+Arreglo de bestias
+
+command_help/beastfix1
+Permite que algunos animales bloqueados puedan fornicar.
+
+commands/companionrape
+Violación de compañeros
+
+command_help/companionrape1
+Permite que los compañeros elijan a Lona como objetivo según sus preferencias.

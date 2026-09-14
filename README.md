@@ -61,6 +61,7 @@ Conflict Resolution: If the RolePlay-S mod is active, quick-save/load will overr
   - Auto-Clean
   - Auto-Cure
   - Unlock Gallery
+  - Lona Vulnerable
 - Summon
   - Arena Submenu
   - Auto-populated
@@ -115,6 +116,8 @@ Conflict Resolution: If the RolePlay-S mod is active, quick-save/load will overr
   - Endless Contracts
   - Prevent Death
   - Irresistible
+  - Beast Fix
+  - Companion Rape
   - Revive Unique NPCs Submenu
 - Difficulty
   - Edit World Difficulty
@@ -126,11 +129,23 @@ Conflict Resolution: If the RolePlay-S mod is active, quick-save/load will overr
   - Reset Game Difficulty (Doom Mode only)
 - Items/Weapons/Armors/Status
   - Auto-populated 
-- RolePlay-S
-  - Infinite MP
-  - Edit Mana Rage Max
-  - Edit Mana Rage
-  - Disable Save Limiter
+- Other Mods
+  - RolePlay-S (if installed)
+    - Infinite MP
+    - Edit Mana Rage Max
+    - Edit Mana Rage
+    - Disable Save Limiter
+  - Lona Belly & Booba (if installed)
+    - Booba Cosmetic Mode
+    - Old Nipples
+  - Filter Visuals (if installed)
+    - White Cum
+    - Recolored Events
+    - Filter Nipple Melanin
+    - Filter Pubic Hair
+    - Filter Dirt
+    - Filter Wounds
+    - Filter Bleeding
 - Config
   - View/Clear Hotkeys
   - Edit Menu Order 
@@ -144,13 +159,10 @@ Conflict Resolution: If the RolePlay-S mod is active, quick-save/load will overr
 
 - Currently in need of proper translation for default languages. I didn't want to publish something I couldn't test, so I did not include custom languages from the original.
   - Any native speakers should contact me ASAP with fixes!
-- Giving birth while Infinite Stamina is active causes issues (Lona is supposed to faint, but doesn't).
 - Should be loaded after RolePlay-S. It's minor - local-turned-global variables won't write until you save-and-load the first time.
 
 ## Planned Improvements
 
-- Mod integration: Allow editing of my other mod ini files via this mod. Thanks to thatguy88 for the inspiration. 
-- Explore adding more 'Doom' features peacemeal (like pregnancy) - for those who want to experience some of the features without save-locks.
 - Identify global variables that should be able to act as local.
 
 ---
@@ -339,6 +351,33 @@ This started out as "I'd like to be able to edit variables" and when I realized 
   - Added fix for issue where F9 hotkey was not being set by default
 
 </details>
+<details>
+<summary>Ver 1.3q Changelog</summary>
+
+- Added "Other Mods" menu for cross-mod support - thanks to thatguy88 for the original idea.
+  - Lona Belly & Booba: toggle Cosmetic Mode and Old Nipples can be edited directly.
+  - Filter Visuals: Toggle all 7 filters (White Cum, Recolored Events, Nipple Melanin, Pubic Hair, Dirt, Wounds, Bleeding).
+    - White Cum and Recolored Events require a restart due to their nature.
+  - All of these write straight to that mod's own config, so the change sticks even if you disable CheatFramework.
+  - Only shows up if you actually have one of those mods installed.
+- Added support for a new mod I'm working on (LonaRecolored) to leverage CheatFramework's menus.
+  - Too lazy to integrate that mod into the shops, so CheatFramework will likely be a dependency.
+  - Added support for per-choice help text, mostly in support of this mod.
+- Moved RolePlay-S cheats into the Other Mods menu (Infinite MP, Mana Rage, Mana Rage Max, Disable Save Limiter).
+- RESTART tag is now smarter and realizes if you changed your mind.
+- Difficulty: fixed Despawn Fix's restart tag and its event-matching logic.
+- Fixed issue with custom hotkeys being unbound on the next restart instead of saving.
+- Added a fix to Infinite Stamina it'll disable when Lona is giving birth to prevent a softlock.
+- Added "Lona Vulnerable" toggle. Caps her stamina at 0 releases when she collapses.
+- Added "Beast Fix" and "Companion Rape" to NPC Tweaks.
+  - Beast Fix corrects the "Others" alignment issue and simultaneously unlocks some additional beasts
+    - Warning: Beast Fix changes Horse Carry and Doggy preferences (were locked).
+    - Idea credit: thatdude64.
+  - Companion Rape lets companions evaluate Lona as a target (based on existing preferences).
+    - Best paired with "Irresistable", "Infinite Stamina" and "Lona Vulnerable" for endless fun.
+
+</details>
+
 ---
 
 ## Credits

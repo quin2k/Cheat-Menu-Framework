@@ -100,7 +100,7 @@ module MenuFramework
       # 0 doubles as both "Off" and "not installed" (the patch's own gate is `!= 0`) - defaulting
       # here instead of x1 means a fresh install doesn't pay for the patch until actually used.
       gdef:   1,
-      restart: -1,
+      restart: 0,
       order:  20
     )
     register_command(
@@ -180,7 +180,7 @@ if $cheat_item_despawn != 0
   class Game_Map
     alias rq_orig_reserve_summon_event reserve_summon_event
     def reserve_summon_event(event_name, x=$game_player.x, y=$game_player.y, id=-1, data=nil)
-      if event_name && event_name.start_with?("Item")
+      if event_name && $data_ItemName[event_name] && event_lib[event_name]
         event_template = event_lib[event_name][1]
         if event_template.pages
           event_template.pages.each do |page|

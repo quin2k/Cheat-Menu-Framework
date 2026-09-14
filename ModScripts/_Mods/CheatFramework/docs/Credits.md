@@ -36,6 +36,8 @@
 
 - [kastrom](https://vk.com/kactpom) \(their undead unique mod seemed limiting (e.g. Adam quest issues), so tried to improve on it.\)
 
+- [thatdude64](https://f95zone.to/members/thatdude64.10884557/) \(inspired the Beast Fix cheat.\)
+
 ## Translations
 
 - Russian language fixes courtesy of [Sado Yasashi](https://f95zone.to/members/sado-yasashi.7065366/) / [Sadorimatsu](https://raidgame.ru/members/1/)
