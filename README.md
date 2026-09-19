@@ -377,6 +377,14 @@ This started out as "I'd like to be able to edit variables" and when I realized 
     - Best paired with "Irresistable", "Infinite Stamina" and "Lona Vulnerable" for endless fun.
 
 </details>
+<details>
+<summary>Ver 1.3.1q Changelog</summary>
+
+- Tied the health refill for Prevent Death / Infinite Health to the code that handles hits instead of per tick.
+- Fixed crash for Companion Rape on older versions. Thank you zerk0000 for pointing out these issues.
+- Fixed an error with CompDoggy not having any grapple moves (not just art was sabotaged).
+
+</details>
 
 ---
 

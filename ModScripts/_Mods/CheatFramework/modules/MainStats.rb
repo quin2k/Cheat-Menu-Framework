@@ -127,10 +127,11 @@ class CheatFramework
   end
 end
 
-# Releases Lona Vulnerable the instant she actually collapses, so she isn't pinned back to 0 on waking.
+# Refills Infinite Health before each death check; releases Lona Vulnerable the instant she collapses, so she isn't pinned back to 0 on waking.
 class Game_Actor
   alias_method :determine_death_LONA_VULNERABLE, :determine_death
   def determine_death
+    FrameworkUtils.health_to_max if $cheat_infinite_health && $game_player && self == $game_player.actor
     was_death = @action_state == :death
     determine_death_LONA_VULNERABLE
     $story_stats['CF_lona_vulnerable'] = 0 if !was_death && @action_state == :death && FrameworkUtils.lona_vulnerable?

@@ -235,6 +235,15 @@ if $cheat_companion_immortal >= 0
     end
   end
 
+  # Applies the health floor inside determine_death so it holds against hits landing between ticks.
+  class Game_Actor
+    alias_method :cf_prevent_death_determine_death, :determine_death
+    def determine_death
+      FrameworkUtils.apply_lona_death_lock if $game_player && self == $game_player.actor
+      cf_prevent_death_determine_death
+    end
+  end
+
   class CheatFramework
     alias_method :hotkey_trigger_prevent_death_lona, :hotkey_trigger
     def hotkey_trigger
@@ -297,6 +306,8 @@ if $cheat_beast_fix >= 0
     "CompHorseCarry" => 150,
   }
 
+  BEAST_FIX_FUCKER_SKILLS = ["NpcFuckerMh", "NpcFuckerSh", "NpcFuckerGrab"]
+
   # chcg4's "Others" pose entries ship ~80px too high on y; only nudges a value still at the
   # exact broken default, so an upstream fix becomes a silent no-op instead of double-applying.
   BEAST_ALIGN_FIX = {
@@ -314,6 +325,9 @@ if $cheat_beast_fix >= 0
         npc = $data_npcs[name]
         npc.fucker_condition = {"weak" => [weak, ">"], "sex" => [0, "="]} if npc
       end
+      # Gives CompDoggy the grab/sex skills so it attempts the grab like other beasts.
+      doggy = $data_npcs["CompDoggy"]
+      doggy.skills_fucker = BEAST_FIX_FUCKER_SKILLS if doggy
       parts = $data_lona_portrait && $data_lona_portrait[1]["chcg4"]
       return unless parts
       parts.each do |part|
@@ -398,7 +412,7 @@ if $cheat_companion_rape >= 0
       alias_method :cf_companion_rape_signal_IgnoreCheck, :signal_IgnoreCheck
       def signal_IgnoreCheck(character, target, track_mode = false)
         return cf_companion_rape_signal_IgnoreCheck(character, target, track_mode) unless $cheat_companion_rape == 1
-        return true if not_actor?(target)
+        return true if !target.is_actor?
         return true if same_char?(target, character)
         return true if ignore_dead? && target.npc.action_state == :death
         return true if ignore_obj_chk(character, target)
